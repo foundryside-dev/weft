@@ -10,7 +10,7 @@ Entity extraction (3-segment **locator** `{plugin_id}:{kind}:{qualname}`), edges
 
 ## Federation role (points to loom for patterns)
 
-- **Identity authority:** mints/persists/re-binds/resolves SEI; serves `resolve`/`resolve_sei`/`lineage`/`_capabilities`. The [SEI standard](../sei-standard.md) is the suite contract; Clarion ADR-038 is the token form. SEI is canonical but **not yet locked** ([conflict-register.md](../conflict-register.md) §B-2).
+- **Identity authority:** mints/persists/re-binds/resolves SEI; serves `resolve`/`resolve_sei`/`lineage`/`_capabilities`. The [SEI standard](../sei-standard.md) is the suite contract; Clarion ADR-038 is the token form. The SEI standard is **LOCKED** (2026-06-05); Clarion (authority) verifies member conformance under the lock ([conflict-register.md](../conflict-register.md) §B-2).
 - **Contracts it carries:** SEI resolution ([contracts-index.md](../contracts-index.md) §2), entity-assoc drift `issues_for` (§1), Wardline taint-fact store host (§3), qualname reconciliation (§5), git-rename seam consumer (§6), Charter SEI consumer (§10).
 - **Founding doctrine moved:** the federation doctrine/glossary that lived in `~/clarion/docs/suite/` are **promoted into this hub** ([doctrine.md](../doctrine.md), [glossary.md](../glossary.md)); Clarion's copies are pointers.
 

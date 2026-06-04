@@ -11,7 +11,7 @@ Each live cross-tool binding from [federation-map.md](./federation-map.md), with
 | Pair | Integration | Status | Reference |
 |---|---|---|---|
 | Clarion ↔ Filigree | entity associations (drift via `issues_for`) | **live** | [contracts-index.md](./contracts-index.md) §1 |
-| Clarion → all | SEI identity resolution | **live** (canonical, **not yet locked** — Filigree backfill gates lock) | [sei-standard.md](./sei-standard.md); [conflict-register.md](./conflict-register.md) §B-2 |
+| Clarion → all | SEI identity resolution | **live; standard LOCKED 2026-06-05** (member backfills are conformance tasks under lock) | [sei-standard.md](./sei-standard.md); [conflict-register.md](./conflict-register.md) §B-2 |
 | Wardline ↔ Clarion | taint-fact store | **live** | [contracts-index.md](./contracts-index.md) §3 |
 | Wardline → Clarion | qualname reconciliation | **live** | [contracts-index.md](./contracts-index.md) §5 |
 | Wardline → Filigree | findings intake | **asterisked (A-1, LIVE)** — routes through Clarion's SARIF translator until Wardline's native emitter ships | [asterisk-register.md](./asterisk-register.md) |
@@ -29,7 +29,7 @@ Per [SHIPPING.md](./SHIPPING.md) decision 2, after the one-time coordinated **Lo
 | Member | 1.0 launch version | Speaks `loom` HTTP generation | Notes |
 |---|---|---|---|
 | Clarion | _tbd_ | yes (serves SEI + read API) | shipped (snapshot v1.3.0) |
-| Filigree | _tbd_ | yes (publishes `classic` + `loom`) | shipped (snapshot v2.3.0); **SEI backfill gates suite 1.0 on the identity track** |
+| Filigree | _tbd_ | yes (publishes `classic` + `loom`) | shipped (snapshot v2.3.0); SEI standard locked — Filigree's locator→SEI backfill is a conformance task under the lock |
 | Wardline | _tbd_ | consumer (SEI client) | **1.0 launch gate** (snapshot 1.0.0rc1) |
 | Legis | _tbd_ | consumer | snapshot 1.0.0rc |
 | Charter | _tbd_ | consumer (planned) | **1.0 launch gate** (snapshot 0.1.0 scaffold) |

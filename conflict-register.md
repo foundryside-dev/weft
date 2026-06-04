@@ -42,19 +42,19 @@
 
 **Corroboration.** [SHIPPING.md](./SHIPPING.md) (PM decision, 2026-06-05) independently rules the same roster (five products incl. legis + charter; shuttle future, not #4) and labels the three-disagreeing-canon-docs situation a **launch-blocking go-to-market defect** ("a suite whose canon can't name its members can't be marketed as a suite"). It also sets the docs topology this cutover implements: one hub owns the authoritative member list + compatibility matrix; the disagreeing canon docs collapse to one source. Launch is **gated by Wardline + Charter reaching 1.0**.
 
-### B-2 — SEI is canonical but **not locked**; Filigree is the gate  *(RULING + OWNER)*
+### B-2 — SEI lock  *(RESOLVED — LOCKED 2026-06-05)*
 
-**Conflict.** The [SEI standard](./sei-standard.md) is "DRAFT — not yet locked," yet Clarion's doctrine and the legis/wardline repos describe SEI as shipped and in use. Both are true at once: the *track* is canonical and substantially built (Clarion authority + Legis/Wardline consumers pass the oracle), but the standard cannot **lock** because Filigree (`release/2.3.0`) has **no SEI in source** — its locator→SEI backfill and oracle pass have not happened.
+**Was.** The [SEI standard](./sei-standard.md) read "DRAFT — not yet locked," yet Clarion/legis/wardline described SEI as shipped and in use. The *track* was canonical and substantially built (Clarion authority + Legis/Wardline consumers pass the oracle); the open gate was Filigree's locator→SEI backfill + a coordinated cutover and lock declaration.
 
-**Ruling.** loom records SEI as **canonical direction, substantially built, lock-pending-Filigree.** No one may describe SEI as "locked" until Filigree conforms and a lock declaration is made. Treat any binding still on a `locator` as legacy.
+**Resolution (2026-06-05).** The owner — who controls every member's release cycle (§7.1) — **declared SEI locked.** The interface is frozen; **post-lock changes require a versioned revision** (§0.3). The supersession (§0.2) and the oracle-gated, no-grandfathering conformance regime (§0.1) now apply in full.
 
-**Owner.** Filigree (the backfill + oracle pass) is the lock gate; Clarion (authority) declares lock once all consumers conform. Tracked as the live federation-readiness item before the point releases.
+**Residual (not a reopening).** Locking freezes the *interface*; *conformance* is separate. Where Filigree's locator→SEI backfill is still outstanding it is a **migration/conformance task carried out under the locked standard**, oracle-gated — it does not unlock SEI. Owner: Filigree (backfill), Clarion (authority, conformance verification). Treat any binding still on a `locator` as legacy to migrate.
 
-### B-3 — `shuttle://` reference scheme survival  *(OPEN — OWNER ASSIGNED)*
+### B-3 — `shuttle://` reference scheme  *(DEFERRED — prefix RESERVED)*
 
 **Conflict.** Filigree's planning-deprecation uses `shuttle://…` milestone references and a `migrate-to-shuttle` path, but Shuttle has no repo and the broader `loom://` scheme it belonged to is closed by SEI ([uri-scheme.md](./uri-scheme.md)).
 
-**Disposition.** Low-stakes and **deferred**: nothing resolves a `shuttle://` URI today. Do not build on it. Whether a thin milestone-reference convenience is worth keeping is decided **if/when a change-execution authority is actually built** — and that authority may not be "Shuttle" at all.
+**Disposition (2026-06-05, ruled).** **Deferred; the `shuttle://` prefix is RESERVED but inert.** Nothing resolves a `shuttle://` URI today and nothing should be built on it. Reserving the prefix prevents reuse; it grants no behaviour. Whether a thin milestone-reference convenience is actually adopted is decided **if/when a change-execution authority is built** — which may not be "Shuttle" at all. Shuttle itself is flagged **speculative** everywhere ([members/shuttle.md](./members/shuttle.md)).
 
 **Owner.** Filigree (owns the milestone surface + migrate-to-shuttle tooling) + whoever designs the eventual change-execution authority.
 

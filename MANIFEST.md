@@ -18,6 +18,7 @@ This manifest declares the structure, derivation discipline, ownership, and revi
 | [conflict-register.md](./conflict-register.md) | Conflicts & ambiguities (Class A/B) | First-class deliverable |
 | [compatibility.md](./compatibility.md) | Integration-liveness matrix (+ post-1.0 version matrix) | Technical face of SHIPPING decision 2 |
 | [SHIPPING.md](./SHIPPING.md) | Go-to-market / launch / packaging decisions | PM-owned; authoritative for release posture |
+| [roadmap-ideas.md](./roadmap-ideas.md) | Speculative sub-app candidate bench | Ideas only — NOT the roster |
 | [README.md](./README.md) | Hub entry point + authority model | — |
 
 ### Derivative (snapshot + pointer — authority lives in the repo)

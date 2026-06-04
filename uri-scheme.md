@@ -10,10 +10,10 @@ It was **never implemented** and was **formally closed** by the [SEI standard](.
 
 > **Drift note.** The previous hub (`federation-map.md`, `shuttle.md`) described `shuttle://…` Loom URIs as "the federation's nascent cross-product addressing scheme." That framing is stale: the scheme it referred to is the closed one above. Recorded as a fixed drift item in [conflict-register.md](./conflict-register.md) §A-8.
 
-## What about `shuttle://` milestone references?
+## `shuttle://` is RESERVED (not active)
 
 Filigree's planning-deprecation work used `shuttle://…` URIs as a lightweight way for a milestone to reference a (future) Shuttle plan/step (`~/filigree/docs/plans/2026-05-17-loom-uri-spec.md`, `2026-05-17-filigree-planning-deprecation.md`). This is a *thin reference convenience*, distinct from the closed `loom://` registry/multi-fetch apparatus.
 
-Its status is **unresolved and low-stakes**, because **Shuttle is a roadmap thought-bubble with no repo** (see [members/shuttle.md](./members/shuttle.md)) — there is nothing for a `shuttle://` URI to resolve to today. Whether a thin reference scheme survives if/when a change-execution authority is actually built is an open question, owned by Filigree + whoever designs that authority. Tracked in [conflict-register.md](./conflict-register.md) §B-3.
+**Status: RESERVED.** The `shuttle://` prefix is **reserved** for a future change-execution authority and is **not an active scheme** — **Shuttle is a speculative roadmap thought-bubble with no repo** (see [members/shuttle.md](./members/shuttle.md)), so there is nothing for a `shuttle://` URI to resolve to today. Reserving it keeps the prefix from being reused for something else; it confers no live behaviour. Whether a thin reference scheme is actually adopted is decided **if/when** a change-execution authority is built (which may not be called "Shuttle"). Owned by Filigree + whoever designs that authority. Tracked in [conflict-register.md](./conflict-register.md) §B-3.
 
-**Guidance for now:** do not build on `shuttle://`. Use SEI for entity identity and the documented association/contract surfaces for cross-tool bindings.
+**Guidance for now:** treat `shuttle://` as reserved-but-inert; do not build on it. Use SEI for entity identity and the documented association/contract surfaces for cross-tool bindings.

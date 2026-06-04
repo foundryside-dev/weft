@@ -8,7 +8,7 @@ Load-bearing factual claims the hub makes, each with its **authoritative source*
 | C-2 | Shuttle has no repo and is a roadmap thought-bubble, not a member | absence of `~/shuttle`; John 2026-06-05 |
 | C-3 | Lacuna is the demonstration specimen, not a member | `~/lacuna/README.md` |
 | C-4 | Clarion is the suite's identity authority; SEI is the binding key; locator is the address | [sei-standard.md](../sei-standard.md); Clarion ADR-038 |
-| C-5 | SEI is canonical but **not yet locked**; Filigree's backfill is the gate | [sei-standard.md](../sei-standard.md) §0.3/§0.5; [conflict-register.md](../conflict-register.md) §B-2 |
+| C-5 | SEI standard is **LOCKED (2026-06-05)**; interface frozen, post-lock changes need a versioned revision; member backfills are conformance tasks under the lock | [sei-standard.md](../sei-standard.md) §0.3; [conflict-register.md](../conflict-register.md) §B-2 |
 | C-6 | Entity-association routes are classic `/api/issue/…` + `/api/entity-associations`, not `/api/loom/…` | `~/filigree/src/filigree/dashboard_routes/entities.py`; `~/filigree/docs/federation/contracts.md` |
 | C-7 | Wardline↔Filigree is enrich-only (work-tracking), not load-bearing | `~/wardline/docs/integration/2026-05-29-wardline-loom-integration-brief.md`; `~/wardline/src/wardline/core/filigree_emit.py` |
 | C-8 | Asterisk A-1 (Wardline→Filigree via Clarion SARIF) is LIVE; A-2 (registry import) RETIRED 2026-06-05 | [asterisk-register.md](../asterisk-register.md); Clarion ADR-015 Rev 2, ADR-018 Rev 3 |

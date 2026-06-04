@@ -1,7 +1,7 @@
 # Loom — Stable Entity Identity (SEI) conformance standard
 
 **Date:** 2026-06-01 (promoted into the Loom hub 2026-06-05)
-**Status:** Canonical direction, **DRAFT — not yet locked.** SEI is the agreed single identity track every subsystem converges on; its precise shape is **open for per-subsystem requirements until lock** (see §0.3). Implementation that commits a subsystem to a specific SEI shape waits for lock; shape-independent groundwork may start now.
+**Status:** **LOCKED — 2026-06-05** (owner declaration). SEI is the canonical, frozen federation identity interface. The shape is no longer open for per-subsystem input; **post-lock changes require a versioned revision** of this standard. Conformance remains oracle-gated and ungrandfathered (§0.1): a subsystem is conformant only when it passes the §8 oracle. Any member whose locator→SEI backfill has not yet run is a *conformance/migration* task **under** the locked standard — not a reason the standard is unlocked.
 **Authority:** **Authoritative here.** This is the suite-wide SEI standard. It previously lived in the Wardline specs tree with an instruction to "propagate the normative sections into clarion/filigree"; it is now promoted into the Loom hub as its canonical home, and the member repos point here. Clarion is the identity **authority/implementer**; Wardline, Filigree, Legis, and Charter are **consumers** that conform.
 **Companions:** [doctrine.md](./doctrine.md) (the federation axiom SEI serves), [glossary.md](./glossary.md) (`SEI` / `locator` terms), Clarion ADR-038 (`~/clarion/docs/clarion/adr/ADR-038-sei-token-and-signature.md`, Clarion's token form).
 
@@ -44,15 +44,13 @@ The subsystems were running on **divergent versions of "the federation spec."** 
 
 **What is closed vs open:** the *track* is closed — that there is one canonical identity interface, that it is SEI, and that it supersedes the divergent prior specs. The *precise shape* of SEI is **open until lock** (§0.3).
 
-## 0.3 Status: canonical direction, not yet locked
+## 0.3 Status: LOCKED (2026-06-05)
 
-SEI is the agreed single track — every subsystem abandons its divergent federation-identity version and converges here. But its **precise shape is not yet locked.** Each conforming subsystem gets to influence it before lock, because requirements are still emerging.
+SEI is **locked.** The single canonical identity interface is SEI (the §0.2 supersession is permanent), all conforming subsystems reported and recorded their requirements, the §8 oracle encodes them, and the owner — who controls every member's release cycle (§7.1) — has declared the lock. The §1 decisions and the wire/lineage/matcher specifics below are now **frozen baseline**, not a proposal.
 
-**Settled now:** that there is **one** canonical identity interface and it is **SEI** (the §0.2 supersession holds today); the **conformance regime that takes effect at lock** — oracle-gated, no grandfathering (§0.1).
+**Post-lock rule:** §0.1 (oracle-gated, no grandfathering) and §0.2 (supersession) apply in full. Any change to the interface shape requires a **versioned revision** of this standard, not an ad-hoc edit. A subsystem may no longer contest a detail by "emerging requirement"; it brings a revision proposal.
 
-**Open until lock:** the interface details. The §1 decisions and the wire/lineage/matcher specifics are the **proposed baseline**; a subsystem may contest a detail by bringing a **concrete emerging requirement** — not by re-litigating a settled trade-off or to stay on its old spec.
-
-**Lock gate:** SEI locks when each conforming subsystem has signed off or recorded its requirements against this spec, and the §8 oracle encodes them.
+**Conformance vs lock (do not conflate):** locking freezes the *interface*. A member still owes *conformance* — passing the §8 oracle, including its locator→SEI backfill (§7). Filigree's backfill is such a conformance task carried out **under** the locked standard; it does not reopen the lock.
 
 ## 0.4 What SEI unlocks — interoperability across the suite
 
@@ -80,7 +78,7 @@ SEI is the agreed single track — every subsystem abandons its divergent federa
 > - **Charter** declared its SEI-consumer contract (ADR-005) as design; its adapter is part of Charter's deferred federation-adapter work.
 > - **The real remaining lock gate is FILIGREE** — still `release/2.3.0` with **no SEI in source**: its locator→SEI backfill + oracle pass have not happened.
 >
-> **Remaining before lock:** (a) Filigree's conformance (the laggard), (b) pinning Wardline's consumer-side run of the shared fixture, (c) the coordinated §7.1 hard cutover + a lock declaration. See [conflict-register.md](./conflict-register.md) §B-2.
+> **Lock achieved 2026-06-05.** The standard is locked by owner declaration (§0.3). Filigree's locator→SEI backfill, where still outstanding, is now a *conformance/migration* task carried out under the locked standard (oracle-gated, §0.1) — it is no longer a lock blocker. See [conflict-register.md](./conflict-register.md) §B-2 (resolved).
 
 ---
 

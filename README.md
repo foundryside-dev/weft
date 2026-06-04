@@ -19,6 +19,7 @@ This folder (`~/loom`) is the **authoritative source of truth for federation-wid
 Not members, but part of the story:
 - **[Shuttle](./members/shuttle.md)** — a roadmap *thought-bubble* for a future change-execution authority. No repo; lowest priority; displaceable by any better idea.
 - **[Lacuna](./members/lacuna.md)** — the deliberately-flawed *demonstration specimen* the suite is run against.
+- **[roadmap-ideas.md](./roadmap-ideas.md)** — a bench of *speculative* sub-app candidates (incl. Shuttle). Ideas only; none are members until they pass the go/no-go test.
 
 Excluded entirely: `wardline-watcher`, `wardline.old`, `loom.old` (the defunct heavier builds).
 

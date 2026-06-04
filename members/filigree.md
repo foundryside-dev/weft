@@ -11,7 +11,7 @@ Issues & workflow state machines, dependencies/critical-path, observations (14-d
 ## Federation role (points to loom for patterns)
 
 - **Federation axiom & roster:** [doctrine.md](../doctrine.md).
-- **Identity:** stores **[SEI](../sei-standard.md)** as the opaque value on entity associations; Filigree never parses it; drift detection is the consumer's job via `content_hash_at_attach`. Filigree is the **lock gate** for SEI (no SEI in source yet — [conflict-register.md](../conflict-register.md) §B-2).
+- **Identity:** stores **[SEI](../sei-standard.md)** as the opaque value on entity associations; Filigree never parses it; drift detection is the consumer's job via `content_hash_at_attach`. The SEI standard is **LOCKED** (2026-06-05); Filigree's locator→SEI backfill is now a conformance/migration task under the lock ([conflict-register.md](../conflict-register.md) §B-2).
 - **Contracts it carries:** entity associations ([contracts-index.md](../contracts-index.md) §1), governed sign-off binding (§7), Wardline findings intake (§4), the `loom` transport generation.
 - **Loose cooperation** (Filigree ADR-002): every loom-generation endpoint is functional with peers absent.
 

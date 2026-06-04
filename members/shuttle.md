@@ -1,6 +1,6 @@
-# Shuttle (roadmap thought-bubble — NOT a member)
+# Shuttle (SPECULATIVE roadmap thought-bubble — NOT a member)
 
-**Status:** **Not a federation member.** A roadmap thought-bubble with **no repo**, lowest priority, **displaceable by any better idea**. Charter (started 2026-06-04) is exactly the kind of better idea that takes priority over it. Do not build bindings, URIs, or contracts that depend on Shuttle existing.
+**Status:** **Speculative. Not a federation member.** A roadmap thought-bubble with **no repo**, lowest priority, **displaceable by any better idea**. Charter (started 2026-06-04) is exactly the kind of better idea that takes priority over it. The `shuttle://` URI prefix is **reserved but inert** ([uri-scheme.md](../uri-scheme.md)). Do not build bindings, URIs, or contracts that depend on Shuttle existing. See also [roadmap-ideas.md](../roadmap-ideas.md) for other speculative sub-app candidates.
 
 ## The sketched idea (for context only)
 
