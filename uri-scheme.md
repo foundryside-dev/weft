@@ -4,7 +4,7 @@
 
 ## The `weft://` URI scheme is closed
 
-A richer cross-tool addressing standard — the **Weft URI scheme** (`weft://…` + a component registry + `/api/weft/multi-fetch`) — was specified in `~/filigree/docs/plans/2026-05-17-loom-uri-spec.md` (per-component schemes like `shuttle://elspeth/plan/…`, with `weft://` reserved for future federation-level resources).
+A richer cross-tool addressing standard — the **Weft URI scheme** (`weft://…` + a component registry + `/api/weft/multi-fetch`) — was specified in `~/filigree/docs/plans/2026-05-17-weft-uri-spec.md` (per-component schemes like `shuttle://elspeth/plan/…`, with `weft://` reserved for future federation-level resources).
 
 It was **never implemented** and was **formally closed** by the [SEI standard](./sei-standard.md) (§0, §0.2, §9): its registry / multi-fetch apparatus was over-built and never shipped; the *stable identity* it reached for is now delivered by SEI instead. SEI explicitly lists "the Weft-URI scheme, a federation registry, `/api/weft/multi-fetch`" as **out of scope, ever**.
 
@@ -12,7 +12,7 @@ It was **never implemented** and was **formally closed** by the [SEI standard](.
 
 ## `shuttle://` is RESERVED (not active)
 
-Filigree's planning-deprecation work used `shuttle://…` URIs as a lightweight way for a milestone to reference a (future) Shuttle plan/step (`~/filigree/docs/plans/2026-05-17-loom-uri-spec.md`, `2026-05-17-filigree-planning-deprecation.md`). This is a *thin reference convenience*, distinct from the closed `weft://` registry/multi-fetch apparatus.
+Filigree's planning-deprecation work used `shuttle://…` URIs as a lightweight way for a milestone to reference a (future) Shuttle plan/step (`~/filigree/docs/plans/2026-05-17-weft-uri-spec.md`, `2026-05-17-filigree-planning-deprecation.md`). This is a *thin reference convenience*, distinct from the closed `weft://` registry/multi-fetch apparatus.
 
 **Status: RESERVED.** The `shuttle://` prefix is **reserved** for a future change-execution authority and is **not an active scheme** — **Shuttle is a speculative roadmap thought-bubble with no repo** (see [members/shuttle.md](./members/shuttle.md)), so there is nothing for a `shuttle://` URI to resolve to today. Reserving it keeps the prefix from being reused for something else; it confers no live behaviour. Whether a thin reference scheme is actually adopted is decided **if/when** a change-execution authority is built (which may not be called "Shuttle"). Owned by Filigree + whoever designs that authority. Tracked in [conflict-register.md](./conflict-register.md) §B-3.
 

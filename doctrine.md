@@ -2,7 +2,7 @@
 
 **Audience**: anyone designing, extending, or evaluating whether a new product belongs in the Weft family
 **Purpose**: establishes the strategic direction, composition law, and go/no-go test that govern Weft as a suite
-**Status**: **Authoritative.** This is the single source of the Weft federation doctrine. It was promoted here from `~/clarion/docs/suite/loom.md` (2026-06-05); that file is now a pointer to this one. Member products mirror the cross-product field-name rule (§8) citing this doc as the suite-level authority.
+**Status**: **Authoritative.** This is the single source of the Weft federation doctrine. It was promoted here from `~/clarion/docs/suite/weft.md` (2026-06-05); that file is now a pointer to this one. Member products mirror the cross-product field-name rule (§8) citing this doc as the suite-level authority.
 **Companions**: [glossary.md](./glossary.md) (shared vocabulary), [federation-map.md](./federation-map.md) (integration matrix), [README.md](./README.md) (hub entry point)
 
 ---

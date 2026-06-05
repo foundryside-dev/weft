@@ -8,9 +8,9 @@ This manifest declares the structure, derivation discipline, ownership, and revi
 
 | Doc | Authoritative for | Notes |
 |---|---|---|
-| [doctrine.md](./doctrine.md) | Federation axiom, composition law, go/no-go, roster | Promoted from `~/clarion/docs/suite/loom.md` |
+| [doctrine.md](./doctrine.md) | Federation axiom, composition law, go/no-go, roster | Promoted from `~/clarion/docs/suite/weft.md` |
 | [glossary.md](./glossary.md) | Cross-product vocabulary | Promoted from `~/clarion/docs/suite/glossary.md` |
-| [sei-standard.md](./sei-standard.md) | Stable Entity Identity conformance standard | Promoted from `~/wardline/docs/superpowers/specs/2026-06-01-loom-stable-entity-identity-conformance.md` |
+| [sei-standard.md](./sei-standard.md) | Stable Entity Identity conformance standard | Promoted from `~/wardline/docs/superpowers/specs/2026-06-01-weft-stable-entity-identity-conformance.md` |
 | [federation-map.md](./federation-map.md) | Pairwise integration matrix | Indexes contracts; restates no schema |
 | [asterisk-register.md](./asterisk-register.md) | Named axiom-violation asterisks + retirement | — |
 | [uri-scheme.md](./uri-scheme.md) | Cross-product addressing status | `weft://` closed; SEI is the spine |

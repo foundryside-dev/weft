@@ -32,7 +32,7 @@ Wardline computes per-entity taint facts and persists them to Loomweave; Loomwea
 
 Wardline findings reach Filigree's intake (`POST /api/v1/scan-results`). **Today** this routes through Loomweave's `clarion sarif import` translator — this is **asterisk [A-1](./asterisk-register.md#a-1--wardline--filigree-findings-are-pipeline-coupled-through-loomweave)**, retiring when Wardline ships a native Filigree emitter.
 
-- **Authoritative:** Clarion ADR-015 Rev 2; `~/wardline/docs/integration/2026-05-29-wardline-loom-integration-brief.md`; Filigree scan-results intake in `~/filigree/docs/federation/contracts.md`.
+- **Authoritative:** Clarion ADR-015 Rev 2; `~/wardline/docs/integration/2026-05-29-wardline-weft-integration-brief.md`; Filigree scan-results intake in `~/filigree/docs/federation/contracts.md`.
 
 ## 5. Qualname normalization — Wardline → Loomweave (Clarion ADR-018)
 

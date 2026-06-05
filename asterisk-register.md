@@ -1,6 +1,6 @@
 # Weft — asterisk register
 
-**Status:** **Authoritative.** This is the federation-wide register of named *asterisks* — documented, time-bound violations of the federation axiom's failure test ([doctrine.md](./doctrine.md) §5), each with a written retirement condition and the failure-test mode it temporarily violates. Promoted from the asterisk list in `~/clarion/docs/suite/loom.md` §5.
+**Status:** **Authoritative.** This is the federation-wide register of named *asterisks* — documented, time-bound violations of the federation axiom's failure test ([doctrine.md](./doctrine.md) §5), each with a written retirement condition and the failure-test mode it temporarily violates. Promoted from the asterisk list in `~/clarion/docs/suite/weft.md` §5.
 
 An asterisk is acceptable **only** with (a) a written retirement condition and (b) an honest statement of which failure-test mode it violates (semantic / initialization / pipeline coupling). **Do not add a new asterisk without both.** A "we'll fix it later" without a test-mode citation is not an asterisk; it is the stealth-monolith failure mode.
 
@@ -13,7 +13,7 @@ An asterisk is acceptable **only** with (a) a written retirement condition and (
 - **What it is:** Wardline's SARIF output reaches Filigree only via Loomweave's `clarion sarif import` translator. The (Wardline, Filigree) pair cannot exchange findings without Loomweave present.
 - **Status:** **LIVE** as of 2026-06-05.
 - **Retirement condition (mechanism updated 2026-05-29):** the generic Wardline rebuild ships a **native Filigree emitter** (Wardline-side), at which point the pair composes directly and Loomweave drops off the transport path. Loomweave's `clarion sarif import` stays as the general-purpose SARIF path for other tools; only its Wardline-bridge role retires. The asterisk is **kept live** until that emitter ships *and* (Wardline, Filigree) composition is verified with Loomweave absent — agreement to the direction is not retirement.
-- **Authoritative sources:** Clarion ADR-015 Revision 2 (`~/clarion/docs/clarion/adr/ADR-015-wardline-filigree-emission.md`); Wardline integration brief (`~/wardline/docs/integration/2026-05-29-wardline-loom-integration-brief.md`). Tracked under Clarion `release:1.1`.
+- **Authoritative sources:** Clarion ADR-015 Revision 2 (`~/clarion/docs/clarion/adr/ADR-015-wardline-filigree-emission.md`); Wardline integration brief (`~/wardline/docs/integration/2026-05-29-wardline-weft-integration-brief.md`). Tracked under Clarion `release:1.1`.
 
 ## Retired asterisks
 

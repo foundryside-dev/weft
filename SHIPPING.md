@@ -76,7 +76,7 @@ Follows directly from "separate packages, single front door":
 - `README.md` / `federation-map.md` say "four products incl. **shuttle**."
   **Wrong.** Five products incl. **legis + charter**; shuttle is future.
 - The three "canonical" docs (hub `README`, `federation-map`,
-  `~/clarion/docs/suite/loom.md`) disagree on membership. **This is a
+  `~/clarion/docs/suite/weft.md`) disagree on membership. **This is a
   go-to-market defect**, not a cosmetic one — a suite whose canon can't name its
   members can't be marketed as a suite. Fixing it is launch-blocking.
 
