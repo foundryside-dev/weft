@@ -1,84 +1,55 @@
-/* ============================================================
-   Loom front-door — progressive enhancement only.
-   The page is fully usable with this file absent:
-   install commands are real DOM text, nav is anchor links,
-   theme follows the system preference.
-   ============================================================ */
+/* ============================================================================
+   LOOM FEDERATION — hub interactions (progressive enhancement)
+   The page is content-complete without JS: every member card and the default
+   composition panel render server-side. This script only layers in the
+   interactive behaviour faithful to the loom-hub UI kit:
+     · single-open accordion on the member roster (default: clarion)
+     · the Solo / Pair / Suite composition-law toggle (default: pair)
+   ============================================================================ */
 (function () {
-  'use strict';
+  "use strict";
 
-  /* ---------- Theme toggle (persisted) ---------- */
-  var root = document.documentElement;
-  var toggle = document.querySelector('.theme-toggle');
+  /* ---- Member roster: single-open accordion --------------------------- */
+  var cards = Array.prototype.slice.call(document.querySelectorAll(".member-card"));
 
-  if (toggle) {
-    toggle.addEventListener('click', function () {
-      var current = root.getAttribute('data-theme');
-      var systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      var isDark = current === 'dark' || (!current && systemDark);
-      var next = isDark ? 'light' : 'dark';
-      root.setAttribute('data-theme', next);
-      try { localStorage.setItem('theme', next); } catch (e) { /* private mode */ }
+  function setOpen(target) {
+    cards.forEach(function (c) {
+      c.setAttribute("aria-expanded", String(c === target));
     });
   }
 
-  /* ---------- Close mobile nav popover after tapping a link ----------
-     popover="auto" light-dismisses on outside-click / Esc, but an in-page
-     anchor click inside the popover is not an outside-click, so it would
-     otherwise stay open over the section you jumped to. JS-off: the button
-     still opens/closes and the links still navigate. */
-  var mnav = document.getElementById('mobile-nav');
-  if (mnav) {
-    mnav.querySelectorAll('a').forEach(function (a) {
-      a.addEventListener('click', function () {
-        if (typeof mnav.hidePopover === 'function') {
-          try { mnav.hidePopover(); } catch (e) { /* not open */ }
-        }
-      });
+  cards.forEach(function (card) {
+    card.addEventListener("click", function () {
+      var isOpen = card.getAttribute("aria-expanded") === "true";
+      // Toggle: clicking the open card closes it; otherwise open it (closing the rest).
+      setOpen(isOpen ? null : card);
     });
+  });
+
+  /* ---- Composition law: Solo / Pair / Suite --------------------------- */
+  var MODES = {
+    solo: "Each tool has a complete, respectable use-case by itself. Filigree files, works, and closes a bug with Clarion absent or broken.",
+    pair: "Combined with any one sibling it creates a meaningful capability — Wardline findings become tracked Filigree work; never a broken fragment.",
+    suite: "All together form something richer: the agent understands the code, its trust posture, what it may do, and every unit of work — keyed on one identity."
+  };
+
+  var modeBtns = Array.prototype.slice.call(document.querySelectorAll(".mode-btn"));
+  var panel = document.getElementById("mode-panel");
+
+  function selectMode(mode) {
+    if (!MODES[mode] || !panel) return;
+    modeBtns.forEach(function (b) {
+      var active = b.getAttribute("data-mode") === mode;
+      b.classList.toggle("is-active", active);
+      b.setAttribute("aria-selected", String(active));
+    });
+    panel.innerHTML = '<span class="mode-text"></span>';
+    panel.firstChild.textContent = MODES[mode];
   }
 
-  /* ---------- Copy-to-clipboard on install code blocks ---------- */
-  function flash(button, ok) {
-    var label = button.querySelector('.code-block__copy-text');
-    var original = label ? label.textContent : '';
-    if (label) label.textContent = ok ? 'Copied!' : 'Press ⌘C';
-    button.classList.add('is-copied');
-    setTimeout(function () {
-      if (label) label.textContent = original;
-      button.classList.remove('is-copied');
-    }, 2000);
-  }
-
-  function legacyCopy(text) {
-    var ta = document.createElement('textarea');
-    ta.value = text;
-    ta.setAttribute('readonly', '');
-    ta.style.position = 'fixed';
-    ta.style.opacity = '0';
-    document.body.appendChild(ta);
-    ta.select();
-    var ok = false;
-    try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
-    document.body.removeChild(ta);
-    return ok;
-  }
-
-  document.querySelectorAll('.code-block__copy').forEach(function (button) {
-    button.addEventListener('click', function () {
-      var block = button.closest('.code-block');
-      var codeEl = block && block.querySelector('code');
-      if (!codeEl) return;
-      var text = codeEl.textContent.trim();
-
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(text).then(
-          function () { flash(button, true); },
-          function () { flash(button, legacyCopy(text)); }
-        );
-      } else {
-        flash(button, legacyCopy(text));
-      }
+  modeBtns.forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      selectMode(btn.getAttribute("data-mode"));
     });
   });
 })();

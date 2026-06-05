@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="../colors_and_type.css">
+<style>html,body{margin:0}body{background:var(--surface-base);font-family:var(--font-mono);padding:28px 36px;display:flex;flex-direction:column;gap:22px}
+.grp{display:flex;gap:14px}
+.sw{flex:1;display:flex;flex-direction:column;gap:7px}
+.chip{height:46px;border-radius:var(--radius);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:rgba(0,0,0,.6)}
+.nm{font-size:10.5px;color:var(--text-secondary)}.hx{font-size:10px;color:var(--text-muted)}
+.lbl{font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted);margin-bottom:-6px}</style></head>
+<body>
+  <div>
+    <div class="lbl">Status</div>
+    <div class="grp" style="margin-top:10px">
+      <div class="sw"><div class="chip" style="background:var(--status-open)">OPEN</div><div class="nm">status-open</div><div class="hx">#64748B</div></div>
+      <div class="sw"><div class="chip" style="background:var(--status-wip)">IN PROGRESS</div><div class="nm">status-wip</div><div class="hx">#38BDF8</div></div>
+      <div class="sw"><div class="chip" style="background:var(--status-done)">DONE</div><div class="nm">status-done</div><div class="hx">#7B919C</div></div>
+    </div>
+  </div>
+  <div>
+    <div class="lbl">Semantic — card left-rules &amp; alerts</div>
+    <div class="grp" style="margin-top:10px">
+      <div class="sw"><div class="chip" style="background:var(--ready)">READY</div><div class="nm">ready</div><div class="hx">#10B981</div></div>
+      <div class="sw"><div class="chip" style="background:var(--aging)">AGING &gt;4h</div><div class="nm">aging</div><div class="hx">#F59E0B</div></div>
+      <div class="sw"><div class="chip" style="background:var(--stale)">STALE &gt;24h</div><div class="nm">stale / error</div><div class="hx">#EF4444</div></div>
+    </div>
+  </div>
+</body></html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="../colors_and_type.css">
+<style>html,body{margin:0}body{background:var(--surface-base);font-family:var(--font-mono);padding:28px 36px;display:flex;flex-direction:column;gap:16px}
+.lbl{font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:7px}
+.field{font-family:var(--font-mono);font-size:12px;background:var(--surface-overlay);color:var(--text-primary);border:1px solid var(--border-strong);border-radius:var(--radius);padding:8px 11px;width:260px;box-sizing:border-box}
+.field::placeholder{color:var(--text-muted)}
+.focus{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+.row{display:flex;gap:18px;align-items:flex-end}
+.sel{position:relative}
+.sel::after{content:"\25BE";position:absolute;right:10px;top:9px;color:var(--text-muted);font-size:11px;pointer-events:none}
+.check{display:flex;align-items:center;gap:8px;color:var(--text-secondary);font-size:12px}
+.box{width:15px;height:15px;border-radius:3px;border:1px solid var(--border-strong);background:var(--surface-overlay)}
+.box.on{background:var(--accent);border-color:var(--accent);display:flex;align-items:center;justify-content:center;color:#06222F;font-size:10px}</style></head>
+<body>
+  <div class="row">
+    <div><div class="lbl">Text input</div><input class="field" placeholder="Search issues…  ( / )"></div>
+    <div><div class="lbl">Focused</div><input class="field focus" value="PY-WL-101"></div>
+  </div>
+  <div class="row">
+    <div class="sel"><div class="lbl">Select</div><input class="field" value="P0–P1" readonly></div>
+    <div><div class="lbl">Checkbox</div>
+      <div style="display:flex;gap:18px;height:34px;align-items:center">
+        <span class="check"><span class="box on">&#10003;</span> Ready only</span>
+        <span class="check"><span class="box"></span> Show released</span>
+      </div>
+    </div>
+  </div>
+</body></html>

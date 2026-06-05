@@ -1,0 +1,272 @@
+<!-- @dsCard group="Type" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Brand Font — Space Grotesk</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html, body { margin: 0; }
+  body {
+    background: var(--surface-base);
+    font-family: var(--font-mono);
+    color: var(--text-primary);
+    padding: 34px 40px 38px;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { display: flex; flex-direction: column; gap: 28px; }
+
+  /* ---- header ---- */
+  .head { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; }
+  .head .lede { display: flex; flex-direction: column; gap: 10px; }
+  .eyebrow {
+    font-family: var(--font-mono); font-weight: 600; font-size: 11px;
+    letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted);
+    display: flex; align-items: center; gap: 10px;
+  }
+  .eyebrow .mk { width: 15px; height: 15px; color: var(--accent); }
+  .face {
+    font-family: var(--font-display); font-weight: 700; font-size: 58px;
+    line-height: 0.94; letter-spacing: -0.025em; color: var(--text-primary);
+  }
+  .head .meta {
+    flex: 0 0 auto; text-align: right; display: flex; flex-direction: column; gap: 5px;
+    font-size: 11px; color: var(--text-muted); letter-spacing: 0.02em; line-height: 1.5;
+  }
+  .head .meta b { color: var(--text-secondary); font-weight: 500; }
+
+  .rule { height: 1px; background: var(--border-default); border: 0; margin: 0; }
+
+  /* ---- hero specimen ---- */
+  .hero { display: flex; flex-direction: column; gap: 16px; }
+  .hero .big {
+    font-family: var(--font-display); font-weight: 600; font-size: 42px;
+    line-height: 1.0; letter-spacing: -0.02em; color: var(--text-primary);
+  }
+  .lockup { display: flex; align-items: center; gap: 16px; }
+  .lockup .mk { width: 42px; height: 42px; color: var(--accent); }
+  .lockup .word {
+    font-family: var(--font-display); font-weight: 700; font-size: 38px;
+    letter-spacing: -0.02em; color: var(--text-primary); line-height: 1;
+  }
+  .lockup .tag { font-size: 11px; color: var(--text-muted); letter-spacing: 0.03em; margin-top: 4px; }
+
+  /* ---- generic section ---- */
+  .sec { display: flex; flex-direction: column; gap: 14px; }
+  .sec > .t-label { margin: 0; }
+  .t-label {
+    font-family: var(--font-mono); font-weight: 600; font-size: 11px;
+    letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted);
+  }
+
+  /* ---- weight axis ---- */
+  .axis { display: flex; flex-direction: column; }
+  .wt {
+    display: flex; align-items: baseline; gap: 18px;
+    padding: 11px 0; border-bottom: 1px solid var(--border-default);
+  }
+  .wt:last-child { border-bottom: 0; }
+  .wt .sample {
+    font-family: var(--font-display); font-size: 30px; line-height: 1;
+    letter-spacing: -0.02em; color: var(--text-primary); flex: 1;
+  }
+  .wt .lab { flex: 0 0 168px; text-align: right; font-size: 11px; color: var(--text-muted); letter-spacing: 0.03em; }
+  .wt .lab b { color: var(--text-secondary); font-weight: 500; }
+
+  /* ---- glyphs ---- */
+  .glyphs {
+    font-family: var(--font-display); font-weight: 500; color: var(--text-secondary);
+    line-height: 1.55; letter-spacing: 0.01em; font-size: 19px; word-spacing: 2px;
+  }
+  .glyphs .num { color: var(--text-primary); }
+
+  /* ---- two-up: roles + pairing ---- */
+  .cols { display: flex; gap: 28px; }
+  .cols .col { flex: 1; display: flex; flex-direction: column; gap: 14px; }
+  .roles { display: flex; flex-direction: column; gap: 13px; }
+  .role { display: flex; align-items: baseline; gap: 14px; }
+  .role .nm { font-family: var(--font-display); color: var(--text-primary); line-height: 1; }
+  .role .rmeta { margin-left: auto; font-size: 10.5px; color: var(--text-muted); letter-spacing: 0.04em; white-space: nowrap; }
+  .role.display .nm { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; }
+  .role.h1 .nm { font-size: 22px; font-weight: 600; letter-spacing: -0.015em; }
+  .role.word .nm { font-size: 19px; font-weight: 700; letter-spacing: -0.02em; }
+
+  .pair { display: flex; flex-direction: column; gap: 11px; }
+  .pairrow {
+    display: flex; align-items: center; gap: 12px;
+    padding: 11px 13px; background: var(--surface-raised);
+    border: 1px solid var(--border-default); border-radius: var(--radius);
+    border-left: 4px solid var(--accent);
+  }
+  .pairrow.mono { border-left-color: var(--text-muted); }
+  .pairrow .glyph { font-family: var(--font-display); font-weight: 700; font-size: 22px; color: var(--text-primary); flex: 0 0 30px; text-align: center; letter-spacing: -0.02em; }
+  .pairrow.mono .glyph { font-family: var(--font-mono); font-weight: 600; }
+  .pairrow .txt { display: flex; flex-direction: column; gap: 2px; }
+  .pairrow .txt .h { font-size: 12px; color: var(--text-primary); }
+  .pairrow .txt .s { font-size: 10.5px; color: var(--text-muted); line-height: 1.45; }
+
+  /* ---- install block ---- */
+  .term {
+    background: #070C0E; border: 1px solid var(--border-default);
+    border-radius: var(--radius); padding: 16px 18px;
+    font-family: var(--font-mono); font-size: 12.5px; line-height: 1.7;
+  }
+  .term .c { color: var(--text-muted); }
+  .term .k { color: var(--accent); }
+  .term .p { color: var(--ready); }
+  .term .s { color: var(--thread-charter); }
+  .term .t { color: var(--text-primary); }
+  .term .path { color: var(--text-secondary); }
+
+  /* ---- do / dont ---- */
+  .rules { display: flex; gap: 28px; }
+  .rules .rcol { flex: 1; display: flex; flex-direction: column; gap: 9px; }
+  .rules .rhead { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600; display: flex; align-items: center; gap: 8px; }
+  .rules .do .rhead { color: var(--ready); }
+  .rules .dont .rhead { color: var(--stale); }
+  .rules li { list-style: none; font-size: 12px; color: var(--text-secondary); line-height: 1.5; padding-left: 16px; position: relative; }
+  .rules ul { margin: 0; padding: 0; display: flex; flex-direction: column; gap: 7px; }
+  .rules .do li::before { content: "+"; position: absolute; left: 0; color: var(--ready); font-weight: 600; }
+  .rules .dont li::before { content: "\2212"; position: absolute; left: 0; color: var(--stale); font-weight: 600; }
+
+  .foot { font-size: 10.5px; color: var(--text-muted); letter-spacing: 0.03em; line-height: 1.6; }
+  .foot code { color: var(--text-secondary); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- header -->
+  <div class="head">
+    <div class="lede">
+      <div class="eyebrow">
+        <svg class="mk" viewBox="0 0 32 32" fill="none"><g stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M11 6 V18.8"/><path d="M11 23.2 V26"/><path d="M21 6 V8.8"/><path d="M21 13.2 V26"/><path d="M6 11 H8.8"/><path d="M13.2 11 H26"/><path d="M6 21 H18.8"/><path d="M23.2 21 H26"/></g></svg>
+        Brand font · display layer
+      </div>
+      <div class="face">Space Grotesk</div>
+    </div>
+    <div class="meta">
+      <div><b>Variable</b> · weight 300–700</div>
+      <div><b>--font-display</b></div>
+      <div>OFL · google/fonts</div>
+    </div>
+  </div>
+
+  <hr class="rule">
+
+  <!-- hero specimen -->
+  <div class="hero">
+    <div class="big">Woven, not welded.</div>
+    <div class="lockup">
+      <svg class="mk" viewBox="0 0 32 32" fill="none"><g stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M11 6 V18.8"/><path d="M11 23.2 V26"/><path d="M21 6 V8.8"/><path d="M21 13.2 V26"/><path d="M6 11 H8.8"/><path d="M13.2 11 H26"/><path d="M6 21 H18.8"/><path d="M23.2 21 H26"/></g></svg>
+      <div>
+        <div class="word">Loom</div>
+        <div class="tag">wordmark · 700 · tracking -0.02em</div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="rule">
+
+  <!-- weight axis -->
+  <div class="sec">
+    <div class="t-label">Weight axis — one variable file</div>
+    <div class="axis">
+      <div class="wt"><div class="sample" style="font-weight:300">the federation axiom</div><div class="lab"><b>Light</b> · 300</div></div>
+      <div class="wt"><div class="sample" style="font-weight:400">the federation axiom</div><div class="lab"><b>Regular</b> · 400</div></div>
+      <div class="wt"><div class="sample" style="font-weight:500">the federation axiom</div><div class="lab"><b>Medium</b> · 500</div></div>
+      <div class="wt"><div class="sample" style="font-weight:600">the federation axiom</div><div class="lab"><b>SemiBold</b> · 600 · headlines</div></div>
+      <div class="wt"><div class="sample" style="font-weight:700">the federation axiom</div><div class="lab"><b>Bold</b> · 700 · wordmark</div></div>
+    </div>
+  </div>
+
+  <hr class="rule">
+
+  <!-- glyphs -->
+  <div class="sec">
+    <div class="t-label">Character set</div>
+    <div class="glyphs">
+      ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
+      abcdefghijklmnopqrstuvwxyz<br>
+      <span class="num">0123456789</span> &nbsp; &amp; @ # % * / \ &lt; &gt; — – · : ; ( ) [ ] { } ?
+    </div>
+  </div>
+
+  <hr class="rule">
+
+  <!-- roles + pairing -->
+  <div class="cols">
+    <div class="col">
+      <div class="t-label">Where it appears</div>
+      <div class="roles">
+        <div class="role display"><div class="nm">Display</div><div class="rmeta">.t-display · 46 / 700</div></div>
+        <div class="role h1"><div class="nm">Heading 1</div><div class="rmeta">.t-h1 · 30 / 600</div></div>
+        <div class="role word"><div class="nm">Loom wordmark</div><div class="rmeta">.t-wordmark · 700</div></div>
+      </div>
+      <div class="foot">Brand moments only — hub hero, portfolio headers, slide titles. Everything below H1 is JetBrains Mono.</div>
+    </div>
+    <div class="col">
+      <div class="t-label">The pairing rule</div>
+      <div class="pair">
+        <div class="pairrow">
+          <div class="glyph">Aa</div>
+          <div class="txt"><div class="h">Space Grotesk — the brand</div><div class="s">wordmark · headlines · slide titles</div></div>
+        </div>
+        <div class="pairrow mono">
+          <div class="glyph">$_</div>
+          <div class="txt"><div class="h">JetBrains Mono — the product</div><div class="s">all UI · code · body · data</div></div>
+        </div>
+      </div>
+      <div class="foot">Two faces, one voice. Display is the exception; mono is the default — <code>html, body</code> paint in mono from the first frame.</div>
+    </div>
+  </div>
+
+  <hr class="rule">
+
+  <!-- install -->
+  <div class="sec">
+    <div class="t-label">Install — bundled local, offline-safe</div>
+    <div class="term">
+      <div><span class="c">// fonts/SpaceGrotesk-Variable.ttf  +  fonts/SpaceGrotesk-OFL.txt</span></div>
+      <div><span class="k">@font-face</span> <span class="t">{</span></div>
+      <div>&nbsp;&nbsp;<span class="t">font-family:</span> <span class="s">'Space Grotesk'</span><span class="t">;</span></div>
+      <div>&nbsp;&nbsp;<span class="t">src: url(</span><span class="path">'fonts/SpaceGrotesk-Variable.ttf'</span><span class="t">) format(</span><span class="s">'truetype'</span><span class="t">);</span></div>
+      <div>&nbsp;&nbsp;<span class="t">font-weight:</span> <span class="k">300 700</span><span class="t">; font-display: swap;</span></div>
+      <div><span class="t">}</span></div>
+      <div>&nbsp;</div>
+      <div><span class="c">// token — colors_and_type.css</span></div>
+      <div><span class="k">--font-display</span><span class="t">:</span> <span class="s">'Space Grotesk'</span><span class="t">,</span> <span class="path">'JetBrains Mono', ui-sans-serif, system-ui, sans-serif</span><span class="t">;</span></div>
+    </div>
+  </div>
+
+  <hr class="rule">
+
+  <!-- do / dont -->
+  <div class="rules">
+    <div class="rcol do">
+      <div class="rhead">Do</div>
+      <ul>
+        <li>Use it for the wordmark, hub hero, and slide titles.</li>
+        <li>Track display tight: <code style="color:var(--text-secondary)">-0.02em</code> at 700.</li>
+        <li>Let the variable file cover 300–700 — no static cuts.</li>
+      </ul>
+    </div>
+    <div class="rcol dont">
+      <div class="rhead">Don't</div>
+      <ul>
+        <li>Set body, UI, code, or data in it — that stays mono.</li>
+        <li>Run it below the H1 role or in dense chrome.</li>
+        <li>Swap or add a display face — one brand voice only.</li>
+      </ul>
+    </div>
+  </div>
+
+  <hr class="rule">
+  <div class="foot">
+    Space Grotesk by Florian Karsten, derived from Space Mono (Colophon). Licensed <code>SIL Open Font License 1.1</code> — bundled from <code>github.com/google/fonts</code> as a variable TTF so the whole system renders offline. License text: <code>fonts/SpaceGrotesk-OFL.txt</code>.
+  </div>
+
+</div>
+</body>
+</html>

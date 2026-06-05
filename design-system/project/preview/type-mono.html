@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="../colors_and_type.css">
+<style>html,body{margin:0}body{background:var(--surface-base);font-family:var(--font-mono);padding:28px 40px;display:flex;flex-direction:column;gap:14px}
+.term{background:#070C0E;border:1px solid var(--border-default);border-radius:var(--radius);padding:16px 18px;font-size:13px;line-height:1.6}
+.p{color:var(--ready)}.d{color:var(--accent)}.m{color:var(--text-muted)}.t{color:var(--text-primary)}.w{color:var(--stale)}
+.legend{display:flex;gap:22px;font-size:10.5px;color:var(--text-muted);letter-spacing:0.04em}
+.legend b{color:var(--text-secondary);font-weight:500}
+.id{color:var(--text-primary);background:var(--surface-overlay);padding:1px 6px;border-radius:var(--radius-sm)}</style></head>
+<body>
+  <div class="term">
+    <div><span class="p">$</span> <span class="t">wardline scan . --fail-on ERROR</span></div>
+    <div class="m">scanned 1 file(s); 3 finding(s) — 1 new &rarr; findings.jsonl</div>
+    <div><span class="w">PY-WL-101</span> <span class="t">demo.build_record</span> <span class="m">declares ASSURED, returns EXTERNAL_RAW</span></div>
+    <div class="m">&nbsp;&nbsp;entity <span class="id">clarion:sei:7f3a…b1</span> · <span class="d">demo.py:8</span></div>
+  </div>
+  <div class="legend"><span><b style="color:var(--ready)">$</b> prompt</span><span><b style="color:var(--accent)">link</b> accent</span><span><b>comment</b> muted</span><span><b style="color:var(--stale)">RULE-ID</b> finding</span><span><b style="color:var(--text-primary)">code</b> primary</span></div>
+</body></html>

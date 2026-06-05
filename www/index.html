@@ -1,419 +1,238 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Loom — a code-and-debug toolkit for agentic development</title>
-  <meta name="description" content="Loom is a federation of local-first, agent-native developer tools. Every tool works on its own; tools compose pairwise to add capability, never to become load-bearing.">
-
-  <!-- Prevent flash of wrong theme: runs synchronously before paint -->
-  <script>
-    (function () {
-      var saved = localStorage.getItem('theme');
-      if (saved) document.documentElement.setAttribute('data-theme', saved);
-    })();
-  </script>
-
-  <link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Loom Federation — hub</title>
+<meta name="description" content="Loom Federation is an agent-first family of small, local-first developer tools. Each member is authoritative for one domain, useful on its own, and enrich-only — never load-bearing — when composed.">
+<!-- Preload brand + product faces before first paint (kills the substitute-font flash). -->
+<link rel="preload" href="fonts/SpaceGrotesk-Variable.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="preload" href="fonts/JetBrainsMono-Variable.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="stylesheet" href="colors_and_type.css">
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
 
-  <header class="site-header">
-    <div class="site-header__inner">
-      <a class="brand" href="#top" aria-label="Loom — home">
-        <span class="brand__mark" aria-hidden="true">
-          <!-- woven-threads mark -->
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-               stroke-width="1.6" stroke-linecap="round">
-            <path d="M3 6h18M3 12h18M3 18h18"/>
-            <path d="M7 3v18M13 3v18M19 3v18" opacity="0.5"/>
-          </svg>
-        </span>
-        <span class="brand__name">Loom</span>
-      </a>
+<!-- ============================ HEADER ============================ -->
+<header class="hub-header">
+  <div class="brand">
+    <svg class="mark" width="26" height="26" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+      <g stroke="currentColor" stroke-width="2.4" stroke-linecap="round">
+        <path d="M11 6 V18.8"/><path d="M11 23.2 V26"/>
+        <path d="M21 6 V8.8"/><path d="M21 13.2 V26"/>
+        <path d="M6 11 H8.8"/><path d="M13.2 11 H26"/>
+        <path d="M6 21 H18.8"/><path d="M23.2 21 H26"/>
+      </g>
+    </svg>
+    <span class="wordmark">Loom&nbsp;Federation</span>
+    <span class="path-hint">~/loom</span>
+  </div>
+  <nav class="hub-nav" aria-label="Sections">
+    <!-- In-page targets are real anchors; SEI/glossary are inert until those docs land. -->
+    <a href="#federation">Doctrine</a>
+    <a href="#federation">Federation</a>
+    <a href="#roster">Members</a>
+    <span class="nav-placeholder" role="note" aria-label="SEI — coming soon">SEI</span>
+    <span class="nav-placeholder" role="note" aria-label="Glossary — coming soon">Glossary</span>
+  </nav>
+</header>
 
-      <nav class="site-nav" aria-label="Primary">
-        <a href="#pillars">Principles</a>
-        <a href="#toolkit">Toolkit</a>
-        <a href="#compose">How it composes</a>
-        <a href="#roadmap">Roadmap</a>
-      </nav>
+<main id="top">
 
-      <div class="site-header__actions">
-        <button class="theme-toggle" type="button" aria-label="Toggle dark mode">
-          <svg class="theme-toggle__sun" width="20" height="20" viewBox="0 0 24 24" fill="none"
-               stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
-            <circle cx="12" cy="12" r="4"/>
-            <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>
-          </svg>
-          <svg class="theme-toggle__moon" width="20" height="20" viewBox="0 0 24 24" fill="none"
-               stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
-            <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/>
-          </svg>
-        </button>
-
-        <button class="nav-toggle" type="button" popovertarget="mobile-nav"
-                aria-label="Open navigation menu">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-               stroke-width="2" stroke-linecap="round" aria-hidden="true">
-            <path d="M3 6h18M3 12h18M3 18h18"/>
-          </svg>
-        </button>
+  <!-- ============================ HERO ============================ -->
+  <section class="hero">
+    <div class="eyebrow">
+      <span class="dot dot-ready" aria-hidden="true"></span>
+      <span class="t-label">Authoritative · interop layer · documentation only</span>
+    </div>
+    <h1 class="hero-title">Distinct threads,<br>woven on purpose.</h1>
+    <p class="t-body hero-lede">
+      Loom Federation is an agent-first family of small, local-first developer tools. Each member is
+      authoritative for one domain, useful on its own, and meaningfully composable with any
+      sibling — <strong>enrich-only, never load-bearing</strong> when composed.
+    </p>
+    <div class="axiom">
+      <div class="t-label axiom-label">The federation axiom</div>
+      <div class="axiom-text">
+        Each member is authoritative for one domain, solo-useful, meaningfully composable
+        pairwise, and enrich-only — never load-bearing — when composed.
       </div>
     </div>
+    <div class="chips">
+      <span class="chip">5 realized members</span>
+      <span class="chip">local-first · no cloud</span>
+      <span class="chip">no runtime · no broker · no store</span>
+      <span class="chip chip-dim">Shuttle — roadmap</span>
+    </div>
+  </section>
 
-    <!-- Mobile nav: native popover (browser handles open/close, backdrop, esc, focus) -->
-    <nav id="mobile-nav" popover class="mobile-nav" aria-label="Primary (mobile)">
-      <a href="#pillars">Principles</a>
-      <a href="#toolkit">Toolkit</a>
-      <a href="#compose">How it composes</a>
-      <a href="#roadmap">Roadmap</a>
-    </nav>
-  </header>
+  <!-- ============================ ROSTER ============================ -->
+  <section id="roster" class="roster">
+    <div class="t-label section-label">The roster — click to expand</div>
+    <div class="member-list" id="member-list">
 
-  <main id="main">
-    <!-- ============================ HERO ============================ -->
-    <section class="hero" id="top">
-      <div class="hero__inner">
-        <p class="hero__eyebrow">Local-first &middot; Agent-native &middot; Open source</p>
-        <h1 class="hero__title">Loom</h1>
-        <p class="hero__tagline">A code-and-debug toolkit for agentic development.</p>
-        <p class="hero__lede">
-          A federation of separately-installable developer tools. Every tool is fully
-          useful on its own; tools compose pairwise to add capability, and removing one
-          never breaks another. SQLite-backed, no cloud, no accounts &mdash; and MCP-first,
-          so AI coding agents use them as first-class citizens alongside a full CLI for humans.
-        </p>
-
-        <div class="hero__cta">
-          <!-- Placeholder CTA: real link pending the org migration / link freeze -->
-          <span class="btn btn--primary is-placeholder" role="note"
-                aria-label="Get started — coming soon">
-            Get started
-            <span class="btn__badge">coming&nbsp;soon</span>
+      <button class="member-card thread-clarion" type="button" aria-expanded="true" data-id="clarion">
+        <span class="member-row">
+          <svg class="mark" width="28" height="28" viewBox="0 0 32 32" fill="none" role="img" aria-label="clarion">
+            <g stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 5 V27"/><path d="M16 11 H24"/><path d="M16 21 H8"/></g>
+            <g fill="currentColor"><circle cx="16" cy="5" r="2.4"/><circle cx="24" cy="11" r="2.4"/><circle cx="8" cy="21" r="2.4"/><circle cx="16" cy="27" r="2.4"/></g>
+          </svg>
+          <span class="member-main">
+            <span class="member-head"><span class="member-name">Clarion</span> <span class="member-lang">Rust</span></span>
+            <span class="member-domain">Code structure + identity authority (SEI)</span>
           </span>
-          <a class="btn btn--ghost" href="#toolkit">Browse the toolkit</a>
-        </div>
+          <span class="member-status">built · in use</span>
+        </span>
+        <span class="member-detail">
+          <span class="t-label detail-label">Answers</span>
+          <span class="detail-answer">&ldquo;what is this codebase, where do I touch, what is the durable identity?&rdquo;</span>
+          <span class="detail-repo">~/clarion</span>
+        </span>
+      </button>
 
-        <p class="hero__note">
-          The 1.0 toolkit is four tools spanning the build&rarr;debug&rarr;ship loop.
-          <a href="#roadmap">Two more are joining.</a>
-        </p>
-      </div>
-    </section>
+      <button class="member-card thread-filigree" type="button" aria-expanded="false" data-id="filigree">
+        <span class="member-row">
+          <svg class="mark" width="28" height="28" viewBox="0 0 32 32" fill="none" role="img" aria-label="filigree">
+            <g stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M16 4 L28 16 L16 28 L4 16 Z"/><path d="M16 11 L21 16 L16 21 L11 16 Z" fill="currentColor" stroke="none"/></g>
+          </svg>
+          <span class="member-main">
+            <span class="member-head"><span class="member-name">Filigree</span> <span class="member-lang">Python</span></span>
+            <span class="member-domain">Work state / issue lifecycle</span>
+          </span>
+          <span class="member-status">built · in use</span>
+        </span>
+        <span class="member-detail">
+          <span class="t-label detail-label">Answers</span>
+          <span class="detail-answer">&ldquo;what work exists, what state is it in, what happened?&rdquo;</span>
+          <span class="detail-repo">~/filigree</span>
+        </span>
+      </button>
 
-    <!-- ============================ PILLARS ============================ -->
-    <section class="section" id="pillars" aria-labelledby="pillars-h">
-      <div class="section__inner">
-        <h2 class="section__title" id="pillars-h">
-          The architectural promise
-          <a href="#pillars" class="heading-anchor" aria-label="Link to this section">#</a>
-        </h2>
-        <p class="section__lede">
-          Loom is a federation, not a monolith. Three rules hold it together &mdash; and keep
-          any single tool honest about working alone.
-        </p>
+      <button class="member-card thread-wardline" type="button" aria-expanded="false" data-id="wardline">
+        <span class="member-row">
+          <svg class="mark" width="28" height="28" viewBox="0 0 32 32" fill="none" role="img" aria-label="wardline">
+            <g stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 4 V28"/><path d="M6 10 H15"/><path d="M6 16 H15"/><path d="M6 22 H15"/><path d="M18 16 L26 11 V21 L18 16Z" fill="currentColor"/></g>
+          </svg>
+          <span class="member-main">
+            <span class="member-head"><span class="member-name">Wardline</span> <span class="member-lang">Python</span></span>
+            <span class="member-domain">Trust-boundary analysis</span>
+          </span>
+          <span class="member-status">built · in use</span>
+        </span>
+        <span class="member-detail">
+          <span class="t-label detail-label">Answers</span>
+          <span class="detail-answer">&ldquo;what is allowed, and does this still satisfy the constraints?&rdquo;</span>
+          <span class="detail-repo">~/wardline</span>
+        </span>
+      </button>
 
-        <div class="pillars">
-          <article class="pillar">
-            <h3>Solo-useful</h3>
-            <p>
-              Every tool has a complete, respectable use case by itself. Zero siblings
-              required &mdash; you can install one and get full value with nothing else present.
-            </p>
-          </article>
-          <article class="pillar">
-            <h3>Enrich-only, never load-bearing</h3>
-            <p>
-              Tools compose pairwise to add capability, but a sibling&rsquo;s absence only
-              reduces convenience &mdash; it never changes the meaning of your data or stops a
-              tool from booting.
-            </p>
-          </article>
-          <article class="pillar">
-            <h3>Local-first &amp; agent-native</h3>
-            <p>
-              Local SQLite storage, no cloud, no accounts. Every tool is MCP-first so coding
-              agents drive it directly, with a full CLI for humans.
-            </p>
-          </article>
-        </div>
-      </div>
-    </section>
+      <button class="member-card thread-legis" type="button" aria-expanded="false" data-id="legis">
+        <span class="member-row">
+          <svg class="mark" width="28" height="28" viewBox="0 0 32 32" fill="none" role="img" aria-label="legis">
+            <g stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 6 V25"/><path d="M9 25 H23"/><path d="M7 9 H25"/><path d="M7 9 L4 16 H10 L7 9Z"/><path d="M25 9 L22 16 H28 L25 9Z"/></g>
+          </svg>
+          <span class="member-main">
+            <span class="member-head"><span class="member-name">Legis</span> <span class="member-lang">Python</span></span>
+            <span class="member-domain">Git/CI governance &amp; attestations</span>
+          </span>
+          <span class="member-status">1.0.0rc2</span>
+        </span>
+        <span class="member-detail">
+          <span class="t-label detail-label">Answers</span>
+          <span class="detail-answer">&ldquo;what changed, and is this change governed?&rdquo;</span>
+          <span class="detail-repo">~/legis</span>
+        </span>
+      </button>
 
-    <!-- ============================ TOOLKIT ============================ -->
-    <section class="section section--alt" id="toolkit" aria-labelledby="toolkit-h">
-      <div class="section__inner">
-        <h2 class="section__title" id="toolkit-h">
-          Loom 1.0 &mdash; the code-and-debug toolkit
-          <a href="#toolkit" class="heading-anchor" aria-label="Link to this section">#</a>
-        </h2>
-        <p class="section__lede">
-          Four tools, read as a loop: track the work, understand the code, find the
-          weaknesses, govern the change. Each installs separately and runs on its own.
-        </p>
+      <button class="member-card thread-charter" type="button" aria-expanded="false" data-id="charter">
+        <span class="member-row">
+          <svg class="mark" width="28" height="28" viewBox="0 0 32 32" fill="none" role="img" aria-label="charter">
+            <g stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5 H24 V27 H8 Z"/><path d="M12 11 H20"/><path d="M12 16 H17"/><path d="M11.5 21.5 L14 24 L20 17.5"/></g>
+          </svg>
+          <span class="member-main">
+            <span class="member-head"><span class="member-name">Charter</span> <span class="member-lang">Python</span></span>
+            <span class="member-domain">Requirements, traceability, verification</span>
+          </span>
+          <span class="member-status">scaffolded</span>
+        </span>
+        <span class="member-detail">
+          <span class="t-label detail-label">Answers</span>
+          <span class="detail-answer">&ldquo;what must be true, and how do we know it is?&rdquo;</span>
+          <span class="detail-repo">~/charter</span>
+        </span>
+      </button>
 
-        <div class="tools">
-          <!-- filigree -->
-          <article class="tool-card">
-            <header class="tool-card__head">
-              <h3 class="tool-card__name">filigree</h3>
-              <span class="tool-card__lang" data-lang="python">Python</span>
-            </header>
-            <p class="tool-card__role">Track the work</p>
-            <p class="tool-card__desc">
-              Local-first, agent-native issue tracker. Holds work state &mdash; issues, plans,
-              observations, findings &mdash; in SQLite, exposed over MCP tools. No cloud.
-            </p>
-            <div class="code-block code-block--install">
-              <div class="code-block__header">
-                <span class="code-block__lang">install</span>
-                <button class="code-block__copy" type="button" aria-label="Copy install command for filigree">
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                       stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <rect x="9" y="9" width="13" height="13" rx="2"/>
-                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
-                  </svg>
-                  <span class="code-block__copy-text">Copy</span>
-                </button>
-              </div>
-              <pre><code>pip install filigree</code></pre>
-            </div>
-            <span class="tool-card__docs is-placeholder" role="note"
-                  aria-label="Documentation — coming soon">Docs &middot; coming&nbsp;soon</span>
-          </article>
+      <button class="member-card thread-shuttle is-dim" type="button" aria-expanded="false" data-id="shuttle">
+        <span class="member-row">
+          <svg class="mark" width="28" height="28" viewBox="0 0 32 32" fill="none" role="img" aria-label="shuttle">
+            <g stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 16 H28" stroke-dasharray="3 3.5"/><path d="M11 16 C11 12, 21 12, 21 16 C21 20, 11 20, 11 16 Z"/><circle cx="16" cy="16" r="1.6" fill="currentColor" stroke="none"/></g>
+          </svg>
+          <span class="member-main">
+            <span class="member-head"><span class="member-name">Shuttle</span> <span class="member-lang">—</span></span>
+            <span class="member-domain">Change execution (future)</span>
+          </span>
+          <span class="member-status">roadmap thought-bubble</span>
+        </span>
+        <span class="member-detail">
+          <span class="t-label detail-label">Answers</span>
+          <span class="detail-answer">&ldquo;carry this approved change through the weave, under guard rails.&rdquo;</span>
+          <span class="detail-repo">no repo</span>
+        </span>
+      </button>
 
-          <!-- clarion -->
-          <article class="tool-card">
-            <header class="tool-card__head">
-              <h3 class="tool-card__name">clarion</h3>
-              <span class="tool-card__lang" data-lang="rust">Rust</span>
-            </header>
-            <p class="tool-card__role">Understand the code</p>
-            <p class="tool-card__desc">
-              Code archaeology. Extracts a structural entity graph from a codebase and serves
-              graph-aware briefings to LLM agents over MCP. The suite&rsquo;s identity authority.
-            </p>
-            <div class="code-block code-block--install">
-              <div class="code-block__header">
-                <span class="code-block__lang">install</span>
-                <button class="code-block__copy" type="button" aria-label="Copy install command for clarion">
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                       stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <rect x="9" y="9" width="13" height="13" rx="2"/>
-                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
-                  </svg>
-                  <span class="code-block__copy-text">Copy</span>
-                </button>
-              </div>
-              <pre><code>cargo install clarion</code></pre>
-            </div>
-            <span class="tool-card__docs is-placeholder" role="note"
-                  aria-label="Documentation — coming soon">Docs &middot; coming&nbsp;soon</span>
-          </article>
-
-          <!-- wardline -->
-          <article class="tool-card">
-            <header class="tool-card__head">
-              <h3 class="tool-card__name">wardline</h3>
-              <span class="tool-card__lang" data-lang="python">Python</span>
-            </header>
-            <p class="tool-card__role">Find the weaknesses</p>
-            <p class="tool-card__desc">
-              Trust-boundary taint analysis. A four-tier taint lattice over the Python AST,
-              emitting SARIF. Zero runtime dependencies.
-            </p>
-            <div class="code-block code-block--install">
-              <div class="code-block__header">
-                <span class="code-block__lang">install</span>
-                <button class="code-block__copy" type="button" aria-label="Copy install command for wardline">
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                       stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <rect x="9" y="9" width="13" height="13" rx="2"/>
-                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
-                  </svg>
-                  <span class="code-block__copy-text">Copy</span>
-                </button>
-              </div>
-              <pre><code>pip install wardline</code></pre>
-            </div>
-            <span class="tool-card__docs is-placeholder" role="note"
-                  aria-label="Documentation — coming soon">Docs &middot; coming&nbsp;soon</span>
-          </article>
-
-          <!-- legis -->
-          <article class="tool-card">
-            <header class="tool-card__head">
-              <h3 class="tool-card__name">legis</h3>
-              <span class="tool-card__lang" data-lang="python">Python</span>
-            </header>
-            <p class="tool-card__role">Govern the change</p>
-            <p class="tool-card__desc">
-              Git/CI governance &amp; attestations. A graded enforcement engine with an
-              agent-programmable policy grammar and SEI-keyed attestations.
-            </p>
-            <div class="code-block code-block--install">
-              <div class="code-block__header">
-                <span class="code-block__lang">install</span>
-                <button class="code-block__copy" type="button" aria-label="Copy install command for legis">
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                       stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <rect x="9" y="9" width="13" height="13" rx="2"/>
-                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
-                  </svg>
-                  <span class="code-block__copy-text">Copy</span>
-                </button>
-              </div>
-              <pre><code>pip install legis</code></pre>
-            </div>
-            <span class="tool-card__docs is-placeholder" role="note"
-                  aria-label="Documentation — coming soon">Docs &middot; coming&nbsp;soon</span>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============================ COMPOSE ============================ -->
-    <section class="section" id="compose" aria-labelledby="compose-h">
-      <div class="section__inner">
-        <h2 class="section__title" id="compose-h">
-          How they compose
-          <a href="#compose" class="heading-anchor" aria-label="Link to this section">#</a>
-        </h2>
-        <p class="section__lede">
-          The four tools read as one loop. Each step is independently useful; the arrows are
-          enrichment, not dependency.
-        </p>
-
-        <ol class="loop" aria-label="The build to debug to ship loop">
-          <li class="loop__step">
-            <span class="loop__index">1</span>
-            <h3>Track</h3>
-            <p><strong>filigree</strong> holds the work &mdash; what exists, what state it&rsquo;s in, what happened.</p>
-          </li>
-          <li class="loop__arrow" aria-hidden="true">&rarr;</li>
-          <li class="loop__step">
-            <span class="loop__index">2</span>
-            <h3>Understand</h3>
-            <p><strong>clarion</strong> maps the codebase into a structural graph agents can reason over.</p>
-          </li>
-          <li class="loop__arrow" aria-hidden="true">&rarr;</li>
-          <li class="loop__step">
-            <span class="loop__index">3</span>
-            <h3>Probe</h3>
-            <p><strong>wardline</strong> traces taint across trust boundaries and emits findings.</p>
-          </li>
-          <li class="loop__arrow" aria-hidden="true">&rarr;</li>
-          <li class="loop__step">
-            <span class="loop__index">4</span>
-            <h3>Govern</h3>
-            <p><strong>legis</strong> grades the change and records SEI-keyed attestations before it ships.</p>
-          </li>
-        </ol>
-
-        <div class="compose-note">
-          <h3 class="compose-note__title">One durable identity underneath</h3>
-          <p>
-            Each tool models a codebase as <strong>entities</strong> carrying typed facts &mdash;
-            an issue here, a structural fact there, a taint verdict, a governance sign-off &mdash;
-            all keyed on one shared, durable identity. That common operating picture is what lets
-            a finding in one tool line up with an entity in another, without any tool becoming the
-            system of record for the rest.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============================ ROADMAP ============================ -->
-    <section class="section section--alt" id="roadmap" aria-labelledby="roadmap-h">
-      <div class="section__inner">
-        <h2 class="section__title" id="roadmap-h">
-          Roadmap &mdash; joining the weave
-          <a href="#roadmap" class="heading-anchor" aria-label="Link to this section">#</a>
-        </h2>
-        <p class="section__lede">
-          Two tools extend Loom beyond the code-and-debug core: <strong>charter</strong> reaches
-          <em>up</em> into requirements, <strong>shuttle</strong> reaches <em>down</em> into change
-          execution &mdash; bookending the four-tool loop. Neither is part of 1.0.
-        </p>
-
-        <div class="roadmap">
-          <article class="roadmap-card">
-            <header class="roadmap-card__head">
-              <h3 class="roadmap-card__name">charter</h3>
-              <span class="tool-card__lang" data-lang="python">Python</span>
-              <span class="status-chip status-chip--building">In progress</span>
-            </header>
-            <p class="roadmap-card__pos">Upstream of code &mdash; &ldquo;what must be true&rdquo;</p>
-            <p class="roadmap-card__desc">
-              Requirements, traceability, baselines, and verification evidence. The authority for
-              the obligations a codebase has to satisfy, sitting upstream of the build loop.
-            </p>
-            <span class="tool-card__docs is-placeholder" role="note"
-                  aria-label="Not yet available">Not yet 1.0</span>
-          </article>
-
-          <article class="roadmap-card">
-            <header class="roadmap-card__head">
-              <h3 class="roadmap-card__name">shuttle</h3>
-              <span class="tool-card__lang" data-lang="future">Future</span>
-              <span class="status-chip status-chip--future">Sketched</span>
-            </header>
-            <p class="roadmap-card__pos">Downstream of code &mdash; applying approved change</p>
-            <p class="roadmap-card__desc">
-              Transactional, scoped change execution under guardrails: carry an approved change
-              through incrementally with pre/post checks and rollback. A sketched future authority
-              &mdash; no repo yet.
-            </p>
-            <span class="tool-card__docs is-placeholder" role="note"
-                  aria-label="Future — no repository yet">Future &middot; no repo yet</span>
-          </article>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="site-footer__inner">
-      <div class="site-footer__brand">
-        <span class="brand__name">Loom</span>
-        <p>A code-and-debug toolkit for agentic development. Local-first, agent-native, open source.</p>
-      </div>
-
-      <nav class="site-footer__nav" aria-label="Footer">
-        <div class="footer-col">
-          <h4>Toolkit</h4>
-          <ul>
-            <li><a href="#toolkit">filigree</a></li>
-            <li><a href="#toolkit">clarion</a></li>
-            <li><a href="#toolkit">wardline</a></li>
-            <li><a href="#toolkit">legis</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Roadmap</h4>
-          <ul>
-            <li><a href="#roadmap">charter</a></li>
-            <li><a href="#roadmap">shuttle</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Project</h4>
-          <ul>
-            <li><span class="is-placeholder" role="note" aria-label="Source — coming soon">Source &middot; coming&nbsp;soon</span></li>
-            <li><span class="is-placeholder" role="note" aria-label="Documentation — coming soon">Docs &middot; coming&nbsp;soon</span></li>
-          </ul>
-        </div>
-      </nav>
     </div>
 
-    <div class="site-footer__bar">
-      <p>MIT licensed &middot; Open source.</p>
-      <p class="site-footer__note">Links land once the consolidated <code>loom</code> org migration completes.</p>
+    <!-- Lacuna — adjacent, not a member -->
+    <div class="lacuna-block">
+      <div class="t-label lacuna-label">Adjacent — not a member</div>
+      <div class="lacuna-strip" role="note" aria-label="Lacuna — demonstration specimen, not a member">
+        <svg class="mark" width="28" height="28" viewBox="0 0 32 32" fill="none" role="img" aria-label="lacuna">
+          <path d="M19 6 H25 A1 1 0 0 1 26 7 V25 A1 1 0 0 1 25 26 H7 A1 1 0 0 1 6 25 V7 A1 1 0 0 1 7 6 H13"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="2.6 3" fill="none"/>
+          <rect x="13.4" y="13.4" width="5.2" height="5.2" rx="1" fill="currentColor"/>
+        </svg>
+        <div class="lacuna-body">
+          <div class="member-head">
+            <span class="member-name">Lacuna</span>
+            <span class="lacuna-kind">demonstration specimen</span>
+          </div>
+          <div class="member-domain">The deliberately-flawed app the suite is run against. Point the tools at it and watch them work.</div>
+        </div>
+        <span class="lacuna-loc">~/lacuna</span>
+      </div>
     </div>
-  </footer>
+  </section>
 
-  <script src="main.js"></script>
+  <!-- ====================== COMPOSITION LAW ====================== -->
+  <section id="federation" class="composition">
+    <h2 class="comp-title">The composition law</h2>
+    <p class="t-body comp-lede">Any member must satisfy all three modes. Pairwise composability is a hard rule, not an aspiration.</p>
+    <div class="mode-toggle" role="tablist" aria-label="Composition modes">
+      <button class="mode-btn" role="tab" aria-selected="false" data-mode="solo">Solo</button>
+      <button class="mode-btn is-active" role="tab" aria-selected="true" data-mode="pair">Pair</button>
+      <button class="mode-btn" role="tab" aria-selected="false" data-mode="suite">Suite</button>
+    </div>
+    <div class="mode-panel" id="mode-panel" role="tabpanel" aria-live="polite">
+      <span class="mode-text">Combined with any one sibling it creates a meaningful capability — Wardline findings become tracked Filigree work; never a broken fragment.</span>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============================ FOOTER ============================ -->
+<footer class="hub-footer">
+  <svg class="mark" width="18" height="18" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+    <g stroke="currentColor" stroke-width="2.4" stroke-linecap="round">
+      <path d="M11 6 V18.8"/><path d="M11 23.2 V26"/>
+      <path d="M21 6 V8.8"/><path d="M21 13.2 V26"/>
+      <path d="M6 11 H8.8"/><path d="M13.2 11 H26"/>
+      <path d="M6 21 H18.8"/><path d="M23.2 21 H26"/>
+    </g>
+  </svg>
+  <span class="foot-note">~/loom is documentation only — there is nothing called &ldquo;Loom Federation&rdquo; to install or run.</span>
+  <span class="foot-meta">MIT · 2026</span>
+</footer>
+
+<script src="main.js"></script>
 </body>
 </html>

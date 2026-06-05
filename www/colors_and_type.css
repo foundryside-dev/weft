@@ -1,0 +1,224 @@
+/* ============================================================================
+   LOOM DESIGN SYSTEM — colors_and_type.css
+   ----------------------------------------------------------------------------
+   The single source of low-level visual tokens for the Loom federation.
+
+   Loom is a family of agent-first, local-first developer tools. Its one real
+   graphical surface (the Filigree dashboard) is the canonical source of this
+   palette and type system: a dark, terminal-grade, all-monospace aesthetic.
+   These tokens are lifted verbatim from that dashboard, then extended with a
+   "thread" accent per member so the umbrella portfolio reads as one weave of
+   distinct, separable strands.
+
+   Fonts: bundled locally in fonts/ as variable TTFs (OFL, open source) so the
+   system works fully offline. JetBrains Mono = product face; Space Grotesk =
+   brand/display face. See README "Visual Foundations".
+   ============================================================================ */
+
+/* JetBrains Mono — product face (UI, code, body, data). Variable weight. */
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: url('fonts/JetBrainsMono-Variable.ttf') format('truetype');
+  font-weight: 100 800; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: url('fonts/JetBrainsMono-Italic-Variable.ttf') format('truetype');
+  font-weight: 100 800; font-style: italic; font-display: swap;
+}
+/* Space Grotesk — brand / display face (wordmark, headlines). Variable weight. */
+@font-face {
+  font-family: 'Space Grotesk';
+  src: url('fonts/SpaceGrotesk-Variable.ttf') format('truetype');
+  font-weight: 300 700; font-style: normal; font-display: swap;
+}
+
+/* Brand default: every consumer paints in the product face from first frame,
+   so no page ever flashes a substitute system font before React/inline styles
+   apply. Display face is opted into via .t-display / --font-display. */
+html, body {
+  font-family: var(--font-mono);
+}
+
+:root {
+  /* ---- Surfaces (dark is canonical / default) ------------------------- */
+  --surface-base:    #0B1215;  /* app background — near-black teal          */
+  --surface-raised:  #131E24;  /* cards, headers, panels                    */
+  --surface-overlay: #1A2B34;  /* chips, inputs, secondary fills            */
+  --surface-hover:   #243A45;  /* hover fill for interactive surfaces       */
+
+  /* ---- Borders -------------------------------------------------------- */
+  --border-default:  #1E3340;  /* hairline dividers, card edges             */
+  --border-strong:   #2A4454;  /* inputs, buttons, emphasized edges         */
+
+  /* ---- Text ----------------------------------------------------------- */
+  --text-primary:    #E2EEF2;  /* headings, key values                     */
+  --text-secondary:  #8FAAB8;  /* body, labels                             */
+  --text-muted:      #5A7D8C;  /* metadata, timestamps, hints              */
+
+  /* ---- Accent (sky — the suite's interactive blue) -------------------- */
+  --accent:          #38BDF8;
+  --accent-hover:    #0EA5E9;
+  --accent-subtle:   rgba(12, 74, 110, 0.20);
+
+  /* ---- Status & semantic (from the dashboard) ------------------------- */
+  --status-open:     #64748B;  /* slate — untouched / backlog              */
+  --status-wip:      #38BDF8;  /* sky — in progress                        */
+  --status-done:     #7B919C;  /* muted steel — completed                  */
+  --ready:           #10B981;  /* emerald — no blockers, startable         */
+  --aging:           #F59E0B;  /* amber — WIP aging (>4h)                  */
+  --stale:           #EF4444;  /* red — WIP stale (>24h) / errors / block  */
+
+  /* ---- Priority ramp (P0 hottest -> P4 coolest) ----------------------- */
+  --prio-0: #EF4444;  --prio-1: #F97316;  --prio-2: #6B7280;
+  --prio-3: #D1D5DB;  --prio-4: #D1D5DB;
+
+  /* ---- Severity (scanner findings) ------------------------------------ */
+  --sev-critical: #EF4444;  --sev-high: #F97316;  --sev-medium: #EAB308;
+  --sev-low:      #3B82F6;  --sev-info: #64748B;
+
+  /* ---- The Loom thread palette — one accent per federation member ----- *
+   * Distinct hues across the wheel, all legible on --surface-base.        *
+   * Used for member identity: glyph color, left-rule, badge, header tab.  */
+  --thread-clarion:  #4ECDC4;  /* aqua    — structure + identity spine     */
+  --thread-filigree: #38BDF8;  /* sky     — work state (canonical accent)  */
+  --thread-wardline: #F4845F;  /* coral   — trust boundary                 */
+  --thread-legis:    #A78BFA;  /* violet  — governance & law               */
+  --thread-charter:  #E3B341;  /* gold    — requirements & verification    */
+  --thread-shuttle:  #6B7C8C;  /* slate   — roadmap thought-bubble (dim)   */
+
+  /* ---- Lacuna — the demonstration specimen (ADJACENT, not a member) ---- *
+   * Lacuna is the deliberately-flawed app the suite is run against. It      *
+   * inherits the whole Loom system so it reads as the same world, then      *
+   * sets itself apart three ways: an OFF-palette dusty magenta that appears *
+   * in no member thread (the "MissingNo" of the suite); a warm-neutral      *
+   * "specimen" surface that is noticeably less teal than Loom's; and a      *
+   * DASHED / ticketed border treatment instead of Loom's solid left-rules. *
+   * Use it when linking OUT to Lacuna from a Loom surface.                  */
+  --lacuna-accent:     #CE7AAE;  /* dusty magenta — off the federation wheel */
+  --lacuna-accent-dim: #8E5A77;  /* hovers, secondary marks                  */
+  --lacuna-surface:    #1A1822;  /* warm-neutral raised (vs teal --raised)   */
+  --lacuna-overlay:    #241F2C;  /* warm-neutral chip/input fill             */
+  --lacuna-border:     #3D2F3F;  /* mauve-grey hairline                      */
+  --lacuna-flaw:       #EF4444;  /* a planted lacuna (reuses stale red)      */
+
+  /* ---- Radii ---------------------------------------------------------- */
+  --radius-sm: 3px;   /* chips, pills, scrollbar                           */
+  --radius:    6px;   /* buttons, inputs, cards (Tailwind "rounded")       */
+  --radius-lg: 8px;   /* popovers, dropdowns, modals (shadow-xl surfaces)  */
+  --radius-full: 9999px;
+
+  /* ---- Elevation ------------------------------------------------------ */
+  --shadow-pop: 0 10px 25px rgba(0, 0, 0, 0.45);     /* dropdowns/popovers */
+  --shadow-modal: 0 20px 50px rgba(0, 0, 0, 0.55);   /* modals             */
+  --glow-accent: 0 0 8px rgba(56, 189, 248, 0.5);    /* change-flash       */
+
+  /* ---- Spacing scale (Tailwind-derived, 4px base) --------------------- */
+  --space-1: 4px;   --space-2: 8px;   --space-3: 12px;  --space-4: 16px;
+  --space-5: 20px;  --space-6: 24px;  --space-8: 32px;  --space-12: 48px;
+
+  /* ---- Type families -------------------------------------------------- *
+   * Two faces, one voice:                                                  *
+   *  --font-display : Space Grotesk — the BRAND layer. Wordmark, hub       *
+   *                   headlines, slide titles. Geometric, technical.       *
+   *  --font-mono    : JetBrains Mono — the PRODUCT layer. All UI, code,    *
+   *                   body, data. The terminal-grade signature.           *
+   * Product surfaces stay mono end-to-end; display is for brand moments.  */
+  --font-display: 'Space Grotesk', 'JetBrains Mono', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', ui-monospace, 'SF Mono', Menlo, monospace;
+  --font-sans: 'JetBrains Mono', ui-monospace, monospace; /* product body stays mono */
+
+  /* ---- Motion --------------------------------------------------------- */
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --dur-fast: 0.15s;   /* card hover, button states                        */
+  --dur:      0.2s;    /* panel slide, theme swap                          */
+}
+
+/* ---- Light theme (the dashboard's documented alternate) --------------- */
+[data-theme="light"] {
+  --surface-base:    #F0F6F8;
+  --surface-raised:  #FFFFFF;
+  --surface-overlay: #E8F1F4;
+  --surface-hover:   #DCE9EE;
+  --border-default:  #C5D8E0;
+  --border-strong:   #9BBBC8;
+  --text-primary:    #0F2027;
+  --text-secondary:  #3D6070;
+  --text-muted:      #6B8D9C;
+  --accent:          #0284C7;
+  --accent-hover:    #0369A1;
+  --accent-subtle:   rgba(2, 132, 199, 0.20);
+  --status-open:     #64748B;
+  --status-wip:      #0284C7;
+  --status-done:     #7B919C;
+  --shadow-pop:   0 10px 25px rgba(15, 32, 39, 0.12);
+  --shadow-modal: 0 20px 50px rgba(15, 32, 39, 0.18);
+}
+
+/* ============================================================================
+   SEMANTIC TYPE SCALE
+   Mono-forward, tight, terminal-grade. Sizes are deliberately small and dense
+   — this is a developer tool, not a marketing page. The dashboard runs at
+   text-xs (12px) for chrome; these named roles cover documents + UI kits.
+   ============================================================================ */
+
+.loom-type { font-family: var(--font-mono); color: var(--text-primary);
+  -webkit-font-smoothing: antialiased; font-feature-settings: "liga" 1, "calt" 1; }
+
+/* Display — hub hero / portfolio headers / slide titles (BRAND face) */
+.t-display {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: 46px; line-height: 1.02; letter-spacing: -0.02em;
+  color: var(--text-primary);
+}
+.t-h1 {
+  font-family: var(--font-display); font-weight: 600;
+  font-size: 30px; line-height: 1.12; letter-spacing: -0.015em;
+  color: var(--text-primary);
+}
+/* Brand wordmark helper */
+.t-wordmark {
+  font-family: var(--font-display); font-weight: 700;
+  letter-spacing: -0.02em; color: var(--text-primary);
+}
+.t-h2 {
+  font-family: var(--font-mono); font-weight: 600;
+  font-size: 20px; line-height: 1.25; color: var(--text-primary);
+}
+.t-h3 {
+  font-family: var(--font-mono); font-weight: 600;
+  font-size: 15px; line-height: 1.3; color: var(--text-primary);
+}
+/* Body */
+.t-body {
+  font-family: var(--font-mono); font-weight: 400;
+  font-size: 14px; line-height: 1.6; color: var(--text-secondary);
+  text-wrap: pretty;
+}
+.t-small {
+  font-family: var(--font-mono); font-weight: 400;
+  font-size: 12px; line-height: 1.5; color: var(--text-secondary);
+}
+/* Label — uppercase section/eyebrow with tracking */
+.t-label {
+  font-family: var(--font-mono); font-weight: 600;
+  font-size: 11px; line-height: 1.4; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--text-muted);
+}
+/* Mono inline — code, ids, tokens, CLI */
+.t-code {
+  font-family: var(--font-mono); font-weight: 500;
+  font-size: 13px; line-height: 1.5; color: var(--text-primary);
+}
+.t-meta {
+  font-family: var(--font-mono); font-weight: 400;
+  font-size: 11px; line-height: 1.4; color: var(--text-muted);
+}
+
+/* ---- Member identity helper: paints a strand by its thread color ------ */
+.thread-clarion  { --thread: var(--thread-clarion); }
+.thread-filigree { --thread: var(--thread-filigree); }
+.thread-wardline { --thread: var(--thread-wardline); }
+.thread-legis    { --thread: var(--thread-legis); }
+.thread-charter  { --thread: var(--thread-charter); }
+.thread-shuttle  { --thread: var(--thread-shuttle); }

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="../colors_and_type.css">
+<style>html,body{margin:0}body{background:var(--surface-base);font-family:var(--font-mono);padding:30px 40px}
+.row{display:flex;gap:24px;align-items:flex-end}
+.sw{display:flex;flex-direction:column;gap:9px;align-items:center}
+.box{width:96px;height:64px;background:var(--surface-raised);border:1px solid var(--border-strong)}
+.nm{font-size:11px;color:var(--text-primary)}.hx{font-size:10px;color:var(--text-muted)}
+.pill{width:120px;height:34px;background:var(--surface-overlay);border:1px solid var(--border-strong);border-radius:var(--radius-full)}</style></head>
+<body>
+  <div class="row">
+    <div class="sw"><div class="box" style="border-radius:var(--radius-sm)"></div><div class="nm">sm</div><div class="hx">3px · chips</div></div>
+    <div class="sw"><div class="box" style="border-radius:var(--radius)"></div><div class="nm">base</div><div class="hx">6px · cards/btn</div></div>
+    <div class="sw"><div class="box" style="border-radius:var(--radius-lg)"></div><div class="nm">lg</div><div class="hx">8px · popovers</div></div>
+    <div class="sw"><div class="pill"></div><div class="nm">full</div><div class="hx">9999px · dots</div></div>
+  </div>
+</body></html>
