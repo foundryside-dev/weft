@@ -1,9 +1,9 @@
 /* ============================================================================
-   LOOM DESIGN SYSTEM — colors_and_type.css
+   WEFT DESIGN SYSTEM — colors_and_type.css
    ----------------------------------------------------------------------------
-   The single source of low-level visual tokens for the Loom federation.
+   The single source of low-level visual tokens for the Weft federation.
 
-   Loom is a family of agent-first, local-first developer tools. Its one real
+   Weft is a family of agent-first, local-first developer tools. Its one real
    graphical surface (the Filigree dashboard) is the canonical source of this
    palette and type system: a dark, terminal-grade, all-monospace aesthetic.
    These tokens are lifted verbatim from that dashboard, then extended with a
@@ -77,7 +77,7 @@ html, body {
   --sev-critical: #EF4444;  --sev-high: #F97316;  --sev-medium: #EAB308;
   --sev-low:      #3B82F6;  --sev-info: #64748B;
 
-  /* ---- The Loom thread palette — one accent per federation member ----- *
+  /* ---- The Weft thread palette — one accent per federation member ----- *
    * Distinct hues across the wheel, all legible on --surface-base.        *
    * Used for member identity: glyph color, left-rule, badge, header tab.  */
   --thread-loomweave:  #4ECDC4;  /* aqua    — structure + identity spine     */
@@ -89,12 +89,12 @@ html, body {
 
   /* ---- Lacuna — the demonstration specimen (ADJACENT, not a member) ---- *
    * Lacuna is the deliberately-flawed app the suite is run against. It      *
-   * inherits the whole Loom system so it reads as the same world, then      *
+   * inherits the whole Weft system so it reads as the same world, then      *
    * sets itself apart three ways: an OFF-palette dusty magenta that appears *
    * in no member thread (the "MissingNo" of the suite); a warm-neutral      *
-   * "specimen" surface that is noticeably less teal than Loom's; and a      *
-   * DASHED / ticketed border treatment instead of Loom's solid left-rules. *
-   * Use it when linking OUT to Lacuna from a Loom surface.                  */
+   * "specimen" surface that is noticeably less teal than Weft's; and a      *
+   * DASHED / ticketed border treatment instead of Weft's solid left-rules. *
+   * Use it when linking OUT to Lacuna from a Weft surface.                  */
   --lacuna-accent:     #CE7AAE;  /* dusty magenta — off the federation wheel */
   --lacuna-accent-dim: #8E5A77;  /* hovers, secondary marks                  */
   --lacuna-surface:    #1A1822;  /* warm-neutral raised (vs teal --raised)   */
@@ -162,7 +162,7 @@ html, body {
    text-xs (12px) for chrome; these named roles cover documents + UI kits.
    ============================================================================ */
 
-.loom-type { font-family: var(--font-mono); color: var(--text-primary);
+.weft-type { font-family: var(--font-mono); color: var(--text-primary);
   -webkit-font-smoothing: antialiased; font-feature-settings: "liga" 1, "calt" 1; }
 
 /* Display — hub hero / portfolio headers / slide titles (BRAND face) */

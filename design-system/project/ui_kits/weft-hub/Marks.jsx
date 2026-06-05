@@ -1,9 +1,9 @@
-// Marks.jsx — Loom federation glyph set as React components.
+// Marks.jsx — Weft federation glyph set as React components.
 // Stroke-based, inherit `color` via currentColor. Shared across UI kits.
 const { createElement: h } = React;
 
 const MARK_PATHS = {
-  loom: (
+  weft: (
     <g stroke="currentColor" strokeWidth="2.4" strokeLinecap="round">
       <path d="M11 6 V18.8"/><path d="M11 23.2 V26"/>
       <path d="M21 6 V8.8"/><path d="M21 13.2 V26"/>

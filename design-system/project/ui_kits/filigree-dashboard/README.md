@@ -1,7 +1,7 @@
 # UI Kit — Filigree Dashboard
 
 A high-fidelity recreation of **Filigree's web dashboard** — the one real GUI in
-the Loom suite. Lifted from the product's own `static/dashboard.html` +
+the Weft suite. Lifted from the product's own `static/dashboard.html` +
 `js/views/kanban.js`: the dark teal theme, JetBrains Mono throughout, the
 3-column kanban, and the slide-in issue detail panel.
 

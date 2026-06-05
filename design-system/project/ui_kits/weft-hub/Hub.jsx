@@ -1,4 +1,4 @@
-// Hub.jsx — the Loom federation portfolio / documentation landing.
+// Hub.jsx — the Weft federation portfolio / documentation landing.
 const { useState } = React;
 
 function Chip({ children, dim }) {
@@ -18,11 +18,11 @@ function HubHeader() {
       position: "sticky", top: 0, zIndex: 10,
     }}>
       <div style={{ display: "flex", alignItems: "center", gap: 11 }}>
-        <Mark name="loom" size={26} style={{ color: "var(--text-primary)" }} />
+        <Mark name="weft" size={26} style={{ color: "var(--text-primary)" }} />
         <span style={{ fontFamily: "var(--font-display)", fontSize: 19, fontWeight: 700, letterSpacing: "-0.02em", color: "var(--text-primary)" }}>
-          Loom
+          Weft
         </span>
-        <span style={{ fontSize: 11, color: "var(--text-muted)", marginLeft: 2 }}>~/loom</span>
+        <span style={{ fontSize: 11, color: "var(--text-muted)", marginLeft: 2 }}>~/weft</span>
       </div>
       <nav style={{ display: "flex", gap: 4, marginLeft: "auto" }}>
         {links.map((l) => (
@@ -48,7 +48,7 @@ function Hero() {
         Distinct threads,<br />woven on purpose.
       </h1>
       <p className="t-body" style={{ fontSize: 16, maxWidth: 680, marginTop: 22 }}>
-        Loom is an agent-first federation of small, local-first developer tools. Each member is
+        Weft is an agent-first federation of small, local-first developer tools. Each member is
         authoritative for one domain, useful on its own, and meaningfully composable with any
         sibling — <span style={{ color: "var(--text-primary)" }}>enrich-only, never load-bearing</span> when composed.
       </p>
@@ -153,7 +153,7 @@ function CompositionLaw() {
   return (
     <section style={{ padding: "28px 30px 44px", maxWidth: 980, margin: "0 auto" }}>
       <h2 style={{ fontFamily: "var(--font-display)", fontSize: 26, fontWeight: 600, letterSpacing: "-0.015em", color: "var(--text-primary)", margin: "0 0 4px" }}>The composition law</h2>
-      <p className="t-body" style={{ maxWidth: 640, marginBottom: 20 }}>Any Loom product must satisfy all three modes. Pairwise composability is a hard rule, not an aspiration.</p>
+      <p className="t-body" style={{ maxWidth: 640, marginBottom: 20 }}>Any Weft product must satisfy all three modes. Pairwise composability is a hard rule, not an aspiration.</p>
       <div style={{ display: "flex", gap: 6, marginBottom: 16 }}>
         {Object.keys(MODES).map((k) => (
           <button key={k} onClick={() => setMode(k)} style={{
@@ -183,8 +183,8 @@ function App() {
       <Roster />
       <CompositionLaw />
       <footer style={{ borderTop: "1px solid var(--border-default)", padding: "20px 30px", maxWidth: 980, margin: "0 auto", display: "flex", gap: 14, alignItems: "center" }}>
-        <Mark name="loom" size={18} style={{ color: "var(--text-muted)" }} />
-        <span style={{ fontSize: 11, color: "var(--text-muted)" }}>~/loom is documentation only — there is nothing called “Loom” to install or run.</span>
+        <Mark name="weft" size={18} style={{ color: "var(--text-muted)" }} />
+        <span style={{ fontSize: 11, color: "var(--text-muted)" }}>~/weft is documentation only — there is nothing called “Weft” to install or run.</span>
         <span style={{ fontSize: 11, color: "var(--text-muted)", marginLeft: "auto" }}>MIT · 2026</span>
       </footer>
     </div>

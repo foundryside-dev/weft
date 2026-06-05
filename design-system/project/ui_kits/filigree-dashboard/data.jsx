@@ -1,4 +1,4 @@
-// data.jsx — fake Filigree project data (Loom federation development).
+// data.jsx — fake Filigree project data (Weft federation development).
 // Shapes mirror the real dashboard: status_category drives the 3 columns,
 // is_ready = no open blockers, impact = downstream blocks count.
 
@@ -16,13 +16,13 @@ const ISSUES = [
     body: "When .filigree.conf relocates the db, the dashboard opened .filigree/filigree.db while CLI/MCP opened the conf path — a split-brain view. Honour from_conf.",
     deps: [] },
   { id: "fg-1c4099", type: "task", priority: 2, title: "Write federation contract index pointer doc", status: "open", cat: "open", assignee: null, ageH: 0, ready: true, impact: 1, blocked_by: [],
-    body: "Each cross-product contract should point to the authoritative schema in the owning repo. loom owns the index; repos own the schemas.", deps: [] },
-  { id: "fg-44b7e1", type: "feature", priority: 1, title: "Loom HTTP generation /api/loom/* contracts", status: "reviewing", cat: "wip", assignee: "agent-2", ageH: 1, ready: true, impact: 3, blocked_by: [],
-    body: "Stable /api/loom/* generation with classic compatibility for existing callers. Phase C fills endpoints one at a time.", deps: [] },
+    body: "Each cross-product contract should point to the authoritative schema in the owning repo. weft owns the index; repos own the schemas.", deps: [] },
+  { id: "fg-44b7e1", type: "feature", priority: 1, title: "Weft HTTP generation /api/weft/* contracts", status: "reviewing", cat: "wip", assignee: "agent-2", ageH: 1, ready: true, impact: 3, blocked_by: [],
+    body: "Stable /api/weft/* generation with classic compatibility for existing callers. Phase C fills endpoints one at a time.", deps: [] },
   { id: "fg-9920aa", type: "bug", priority: 0, title: "Optimistic claim race in multi-agent start-next", status: "confirmed", cat: "open", assignee: null, ageH: 0, ready: true, impact: 4, blocked_by: [],
     body: "Two agents calling start-next-work can double-claim under load. Optimistic lock must reject the second writer cleanly.", deps: [] },
   { id: "fg-301f8c", type: "epic", priority: 1, title: "Federation 2.0 — suite-aware integrations", status: "in_progress", cat: "wip", assignee: "agent-2", ageH: 9, ready: true, impact: 0, blocked_by: [],
-    body: "Umbrella epic for the Loom generation: SEI-keyed links, Wardline finding ingest, Legis sign-off binding.", deps: [] },
+    body: "Umbrella epic for the Weft generation: SEI-keyed links, Wardline finding ingest, Legis sign-off binding.", deps: [] },
   { id: "fg-77aa12", type: "task", priority: 2, title: "context.md regen on every mutation", status: "done", cat: "done", assignee: "agent-1", ageH: 30, ready: false, impact: 0, blocked_by: [],
     body: "Pre-compute context.md so the session hook injects a fresh orientation at startup. Regenerate on every write.", deps: [] },
   { id: "fg-5510bd", type: "feature", priority: 2, title: "Wardline finding → tracked issue cascade", status: "done", cat: "done", assignee: "agent-3", ageH: 48, ready: false, impact: 0, blocked_by: [],
@@ -34,7 +34,7 @@ const ISSUES = [
   { id: "fg-93de77", type: "task", priority: 3, title: "Codex MCP autodiscovery on install", status: "done", cat: "done", assignee: "agent-1", ageH: 72, ready: false, impact: 0, blocked_by: [],
     body: "filigree install --codex writes the MCP entry via runtime autodiscovery.", deps: [] },
   { id: "fg-61b0a4", type: "feature", priority: 1, title: "Bearer auth for federation + MCP surfaces", status: "approved", cat: "open", assignee: null, ageH: 0, ready: true, impact: 2, blocked_by: [],
-    body: "FILIGREE_FEDERATION_API_TOKEN gates /api/loom/*, scan ingest, and /mcp. Dashboard UI stays open on loopback.", deps: [] },
+    body: "FILIGREE_FEDERATION_API_TOKEN gates /api/weft/*, scan ingest, and /mcp. Dashboard UI stays open on loopback.", deps: [] },
 ];
 // fix a stray id typo
 ISSUES.forEach((i) => { i.id = i.id.replace("`", ""); });

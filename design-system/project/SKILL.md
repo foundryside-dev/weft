@@ -1,10 +1,10 @@
 ---
-name: loom-design
-description: Use this skill to generate well-branded interfaces and assets for Loom — the agent-first federation of developer tools (Loomweave, Filigree, Wardline, Legis, Charter) — for production or throwaway prototypes/mocks. Contains the design doctrine, colors, type, fonts, federation marks, and high-fidelity UI kit components (the Filigree dashboard, the agent CLI, and the federation hub).
+name: weft-design
+description: Use this skill to generate well-branded interfaces and assets for Weft — the agent-first federation of developer tools (Loomweave, Filigree, Wardline, Legis, Charter) — for production or throwaway prototypes/mocks. Contains the design doctrine, colors, type, fonts, federation marks, and high-fidelity UI kit components (the Filigree dashboard, the agent CLI, and the federation hub).
 user-invocable: true
 ---
 
-# Loom design skill
+# Weft design skill
 
 Read `README.md` in this skill first — it carries the full picture: the roster
 and thread palette, content/voice rules, visual foundations, and iconography.
@@ -14,8 +14,8 @@ Then explore the other files as needed:
 - `assets/marks/` — the seven federation glyphs (inline the SVG so `currentColor`
   applies; loading via `<img>` won't pick up the thread color).
 - `preview/` — small specimen cards for every token and component.
-- `ui_kits/<kit>/` — interactive recreations (loom-hub, filigree-dashboard,
-  loom-cli), each with its own README and reusable JSX components.
+- `ui_kits/<kit>/` — interactive recreations (weft-hub, filigree-dashboard,
+  weft-cli), each with its own README and reusable JSX components.
 
 ## How to work
 
@@ -40,5 +40,5 @@ to become an expert in designing with this brand.
   status. No hype, no emoji in prose.
 
 If the user invokes this skill with no other guidance, ask what they want to
-build, ask a few focused questions, then act as an expert Loom designer who
+build, ask a few focused questions, then act as an expert Weft designer who
 outputs either HTML artifacts or production code, depending on the need.

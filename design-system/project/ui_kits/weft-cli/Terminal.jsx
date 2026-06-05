@@ -1,4 +1,4 @@
-// Terminal.jsx — Loom CLI / agent-first terminal surface.
+// Terminal.jsx — Weft CLI / agent-first terminal surface.
 // The non-GUI members (Loomweave, Wardline, Legis, Charter) live here: CLI + MCP
 // over stdio. Sessions are drawn from each tool's real README output.
 const { useState, useEffect, useRef } = React;
@@ -108,8 +108,8 @@ function Terminal() {
         <span style={{ display: "flex", gap: 7 }}>
           {["#FF5F57", "#FEBC2E", "#28C840"].map((c) => <span key={c} style={{ width: 11, height: 11, borderRadius: "50%", background: c }} />)}
         </span>
-        <span style={{ marginLeft: 8, fontSize: 11.5, color: "var(--text-muted)" }}>agent@loom — {S.label} — stdio</span>
-        <Mark name="loom" size={14} style={{ color: "var(--text-muted)", marginLeft: "auto" }} />
+        <span style={{ marginLeft: 8, fontSize: 11.5, color: "var(--text-muted)" }}>agent@weft — {S.label} — stdio</span>
+        <Mark name="weft" size={14} style={{ color: "var(--text-muted)", marginLeft: "auto" }} />
       </div>
       {/* tab bar */}
       <div style={{ display: "flex", gap: 2, padding: "7px 9px 0", background: "var(--surface-raised)", borderBottom: "1px solid var(--border-default)" }}>
@@ -142,7 +142,7 @@ function App() {
     <div style={{ minHeight: "100vh", background: "var(--surface-base)", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: "40px 20px", gap: 22 }}>
       <div style={{ textAlign: "center" }}>
         <div className="t-label" style={{ marginBottom: 8 }}>Agent-first · humans on the loop, not in it</div>
-        <h1 style={{ fontFamily: "var(--font-display)", fontSize: 30, fontWeight: 700, letterSpacing: "-0.02em", color: "var(--text-primary)", margin: 0 }}>The Loom CLI surface</h1>
+        <h1 style={{ fontFamily: "var(--font-display)", fontSize: 30, fontWeight: 700, letterSpacing: "-0.02em", color: "var(--text-primary)", margin: 0 }}>The Weft CLI surface</h1>
         <p style={{ fontFamily: "var(--font-mono)", fontSize: 13, color: "var(--text-secondary)", maxWidth: 600, margin: "10px auto 0", lineHeight: 1.6 }}>
           Four members with no GUI drive the same loop: scan → explain → fix → rescan, over CLI and a dependency-free MCP-over-stdio server. Switch sessions below.
         </p>

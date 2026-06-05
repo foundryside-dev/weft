@@ -1,6 +1,6 @@
-# Loom — compatibility & integration-liveness matrix
+# Weft — compatibility & integration-liveness matrix
 
-**Status:** **Authoritative** for *which pairwise integrations are live vs asterisked*. The **version** compatibility matrix (which released versions speak the `loom` HTTP generation) is a **post-1.0 published artifact** per the launch decision in [SHIPPING.md](./SHIPPING.md) (Decision 2) and is stubbed below — populate it at the coordinated Loom 1.0 launch.
+**Status:** **Authoritative** for *which pairwise integrations are live vs asterisked*. The **version** compatibility matrix (which released versions speak the `weft` HTTP generation) is a **post-1.0 published artifact** per the launch decision in [SHIPPING.md](./SHIPPING.md) (Decision 2) and is stubbed below — populate it at the coordinated Weft 1.0 launch.
 
 This doc exists because a suite that ships as five independently-versioned products needs a published, tested-combination matrix instead of a monolithic release train. See [SHIPPING.md](./SHIPPING.md) for the go-to-market decisions; this is the technical face of decision 2.
 
@@ -24,12 +24,12 @@ Each live cross-tool binding from [federation-map.md](./federation-map.md), with
 
 ## Version compatibility matrix (post-1.0 — to populate at launch)
 
-Per [SHIPPING.md](./SHIPPING.md) decision 2, after the one-time coordinated **Loom 1.0** launch each tool versions independently and the "suite version" becomes a published tested-combination matrix. Populate this table at launch:
+Per [SHIPPING.md](./SHIPPING.md) decision 2, after the one-time coordinated **Weft 1.0** launch each tool versions independently and the "suite version" becomes a published tested-combination matrix. Populate this table at launch:
 
-| Member | 1.0 launch version | Speaks `loom` HTTP generation | Notes |
+| Member | 1.0 launch version | Speaks `weft` HTTP generation | Notes |
 |---|---|---|---|
 | Loomweave | _tbd_ | yes (serves SEI + read API) | shipped (snapshot v1.3.0) |
-| Filigree | _tbd_ | yes (publishes `classic` + `loom`) | shipped (snapshot v2.3.0); SEI standard locked — Filigree's locator→SEI backfill is a conformance task under the lock |
+| Filigree | _tbd_ | yes (publishes `classic` + `weft`) | shipped (snapshot v2.3.0); SEI standard locked — Filigree's locator→SEI backfill is a conformance task under the lock |
 | Wardline | _tbd_ | consumer (SEI client) | **1.0 launch gate** (snapshot 1.0.0rc1) |
 | Legis | _tbd_ | consumer | snapshot 1.0.0rc |
 | Charter | _tbd_ | consumer (planned) | **1.0 launch gate** (snapshot 0.1.0 scaffold) |

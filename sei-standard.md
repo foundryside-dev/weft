@@ -1,13 +1,13 @@
-# Loom — Stable Entity Identity (SEI) conformance standard
+# Weft — Stable Entity Identity (SEI) conformance standard
 
-**Date:** 2026-06-01 (promoted into the Loom hub 2026-06-05)
+**Date:** 2026-06-01 (promoted into the Weft hub 2026-06-05)
 **Status:** **LOCKED — 2026-06-05** (owner declaration). SEI is the canonical, frozen federation identity interface. The shape is no longer open for per-subsystem input; **post-lock changes require a versioned revision** of this standard. Conformance remains oracle-gated and ungrandfathered (§0.1): a subsystem is conformant only when it passes the §8 oracle. Any member whose locator→SEI backfill has not yet run is a *conformance/migration* task **under** the locked standard — not a reason the standard is unlocked.
-**Authority:** **Authoritative here.** This is the suite-wide SEI standard. It previously lived in the Wardline specs tree with an instruction to "propagate the normative sections into clarion/filigree"; it is now promoted into the Loom hub as its canonical home, and the member repos point here. Loomweave is the identity **authority/implementer**; Wardline, Filigree, Legis, and Charter are **consumers** that conform.
+**Authority:** **Authoritative here.** This is the suite-wide SEI standard. It previously lived in the Wardline specs tree with an instruction to "propagate the normative sections into clarion/filigree"; it is now promoted into the Weft hub as its canonical home, and the member repos point here. Loomweave is the identity **authority/implementer**; Wardline, Filigree, Legis, and Charter are **consumers** that conform.
 **Companions:** [doctrine.md](./doctrine.md) (the federation axiom SEI serves), [glossary.md](./glossary.md) (`SEI` / `locator` terms), Clarion ADR-038 (`~/clarion/docs/clarion/adr/ADR-038-sei-token-and-signature.md`, Loomweave's token form).
 
 **SEI is the gold standard for the suite.** All conforming subsystems **must** conform to it — **no matter how close any of them feels to it today.** Conformance is **demonstrated** via the §8 oracle, never **assumed** from apparent compatibility, and no subsystem is grandfathered (§0.1).
 
-**Scope:** Give Loom a **refactor-stable entity identity** so a function's cross-tool bindings (Wardline taint facts, Filigree issue associations, Legis governance attestations, Charter trace links) survive renames and moves instead of being silently orphaned. This is the keystone primitive the whole suite hangs off.
+**Scope:** Give Weft a **refactor-stable entity identity** so a function's cross-tool bindings (Wardline taint facts, Filigree issue associations, Legis governance attestations, Charter trace links) survive renames and moves instead of being silently orphaned. This is the keystone primitive the whole suite hangs off.
 
 ---
 
@@ -17,9 +17,9 @@ Verified against `clarion`/`filigree` source on 2026-06-01:
 
 - Loomweave's pre-SEI entity id is `{plugin_id}:{kind}:{canonical_qualified_name}`, **derived from the name + module path** and upserted on that key. A **rename or cross-module move changes the id** — and every binding keyed on the old id is **orphaned**. There was no rename detection, no lineage, no surrogate id (ADR-003 explicitly **deferred** an `EntityAlias` mechanism).
 - Filigree stores the id as an **opaque string** and computes no drift — the consumer does.
-- The suite once specified a richer cross-tool standard, the **Loom URI** scheme (`loom://…` + a registry + `/api/loom/multi-fetch`); it was **never implemented** and was superseded by the simpler entity-associations (Filigree ADR-029). Its registry / multi-fetch apparatus was over-built and never shipped — but the **stable identity** it reached for is exactly what was still missing. SEI is the deliberate, product-grade form of that idea — learning from the Loom-URI's failure, not salvaging it. (See [uri-scheme.md](./uri-scheme.md) for the URI scheme's status.)
+- The suite once specified a richer cross-tool standard, the **Weft URI** scheme (`weft://…` + a registry + `/api/weft/multi-fetch`); it was **never implemented** and was superseded by the simpler entity-associations (Filigree ADR-029). Its registry / multi-fetch apparatus was over-built and never shipped — but the **stable identity** it reached for is exactly what was still missing. SEI is the deliberate, product-grade form of that idea — learning from the Weft-URI's failure, not salvaging it. (See [uri-scheme.md](./uri-scheme.md) for the URI scheme's status.)
 
-The bug, precisely: Loom **conflated identity with address**. The qualname is a fine *address* and a terrible *identity*, because the operations developers do most — rename, move — change it. This standard separates the two.
+The bug, precisely: Weft **conflated identity with address**. The qualname is a fine *address* and a terrible *identity*, because the operations developers do most — rename, move — change it. This standard separates the two.
 
 ## 0.1 Conformance is proven, not assumed (no grandfathering)
 
@@ -37,7 +37,7 @@ The subsystems were running on **divergent versions of "the federation spec."** 
 **Superseded (on identity only):**
 - Clarion ADR-003's "the derived `{plugin}:{kind}:{qualname}` *is* the identity" — that string is now the **locator** (address), never the identity.
 - Clarion ADR-018's qualname-reconciliation heuristics *as an identity mechanism* — subsumed by the §3 matcher + lineage.
-- The abandoned **Loom-URI** addressing scheme — formally closed; SEI is the product-grade successor to the idea it reached for (not a revival of it).
+- The abandoned **Weft-URI** addressing scheme — formally closed; SEI is the product-grade successor to the idea it reached for (not a revival of it).
 - Any per-tool federation-contract clause that keys a cross-tool binding on a locator.
 
 **Not superseded (these stand, but now carry an SEI):** the entity-association API shape (ADR-029), the Wardline taint-fact store routes, and Filigree's frozen surface keep their transports and payloads unchanged — only the **identity value** they carry becomes an SEI.
@@ -54,7 +54,7 @@ SEI is **locked.** The single canonical identity interface is SEI (the §0.2 sup
 
 ## 0.4 What SEI unlocks — interoperability across the suite
 
-**SEI is the connective tissue of Loom's interoperability.** Loom's value is the *matrix* of its tools' combinations — not their sum — and **every cell in that matrix is a cross-tool binding** that needs a shared, durable identity to bind on:
+**SEI is the connective tissue of Weft's interoperability.** Weft's value is the *matrix* of its tools' combinations — not their sum — and **every cell in that matrix is a cross-tool binding** that needs a shared, durable identity to bind on:
 
 | Combination | The binding it depends on | Without SEI |
 |---|---|---|
@@ -88,7 +88,7 @@ SEI is **locked.** The single canonical identity interface is SEI (the §0.2 sup
 2. **Fail-closed re-binding.** When the matcher cannot *confidently* decide that a changed entity is the same one, it **mints a new SEI and records the old as orphaned** — it never silently carries an identity (and therefore never silently carries a governance attestation) across an unproven match.
 3. **Deterministic matcher in v1.** SEI is carried only on high-certainty signals (unchanged locator; git-rename + identical body; identical body+signature at a new module). Edit-tolerant fuzzy matching is North Star (§9).
 4. **Loomweave is the authority.** Identity is minted, persisted, re-bound, and resolved in one place. Consumers never derive or parse it.
-5. **No Loom-URI revival.** No registry, no multi-fetch, no URI grammar. Just identity.
+5. **No Weft-URI revival.** No registry, no multi-fetch, no URI grammar. Just identity.
 
 ## 2. The model: three separated concepts
 
@@ -195,8 +195,8 @@ A shared, fixtures-based conformance suite every tool runs against a reference L
 | Lineage integrity | append-only store; consumer re-establishes integrity at its own boundary | Loomweave-side **signed / hash-chained** lineage |
 | Lineage delivery | **pull-only** polling on `lineage(sei)` | push / event surface |
 
-Explicitly **not** in scope, ever, as part of this standard: the Loom-URI scheme, a federation registry, `/api/loom/multi-fetch`, or cross-language identity unification. The standard is *identity*, kept minimal on purpose.
+Explicitly **not** in scope, ever, as part of this standard: the Weft-URI scheme, a federation registry, `/api/weft/multi-fetch`, or cross-language identity unification. The standard is *identity*, kept minimal on purpose.
 
 ## 10. Result
 
-Loom gets the primitive every cross-tool binding silently assumed but never had: an identity that survives the refactors developers actually perform. Bindings gain a clean two-axis truth (same-entity? / code-changed?), governance gets an audit-grade lineage spine, and — because Filigree treats the id as opaque — the standard is adoptable across the whole suite, including a frozen member, without reviving the over-built machinery that sank the first attempt.
+Weft gets the primitive every cross-tool binding silently assumed but never had: an identity that survives the refactors developers actually perform. Bindings gain a clean two-axis truth (same-entity? / code-changed?), governance gets an audit-grade lineage spine, and — because Filigree treats the id as opaque — the standard is adoptable across the whole suite, including a frozen member, without reviving the over-built machinery that sank the first attempt.

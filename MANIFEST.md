@@ -1,6 +1,6 @@
-# Loom hub — document-set manifest
+# Weft hub — document-set manifest
 
-This manifest declares the structure, derivation discipline, ownership, and review triggers for the `~/loom` document set. The hub is a **wiki** managed under root/derivative discipline: loom is the *root* for federation patterns; member-repo federation docs are *derivatives* that defer here.
+This manifest declares the structure, derivation discipline, ownership, and review triggers for the `~/weft` document set. The hub is a **wiki** managed under root/derivative discipline: weft is the *root* for federation patterns; member-repo federation docs are *derivatives* that defer here.
 
 ## Document classification
 
@@ -8,12 +8,12 @@ This manifest declares the structure, derivation discipline, ownership, and revi
 
 | Doc | Authoritative for | Notes |
 |---|---|---|
-| [doctrine.md](./doctrine.md) | Federation axiom, composition law, go/no-go, roster | Promoted from `~/clarion/docs/suite/loom.md` |
+| [doctrine.md](./doctrine.md) | Federation axiom, composition law, go/no-go, roster | Promoted from `~/clarion/docs/suite/weft.md` |
 | [glossary.md](./glossary.md) | Cross-product vocabulary | Promoted from `~/clarion/docs/suite/glossary.md` |
-| [sei-standard.md](./sei-standard.md) | Stable Entity Identity conformance standard | Promoted from `~/wardline/docs/superpowers/specs/2026-06-01-loom-stable-entity-identity-conformance.md` |
+| [sei-standard.md](./sei-standard.md) | Stable Entity Identity conformance standard | Promoted from `~/wardline/docs/superpowers/specs/2026-06-01-weft-stable-entity-identity-conformance.md` |
 | [federation-map.md](./federation-map.md) | Pairwise integration matrix | Indexes contracts; restates no schema |
 | [asterisk-register.md](./asterisk-register.md) | Named axiom-violation asterisks + retirement | — |
-| [uri-scheme.md](./uri-scheme.md) | Cross-product addressing status | `loom://` closed; SEI is the spine |
+| [uri-scheme.md](./uri-scheme.md) | Cross-product addressing status | `weft://` closed; SEI is the spine |
 | [contracts-index.md](./contracts-index.md) | Index of cross-product contracts | Points to owning-repo schema authority |
 | [conflict-register.md](./conflict-register.md) | Conflicts & ambiguities (Class A/B) | First-class deliverable |
 | [compatibility.md](./compatibility.md) | Integration-liveness matrix (+ post-1.0 version matrix) | Technical face of SHIPPING decision 2 |
@@ -50,6 +50,6 @@ A `members/*.md` briefing or any member-repo federation doc is written by this r
 ## Audit invariants (run before point releases)
 
 1. No restated project-internal fact in any root doc without a pointer (grep versions/counts/route literals).
-2. Every member-repo federation-pattern doc resolves to a loom root doc.
+2. Every member-repo federation-pattern doc resolves to a weft root doc.
 3. All internal links resolve; every `members/*.md` links to its repo and to the root docs it defers to.
 4. Every [conflict-register.md](./conflict-register.md) item is Class A (fixed) or Class B (ruling + owner).

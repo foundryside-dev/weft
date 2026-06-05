@@ -1,7 +1,7 @@
-# Loom Design System
+# Weft Design System
 
-A design system for **Loom** — an agent-first federation of small, local-first
-developer tools. Loom is not a product you install; it's a **family name and a
+A design system for **Weft** — an agent-first federation of small, local-first
+developer tools. Weft is not a product you install; it's a **family name and a
 composition doctrine**. Five sibling tools, each authoritative for one domain,
 each useful alone, each *enrich-only — never load-bearing* when composed.
 
@@ -9,7 +9,7 @@ each useful alone, each *enrich-only — never load-bearing* when composed.
 > solo-useful, meaningfully composable pairwise, and enrich-only when composed.
 
 This system captures both layers of the brand:
-1. **The umbrella** — Loom as a woven portfolio of distinct, separable strands
+1. **The umbrella** — Weft as a woven portfolio of distinct, separable strands
    (the wordmark, the thread palette, the federation hub).
 2. **The product reality** — a dark, terminal-grade, all-monospace aesthetic
    lifted verbatim from the one real GUI in the suite (Filigree's dashboard) and
@@ -40,16 +40,16 @@ that every cross-tool fact keys on, so a binding survives a rename tomorrow.
 
 **Lacuna** is the deliberately-flawed *demonstration specimen* the suite is run
 against — explicitly **not a roster member**. It gets its own scheme so it can be
-linked from the Loom hub (and the member tools) and read as *similar, but
+linked from the Weft hub (and the member tools) and read as *similar, but
 pointedly not woven in*. The rule:
 
-- **Same world.** It inherits the entire Loom system — surfaces, type, spacing —
+- **Same world.** It inherits the entire Weft system — surfaces, type, spacing —
   so it's unmistakably the same environment.
 - **Not part of.** Three deliberate departures set it apart: an **off-palette
   dusty magenta** (`--lacuna-accent #CE7AAE`) that appears in no member thread (a
   nod to it being "the MissingNo of the suite"); a **warm-neutral "specimen"
   surface** (`--lacuna-surface #1A1822`, noticeably less teal); and a **dashed /
-  ticketed border** treatment instead of Loom's solid left-rules.
+  ticketed border** treatment instead of Weft's solid left-rules.
 - Planted flaws (*lacunae*) reuse the stale red (`--lacuna-flaw`) and are
   permanent — "do not fix."
 
@@ -73,25 +73,25 @@ and type system.
 | Legis | https://github.com/tachyon-beep/legis | Governance 2×2, combination matrix, operating model |
 | Charter | https://github.com/tachyon-beep/charter | Requirements domain, scaffold status |
 
-No Figma, decks, or other binary assets were provided. The **Loom hub doctrine**
+No Figma, decks, or other binary assets were provided. The **Weft hub doctrine**
 and **Lacuna README** were provided as pasted text and are reflected throughout.
-There were no existing Loom brand assets — the wordmark, the woven mark, and the
+There were no existing Weft brand assets — the wordmark, the woven mark, and the
 six member glyphs in `assets/marks/` were designed for this system.
 
 ---
 
 ## Content fundamentals
 
-How Loom writes. The voice is **precise, declarative, and quietly opinionated** —
+How Weft writes. The voice is **precise, declarative, and quietly opinionated** —
 an engineer explaining a system they've thought hard about, not a marketer
 selling it.
 
 - **Lowercase, terminal-native.** Commands, tool names in running prose, paths
-  (`~/loom`, `.filigree/`), and ids (`PY-WL-101`, `fg-da8d50`, `clarion:sei:7f3a…b1`)
+  (`~/weft`, `.filigree/`), and ids (`PY-WL-101`, `fg-da8d50`, `clarion:sei:7f3a…b1`)
   are written as they appear in a shell. Sentence case for prose; never Title
   Case headings-as-marketing.
 - **Doctrine voice.** Big claims are stated as law, often as a single bolded
-  sentence: *"enrichment, not load-bearing."* *"Loom is a federation, not a
+  sentence: *"enrichment, not load-bearing."* *"Weft is a federation, not a
   monolith."* Rules come with a **failure test** and **named consequences**, not
   vibes.
 - **Honest about status.** Copy distinguishes *built · in use* from *scaffolded*
@@ -107,7 +107,7 @@ selling it.
   icons inside the product UI (`🐛 ✨ 📋 📊 🎯`), never in headings or marketing.
   No exclamation marks. No "revolutionary," no "seamless."
 - **Metaphor, used sparingly and on-theme.** Weaving (threads, warp/weft, the
-  shuttle, filigree, the loom) — always in service of the composition idea,
+  shuttle, filigree, the weft) — always in service of the composition idea,
   never decorative.
 
 Representative lines:
@@ -169,7 +169,7 @@ See the **Design System** tab for swatches, specimens, and component cards.
 
 ## Iconography
 
-Loom's iconography is **deliberately spartan and non-illustrative** — it matches
+Weft's iconography is **deliberately spartan and non-illustrative** — it matches
 the terminal voice.
 
 - **In product, icons are type, not assets.** The real Filigree dashboard ships
@@ -180,13 +180,13 @@ the terminal voice.
   `☀` theme, `▸ ▾ ▴` disclosure, `⚖` governance. Reuse these rather than
   importing an icon library — it keeps the kits faithful.
 - **Federation marks (designed for this system).** Each member has a custom,
-  stroke-based geometric **mark** in `assets/marks/` (`loom`, `loomweave`,
+  stroke-based geometric **mark** in `assets/marks/` (`weft`, `loomweave`,
   `filigree`, `wardline`, `legis`, `charter`, `shuttle`). They riff on
   weaving/structure (a woven knot, a branching spine, a nested diamond, a warded
   boundary, a balance, a ruled charter, a shuttle on a dashed thread). All are
   `currentColor` on a `0 0 32` grid — **inline the SVG** (or use `<Mark>` in the
   kits) so they pick up their thread color; loading via `<img>` will not inherit
-  color. There is no Loom logo in the wild — these are originals.
+  color. There is no Weft logo in the wild — these are originals.
 - **No raster icons. No drawn illustration.** Don't generate or hand-draw
   scene/illustrative art. If you need a richer line-icon set for a new surface
   the product never had, **Lucide** (thin, geometric, ~1.5–2px stroke) is the
@@ -203,7 +203,7 @@ the terminal voice.
 - `colors_and_type.css` — the token source of truth (colors, type roles, radii, shadows, spacing, thread palette, light theme)
 
 **`assets/marks/`** — the seven federation glyphs + the adjacent specimen, as standalone SVGs
-- `loom.svg` · `loomweave.svg` · `filigree.svg` · `wardline.svg` · `legis.svg` · `charter.svg` · `shuttle.svg`
+- `weft.svg` · `loomweave.svg` · `filigree.svg` · `wardline.svg` · `legis.svg` · `charter.svg` · `shuttle.svg`
 - `lacuna.svg` — the adjacent demonstration specimen (off-palette, dashed)
 
 **`preview/`** — the Design System tab cards (Brand, Type, Colors, Spacing, Components)
@@ -214,9 +214,9 @@ the terminal voice.
 - components: `comp-buttons`, `comp-badges`, `comp-issuecard`, `comp-inputs`, `comp-dossier`
 
 **`ui_kits/`** — high-fidelity, interactive recreations (each with its own README)
-- `loom-hub/` — the federation portfolio / doctrine landing (brand layer)
+- `weft-hub/` — the federation portfolio / doctrine landing (brand layer)
 - `filigree-dashboard/` — the one real GUI: kanban board + issue detail click-thru
-- `loom-cli/` — the agent-first terminal: scan, MCP dossier, governance verdict, the Lacuna tour
+- `weft-cli/` — the agent-first terminal: scan, MCP dossier, governance verdict, the Lacuna tour
 
 **Fonts:** JetBrains Mono and Space Grotesk are **bundled locally** in `fonts/`
 as variable TTFs (with their `OFL.txt` licenses) and wired via `@font-face` in

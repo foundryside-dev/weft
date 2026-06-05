@@ -8,14 +8,14 @@
 
 Requirements/obligations, trace-link ontology and authority states, baselines, verification records, and impact analysis. Its requirement-identity model and trace ontology are Charter's authority (ADR-002/003).
 
-## Federation role (points to loom for patterns)
+## Federation role (points to weft for patterns)
 
 - **Newest realized member** (started 2026-06-04). Distinct from Shuttle: Charter owns *obligations*; the sketched Shuttle owns *change execution*. They are not substitutes — do not conflate ([doctrine.md](../doctrine.md) §2).
 - **Read-only consumer** of its peers; never assumes their authority. Loomweave (entity links via SEI), Filigree (requirement↔work links), Wardline (finding↔requirement links), Legis (preflight facts → governance).
 - **Identity:** SEI consumer per Charter ADR-005 — stores SEI opaque on trace links, marks links stale on lineage change, falls back to file/symbol refs when Loomweave absent ([contracts-index.md](../contracts-index.md) §10).
-- **Contracts it carries:** `loom.charter.preflight_facts.v1` envelope → Legis ([contracts-index.md](../contracts-index.md) §9, Charter ADR-006); SEI consumer contract (§10, ADR-005). **Both designed; adapters pending** — Charter is scaffold-state.
+- **Contracts it carries:** `weft.charter.preflight_facts.v1` envelope → Legis ([contracts-index.md](../contracts-index.md) §9, Charter ADR-006); SEI consumer contract (§10, ADR-005). **Both designed; adapters pending** — Charter is scaffold-state.
 
 ## Notes
 
-- Charter's README calls itself "the fifth Loom member"; that framing is now consistent with the canonical roster ([conflict-register.md](../conflict-register.md) §B-1) and points to [doctrine.md](../doctrine.md).
+- Charter's README calls itself "the fifth Weft member"; that framing is now consistent with the canonical roster ([conflict-register.md](../conflict-register.md) §B-1) and points to [doctrine.md](../doctrine.md).
 - Because adapters are deferred, Charter's matrix cells in [federation-map.md](../federation-map.md) are marked "planned."

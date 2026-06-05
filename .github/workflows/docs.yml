@@ -1,5 +1,5 @@
 # ============================================================================
-# Build the Loom Federation hub docs and deploy to GitHub Pages.
+# Build the Weft Federation hub docs and deploy to GitHub Pages.
 #
 # Pages source must be set to "GitHub Actions" (Settings → Pages → Build and
 # deployment → Source: GitHub Actions). This workflow runs the build-time

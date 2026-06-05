@@ -1,6 +1,6 @@
-# Loom — cross-product contract index
+# Weft — cross-product contract index
 
-**Status:** **Authoritative as an index**, not as a schema. This lists every live cross-product contract and **points to the owning project's authoritative doc**. Route shapes / tool names are quick references for orientation; the owning doc is authoritative if they ever disagree. loom does not restate full schemas — that is how the old hub drifted.
+**Status:** **Authoritative as an index**, not as a schema. This lists every live cross-product contract and **points to the owning project's authoritative doc**. Route shapes / tool names are quick references for orientation; the owning doc is authoritative if they ever disagree. weft does not restate full schemas — that is how the old hub drifted.
 
 **Identity is the spine.** Every binding below keys on **[SEI](./sei-standard.md)** (opaque, Loomweave-minted). A binding still keyed on a `locator` is legacy to migrate.
 
@@ -10,7 +10,7 @@
 
 Bind a Filigree issue to a Loomweave entity. The `entity_associations` table lives **on Filigree's side**; the entity id is an **opaque string** (an SEI going forward) Filigree never parses; drift detection is the consumer's job via `content_hash_at_attach`.
 
-- **Filigree HTTP (classic generation — note: `/api/issue/…`, *not* `/api/loom/…`):**
+- **Filigree HTTP (classic generation — note: `/api/issue/…`, *not* `/api/weft/…`):**
   `GET|POST /api/issue/{issue_id}/entity-associations`, `DELETE /api/issue/{issue_id}/entity-associations?entity_id=…`, `GET /api/entity-associations?entity_id=…` (reverse lookup).
 - **Filigree MCP:** `entity_association_add`, `entity_association_remove`, `entity_association_list`, `entity_association_list_by_entity`.
 - **Loomweave side:** `issues_for(entity_id, include_contained)` / the `entity_issue_list` MCP tool returns bound issues with drift status.
@@ -32,7 +32,7 @@ Wardline computes per-entity taint facts and persists them to Loomweave; Loomwea
 
 Wardline findings reach Filigree's intake (`POST /api/v1/scan-results`). **Today** this routes through Loomweave's `clarion sarif import` translator — this is **asterisk [A-1](./asterisk-register.md#a-1--wardline--filigree-findings-are-pipeline-coupled-through-loomweave)**, retiring when Wardline ships a native Filigree emitter.
 
-- **Authoritative:** Clarion ADR-015 Rev 2; `~/wardline/docs/integration/2026-05-29-wardline-loom-integration-brief.md`; Filigree scan-results intake in `~/filigree/docs/federation/contracts.md`.
+- **Authoritative:** Clarion ADR-015 Rev 2; `~/wardline/docs/integration/2026-05-29-wardline-weft-integration-brief.md`; Filigree scan-results intake in `~/filigree/docs/federation/contracts.md`.
 
 ## 5. Qualname normalization — Wardline → Loomweave (Clarion ADR-018)
 
@@ -60,7 +60,7 @@ Legis routes Wardline findings (`POST /wardline/scan-results` on Legis) through 
 
 ## 9. Charter preflight-fact envelope — Charter → Legis (Charter ADR-006)
 
-Charter exposes a versioned `loom.charter.preflight_facts.v1` envelope (requirement impact, verification freshness, baseline drift, traceability gaps). **Legis alone decides enforcement; Charter provides facts only.** *Designed, adapter pending* (Charter is scaffold-state).
+Charter exposes a versioned `weft.charter.preflight_facts.v1` envelope (requirement impact, verification freshness, baseline drift, traceability gaps). **Legis alone decides enforcement; Charter provides facts only.** *Designed, adapter pending* (Charter is scaffold-state).
 
 - **Authoritative:** Charter ADR-006 (`~/charter/docs/architecture/decisions/ADR-006-legis-preflight-fact-envelope.md`). See [members/charter.md](./members/charter.md).
 
@@ -77,8 +77,8 @@ Charter stores SEI as an opaque peer identifier on trace links, never minting/pa
 Filigree publishes **named, pinnable HTTP generations**; siblings pin to a generation and evolution is by introducing a *new* generation, never mutating an existing one.
 
 - `classic` — the pre-federation surface (mostly un-prefixed `/api/…`, with a `/api/v1/scan-results` outlier). Frozen; bug-fixes only. The entity-association routes (§1) live here.
-- `loom` — `/api/loom/*`, the federation-era generation (unified `BatchResponse[T]`/`ListResponse[T]` envelopes, closed `ErrorCode` enum, composed verbs). Carries e.g. `GET /api/loom/changes`.
-- **Loose cooperation** (Filigree ADR-002): every loom-generation endpoint must be fully functional with other federation components absent.
+- `weft` — `/api/weft/*`, the federation-era generation (unified `BatchResponse[T]`/`ListResponse[T]` envelopes, closed `ErrorCode` enum, composed verbs). Carries e.g. `GET /api/weft/changes`.
+- **Loose cooperation** (Filigree ADR-002): every weft-generation endpoint must be fully functional with other federation components absent.
 - **Authoritative:** `~/filigree/docs/federation/contracts.md` + Filigree ADR-002 (`~/filigree/docs/architecture/decisions/ADR-002-api-generations-and-federation-posture.md`).
 
-> The `loom` generation is a transport/envelope naming discipline — it is **not** the closed `loom://` URI scheme (see [uri-scheme.md](./uri-scheme.md)). Same word, different things; both are catalogued so the collision is explicit.
+> The `weft` generation is a transport/envelope naming discipline — it is **not** the closed `weft://` URI scheme (see [uri-scheme.md](./uri-scheme.md)). Same word, different things; both are catalogued so the collision is explicit.

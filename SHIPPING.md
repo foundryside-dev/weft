@@ -1,8 +1,8 @@
-# Loom — Go-to-Market Decision
+# Weft — Go-to-Market Decision
 
 **Status:** Decided (2026-06-05) · **Owner:** PM · **Audience:** maintainers + the in-flight docs work
 
-One-page record of *how Loom ships*. Captures four decisions made 2026-06-05.
+One-page record of *how Weft ships*. Captures four decisions made 2026-06-05.
 Supersedes the membership/packaging assumptions in `README.md` and
 `federation-map.md` (both stale — see "Corrections" below).
 
@@ -10,19 +10,19 @@ Supersedes the membership/packaging assumptions in `README.md` and
 
 ## Decision in one paragraph
 
-Loom ships as **five separately-installable products behind one brand and one
+Weft ships as **five separately-installable products behind one brand and one
 front door** — not a monolith-with-plugins, and not five disconnected projects.
 Each tool stays its own repo + its own package (PyPI / crates.io), installable
 and useful with zero siblings present. They are unified at the *discovery and
 branding* layer (one GitHub org, one hub, one narrative, one compatibility
-matrix), never at the *code* layer. We make a **one-time coordinated Loom 1.0
+matrix), never at the *code* layer. We make a **one-time coordinated Weft 1.0
 launch**, then every tool versions independently from that point on.
 
 ## Why — two axes, not one
 
 The "single product vs separate products" question is two independent decisions:
 
-- **Axis A — packaging/architecture: SETTLED by the federation axiom.** Loom's
+- **Axis A — packaging/architecture: SETTLED by the federation axiom.** Weft's
   differentiator is *solo-useful, enrich-only, never load-bearing*. A
   monolith-with-plugins would destroy that. Separate artifacts is a constraint,
   not a choice. **Not relitigated.**
@@ -35,14 +35,14 @@ The "single product vs separate products" question is two independent decisions:
 
 | # | Decision | Choice | Consequence |
 |---|----------|--------|-------------|
-| 1 | **Org / brand** | **Consolidate into one `loom` GitHub org.** | Migrate `foundryside-dev/wardline` + the four `tachyon-beep/*` repos under one org. Set up redirects; update badges/CI/links. |
-| 2 | **Suite version** | **One-time coordinated Loom 1.0 now → independent semver + compatibility matrix forever after.** | 1.0 = the **four-tool code-and-debug toolkit** (filigree, clarion, wardline, legis), gated by **wardline (pre-1.0)** and legis (rc2→1.0). **Charter is not a 1.0 gate** — it joins on its own cadence. After 1.0, no monolithic release train; the "suite version" becomes a published tested-combination matrix. |
+| 1 | **Org / brand** | **Consolidate into one `weft` GitHub org.** | Migrate `foundryside-dev/wardline` + the four `tachyon-beep/*` repos under one org. Set up redirects; update badges/CI/links. |
+| 2 | **Suite version** | **One-time coordinated Weft 1.0 now → independent semver + compatibility matrix forever after.** | 1.0 = the **four-tool code-and-debug toolkit** (filigree, clarion, wardline, legis), gated by **wardline (pre-1.0)** and legis (rc2→1.0). **Charter is not a 1.0 gate** — it joins on its own cadence. After 1.0, no monolithic release train; the "suite version" becomes a published tested-combination matrix. |
 | 3 | **Hero front door** | **Per-tool PyPI / crates.io is primary; hub is a thin index.** | Invest in each tool's standalone install story (`pip install filigree`, `cargo install clarion`, …). The hub narrates + routes; it is not the install path. |
-| 4 | **Claude Code marketplace** | **Deferred, not dropped.** | A Loom plugin marketplace (mirroring the proven `~/skillpacks` `marketplace.json` pattern; filigree already ships a `filigree-workflow` skill) is a *post-1.0* distribution play, not a launch surface. |
+| 4 | **Claude Code marketplace** | **Deferred, not dropped.** | A Weft plugin marketplace (mirroring the proven `~/skillpacks` `marketplace.json` pattern; filigree already ships a `filigree-workflow` skill) is a *post-1.0* distribution play, not a launch surface. |
 
 ## Members (authoritative — kill the stale lists)
 
-**Loom 1.0 = a code-and-debug toolkit for agentic development** — the four tools
+**Weft 1.0 = a code-and-debug toolkit for agentic development** — the four tools
 that form the build → debug → ship loop. Charter sits *upstream* of that loop
 (it defines what must be true *before* code) and is forward-leaning, so it ships
 on its own cadence and **does not gate 1.0**.
@@ -57,14 +57,14 @@ on its own cadence and **does not gate 1.0**.
 
 **shuttle** = future 6th member (transactional scoped change execution); **no repo, not in scope for 1.0.**
 
-The forward roadmap (charter, then shuttle) extends Loom *up* into requirements
+The forward roadmap (charter, then shuttle) extends Weft *up* into requirements
 and *down* into change execution — bookending the code-and-debug core.
 
 ## Docs topology (steer for the in-flight doc work)
 
 Follows directly from "separate packages, single front door":
 
-- **One Loom hub** owns: the narrative, the *authoritative* member list (above),
+- **One Weft hub** owns: the narrative, the *authoritative* member list (above),
   the federation/compatibility matrix, and the **pairwise composition recipes**.
 - **Five per-tool doc sites** stay **solo-complete** — never assume a sibling is
   installed (mirrors enrich-only). filigree + wardline already have mkdocs sites.
@@ -76,7 +76,7 @@ Follows directly from "separate packages, single front door":
 - `README.md` / `federation-map.md` say "four products incl. **shuttle**."
   **Wrong.** Five products incl. **legis + charter**; shuttle is future.
 - The three "canonical" docs (hub `README`, `federation-map`,
-  `~/clarion/docs/suite/loom.md`) disagree on membership. **This is a
+  `~/clarion/docs/suite/weft.md`) disagree on membership. **This is a
   go-to-market defect**, not a cosmetic one — a suite whose canon can't name its
   members can't be marketed as a suite. Fixing it is launch-blocking.
 
@@ -86,8 +86,8 @@ Follows directly from "separate packages, single front door":
    framing everywhere. *(Hand this section to the doc agent now to stop drift.)*
 2. **Reconcile the three canon docs** to a single source of truth.
 3. **Drive wardline (and legis rc2) to 1.0** — these gate the coordinated launch. Charter is explicitly *not* on this path.
-4. **Stand up the `loom` org** and migrate the five repos.
-5. **Publish the v1.0 compatibility matrix** (which versions speak the `loom`
+4. **Stand up the `weft` org** and migrate the five repos.
+5. **Publish the v1.0 compatibility matrix** (which versions speak the `weft`
    HTTP generation, which pairwise integrations are live vs asterisked).
 
 ## Open risks

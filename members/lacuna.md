@@ -1,6 +1,6 @@
 # Lacuna (demonstration specimen — NOT a member)
 
-**Status:** **Not a federation member.** Lacuna is the federation's **canonical demonstrator** — "the MissingNo of the Loom suite," a deliberately-flawed reference application the suite is run against and regression-demonstrated with.
+**Status:** **Not a federation member.** Lacuna is the federation's **canonical demonstrator** — "the MissingNo of the Weft suite," a deliberately-flawed reference application the suite is run against and regression-demonstrated with.
 **Repo:** `~/lacuna` · **Language:** Python
 **Surface facts (snapshot 2026-06-05 — NOT authoritative here; see the repo):** in build (re-keyed from the old `testo` sandbox); specimen + planted-flaw manifest (`tour/lacunae.toml`) complete; the tour harness + positioning docs in flight. Authoritative: `~/lacuna/README.md`, `~/lacuna/docs/superpowers/specs/2026-06-05-lacuna-repivot-design.md`.
 

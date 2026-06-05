@@ -1,4 +1,4 @@
-# Loom Federation — Shared Theming & Layout Decision
+# Weft Federation — Shared Theming & Layout Decision
 
 **Status:** Decided (2026-06-05) · **Owner:** PM/UX · **Companion:** [SHIPPING.md](./SHIPPING.md), [design-system/](./design-system/)
 
@@ -52,8 +52,8 @@ even though it was the origin.
 
 | Surface family | Who has it today | Vendored artifact | Notes |
 |---|---|---|---|
-| **Web GUI** | filigree dashboard (clarion `web/` is docs, not an app yet) | `colors_and_type.css` (or a slimmed `loom-tokens.css`) | The dashboard is the origin, so it round-trips; it inherits the file like any consumer. |
-| **Docs sites (mkdocs Material)** | filigree, wardline, clarion — each with its **own drifting** `docs/stylesheets/extra.css` | one shared `loom-mkdocs.css` palette override + a Material `palette:` snippet | Replaces the three divergent `extra.css` files with one vendored source. **legis + charter have no docs site or CSS yet** — seed them with it. |
+| **Web GUI** | filigree dashboard (clarion `web/` is docs, not an app yet) | `colors_and_type.css` (or a slimmed `weft-tokens.css`) | The dashboard is the origin, so it round-trips; it inherits the file like any consumer. |
+| **Docs sites (mkdocs Material)** | filigree, wardline, clarion — each with its **own drifting** `docs/stylesheets/extra.css` | one shared `weft-mkdocs.css` palette override + a Material `palette:` snippet | Replaces the three divergent `extra.css` files with one vendored source. **legis + charter have no docs site or CSS yet** — seed them with it. |
 | **CLI / terminal** | all five | a tiny per-language colour-constants module (Python dict / Rust `const`) of the semantic colours (status/severity/priority) | Small, hand-kept, derived from the same token values. |
 
 ## Layout = conventions, implemented natively
@@ -118,10 +118,10 @@ recommended order:
 1. **Done:** land the design system durably (`design-system/`) so the SoT isn't a
    `/tmp` tarball.
 2. **Curate the recipe set** + slim the token file into a vendorable
-   `loom-tokens.css` with a version stamp and inherited contrast guarantee.
+   `weft-tokens.css` with a version stamp and inherited contrast guarantee.
 3. **Pilot on the one real GUI:** vendor into the filigree dashboard and confirm
    round-trip (it's the origin, so low-risk).
 4. **De-drift the docs sites:** replace filigree/clarion/wardline's three
-   `extra.css` files with one vendored `loom-mkdocs.css` + shared palette.
+   `extra.css` files with one vendored `weft-mkdocs.css` + shared palette.
 5. **Seed legis + charter docs sites** with the vendored docs theme (none today).
 6. **CLI palette modules** last (smallest surface, least drift risk).

@@ -1,6 +1,6 @@
-# Loom suite glossary
+# Weft suite glossary
 
-**Audience**: anyone designing or reviewing a cross-product-visible field name, ADR, or wire-shape change in any Loom product
+**Audience**: anyone designing or reviewing a cross-product-visible field name, ADR, or wire-shape change in any Weft product
 **Purpose**: a single read-only catalogue of terms whose meaning crosses product boundaries, so the same word never silently means two things in the federation
 **Status**: **Authoritative.** Promoted here from `~/clarion/docs/suite/glossary.md` (2026-06-02); that file is now a pointer to this one. This is the suite-level vocabulary catalogue.
 **Companion**: [doctrine.md](./doctrine.md) §8 for the federation axiom this glossary defends
@@ -15,7 +15,7 @@ This file is a **design-review artifact**, not infrastructure. Nothing imports i
 
 - Authoring an ADR that introduces or renames a cross-product-visible field name
 - Reviewing a wire-format change that adds a new top-level key
-- Onboarding to a Loom product after working on another, to surface vocabulary surprises
+- Onboarding to a Weft product after working on another, to surface vocabulary surprises
 - Triaging a bug whose framing depends on what a word means
 
 **Update this glossary when**:
@@ -118,10 +118,10 @@ These terms are owned by Wardline; authoritative definitions live in [members/wa
 
 ## Shuttle (proposed)
 
-Shuttle is not in flight. When Shuttle's design begins, the first design-review pass against this glossary should add Shuttle's authoritative terms and explicitly check `change`, `apply`, `commit`, `rollback`, `transaction` against the existing Loom vocabulary surface.
+Shuttle is not in flight. When Shuttle's design begins, the first design-review pass against this glossary should add Shuttle's authoritative terms and explicitly check `change`, `apply`, `commit`, `rollback`, `transaction` against the existing Weft vocabulary surface.
 
 ## History
 
 - **2026-05-03** — Glossary created (in Loomweave) during the v0.1 skeleton audit. Seeded with managed/renamed/no-clash entries.
 - **2026-05-31** — Clarion ADR-036 Accepted; SP9 Wardline taint-store wire terms added.
-- **2026-06-05** — Promoted into the Loom hub as the authoritative suite glossary; Loomweave's copy reduced to a pointer. SEI-consumer list extended to include Legis and Charter; Legis/Charter owned terms added; product-internal rule-ID examples flagged as illustrative (authoritative in the owning project).
+- **2026-06-05** — Promoted into the Weft hub as the authoritative suite glossary; Loomweave's copy reduced to a pointer. SEI-consumer list extended to include Legis and Charter; Legis/Charter owned terms added; product-internal rule-ID examples flagged as illustrative (authoritative in the owning project).

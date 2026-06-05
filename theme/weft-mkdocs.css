@@ -1,7 +1,7 @@
 /* ============================================================================
-   loom-mkdocs.css  ·  v1  ·  2026-06-05
+   weft-mkdocs.css  ·  v1  ·  2026-06-05
    ----------------------------------------------------------------------------
-   The Loom Federation shared docs theme for MkDocs Material.
+   The Weft Federation shared docs theme for MkDocs Material.
 
    DERIVED FROM the design system — do not hand-edit the token VALUES below;
    re-copy from `design-system/project/colors_and_type.css` on update and bump
@@ -50,15 +50,15 @@
    (thread palette, radii, type families, motion).
    --------------------------------------------------------------------------- */
 :root {
-  --loom-font-mono: 'JetBrains Mono', 'Fira Code', ui-monospace, 'SF Mono', Menlo, monospace;
-  --loom-font-display: 'Space Grotesk', 'JetBrains Mono', ui-sans-serif, system-ui, sans-serif;
+  --weft-font-mono: 'JetBrains Mono', 'Fira Code', ui-monospace, 'SF Mono', Menlo, monospace;
+  --weft-font-display: 'Space Grotesk', 'JetBrains Mono', ui-sans-serif, system-ui, sans-serif;
 
   /* Radii (3 / 6 / 8) */
-  --loom-radius-sm: 3px;
-  --loom-radius:    6px;
-  --loom-radius-lg: 8px;
+  --weft-radius-sm: 3px;
+  --weft-radius:    6px;
+  --weft-radius-lg: 8px;
 
-  /* The Loom thread palette — one accent per member (legible on dark base). */
+  /* The Weft thread palette — one accent per member (legible on dark base). */
   --thread-loomweave:  #4ECDC4;
   --thread-filigree: #38BDF8;
   --thread-wardline: #F4845F;
@@ -67,10 +67,10 @@
   --thread-shuttle:  #6B7C8C;
   --lacuna-accent:   #CE7AAE;
 
-  /* Wire Material's own font slots to the Loom faces (font:false in mkdocs.yml
+  /* Wire Material's own font slots to the Weft faces (font:false in mkdocs.yml
      means Material emits --md-text/code-font-family but loads no webfont). */
-  --md-text-font-family: var(--loom-font-mono);
-  --md-code-font-family: var(--loom-font-mono);
+  --md-text-font-family: var(--weft-font-mono);
+  --md-code-font-family: var(--weft-font-mono);
 }
 
 /* ===========================================================================
@@ -190,14 +190,14 @@
    Sizes nudged up from the dashboard's dense chrome for long-form reading.
    =========================================================================== */
 .md-typeset {
-  font-family: var(--loom-font-mono);
+  font-family: var(--weft-font-mono);
   font-feature-settings: "liga" 1, "calt" 1;
   -webkit-font-smoothing: antialiased;
 }
 .md-typeset h1,
 .md-typeset h2,
 .md-typeset h3 {
-  font-family: var(--loom-font-display);
+  font-family: var(--weft-font-display);
   letter-spacing: -0.015em;
   font-weight: 600;
 }
@@ -206,7 +206,7 @@
 /* Brand wordmark in the header uses the display face */
 .md-header__title,
 .md-header__topic > .md-ellipsis {
-  font-family: var(--loom-font-display);
+  font-family: var(--weft-font-display);
   font-weight: 700;
   letter-spacing: -0.02em;
 }
@@ -218,7 +218,7 @@
 .md-typeset .admonition,
 .md-typeset details {
   border-left-width: 4px;
-  border-radius: var(--loom-radius);
+  border-radius: var(--weft-radius);
   font-size: 0.72rem;
 }
 .md-typeset blockquote {
@@ -256,10 +256,10 @@
 .md-typeset .highlight,
 .md-typeset .tabbed-set,
 .md-typeset table:not([class]) {
-  border-radius: var(--loom-radius);
+  border-radius: var(--weft-radius);
 }
-.md-typeset code { border-radius: var(--loom-radius-sm); }
-.md-typeset .md-button { border-radius: var(--loom-radius); }
+.md-typeset code { border-radius: var(--weft-radius-sm); }
+.md-typeset .md-button { border-radius: var(--weft-radius); }
 
 /* Tables — hairline grid, raised header (terminal-grade, dense). */
 .md-typeset table:not([class]) {

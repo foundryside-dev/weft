@@ -1,8 +1,8 @@
 /* ============================================================================
-   LOOM FEDERATION — hub interactions (progressive enhancement)
+   WEFT FEDERATION — hub interactions (progressive enhancement)
    The page is content-complete without JS: every member card and the default
    composition panel render server-side, and all links work. This script only
-   layers in interactive behaviour faithful to the loom-hub UI kit:
+   layers in interactive behaviour faithful to the weft-hub UI kit:
      · single-open accordion on the member roster (default: loomweave)
      · the Solo / Pair / Suite composition-law toggle (default: pair)
    ============================================================================ */

@@ -3,7 +3,7 @@
 # build-docs.sh — generate the mkdocs `docs/` tree WITHOUT touching the root
 # authoritative markdown.
 #
-# WHY: the Loom hub keeps its source-of-truth markdown at the REPO ROOT
+# WHY: the Weft hub keeps its source-of-truth markdown at the REPO ROOT
 # (doctrine.md, members/*.md, ...), but mkdocs needs a `docs_dir`. Rather than
 # move or duplicate the SoT into a committed `docs/`, this script MIRRORS the
 # root markdown into a generated, gitignored `docs/` at build time. The mirror
@@ -27,7 +27,7 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
 DOCS="${ROOT}/docs"
-REPO_URL="https://github.com/foundryside-dev/loom"
+REPO_URL="https://github.com/foundryside-dev/weft"
 
 cd "${ROOT}"
 
@@ -101,11 +101,11 @@ cp "${ROOT}/www/fonts/JetBrainsMono-Variable.ttf"        "${DOCS}/_home/fonts/"
 cp "${ROOT}/www/fonts/JetBrainsMono-Italic-Variable.ttf" "${DOCS}/_home/fonts/"
 cp "${ROOT}/www/fonts/SpaceGrotesk-Variable.ttf"         "${DOCS}/_home/fonts/"
 
-# 6. Copy the committed theme (loom-mkdocs.css + its bundled fonts) into docs/
-#    so mkdocs.yml's `extra_css: stylesheets/loom-mkdocs.css` resolves and the
+# 6. Copy the committed theme (weft-mkdocs.css + its bundled fonts) into docs/
+#    so mkdocs.yml's `extra_css: stylesheets/weft-mkdocs.css` resolves and the
 #    @font-face url('fonts/...') paths (relative to the CSS) work.
 mkdir -p "${DOCS}/stylesheets"
-cp "${ROOT}/theme/loom-mkdocs.css" "${DOCS}/stylesheets/loom-mkdocs.css"
+cp "${ROOT}/theme/weft-mkdocs.css" "${DOCS}/stylesheets/weft-mkdocs.css"
 mkdir -p "${DOCS}/stylesheets/fonts"
 cp "${ROOT}"/theme/fonts/*.ttf "${DOCS}/stylesheets/fonts/"
 

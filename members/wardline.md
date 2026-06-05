@@ -8,7 +8,7 @@
 
 The trust lattice and its states, the decorator/annotation vocabulary, the rule set and rule IDs, the scanner engine, the manifest system (`wardline.yaml`), the runtime descriptor enforcement, and the corpus of ground-truth specimens. **Rule counts, decorator names, and lattice states are Wardline's authority — this hub does not restate them** (the old hub did, and was wrong: [conflict-register.md](../conflict-register.md) §A-5).
 
-## Federation role (points to loom for patterns)
+## Federation role (points to weft for patterns)
 
 - **Filigree is enrich-only, not load-bearing.** Wardline uses Filigree for *work tracking only*; scanning/analysis run with all siblings absent (`core/filigree_emit.py` is fail-soft). The old hub's "load-bearing" label was wrong ([conflict-register.md](../conflict-register.md) §A-6).
 - **Identity:** keys taint facts on **[SEI](../sei-standard.md)**, resolving locator→SEI via Loomweave; degrades gracefully when the `sei` capability is absent.
@@ -17,6 +17,6 @@ The trust lattice and its states, the decorator/annotation vocabulary, the rule 
 
 ## Notes
 
-- Wardline's README names "Loom / Loomweave / Filigree"; its federation framing now points to [doctrine.md](../doctrine.md).
+- Wardline's README names "Weft / Loomweave / Filigree"; its federation framing now points to [doctrine.md](../doctrine.md).
 - `~/wardline-watcher` and `~/wardline.old` are **out of the federation** (the heavier governance build that died); not members.
 - Wardline's specs tree previously hosted the suite-wide SEI standard; that is now [sei-standard.md](../sei-standard.md) here, with the wardline copy reduced to a pointer.

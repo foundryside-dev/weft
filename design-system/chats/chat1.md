@@ -14,11 +14,11 @@ Current date is now June 5, 2026
 <pasted_text name="Create design system">
 We will create a design system in this project.
 
-**Company description:** # Loom
+**Company description:** # Weft
 
-Loom is a federation of sibling developer-tools projects, each authoritative for one domain, each useful standalone, each composable pairwise, and **enrich-only** (never load-bearing) when composed.
+Weft is a federation of sibling developer-tools projects, each authoritative for one domain, each useful standalone, each composable pairwise, and **enrich-only** (never load-bearing) when composed.
 
-This folder (`~/loom`) is the **authoritative source of truth for federation-wide interoperability** — the roster, the doctrine, the shared identity model, the integration matrix, the asterisk register, the glossary, and the cross-product contract index. It is **documentation only**: no code, no runtime, no store. There is nothing called "Loom" to install or run.
+This folder (`~/weft`) is the **authoritative source of truth for federation-wide interoperability** — the roster, the doctrine, the shared identity model, the integration matrix, the asterisk register, the glossary, and the cross-product contract index. It is **documentation only**: no code, no runtime, no store. There is nothing called "Weft" to install or run.
 
 > **As of 2026-06-05 this hub was rebuilt to be authoritative.** It previously drifted badly (wrong roster, stale versions, wrong identity model). The fix is structural — see *The authority model* below — and every conflict found is recorded in **[conflict-register.md](./conflict-register.md)**.
 
@@ -36,17 +36,17 @@ Not members, but part of the story:
 - **[Shuttle](./members/shuttle.md)** — a roadmap *thought-bubble* for a future change-execution authority. No repo; lowest priority; displaceable by any better idea.
 - **[Lacuna](./members/lacuna.md)** — the deliberately-flawed *demonstration specimen* the suite is run against.
 
-Excluded entirely: `wardline-watcher`, `wardline.old`, `loom.old` (the defunct heavier builds).
+Excluded entirely: `wardline-watcher`, `wardline.old`, `weft.old` (the defunct heavier builds).
 
 ## The authority model (why this hub stays accurate)
 
 The hub drifted because it **restated project-internal facts that move** (versions, tool counts, rule lists, routes). The rule that prevents recurrence:
 
-- **loom owns the interop layer** and is authoritative for it: the roster, the [doctrine](./doctrine.md), the [SEI identity model](./sei-standard.md), the [asterisk register](./asterisk-register.md), the [URI/addressing status](./uri-scheme.md), the [integration matrix](./federation-map.md), the [glossary](./glossary.md), and the [contract index](./contracts-index.md).
-- **loom points to each project** for that project's own surface facts. Any version/status shown here is marked *"snapshot — not authoritative; see the repo."*
-- **each project points back to loom** for federation patterns, keeping authority only over its own domain surface.
+- **weft owns the interop layer** and is authoritative for it: the roster, the [doctrine](./doctrine.md), the [SEI identity model](./sei-standard.md), the [asterisk register](./asterisk-register.md), the [URI/addressing status](./uri-scheme.md), the [integration matrix](./federation-map.md), the [glossary](./glossary.md), and the [contract index](./contracts-index.md).
+- **weft points to each project** for that project's own surface facts. Any version/status shown here is marked *"snapshot — not authoritative; see the repo."*
+- **each project points back to weft** for federation patterns, keeping authority only over its own domain surface.
 
-**Audit invariant:** loom contains no restated project-internal fact without a pointer; every federation-pattern doc in every member repo resolves to loom.
+**Audit invariant:** weft contains no restated project-internal fact without a pointer; every federation-pattern doc in every member repo resolves to weft.
 
 ## Where to look
 
@@ -61,26 +61,26 @@ The hub drifted because it **restated project-internal facts that move** (versio
 
 > Each member is authoritative for one domain, solo-useful, meaningfully composable pairwise, and **enrich-only — never load-bearing** — when composed. ([doctrine.md](./doctrine.md) §5.)
 
-# Loom — federation doctrine
+# Weft — federation doctrine
 
-**Audience**: anyone designing, extending, or evaluating whether a new product belongs in the Loom family
-**Purpose**: establishes the strategic direction, composition law, and go/no-go test that govern Loom as a suite
-**Status**: **Authoritative.** This is the single source of the Loom federation doctrine. It was promoted here from `~/clarion/docs/suite/loom.md` (2026-06-05); that file is now a pointer to this one. Member products mirror the cross-product field-name rule (§8) citing this doc as the suite-level authority.
+**Audience**: anyone designing, extending, or evaluating whether a new product belongs in the Weft family
+**Purpose**: establishes the strategic direction, composition law, and go/no-go test that govern Weft as a suite
+**Status**: **Authoritative.** This is the single source of the Weft federation doctrine. It was promoted here from `~/clarion/docs/suite/weft.md` (2026-06-05); that file is now a pointer to this one. Member products mirror the cross-product field-name rule (§8) citing this doc as the suite-level authority.
 **Companions**: [glossary.md](./glossary.md) (shared vocabulary), [federation-map.md](./federation-map.md) (integration matrix), [README.md](./README.md) (hub entry point)
 
 ---
 
-## 1. What Loom is
+## 1. What Weft is
 
-Loom is a suite for enterprise-grade code governance on small teams. Its members are **Clarion**, **Filigree**, **Wardline**, **Legis**, and **Charter** — each fully authoritative in its domain and fully usable on its own. **Shuttle** is a roadmap thought-bubble, not a committed member: it has no repo, and any better idea the suite lands (Charter was started 2026-06-04) takes priority over it and may displace it. When composed, the members enrich one another through narrow, additive protocols — but each remains independently load-bearing for the work it already does.
+Weft is a suite for enterprise-grade code governance on small teams. Its members are **Clarion**, **Filigree**, **Wardline**, **Legis**, and **Charter** — each fully authoritative in its domain and fully usable on its own. **Shuttle** is a roadmap thought-bubble, not a committed member: it has no repo, and any better idea the suite lands (Charter was started 2026-06-04) takes priority over it and may displace it. When composed, the members enrich one another through narrow, additive protocols — but each remains independently load-bearing for the work it already does.
 
-The metaphor is deliberate: distinct threads stay distinct but gain value by being woven together. Loom is a **family name** and a **composition doctrine** — not a platform, not a shared runtime, not a store, and not a broker. There is nothing called "Loom" to install, deploy, or keep running. What exists are the member products, a set of narrow interop contracts between them, and this hub (`~/loom`) which is documentation only — it holds no runtime, no store, and no code.
+The metaphor is deliberate: distinct threads stay distinct but gain value by being woven together. Weft is a **family name** and a **composition doctrine** — not a platform, not a shared runtime, not a store, and not a broker. There is nothing called "Weft" to install, deploy, or keep running. What exists are the member products, a set of narrow interop contracts between them, and this hub (`~/weft`) which is documentation only — it holds no runtime, no store, and no code.
 
 > **Roster note.** The canonical federation roster is **5 realized members** (Clarion, Filigree, Wardline, Legis, Charter); Shuttle is a roadmap thought-bubble, not a sixth member. This roster was ruled by the hub on 2026-06-05. Legis and Charter shipped/were-designed after the founding doctrine was last written and post-date its three-member framing; the hub admits them here as the body that declares the roster. See [conflict-register.md](./conflict-register.md) §B-1 for the ruling and its evidence.
 
 ## 2. The products and their authoritative domains
 
-Each Loom product is authoritative for exactly one bounded concern, and that authority lives in the product itself — not in any shared layer:
+Each Weft product is authoritative for exactly one bounded concern, and that authority lives in the product itself — not in any shared layer:
 
 - **Clarion** — structural truth about the codebase, and the **identity authority** for the suite. Answers "what is this codebase, where should I touch, and what is the durable identity of this entity?" Owns the entity catalog, the code graph, guidance sheets, and the [Stable Entity Identity](./sei-standard.md) (SEI) every cross-tool binding keys on.
 - **Filigree** — work state and workflow lifecycle. Answers "what work exists, what state is it in, and what happened?" Owns issues, observations, and finding triage state.
@@ -95,13 +95,13 @@ For each member's current version, status, and surface facts, see its briefing u
 
 ## 3. Federation, not monolith
 
-**Loom is a federation, not a monolith. Each member product is authoritative in one bounded domain. Integration must be additive, not compulsory. No Loom product may require the full suite to justify its existence.**
+**Weft is a federation, not a monolith. Each member product is authoritative in one bounded domain. Integration must be additive, not compulsory. No Weft product may require the full suite to justify its existence.**
 
-This is the founding architectural law. There is no Loom runtime, no Loom config layer, and no Loom store. Loom is a family name, a composition doctrine, and a set of narrow interop contracts — nothing more. The rule protects against the stealth-monolith failure mode: a "lightweight glue layer" that quietly becomes the real system of record, reducing sibling products to thin clients and making solo mode dishonest. (This hub is documentation; per §6 it imports nothing and runs nothing, so it does not become that glue layer.)
+This is the founding architectural law. There is no Weft runtime, no Weft config layer, and no Weft store. Weft is a family name, a composition doctrine, and a set of narrow interop contracts — nothing more. The rule protects against the stealth-monolith failure mode: a "lightweight glue layer" that quietly becomes the real system of record, reducing sibling products to thin clients and making solo mode dishonest. (This hub is documentation; per §6 it imports nothing and runs nothing, so it does not become that glue layer.)
 
 ## 4. The composition law
 
-Any Loom product must satisfy all three modes:
+Any Weft product must satisfy all three modes:
 
 - **Solo mode** — the product has a complete, respectable use-case by itself
 - **Pair mode** — combined with any one sibling, it creates a meaningful capability, not a broken fragment
@@ -117,7 +117,7 @@ This is the rule that keeps integration additive. It has a concrete test and con
 
 ### The failure test
 
-The principle has three failure modes. Any one of them means Loom has centralised too far:
+The principle has three failure modes. Any one of them means Weft has centralised too far:
 
 1. **Semantic coupling** — if removing a sibling product changes the *meaning* of another product's own data. Sibling absence may reduce convenience or automation; it must not alter semantics. Less capability is acceptable; incoherent data is not.
 2. **Initialization coupling** — if a product cannot start, self-test, or validate its own configuration without a sibling being present. The product may degrade its capabilities in the sibling's absence; it must not fail to boot.
@@ -144,33 +144,33 @@ Asterisks are acceptable only with a written retirement condition and an honest 
 
 Enrichment is the shape of integration that preserves federation. Load-bearing integration collapses federation into monolith by another name. The moment one product *needs* another to make sense of its own data, the composition law becomes dishonest — "standalone mode" works only because the sibling is still running somewhere, and the illusion of modularity collapses the first time deployment doesn't match.
 
-## 6. What Loom is NOT
+## 6. What Weft is NOT
 
-Because the strongest pressure on this charter comes from "wouldn't it be easier if we just…" proposals, the disclaimer is explicit. Loom is **not**:
+Because the strongest pressure on this charter comes from "wouldn't it be easier if we just…" proposals, the disclaimer is explicit. Weft is **not**:
 
-- **A shared runtime or daemon.** There is no `loomd`, no broker, no orchestrator. Member products do not phone home to a Loom process.
+- **A shared runtime or daemon.** There is no `weftd`, no broker, no orchestrator. Member products do not phone home to a Weft process.
 - **A shared configuration layer.** Each product configures its own integrations in its own config. Clarion's config names Filigree's endpoint directly; there is no central registry that everyone consults.
 - **A central store or database.** Each product owns its data locally. No shared SQLite/Postgres/object-store sits under the suite.
-- **A system of record for any cross-product state.** Finding lifecycle lives in Filigree. Entity identity lives in Clarion. Policy baselines live in Wardline. Governance attestations live in Legis. Requirements live in Charter. Execution provenance (if Shuttle ships) lives in Shuttle. Loom does not own or mirror these — and neither does this hub, which records only *which product is authoritative for what* and points there.
-- **An identity reconciliation service.** When cross-scheme translation is needed — e.g. Wardline qualname → Clarion entity ID — the product that *cares* does the translation, because that product is the one whose authority needs it. Clarion translates qualnames because Clarion owns the catalog that makes them meaningful. There is no neutral "Loom identity oracle." (Clarion *is* the identity authority via SEI, but that authority lives in Clarion, not in a shared layer.)
-- **A capability negotiation bus.** Products probe each other directly via their own surfaces (HTTP endpoints, MCP tools, CLI flags). Version skew is handled bilaterally, not through a Loom-level registry.
+- **A system of record for any cross-product state.** Finding lifecycle lives in Filigree. Entity identity lives in Clarion. Policy baselines live in Wardline. Governance attestations live in Legis. Requirements live in Charter. Execution provenance (if Shuttle ships) lives in Shuttle. Weft does not own or mirror these — and neither does this hub, which records only *which product is authoritative for what* and points there.
+- **An identity reconciliation service.** When cross-scheme translation is needed — e.g. Wardline qualname → Clarion entity ID — the product that *cares* does the translation, because that product is the one whose authority needs it. Clarion translates qualnames because Clarion owns the catalog that makes them meaningful. There is no neutral "Weft identity oracle." (Clarion *is* the identity authority via SEI, but that authority lives in Clarion, not in a shared layer.)
+- **A capability negotiation bus.** Products probe each other directly via their own surfaces (HTTP endpoints, MCP tools, CLI flags). Version skew is handled bilaterally, not through a Weft-level registry.
 
 The test for any proposed addition: if the proposal introduces something that would need to be *running* or *present* for the suite to work, it violates federation. Integration protocols, schemas, and narrow contracts are fine. Shared infrastructure that sibling products *depend on* is not.
 
 ## 7. The go/no-go test for future products
 
-Before adopting any new product into Loom, it must pass all four:
+Before adopting any new product into Weft, it must pass all four:
 
 1. **Is it authoritative for one narrowly bounded thing?** — if the scope is two or more things, it is two or more products.
 2. **Is it useful by itself?** — if siblings are required for minimum utility, it is a feature or adapter, not a product.
 3. **Does it form a sensible story with each existing product one-to-one?** — every pairing must yield a coherent workflow; no "this only matters when you also have X and Y" patterns.
 4. **Is the full suite better because of it, without making the others incomplete in its absence?** — addition, not patching.
 
-If the answer to any question is no, the candidate is a feature, a protocol, or an adapter — not a product. It may still belong in Loom's surface area, but not as a named member. Legis and Charter were admitted against this test (each authoritative for one bounded domain — governance and requirements respectively — solo-useful, pairwise-sensible, suite-enriching).
+If the answer to any question is no, the candidate is a feature, a protocol, or an adapter — not a product. It may still belong in Weft's surface area, but not as a named member. Legis and Charter were admitted against this test (each authoritative for one bounded domain — governance and requirements respectively — solo-useful, pairwise-sensible, suite-enriching).
 
 ## 8. Naming
 
-Member products are named from weaving mechanics and adjacent registers — Clarion, Filigree, Wardline, Legis, Charter, Shuttle — as distinct proper names rather than subdivisions. There is no "Loom Guard," "Loom Workflow," or "Loom Execute"; each product earns its own identity. The family name sits above the products without dominating them, and — per §3 and §6 — it does not name any component that gets installed or runs.
+Member products are named from weaving mechanics and adjacent registers — Clarion, Filigree, Wardline, Legis, Charter, Shuttle — as distinct proper names rather than subdivisions. There is no "Weft Guard," "Weft Workflow," or "Weft Execute"; each product earns its own identity. The family name sits above the products without dominating them, and — per §3 and §6 — it does not name any component that gets installed or runs.
 
 ### Cross-product field names
 
@@ -197,7 +197,7 @@ When creating your README.md, you should reference the URLs of the GitHub projec
 - tachyon-beep/charter
 
 **Additional notes:**
-Please come up with a design that captures that Loom is an umbrella portfolio of products (all having the agent first approach and all being light weight and looosely integrated).
+Please come up with a design that captures that Weft is an umbrella portfolio of products (all having the agent first approach and all being light weight and looosely integrated).
 
 ---
 
@@ -325,11 +325,11 @@ I now have the complete canonical design language. Let me snip the large consume
 
 _[tool: write_file]_
 
-Now the foundation. Let me write the core CSS token file with the canonical Filigree theme plus the Loom thread palette.
+Now the foundation. Let me write the core CSS token file with the canonical Filigree theme plus the Weft thread palette.
 
 _[tool: write_file]_
 
-Now the brand marks. Loom has no existing logo (it's docs-only), so I'll design a coherent geometric mark set — abstract woven-thread forms, one per member, all stroke-based using `currentColor` so each picks up its thread color. Let me build the Loom mark first.
+Now the brand marks. Weft has no existing logo (it's docs-only), so I'll design a coherent geometric mark set — abstract woven-thread forms, one per member, all stroke-based using `currentColor` so each picks up its thread color. Let me build the Weft mark first.
 
 _[tool: write_file]_
 
@@ -363,7 +363,7 @@ _[tool: show_html]_
 
 _[tool: write_file]_
 
-Marks are distinctive and on-brand. The Loom knot reads a bit like a hash — let me tighten the weave so the over/under interlace is clearer.
+Marks are distinctive and on-brand. The Weft knot reads a bit like a hash — let me tighten the weave so the over/under interlace is clearer.
 
 _[tool: write_file]_
 
@@ -431,11 +431,11 @@ Both faithful to the dashboard. Let me delete the temp test file and register al
 
 _[tool: update_todos]_
 
-19 cards registered. Now the UI kits. Let me update my plan: three kits — the **Loom Hub** (umbrella portfolio), the **Filigree Dashboard** (the one real GUI), and the **Loom CLI** (shared agent-first terminal surface).
+19 cards registered. Now the UI kits. Let me update my plan: three kits — the **Weft Hub** (umbrella portfolio), the **Filigree Dashboard** (the one real GUI), and the **Weft CLI** (shared agent-first terminal surface).
 
 _[tool: write_file]_
 
-Let me build the Loom Hub kit. First, a shared Marks component (glyphs as React, reusable across kits).
+Let me build the Weft Hub kit. First, a shared Marks component (glyphs as React, reusable across kits).
 
 _[tool: write_file]_
 
@@ -553,7 +553,7 @@ _[tool: show_html]_
 
 _[tool: write_file]_
 
-The pairing is clear and on-brand. Now the third kit — **Loom CLI**, the agent-first terminal surface shared by Clarion, Wardline, Legis & Charter (and the `make tour` driving them against the Lacuna specimen).
+The pairing is clear and on-brand. Now the third kit — **Weft CLI**, the agent-first terminal surface shared by Clarion, Wardline, Legis & Charter (and the `make tour` driving them against the Lacuna specimen).
 
 _[tool: copy_files]_
 
@@ -607,8 +607,8 @@ _[tool: str_replace_edit]_
 
 Great instinct — Lacuna should read as the same *world* but clearly an outsider: the cloth on the workbench, not a thread in the weave. My approach:
 
-- **Same** dark-teal Loom system end-to-end (so it's unmistakably the same environment)
-- **Not part of** via three deliberate departures: an *off-palette* dusty magenta (a nod to it being "the MissingNo of the suite") that appears in no member thread; a warm-neutral "specimen" surface that's noticeably *less teal*; and a **dashed/ticketed** border treatment instead of Loom's solid left-rules.
+- **Same** dark-teal Weft system end-to-end (so it's unmistakably the same environment)
+- **Not part of** via three deliberate departures: an *off-palette* dusty magenta (a nod to it being "the MissingNo of the suite") that appears in no member thread; a warm-neutral "specimen" surface that's noticeably *less teal*; and a **dashed/ticketed** border treatment instead of Weft's solid left-rules.
 
 Let me add the tokens.
 
@@ -620,7 +620,7 @@ Now the Lacuna mark — a broken specimen frame (a *gap* = lacuna) with a plante
 
 _[tool: write_file]_
 
-Now a preview card showing the Lacuna scheme and — crucially — how it sits *beside* a Loom member to communicate "similar but not part of."
+Now a preview card showing the Lacuna scheme and — crucially — how it sits *beside* a Weft member to communicate "similar but not part of."
 
 _[tool: show_html]_
 
@@ -632,7 +632,7 @@ _[tool: register_assets]_
 
 _[tool: read_file]_
 
-The relationship reads clearly — "woven in" vs "not part of." Let me register it and add a linked Lacuna strip to the Hub (since it's linked from the Loom page).
+The relationship reads clearly — "woven in" vs "not part of." Let me register it and add a linked Lacuna strip to the Hub (since it's linked from the Weft page).
 
 _[tool: str_replace_edit]_
 
@@ -662,20 +662,20 @@ Let me clean up and do the final verification handoff.`done` reports clean. Let 
 
 _[tool: fork_verifier_agent]_
 
-The Loom Design System is built. Here's where it landed.
+The Weft Design System is built. Here's where it landed.
 
 **What's there**
 - **`README.md`** — overview, sources (all 5 repos linked), content fundamentals, visual foundations, iconography, and a full index. **`SKILL.md`** for Claude Code. **`colors_and_type.css`** — the token source of truth.
 - **24 Design System cards** across Brand / Type / Colors / Spacing / Components — including the canonical Filigree issue card and the cross-tool **entity dossier**.
-- **`assets/marks/`** — eight original geometric marks (the woven Loom knot, six member glyphs, and the Lacuna specimen).
-- **3 interactive UI kits**: the **Loom Hub** (umbrella portfolio + doctrine), the **Filigree Dashboard** (the one real GUI — kanban + click-thru detail, lifted from the product's own source), and the **Loom CLI** (tabbed agent terminal: scan, MCP dossier, governance verdict, the Lacuna tour).
+- **`assets/marks/`** — eight original geometric marks (the woven Weft knot, six member glyphs, and the Lacuna specimen).
+- **3 interactive UI kits**: the **Weft Hub** (umbrella portfolio + doctrine), the **Filigree Dashboard** (the one real GUI — kanban + click-thru detail, lifted from the product's own source), and the **Weft CLI** (tabbed agent terminal: scan, MCP dossier, governance verdict, the Lacuna tour).
 
 **Decisions worth flagging**
 - **Canonical palette** is lifted verbatim from Filigree's dashboard — dark teal, JetBrains Mono, sky accent. I extended it with a per-member **thread palette** so the portfolio reads as one weave.
 - **Brand font:** I picked **Space Grotesk** (OFL) for the display layer, keeping JetBrains Mono for all product UI. **Lacuna** got a deliberately off-palette dusty magenta + dashed "specimen" frame — same world, not woven in.
 - **Fonts load from Google Fonts** (as the real product does), not bundled offline — flag if you need local files for an air-gapped build.
 
-**One bold ask to make this perfect:** the seven member/specimen **marks are originals I designed** (Loom has no existing logo). The Loom knot in particular can read as a "#" at small sizes. **Are the marks the right direction — especially Loom's?** If you have any real brand assets or a preferred metaphor, send them and I'll rework the set.
+**One bold ask to make this perfect:** the seven member/specimen **marks are originals I designed** (Weft has no existing logo). The Weft knot in particular can read as a "#" at small sizes. **Are the marks the right direction — especially Weft's?** If you have any real brand assets or a preferred metaphor, send them and I'll rework the set.
 
 ## User
 
@@ -723,7 +723,7 @@ Done — both brand fonts are now **bundled locally** and the "missing fonts" fl
 
 - Imported **JetBrains Mono** (upright + italic) and **Space Grotesk** as variable TTFs from `google/fonts`, into `fonts/` — with their `OFL.txt` licenses alongside.
 - Swapped the Google Fonts `@import` in `colors_and_type.css` for local `@font-face` rules (CSS-relative `url()`, so it resolves correctly from every card and kit). The whole system now renders **fully offline**.
-- Confirmed both faces load from the local files (screenshot above — Space Grotesk "Loom" + JetBrains Mono "filigree").
+- Confirmed both faces load from the local files (screenshot above — Space Grotesk "Weft" + JetBrains Mono "filigree").
 
 Glad the marks landed well. Everything's in place now — fonts, palette, Lacuna scheme, the three UI kits, and the design-system cards.
 

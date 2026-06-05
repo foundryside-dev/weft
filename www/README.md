@@ -1,7 +1,7 @@
-# Loom Federation — hub site
+# Weft Federation — hub site
 
-Static front door for the **Loom Federation** suite. A faithful recreation of the
-`loom-hub` UI kit from the **Loom Design System** handoff — terminal-grade,
+Static front door for the **Weft Federation** suite. A faithful recreation of the
+`weft-hub` UI kit from the **Weft Design System** handoff — terminal-grade,
 dark-teal canonical, JetBrains Mono as the product face with Space Grotesk
 reserved for brand moments (the wordmark + hero). Hand-rolled HTML/CSS/JS, no
 build step, no runtime dependencies. GitHub-Pages-deployable as-is.
@@ -15,7 +15,7 @@ build step, no runtime dependencies. GitHub-Pages-deployable as-is.
 
 | File | Purpose |
 |---|---|
-| `index.html` | The page: header, hero (federation axiom), member roster (cards expand to repo links), composition-law toggle, **how-they-compose** (SEI + `loom` transport + representative bindings, grounded in `federation-map.md`), Lacuna strip, footer. Content-complete server-side. |
+| `index.html` | The page: header, hero (federation axiom), member roster (cards expand to repo links), composition-law toggle, **how-they-compose** (SEI + `weft` transport + representative bindings, grounded in `federation-map.md`), Lacuna strip, footer. Content-complete server-side. |
 | `colors_and_type.css` | **Token source of truth, copied verbatim from the design system.** Surfaces, text, accent, the per-member thread palette, Lacuna scheme, radii, elevation, spacing, the mono/display type roles, and the documented light theme. |
 | `styles.css` | Hub layout + components, layered on the tokens. |
 | `main.js` | Progressive enhancement only: single-open roster accordion + Solo/Pair/Suite toggle. |
@@ -56,7 +56,7 @@ preloaded fonts resolve under a normal origin.
 
 The link freeze is lifted: the suite is consolidating under the
 **`foundryside-dev`** GitHub org (the hub already lives at
-`foundryside-dev/loom`), so the site points there throughout:
+`foundryside-dev/weft`), so the site points there throughout:
 
 - **Member cards** expand to a real repo link — `github.com/foundryside-dev/<member>`.
 - **Lacuna** links to `foundryside-dev/lacuna`; **Shuttle** stays link-free (no repo).
@@ -66,7 +66,7 @@ The link freeze is lifted: the suite is consolidating under the
 
 **Caveat:** `filigree`, `clarion`, `legis`, and `charter` still live under
 `tachyon-beep` today — those four repo links 404 until the repos migrate to
-`foundryside-dev` (as intended). `loom`, `wardline`, and `lacuna` resolve now.
+`foundryside-dev` (as intended). `weft`, `wardline`, and `lacuna` resolve now.
 External links carry an `↗` affordance and open in a new tab.
 
 ## Notes

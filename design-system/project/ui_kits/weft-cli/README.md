@@ -1,6 +1,6 @@
-# UI Kit — Loom CLI
+# UI Kit — Weft CLI
 
-The agent-first **terminal surface**. Four Loom members have no GUI — Loomweave,
+The agent-first **terminal surface**. Four Weft members have no GUI — Loomweave,
 Wardline, Legis, and Charter live on the command line and a dependency-free
 MCP-over-stdio server. This kit is a tabbed terminal showing a realistic session
 for each, with output drawn from the tools' own READMEs.

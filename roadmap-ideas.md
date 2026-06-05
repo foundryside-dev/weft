@@ -1,4 +1,4 @@
-# Loom — speculative sub-app ideas
+# Weft — speculative sub-app ideas
 
 **Status: SPECULATIVE. None of these are members, none are committed, none are evaluated-and-accepted.** This is an idea bench for *possible* future federation members, kept here so the change-execution gap (and others) stay visible without polluting the authoritative roster ([doctrine.md](./doctrine.md), [README.md](./README.md)). Anything here must pass the **go/no-go test** ([doctrine.md](./doctrine.md) §7) — one bounded domain, solo-useful, pairwise-sensible, additive — *before* it could ever join the roster, exactly as Legis and Charter did.
 
@@ -20,9 +20,9 @@ The one pre-existing idea. Receives an approved scoped change, applies it increm
 
 ### 1. "Selvage" — release & compatibility authority
 
-- **Bounded domain:** the suite's *tested-combination* truth — which released member versions are verified-compatible, what the "Loom N.0" version means, and orchestration of the coordinated launch.
+- **Bounded domain:** the suite's *tested-combination* truth — which released member versions are verified-compatible, what the "Weft N.0" version means, and orchestration of the coordinated launch.
 - **Gap it fills:** [SHIPPING.md](./SHIPPING.md) explicitly calls for this ("the suite version becomes a published tested-combination matrix") and [compatibility.md](./compatibility.md) is currently a hand-maintained stub. Five independently-versioned products with pairwise contracts genuinely need an owner for the compatibility matrix.
-- **Pairwise stories:** reads each member's released version + capability advert (`_capabilities`); with Legis, a release gate becomes a governance attestation; with Charter, a baseline can pin "verified against Loom 1.2."
+- **Pairwise stories:** reads each member's released version + capability advert (`_capabilities`); with Legis, a release gate becomes a governance attestation; with Charter, a baseline can pin "verified against Weft 1.2."
 - **Go/no-go risk:** medium. Risk it's "a doc + a CI job," not a product. Counter: version-pin resolution + capability-skew detection across 5 repos is real logic. **Worth a design spike before deciding product-vs-feature.**
 
 ### 2. "Warp" — dependency & supply-chain provenance

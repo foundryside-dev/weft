@@ -8,7 +8,7 @@
 
 Entity extraction (3-segment **locator** `{plugin_id}:{kind}:{qualname}`), edges, subsystem clustering, briefings, guidance, the `content_hash` (BLAKE3 entity-body), and — load-bearing for the suite — **SEI minting/persistence/resolution/lineage**. Tool names, ADRs, and route shapes are Loomweave's authority.
 
-## Federation role (points to loom for patterns)
+## Federation role (points to weft for patterns)
 
 - **Identity authority:** mints/persists/re-binds/resolves SEI; serves `resolve`/`resolve_sei`/`lineage`/`_capabilities`. The [SEI standard](../sei-standard.md) is the suite contract; Clarion ADR-038 is the token form. The SEI standard is **LOCKED** (2026-06-05); Loomweave (authority) verifies member conformance under the lock ([conflict-register.md](../conflict-register.md) §B-2).
 - **Contracts it carries:** SEI resolution ([contracts-index.md](../contracts-index.md) §2), entity-assoc drift `issues_for` (§1), Wardline taint-fact store host (§3), qualname reconciliation (§5), git-rename seam consumer (§6), Charter SEI consumer (§10).

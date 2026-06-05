@@ -1,4 +1,4 @@
-# Loom hub — terminology registry
+# Weft hub — terminology registry
 
 Lean registry of terms whose usage **within this hub** must stay consistent. (Cross-product *product* vocabulary lives in [../glossary.md](../glossary.md); this registry governs the hub's own writing.) Audit: the consistency check verifies these terms are used as defined and not as synonyms.
 
@@ -11,7 +11,7 @@ Lean registry of terms whose usage **within this hub** must stay consistent. (Cr
 | **locator** | `{plugin_id}:{kind}:{qualname}` — the mutable *address*, demoted from identity by ADR-038 | Don't call the locator an "identity" or "entity id (identity)" |
 | **enrich-only** | Composition that adds capability without being required for the other's semantics | Don't call any integration "load-bearing" (the failure mode) |
 | **asterisk** | A *documented* axiom violation with a written retirement condition | Don't use "asterisk" for an undocumented coupling |
-| **generation** (HTTP) | A named, pinnable Filigree API surface (`classic`, `loom`) | Don't confuse with the closed `loom://` URI scheme |
+| **generation** (HTTP) | A named, pinnable Filigree API surface (`classic`, `weft`) | Don't confuse with the closed `weft://` URI scheme |
 | **authoritative here** | This hub is the source of truth for the doc's subject | Don't mark a member's surface facts "authoritative here" |
 | **snapshot** | A point-in-time, non-authoritative copy of a volatile repo fact | Don't present a snapshot as current/authoritative |
 | **promoted** | A doc relocated from a repo into the hub as the new canonical home | — |
