@@ -24,11 +24,11 @@ _[tool: read_file]_
 
 _[tool: read_file]_
 
-Weft already has a well-defined type system, so let me look at how the brand/display face is currently presented before proposing changes.
+Loom already has a well-defined type system, so let me look at how the brand/display face is currently presented before proposing changes.
 
 _[tool: questions_v2]_
 
-I've now got the full picture. Weft's brand/display face is currently **Space Grotesk**, bundled locally and wired as `--font-display` — used only for the wordmark, hub headlines, and slide titles, sitting against JetBrains Mono everywhere else. So "install a brand font" means swapping in a more distinctive display face (or confirming a dedicated one), then bundling it locally, rewiring `@font-face` + the `--font-display` token, and refreshing the type/brand preview cards.
+I've now got the full picture. Loom's brand/display face is currently **Space Grotesk**, bundled locally and wired as `--font-display` — used only for the wordmark, hub headlines, and slide titles, sitting against JetBrains Mono everywhere else. So "install a brand font" means swapping in a more distinctive display face (or confirming a dedicated one), then bundling it locally, rewiring `@font-face` + the `--font-display` token, and refreshing the type/brand preview cards.
 
 Before I commit a brand-defining change to an established system, a few focused questions:
 
@@ -92,7 +92,7 @@ _[tool: done]_
 
 _[tool: fork_verifier_agent]_
 
-Done. **Space Grotesk is confirmed and kept** as Weft's brand/display face, and the install checks out: the variable TTF + OFL license are bundled in `fonts/`, `@font-face` is wired for the full 300–700 axis, and the `--font-display` token resolves correctly — verified rendering against JetBrains Mono.
+Done. **Space Grotesk is confirmed and kept** as Loom's brand/display face, and the install checks out: the variable TTF + OFL license are bundled in `fonts/`, `@font-face` is wired for the full 300–700 axis, and the `--font-display` token resolves correctly — verified rendering against JetBrains Mono.
 
 What I added to document it properly:
 - **`preview/type-brandfont.html`** — a new brand-font spec card in the system's own terminal-grade language: the face, its variable weight axis, character set, the type roles that use it, the display↔mono pairing rule, the exact install (`@font-face` + token), do/don'ts, and licensing.
@@ -164,7 +164,7 @@ So here's the actual diagnosis. Let me confirm it renders in the real preview to
 
 _[tool: screenshot_user_view]_
 
-That screenshot is the real preview, and **Space Grotesk is rendering** — "Weft" shows the distinctive geometric grotesque (note the wide round counters and straight terminals), with JetBrains Mono on the product side. So in our environment the brand font is genuinely active, not substituted.
+That screenshot is the real preview, and **Space Grotesk is rendering** — "Loom" shows the distinctive geometric grotesque (note the wide round counters and straight terminals), with JetBrains Mono on the product side. So in our environment the brand font is genuinely active, not substituted.
 
 Let me check what *your* view is actually showing, since the banner is in your pane:
 
@@ -174,7 +174,7 @@ Let me clean up the test artifacts.Good news — I dug into this and **the Cloud
 
 - **Files are intact, not truncated.** I parsed the sfnt table directory of all three TTFs — 21 tables each, none cut off, with valid `glyf` + `fvar` tables. A Cloudflare-interrupted download would have left a truncated file; these are complete.
 - **Space Grotesk loads correctly.** In a clean test the browser reported `load() resolved` → `check: true` → face status `loaded`.
-- **It's rendering, not substituting.** The preview screenshot shows "Weft" set in actual Space Grotesk (geometric grotesque), with JetBrains Mono on the product side — not fallback fonts.
+- **It's rendering, not substituting.** The preview screenshot shows "Loom" set in actual Space Grotesk (geometric grotesque), with JetBrains Mono on the product side — not fallback fonts.
 
 So the "Missing brand fonts" banner is a **false positive from the host's own web-font check** — that check tries to fetch the fonts over the network (which is what hit Cloudflare), but it's redundant here because both faces are **bundled locally** in `fonts/` and wired via `@font-face`. The design doesn't depend on that network fetch at all.
 

@@ -19,7 +19,7 @@
 | A-3 | filigree "v2.1 / 113 MCP tools" → **2.3.0 / 115 tools** | `~/filigree/pyproject.toml`, README | weft stops restating; [members/filigree.md](./members/filigree.md) snapshots + points |
 | A-4 | clarion "v1.0 walking skeleton, v0.1 in flight / 7 MCP tools" → **v1.3.0 shipped / 39 tools** | `~/clarion/Cargo.toml`, README | weft stops restating; [members/loomweave.md](./members/loomweave.md) snapshots + points |
 | A-5 | wardline "unreleased / 38 decorators / 11 rules PY-WL-001..009 / Tier 1–4" → **1.0.0rc1 / 3 canonical decorators / 20 rules PY-WL-101..120 / 8-state lattice** | `~/wardline/src/wardline/{_version,decorators,core/taints,scanner/rules}` | weft stops restating; [members/wardline.md](./members/wardline.md) snapshots + points |
-| A-6 | "Wardline→Filigree integration is **load-bearing**" → it is **enrich-only** (work-tracking only; analysis needs no Filigree) | `~/wardline/docs/integration/2026-05-29-wardline-weft-integration-brief.md`; `core/filigree_emit.py` (fail-soft) | Corrected in doctrine §5 and [members/wardline.md](./members/wardline.md) |
+| A-6 | "Wardline→Filigree integration is **load-bearing**" → it is **enrich-only** (work-tracking only; analysis needs no Filigree) | `~/wardline/docs/integration/2026-05-29-wardline-loom-integration-brief.md`; `core/filigree_emit.py` (fail-soft) | Corrected in doctrine §5 and [members/wardline.md](./members/wardline.md) |
 | A-7 | Identity = `{plugin_id}:{kind}:{qualname}` taught as **identity** → that is the **locator (address)**; **SEI** is identity | Clarion ADR-038; [sei-standard.md](./sei-standard.md) | SEI standard promoted; glossary `locator`/`SEI` rows |
 | A-8 | Entity-assoc routes under `/api/weft/*` → they are **classic `/api/issue/…` + `/api/entity-associations`** | `~/filigree/src/filigree/dashboard_routes/entities.py`; `~/legis/src/legis/filigree/client.py` | Corrected in [contracts-index.md](./contracts-index.md) §1 |
 | A-9 | `shuttle://` described as the "nascent addressing scheme" → the `weft://` URI scheme it belonged to was **closed by SEI** | [sei-standard.md](./sei-standard.md) §0/§9 | [uri-scheme.md](./uri-scheme.md) |
@@ -34,7 +34,7 @@
 
 ### B-1 — Federation roster & ordinality  *(RULED)*
 
-**Conflict.** Loomweave's founding doctrine (`~/clarion/docs/suite/weft.md`, dated 2026-06-05) lists only Loomweave/Filigree/Wardline + Shuttle (proposed) and names **neither legis nor charter**. But `~/legis/README.md` calls legis "the fourth Weft product," and `~/charter/README.md` calls charter "the fifth member" with "shuttle a future sixth." Three live sources, three different rosters.
+**Conflict.** Loomweave's founding doctrine (`~/clarion/docs/suite/loom.md`, dated 2026-06-05) lists only Loomweave/Filigree/Wardline + Shuttle (proposed) and names **neither legis nor charter**. But `~/legis/README.md` calls legis "the fourth Weft product," and `~/charter/README.md` calls charter "the fifth member" with "shuttle a future sixth." Three live sources, three different rosters.
 
 **Ruling (hub, 2026-06-05, ratified by John).** The canonical roster is **five realized members: Loomweave, Filigree, Wardline, Legis, Charter.** Shuttle is a **roadmap thought-bubble, not a member** — it has no repo and is displaceable by any better idea (Charter, started 2026-06-04, is exactly such a better idea taking priority). Lacuna is the **demo specimen, not a member.** The hub ([doctrine.md](./doctrine.md)) is the body that declares the roster going forward.
 
