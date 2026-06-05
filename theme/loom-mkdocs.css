@@ -59,7 +59,7 @@
   --loom-radius-lg: 8px;
 
   /* The Loom thread palette — one accent per member (legible on dark base). */
-  --thread-clarion:  #4ECDC4;
+  --thread-loomweave:  #4ECDC4;
   --thread-filigree: #38BDF8;
   --thread-wardline: #F4845F;
   --thread-legis:    #A78BFA;
@@ -281,7 +281,7 @@
    strand so a member page reads in its own identity colour. Portable: members
    that vendor this file inherit the same hook.
    =========================================================================== */
-.thread-clarion  { --md-accent-fg-color: var(--thread-clarion);  --md-typeset-a-color: var(--thread-clarion); }
+.thread-loomweave  { --md-accent-fg-color: var(--thread-loomweave);  --md-typeset-a-color: var(--thread-loomweave); }
 .thread-filigree { --md-accent-fg-color: var(--thread-filigree); --md-typeset-a-color: var(--thread-filigree); }
 .thread-wardline { --md-accent-fg-color: var(--thread-wardline); --md-typeset-a-color: var(--thread-wardline); }
 .thread-legis    { --md-accent-fg-color: var(--thread-legis);    --md-typeset-a-color: var(--thread-legis); }

@@ -8,7 +8,7 @@
 # move or duplicate the SoT into a committed `docs/`, this script MIRRORS the
 # root markdown into a generated, gitignored `docs/` at build time. The mirror
 # preserves layout (`members/`, `registries/`) so existing relative links like
-# `./foo.md`, `../sei-standard.md`, and `./members/clarion.md` resolve unchanged.
+# `./foo.md`, `../sei-standard.md`, and `./members/loomweave.md` resolve unchanged.
 #
 # The script is RE-RUNNABLE and IDEMPOTENT: it wipes and regenerates `docs/`
 # every run. It never writes outside `docs/`. It never edits the root markdown.
@@ -79,8 +79,8 @@ mv "${tmp}" "${README_GEN}"
 #    that predates the current toc slugifier (which emits single dashes:
 #    `#a-1-wardline-...`). The root doc is owned/edited elsewhere; we correct the
 #    anchor ONLY in the generated copy so the link resolves and --strict passes.
-A1_BAD='a-1--wardline--filigree-findings-are-pipeline-coupled-through-clarion'
-A1_GOOD='a-1-wardline-filigree-findings-are-pipeline-coupled-through-clarion'
+A1_BAD='a-1--wardline--filigree-findings-are-pipeline-coupled-through-loomweave'
+A1_GOOD='a-1-wardline-filigree-findings-are-pipeline-coupled-through-loomweave'
 find "${DOCS}" -name '*.md' -type f -print0 | while IFS= read -r -d '' md; do
   sed -i \
     -e "s#](\./members/)#](${REPO_URL}/tree/main/members)#g" \

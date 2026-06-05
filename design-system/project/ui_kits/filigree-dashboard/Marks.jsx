@@ -11,7 +11,7 @@ const MARK_PATHS = {
       <path d="M6 21 H18.8"/><path d="M23.2 21 H26"/>
     </g>
   ),
-  clarion: (
+  loomweave: (
     <>
       <g stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <path d="M16 5 V27"/><path d="M16 11 H24"/><path d="M16 21 H8"/>
@@ -73,7 +73,7 @@ function Mark({ name, size = 24, style, className }) {
 
 // Federation roster — single source for kits.
 const MEMBERS = [
-  { id: "clarion",  name: "Clarion",  thread: "var(--thread-clarion)",  lang: "Rust",   domain: "Code structure + identity authority (SEI)", answers: "what is this codebase, where do I touch, what is the durable identity?", status: "built · in use", repo: "~/clarion" },
+  { id: "loomweave",  name: "Loomweave",  thread: "var(--thread-loomweave)",  lang: "Rust",   domain: "Code structure + identity authority (SEI)", answers: "what is this codebase, where do I touch, what is the durable identity?", status: "built · in use", repo: "~/clarion" },
   { id: "filigree", name: "Filigree", thread: "var(--thread-filigree)", lang: "Python", domain: "Work state / issue lifecycle", answers: "what work exists, what state is it in, what happened?", status: "built · in use", repo: "~/filigree" },
   { id: "wardline", name: "Wardline", thread: "var(--thread-wardline)", lang: "Python", domain: "Trust-boundary analysis", answers: "what is allowed, and does this still satisfy the constraints?", status: "built · in use", repo: "~/wardline" },
   { id: "legis",    name: "Legis",    thread: "var(--thread-legis)",    lang: "Python", domain: "Git/CI governance & attestations", answers: "what changed, and is this change governed?", status: "1.0.0rc1", repo: "~/legis" },

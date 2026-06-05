@@ -16,7 +16,7 @@ and the interactive composition-law toggle (Solo / Pair / Suite).
 | `Hub.jsx` | The page: `HubHeader`, `Hero`, `Roster` → `MemberCard`, `CompositionLaw`, footer |
 
 ## Components to reuse
-- `<Mark name="loom|clarion|filigree|wardline|legis|charter|shuttle" size color>` — the glyph set, inherits `currentColor`.
+- `<Mark name="loom|loomweave|filigree|wardline|legis|charter|shuttle" size color>` — the glyph set, inherits `currentColor`.
 - `<MemberCard m={…} />` — thread-ruled roster card with expand.
 - `MEMBERS` — the canonical roster array (name, thread, lang, domain, status, repo).
 

@@ -4,14 +4,14 @@
 
 ## The sketched idea (for context only)
 
-Shuttle names an acknowledged gap: a future **change-execution authority** — "carry this approved change through the weave, under guard rails." The sketch: receive a scoped change intent, bind it to files/entities, order the edits, apply incrementally with pre/post checks, roll back on failure, and lint/commit/emit telemetry on success — **without** planning, triaging, or reasoning about the code (those stay Filigree/Clarion's jobs).
+Shuttle names an acknowledged gap: a future **change-execution authority** — "carry this approved change through the weave, under guard rails." The sketch: receive a scoped change intent, bind it to files/entities, order the edits, apply incrementally with pre/post checks, roll back on failure, and lint/commit/emit telemetry on success — **without** planning, triaging, or reasoning about the code (those stay Filigree/Loomweave's jobs).
 
 It is named only so the change-execution gap is visible on the roadmap. The eventual product filling this gap may not be called "Shuttle" at all.
 
 ## What already references it (and why that's mostly stale)
 
 - **Filigree** has `migrate-to-shuttle` tooling and `shuttle://` milestone-reference URIs from its planning-deprecation work — but there is nothing to migrate *to* or resolve *against* yet. See [uri-scheme.md](../uri-scheme.md) and [conflict-register.md](../conflict-register.md) §B-3.
-- **Clarion / Charter** explicitly out-scope change execution (Clarion NG-07; Charter ADR-001), correctly leaving the gap unfilled.
+- **Loomweave / Charter** explicitly out-scope change execution (Clarion NG-07; Charter ADR-001), correctly leaving the gap unfilled.
 
 ## If it ever becomes real
 

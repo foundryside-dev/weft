@@ -10,17 +10,17 @@ Each live cross-tool binding from [federation-map.md](./federation-map.md), with
 
 | Pair | Integration | Status | Reference |
 |---|---|---|---|
-| Clarion ↔ Filigree | entity associations (drift via `issues_for`) | **live** | [contracts-index.md](./contracts-index.md) §1 |
-| Clarion → all | SEI identity resolution | **live; standard LOCKED 2026-06-05** (member backfills are conformance tasks under lock) | [sei-standard.md](./sei-standard.md); [conflict-register.md](./conflict-register.md) §B-2 |
-| Wardline ↔ Clarion | taint-fact store | **live** | [contracts-index.md](./contracts-index.md) §3 |
-| Wardline → Clarion | qualname reconciliation | **live** | [contracts-index.md](./contracts-index.md) §5 |
-| Wardline → Filigree | findings intake | **asterisked (A-1, LIVE)** — routes through Clarion's SARIF translator until Wardline's native emitter ships | [asterisk-register.md](./asterisk-register.md) |
-| Clarion ↔ Wardline | vocabulary descriptor (was registry import) | **live; asterisk A-2 RETIRED 2026-06-05** | [asterisk-register.md](./asterisk-register.md) |
-| Legis ↔ Clarion | SEI governance consumption + git-rename provider seam | **live** (provider seam operative-pending Clarion committed rev-range) | [contracts-index.md](./contracts-index.md) §6 |
+| Loomweave ↔ Filigree | entity associations (drift via `issues_for`) | **live** | [contracts-index.md](./contracts-index.md) §1 |
+| Loomweave → all | SEI identity resolution | **live; standard LOCKED 2026-06-05** (member backfills are conformance tasks under lock) | [sei-standard.md](./sei-standard.md); [conflict-register.md](./conflict-register.md) §B-2 |
+| Wardline ↔ Loomweave | taint-fact store | **live** | [contracts-index.md](./contracts-index.md) §3 |
+| Wardline → Loomweave | qualname reconciliation | **live** | [contracts-index.md](./contracts-index.md) §5 |
+| Wardline → Filigree | findings intake | **asterisked (A-1, LIVE)** — routes through Loomweave's SARIF translator until Wardline's native emitter ships | [asterisk-register.md](./asterisk-register.md) |
+| Loomweave ↔ Wardline | vocabulary descriptor (was registry import) | **live; asterisk A-2 RETIRED 2026-06-05** | [asterisk-register.md](./asterisk-register.md) |
+| Legis ↔ Loomweave | SEI governance consumption + git-rename provider seam | **live** (provider seam operative-pending Loomweave committed rev-range) | [contracts-index.md](./contracts-index.md) §6 |
 | Legis ↔ Filigree | SEI-keyed sign-off binding | **live** | [contracts-index.md](./contracts-index.md) §7 |
 | Legis ↔ Wardline | findings routing through enforcement | **live** | [contracts-index.md](./contracts-index.md) §8 |
 | Charter → Legis | preflight-fact envelope | **planned** (Charter adapter pending) | [contracts-index.md](./contracts-index.md) §9 |
-| Charter ↔ Clarion | SEI consumer (trace links) | **planned** (Charter adapter pending) | [contracts-index.md](./contracts-index.md) §10 |
+| Charter ↔ Loomweave | SEI consumer (trace links) | **planned** (Charter adapter pending) | [contracts-index.md](./contracts-index.md) §10 |
 
 ## Version compatibility matrix (post-1.0 — to populate at launch)
 
@@ -28,7 +28,7 @@ Per [SHIPPING.md](./SHIPPING.md) decision 2, after the one-time coordinated **Lo
 
 | Member | 1.0 launch version | Speaks `loom` HTTP generation | Notes |
 |---|---|---|---|
-| Clarion | _tbd_ | yes (serves SEI + read API) | shipped (snapshot v1.3.0) |
+| Loomweave | _tbd_ | yes (serves SEI + read API) | shipped (snapshot v1.3.0) |
 | Filigree | _tbd_ | yes (publishes `classic` + `loom`) | shipped (snapshot v2.3.0); SEI standard locked — Filigree's locator→SEI backfill is a conformance task under the lock |
 | Wardline | _tbd_ | consumer (SEI client) | **1.0 launch gate** (snapshot 1.0.0rc1) |
 | Legis | _tbd_ | consumer | snapshot 1.0.0rc |

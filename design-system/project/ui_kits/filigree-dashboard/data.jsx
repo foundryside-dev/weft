@@ -10,7 +10,7 @@ const PRIORITY_LABEL = ["Critical", "High", "Medium", "Low", "Backlog"];
 
 const ISSUES = [
   { id: "fg-7f3a2b", type: "feature", priority: 0, title: "SEI backfill: locator → stable identity", status: "building", cat: "wip", assignee: "agent-3", ageH: 2, ready: true, impact: 5, blocked_by: [],
-    body: "Filigree's locator→SEI backfill is the remaining lock gate for the suite identity track. Until issues key on SEI, Clarion+Filigree orphans on rename.",
+    body: "Filigree's locator→SEI backfill is the remaining lock gate for the suite identity track. Until issues key on SEI, Loomweave+Filigree orphans on rename.",
     deps: ["fg-1c4099"] },
   { id: "fg-da8d50", type: "bug", priority: 1, title: "Dashboard split-brain on relocated db path", status: "fixing", cat: "wip", assignee: "agent-1", ageH: 6, ready: false, impact: 2, blocked_by: ["fg-9920aa"],
     body: "When .filigree.conf relocates the db, the dashboard opened .filigree/filigree.db while CLI/MCP opened the conf path — a split-brain view. Honour from_conf.",

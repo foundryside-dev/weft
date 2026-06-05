@@ -9,20 +9,20 @@
 
 ## 1. What Loom is
 
-Loom is a suite for enterprise-grade code governance on small teams. Its members are **Clarion**, **Filigree**, **Wardline**, **Legis**, and **Charter** — each fully authoritative in its domain and fully usable on its own. **Shuttle** is a roadmap thought-bubble, not a committed member: it has no repo, and any better idea the suite lands (Charter was started 2026-06-04) takes priority over it and may displace it. When composed, the members enrich one another through narrow, additive protocols — but each remains independently load-bearing for the work it already does.
+Loom is a suite for enterprise-grade code governance on small teams. Its members are **Loomweave**, **Filigree**, **Wardline**, **Legis**, and **Charter** — each fully authoritative in its domain and fully usable on its own. **Shuttle** is a roadmap thought-bubble, not a committed member: it has no repo, and any better idea the suite lands (Charter was started 2026-06-04) takes priority over it and may displace it. When composed, the members enrich one another through narrow, additive protocols — but each remains independently load-bearing for the work it already does.
 
 The metaphor is deliberate: distinct threads stay distinct but gain value by being woven together. Loom is a **family name** and a **composition doctrine** — not a platform, not a shared runtime, not a store, and not a broker. There is nothing called "Loom" to install, deploy, or keep running. What exists are the member products, a set of narrow interop contracts between them, and this hub (`~/loom`) which is documentation only — it holds no runtime, no store, and no code.
 
-> **Roster note.** The canonical federation roster is **5 realized members** (Clarion, Filigree, Wardline, Legis, Charter); Shuttle is a roadmap thought-bubble, not a sixth member. This roster was ruled by the hub on 2026-06-05. Legis and Charter shipped/were-designed after the founding doctrine was last written and post-date its three-member framing; the hub admits them here as the body that declares the roster. See [conflict-register.md](./conflict-register.md) §B-1 for the ruling and its evidence.
+> **Roster note.** The canonical federation roster is **5 realized members** (Loomweave, Filigree, Wardline, Legis, Charter); Shuttle is a roadmap thought-bubble, not a sixth member. This roster was ruled by the hub on 2026-06-05. Legis and Charter shipped/were-designed after the founding doctrine was last written and post-date its three-member framing; the hub admits them here as the body that declares the roster. See [conflict-register.md](./conflict-register.md) §B-1 for the ruling and its evidence.
 
 ## 2. The products and their authoritative domains
 
 Each Loom product is authoritative for exactly one bounded concern, and that authority lives in the product itself — not in any shared layer:
 
-- **Clarion** — structural truth about the codebase, and the **identity authority** for the suite. Answers "what is this codebase, where should I touch, and what is the durable identity of this entity?" Owns the entity catalog, the code graph, guidance sheets, and the [Stable Entity Identity](./sei-standard.md) (SEI) every cross-tool binding keys on.
+- **Loomweave** — structural truth about the codebase, and the **identity authority** for the suite. Answers "what is this codebase, where should I touch, and what is the durable identity of this entity?" Owns the entity catalog, the code graph, guidance sheets, and the [Stable Entity Identity](./sei-standard.md) (SEI) every cross-tool binding keys on.
 - **Filigree** — work state and workflow lifecycle. Answers "what work exists, what state is it in, and what happened?" Owns issues, observations, and finding triage state.
 - **Wardline** — trust policy and rule enforcement. Answers "what is allowed, and does this still satisfy the declared constraints?" Owns trust declarations, baselines, and policy findings. Notably, Wardline's "configuration" is the source code itself plus the adjacent declarations — it does not have a separate authoritative config store.
-- **Legis** — git/CI governance and attestations. Answers "what is the change provenance, and is this change governed?" Owns governance verdicts, overrides, sign-offs, and the SEI-keyed attestation/audit lineage over change. A consumer of Clarion's identity; never re-adjudicates trust (that stays Wardline's).
+- **Legis** — git/CI governance and attestations. Answers "what is the change provenance, and is this change governed?" Owns governance verdicts, overrides, sign-offs, and the SEI-keyed attestation/audit lineage over change. A consumer of Loomweave's identity; never re-adjudicates trust (that stays Wardline's).
 - **Charter** — requirements, traceability, baselines, and verification evidence. Answers "what must be true, how do we know it is true, what claims to satisfy it, and what is impacted by this change?" Owns obligations; a read-only consumer of its peers' surfaces.
 - **Shuttle** *(roadmap thought-bubble — not a committed member)* — the sketched idea is transactional scoped change execution: "carry this approved change through the weave, under guard rails," owning the execution record of applied changes and their rollback provenance. This is a placeholder for a *future* change-execution authority, not a designed product; it yields to any better idea.
 
@@ -64,16 +64,16 @@ A "standalone mode" that works only because an invisible sibling is still import
 
 ### Concrete examples
 
-- **Filigree** creates and closes tickets exactly the same way whether Clarion is installed or not. Clarion makes the tickets richer — entity context, file references, structural findings linked to issues — but doesn't change their meaning. You can file a bug, work it, and close it with Clarion absent or broken.
+- **Filigree** creates and closes tickets exactly the same way whether Loomweave is installed or not. Loomweave makes the tickets richer — entity context, file references, structural findings linked to issues — but doesn't change their meaning. You can file a bug, work it, and close it with Loomweave absent or broken.
 - **Wardline** enforces trust policy whether Filigree is ingesting findings or not. Findings reach Wardline's own SARIF output regardless of whether a downstream triage system exists.
-- **Clarion** builds its catalog whether Wardline is present or not. Wardline's annotations *enrich* Clarion's entity metadata with trust-tier and policy-semantic information, but Clarion's structural truth is independent of Wardline's policy truth.
-- **Legis** governs change provenance whether Clarion, Wardline, or Filigree are present. Their facts enrich a verdict (which SEI? which finding? which issue sign-off?) but a governance decision still resolves, with `identity_stable: false` honestly flagged, when a sibling capability is absent.
+- **Loomweave** builds its catalog whether Wardline is present or not. Wardline's annotations *enrich* Loomweave's entity metadata with trust-tier and policy-semantic information, but Loomweave's structural truth is independent of Wardline's policy truth.
+- **Legis** governs change provenance whether Loomweave, Wardline, or Filigree are present. Their facts enrich a verdict (which SEI? which finding? which issue sign-off?) but a governance decision still resolves, with `identity_stable: false` honestly flagged, when a sibling capability is absent.
 - **Charter** states and tracks obligations whether peers are installed or not — with manual trace links and file/symbol refs in solo mode, and SEI-keyed links, work binding, and finding references when peers are present.
-- **Shuttle**, if built, would execute changes whether any sibling is present. Sibling tools enrich its telemetry (which Filigree ticket? which Clarion entity? which Wardline policy?) but are never required for a change to apply or roll back.
+- **Shuttle**, if built, would execute changes whether any sibling is present. Sibling tools enrich its telemetry (which Filigree ticket? which Loomweave entity? which Wardline policy?) but are never required for a change to apply or roll back.
 
 ### Named asterisks
 
-The suite does not pass the expanded failure test cleanly in every pair. Named, time-bound couplings — each with a written retirement condition and an honest statement of which failure-test mode it violates — are tracked in the **[asterisk-register.md](./asterisk-register.md)**, which is the authoritative register for the federation. As of 2026-06-05 one asterisk is live (Wardline→Filigree pipeline coupling) and one is retired (Clarion's plugin importing Wardline's registry).
+The suite does not pass the expanded failure test cleanly in every pair. Named, time-bound couplings — each with a written retirement condition and an honest statement of which failure-test mode it violates — are tracked in the **[asterisk-register.md](./asterisk-register.md)**, which is the authoritative register for the federation. As of 2026-06-05 one asterisk is live (Wardline→Filigree pipeline coupling) and one is retired (Loomweave's plugin importing Wardline's registry).
 
 Asterisks are acceptable only with a written retirement condition and an honest statement of which failure-test mode is being temporarily violated. A "we'll fix it later" without a test-mode citation is not an asterisk; it is the stealth-monolith failure mode wearing different clothes. **Do not add a new asterisk without the same written retirement condition.**
 
@@ -86,10 +86,10 @@ Enrichment is the shape of integration that preserves federation. Load-bearing i
 Because the strongest pressure on this charter comes from "wouldn't it be easier if we just…" proposals, the disclaimer is explicit. Loom is **not**:
 
 - **A shared runtime or daemon.** There is no `loomd`, no broker, no orchestrator. Member products do not phone home to a Loom process.
-- **A shared configuration layer.** Each product configures its own integrations in its own config. Clarion's config names Filigree's endpoint directly; there is no central registry that everyone consults.
+- **A shared configuration layer.** Each product configures its own integrations in its own config. Loomweave's config names Filigree's endpoint directly; there is no central registry that everyone consults.
 - **A central store or database.** Each product owns its data locally. No shared SQLite/Postgres/object-store sits under the suite.
-- **A system of record for any cross-product state.** Finding lifecycle lives in Filigree. Entity identity lives in Clarion. Policy baselines live in Wardline. Governance attestations live in Legis. Requirements live in Charter. Execution provenance (if Shuttle ships) lives in Shuttle. Loom does not own or mirror these — and neither does this hub, which records only *which product is authoritative for what* and points there.
-- **An identity reconciliation service.** When cross-scheme translation is needed — e.g. Wardline qualname → Clarion entity ID — the product that *cares* does the translation, because that product is the one whose authority needs it. Clarion translates qualnames because Clarion owns the catalog that makes them meaningful. There is no neutral "Loom identity oracle." (Clarion *is* the identity authority via SEI, but that authority lives in Clarion, not in a shared layer.)
+- **A system of record for any cross-product state.** Finding lifecycle lives in Filigree. Entity identity lives in Loomweave. Policy baselines live in Wardline. Governance attestations live in Legis. Requirements live in Charter. Execution provenance (if Shuttle ships) lives in Shuttle. Loom does not own or mirror these — and neither does this hub, which records only *which product is authoritative for what* and points there.
+- **An identity reconciliation service.** When cross-scheme translation is needed — e.g. Wardline qualname → Loomweave entity ID — the product that *cares* does the translation, because that product is the one whose authority needs it. Loomweave translates qualnames because Loomweave owns the catalog that makes them meaningful. There is no neutral "Loom identity oracle." (Loomweave *is* the identity authority via SEI, but that authority lives in Loomweave, not in a shared layer.)
 - **A capability negotiation bus.** Products probe each other directly via their own surfaces (HTTP endpoints, MCP tools, CLI flags). Version skew is handled bilaterally, not through a Loom-level registry.
 
 The test for any proposed addition: if the proposal introduces something that would need to be *running* or *present* for the suite to work, it violates federation. Integration protocols, schemas, and narrow contracts are fine. Shared infrastructure that sibling products *depend on* is not.
@@ -107,7 +107,7 @@ If the answer to any question is no, the candidate is a feature, a protocol, or 
 
 ## 8. Naming
 
-Member products are named from weaving mechanics and adjacent registers — Clarion, Filigree, Wardline, Legis, Charter, Shuttle — as distinct proper names rather than subdivisions. There is no "Loom Guard," "Loom Workflow," or "Loom Execute"; each product earns its own identity. The family name sits above the products without dominating them, and — per §3 and §6 — it does not name any component that gets installed or runs.
+Member products are named from weaving mechanics and adjacent registers — Loomweave, Filigree, Wardline, Legis, Charter, Shuttle — as distinct proper names rather than subdivisions. There is no "Loom Guard," "Loom Workflow," or "Loom Execute"; each product earns its own identity. The family name sits above the products without dominating them, and — per §3 and §6 — it does not name any component that gets installed or runs.
 
 ### Cross-product field names
 
@@ -119,7 +119,7 @@ Federation does not require uniform vocabulary, but it does require that the sam
 
 ## 9. Status
 
-Per-member version and status are **snapshots, not authoritative here** — each member's authoritative status lives in its own repo. See [members/](./members/) for the current pointer-backed snapshot of each. In summary as of 2026-06-05: Clarion, Filigree, Wardline, and Legis are built and in use; Charter is a designed-and-scaffolded member with federation adapters pending; Shuttle is a roadmap thought-bubble with no repo, lowest priority, displaceable by any better idea.
+Per-member version and status are **snapshots, not authoritative here** — each member's authoritative status lives in its own repo. See [members/](./members/) for the current pointer-backed snapshot of each. In summary as of 2026-06-05: Loomweave, Filigree, Wardline, and Legis are built and in use; Charter is a designed-and-scaffolded member with federation adapters pending; Shuttle is a roadmap thought-bubble with no repo, lowest priority, displaceable by any better idea.
 
 The keystone interop primitive, **Stable Entity Identity** ([sei-standard.md](./sei-standard.md)), is the suite's single identity track and is **LOCKED as of 2026-06-05** — the interface is frozen and post-lock changes require a versioned revision. Conformance stays oracle-gated; any member's locator→SEI backfill is a migration task under the locked standard, not a reopening of it. See the SEI standard and [conflict-register.md](./conflict-register.md) §B-2.
 

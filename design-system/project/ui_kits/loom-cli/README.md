@@ -1,13 +1,13 @@
 # UI Kit — Loom CLI
 
-The agent-first **terminal surface**. Four Loom members have no GUI — Clarion,
+The agent-first **terminal surface**. Four Loom members have no GUI — Loomweave,
 Wardline, Legis, and Charter live on the command line and a dependency-free
 MCP-over-stdio server. This kit is a tabbed terminal showing a realistic session
 for each, with output drawn from the tools' own READMEs.
 
 `index.html` shows a terminal window; switch tabs to move between sessions:
 - **wardline scan** — a tripped trust-boundary gate (`PY-WL-101`)
-- **clarion · MCP** — an entity orientation read, enriched with sibling facts
+- **loomweave · MCP** — an entity orientation read, enriched with sibling facts
 - **legis · governance** — a Coached-cell override `BLOCKED` by the judge
 - **make tour → lacuna** — the suite driven against the Lacuna specimen, degrading honestly
 

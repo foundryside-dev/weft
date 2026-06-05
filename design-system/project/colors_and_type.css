@@ -80,7 +80,7 @@ html, body {
   /* ---- The Loom thread palette — one accent per federation member ----- *
    * Distinct hues across the wheel, all legible on --surface-base.        *
    * Used for member identity: glyph color, left-rule, badge, header tab.  */
-  --thread-clarion:  #4ECDC4;  /* aqua    — structure + identity spine     */
+  --thread-loomweave:  #4ECDC4;  /* aqua    — structure + identity spine     */
   --thread-filigree: #38BDF8;  /* sky     — work state (canonical accent)  */
   --thread-wardline: #F4845F;  /* coral   — trust boundary                 */
   --thread-legis:    #A78BFA;  /* violet  — governance & law               */
@@ -216,7 +216,7 @@ html, body {
 }
 
 /* ---- Member identity helper: paints a strand by its thread color ------ */
-.thread-clarion  { --thread: var(--thread-clarion); }
+.thread-loomweave  { --thread: var(--thread-loomweave); }
 .thread-filigree { --thread: var(--thread-filigree); }
 .thread-wardline { --thread: var(--thread-wardline); }
 .thread-legis    { --thread: var(--thread-legis); }

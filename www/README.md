@@ -37,7 +37,7 @@ preloaded fonts resolve under a normal origin.
 - **Verbatim copy.** The roster (member names, domains, the italic "answers"
   quotes, statuses) and the composition-law text are lifted from the design's
   `Marks.jsx` / `Hub.jsx`.
-- **Roster = the brand/doctrine layer:** 5 realized members (clarion · filigree
+- **Roster = the brand/doctrine layer:** 5 realized members (loomweave · filigree
   · wardline · legis · charter), **Shuttle** dimmed as a roadmap thought-bubble,
   and **Lacuna** set apart as the adjacent demonstration specimen (off-palette
   dusty magenta + dashed frame). Per the doctrine, member cards point to the

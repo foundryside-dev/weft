@@ -1,6 +1,6 @@
 ---
 name: loom-design
-description: Use this skill to generate well-branded interfaces and assets for Loom — the agent-first federation of developer tools (Clarion, Filigree, Wardline, Legis, Charter) — for production or throwaway prototypes/mocks. Contains the design doctrine, colors, type, fonts, federation marks, and high-fidelity UI kit components (the Filigree dashboard, the agent CLI, and the federation hub).
+description: Use this skill to generate well-branded interfaces and assets for Loom — the agent-first federation of developer tools (Loomweave, Filigree, Wardline, Legis, Charter) — for production or throwaway prototypes/mocks. Contains the design doctrine, colors, type, fonts, federation marks, and high-fidelity UI kit components (the Filigree dashboard, the agent CLI, and the federation hub).
 user-invocable: true
 ---
 

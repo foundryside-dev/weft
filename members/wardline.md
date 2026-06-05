@@ -11,12 +11,12 @@ The trust lattice and its states, the decorator/annotation vocabulary, the rule 
 ## Federation role (points to loom for patterns)
 
 - **Filigree is enrich-only, not load-bearing.** Wardline uses Filigree for *work tracking only*; scanning/analysis run with all siblings absent (`core/filigree_emit.py` is fail-soft). The old hub's "load-bearing" label was wrong ([conflict-register.md](../conflict-register.md) §A-6).
-- **Identity:** keys taint facts on **[SEI](../sei-standard.md)**, resolving locator→SEI via Clarion; degrades gracefully when the `sei` capability is absent.
-- **Contracts it carries:** taint-fact store → Clarion ([contracts-index.md](../contracts-index.md) §3), `metadata.wardline.qualname` reconciliation (§5), findings → Filigree (§4), findings governed by Legis (§8).
-- **Asterisk A-1 (LIVE):** Wardline→Filigree findings route through Clarion's SARIF translator until Wardline ships a native Filigree emitter ([asterisk-register.md](../asterisk-register.md)).
+- **Identity:** keys taint facts on **[SEI](../sei-standard.md)**, resolving locator→SEI via Loomweave; degrades gracefully when the `sei` capability is absent.
+- **Contracts it carries:** taint-fact store → Loomweave ([contracts-index.md](../contracts-index.md) §3), `metadata.wardline.qualname` reconciliation (§5), findings → Filigree (§4), findings governed by Legis (§8).
+- **Asterisk A-1 (LIVE):** Wardline→Filigree findings route through Loomweave's SARIF translator until Wardline ships a native Filigree emitter ([asterisk-register.md](../asterisk-register.md)).
 
 ## Notes
 
-- Wardline's README names "Loom / Clarion / Filigree"; its federation framing now points to [doctrine.md](../doctrine.md).
+- Wardline's README names "Loom / Loomweave / Filigree"; its federation framing now points to [doctrine.md](../doctrine.md).
 - `~/wardline-watcher` and `~/wardline.old` are **out of the federation** (the heavier governance build that died); not members.
 - Wardline's specs tree previously hosted the suite-wide SEI standard; that is now [sei-standard.md](../sei-standard.md) here, with the wardline copy reduced to a pointer.

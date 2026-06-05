@@ -3,7 +3,7 @@
    The page is content-complete without JS: every member card and the default
    composition panel render server-side, and all links work. This script only
    layers in interactive behaviour faithful to the loom-hub UI kit:
-     · single-open accordion on the member roster (default: clarion)
+     · single-open accordion on the member roster (default: loomweave)
      · the Solo / Pair / Suite composition-law toggle (default: pair)
    ============================================================================ */
 (function () {
@@ -28,7 +28,7 @@
 
   /* ---- Composition law: Solo / Pair / Suite --------------------------- */
   var MODES = {
-    solo: "Each tool has a complete, respectable use-case by itself. Filigree files, works, and closes a bug with Clarion absent or broken.",
+    solo: "Each tool has a complete, respectable use-case by itself. Filigree files, works, and closes a bug with Loomweave absent or broken.",
     pair: "Combined with any one sibling it creates a meaningful capability — Wardline findings become tracked Filigree work; never a broken fragment.",
     suite: "All together form something richer: the agent understands the code, its trust posture, what it may do, and every unit of work — keyed on one identity."
   };

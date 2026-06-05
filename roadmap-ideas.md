@@ -28,8 +28,8 @@ The one pre-existing idea. Receives an approved scoped change, applies it increm
 ### 2. "Warp" — dependency & supply-chain provenance
 
 - **Bounded domain:** third-party dependency trust and secret-material provenance — SBOM, dependency lineage, "what untrusted external code/credentials does this project pull in."
-- **Gap it fills:** Wardline analyses *first-party* trust boundaries in your own AST; **nobody owns third-party/supply-chain trust.** Clarion's pre-ingest secret scanner was deferred. This is a distinct axis from Wardline's taint.
-- **Pairwise stories:** with Clarion, dependencies become entities with SEI; with Wardline, complements (external-package risk vs in-code taint); with Legis, dependency risk becomes a governed gate; with Charter, a security requirement traces to a dependency finding.
+- **Gap it fills:** Wardline analyses *first-party* trust boundaries in your own AST; **nobody owns third-party/supply-chain trust.** Loomweave's pre-ingest secret scanner was deferred. This is a distinct axis from Wardline's taint.
+- **Pairwise stories:** with Loomweave, dependencies become entities with SEI; with Wardline, complements (external-package risk vs in-code taint); with Legis, dependency risk becomes a governed gate; with Charter, a security requirement traces to a dependency finding.
 - **Go/no-go risk:** low–medium. Cleanly bounded and clearly not owned today. Main risk is scope sprawl into general SCA tooling — would need a tight "provenance, not a vuln scanner" charter.
 
 ---
@@ -49,7 +49,7 @@ The one pre-existing idea. Receives an approved scoped change, applies it increm
 ### 5. Decision / rationale-graph authority  ·  *rejected as a product*
 
 - **Idea:** a queryable, SEI-keyed record of *why* code is the way it is (ADRs + rationale).
-- **Verdict: REJECT (feature, not a product).** Clarion already owns guidance sheets and Charter owns obligations/traceability; the "why" lives across those two. A separate authority would fail go/no-go #1 and #3. Listed so the idea is explicitly closed, not silently dropped.
+- **Verdict: REJECT (feature, not a product).** Loomweave already owns guidance sheets and Charter owns obligations/traceability; the "why" lives across those two. A separate authority would fail go/no-go #1 and #3. Listed so the idea is explicitly closed, not silently dropped.
 
 ---
 

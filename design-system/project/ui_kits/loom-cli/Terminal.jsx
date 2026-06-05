@@ -1,5 +1,5 @@
 // Terminal.jsx — Loom CLI / agent-first terminal surface.
-// The non-GUI members (Clarion, Wardline, Legis, Charter) live here: CLI + MCP
+// The non-GUI members (Loomweave, Wardline, Legis, Charter) live here: CLI + MCP
 // over stdio. Sessions are drawn from each tool's real README output.
 const { useState, useEffect, useRef } = React;
 
@@ -48,8 +48,8 @@ const SESSIONS = {
       <L k="err">1   <span style={K.dim}># gate tripped — fix at the boundary, not the sink</span></L>
     </>),
   },
-  clarion: {
-    member: "clarion", label: "clarion · MCP",
+  loomweave: {
+    member: "loomweave", label: "loomweave · MCP",
     render: () => (<>
       <Prompt tool="clarion" cmd="serve   # 39-tool MCP surface over stdio" />
       <L k="dim">consult-mode agent → entity_orientation_pack_get("auth.session.build_record")</L>
@@ -85,7 +85,7 @@ const SESSIONS = {
       <Prompt tool="make" cmd="tour   # drive every live tool against the specimen" />
       <L k="dim">target: ~/lacuna · the deliberately-flawed demonstration specimen</L>
       <div style={{ height: 8 }} />
-      <L><span style={thread("clarion")}>clarion </span><span style={K.ok}>✓ live</span>   <span style={K.dim}>catalog built · 312 entities · SEI minted</span></L>
+      <L><span style={thread("loomweave")}>clarion </span><span style={K.ok}>✓ live</span>   <span style={K.dim}>catalog built · 312 entities · SEI minted</span></L>
       <L><span style={thread("wardline")}>wardline</span> <span style={K.ok}>✓ live</span>   <span style={K.dim}>4 baselined lacunae surfaced · gate green</span></L>
       <L><span style={thread("filigree")}>filigree</span> <span style={K.ok}>✓ live</span>   <span style={K.dim}>findings → 4 tracked issues</span></L>
       <L><span style={thread("legis")}>legis   </span> <span style={K.warn}>◐ design-only</span>  <span style={K.dim}>labelled, never faked</span></L>
@@ -98,7 +98,7 @@ const SESSIONS = {
 };
 
 function Terminal() {
-  const order = ["wardline", "clarion", "legis", "tour"];
+  const order = ["wardline", "loomweave", "legis", "tour"];
   const [tab, setTab] = useState("wardline");
   const S = SESSIONS[tab];
   return (

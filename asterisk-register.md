@@ -6,23 +6,23 @@ An asterisk is acceptable **only** with (a) a written retirement condition and (
 
 ## Live asterisks
 
-### A-1 — Wardline → Filigree findings are pipeline-coupled through Clarion
+### A-1 — Wardline → Filigree findings are pipeline-coupled through Loomweave
 
 - **Pair:** (Wardline, Filigree)
 - **Failure-test mode violated:** pipeline coupling (doctrine §5, mode 3)
-- **What it is:** Wardline's SARIF output reaches Filigree only via Clarion's `clarion sarif import` translator. The (Wardline, Filigree) pair cannot exchange findings without Clarion present.
+- **What it is:** Wardline's SARIF output reaches Filigree only via Loomweave's `clarion sarif import` translator. The (Wardline, Filigree) pair cannot exchange findings without Loomweave present.
 - **Status:** **LIVE** as of 2026-06-05.
-- **Retirement condition (mechanism updated 2026-05-29):** the generic Wardline rebuild ships a **native Filigree emitter** (Wardline-side), at which point the pair composes directly and Clarion drops off the transport path. Clarion's `clarion sarif import` stays as the general-purpose SARIF path for other tools; only its Wardline-bridge role retires. The asterisk is **kept live** until that emitter ships *and* (Wardline, Filigree) composition is verified with Clarion absent — agreement to the direction is not retirement.
+- **Retirement condition (mechanism updated 2026-05-29):** the generic Wardline rebuild ships a **native Filigree emitter** (Wardline-side), at which point the pair composes directly and Loomweave drops off the transport path. Loomweave's `clarion sarif import` stays as the general-purpose SARIF path for other tools; only its Wardline-bridge role retires. The asterisk is **kept live** until that emitter ships *and* (Wardline, Filigree) composition is verified with Loomweave absent — agreement to the direction is not retirement.
 - **Authoritative sources:** Clarion ADR-015 Revision 2 (`~/clarion/docs/clarion/adr/ADR-015-wardline-filigree-emission.md`); Wardline integration brief (`~/wardline/docs/integration/2026-05-29-wardline-loom-integration-brief.md`). Tracked under Clarion `release:1.1`.
 
 ## Retired asterisks
 
-### A-2 — Clarion's Python plugin imported `wardline.core.registry.REGISTRY` at startup
+### A-2 — Loomweave's Python plugin imported `wardline.core.registry.REGISTRY` at startup
 
-- **Pair:** (Clarion, Wardline)
-- **Failure-test mode that was violated:** initialization coupling (doctrine §5, mode 2), scoped to the Wardline-aware plugin specifically, not Clarion as a product.
+- **Pair:** (Loomweave, Wardline)
+- **Failure-test mode that was violated:** initialization coupling (doctrine §5, mode 2), scoped to the Wardline-aware plugin specifically, not Loomweave as a product.
 - **Status:** **RETIRED 2026-06-05.**
-- **How it retired (two parts):** Wardline shipped the NG-25 trust-vocabulary descriptor, and Clarion's Python plugin now reads that descriptor (`.wardline/vocabulary.yaml` first, then the installed `wardline/core/vocabulary.yaml` data file) **without importing** `wardline`, `wardline.core`, or `wardline.core.registry`. Clarion records only source-observed decorator metadata on its own entities; Wardline remains authoritative for vocabulary and policy semantics.
+- **How it retired (two parts):** Wardline shipped the NG-25 trust-vocabulary descriptor, and Loomweave's Python plugin now reads that descriptor (`.wardline/vocabulary.yaml` first, then the installed `wardline/core/vocabulary.yaml` data file) **without importing** `wardline`, `wardline.core`, or `wardline.core.registry`. Loomweave records only source-observed decorator metadata on its own entities; Wardline remains authoritative for vocabulary and policy semantics.
 - **Authoritative source:** Clarion ADR-018 Revision 3 (`~/clarion/docs/clarion/adr/ADR-018-identity-reconciliation.md`); Clarion CHANGELOG (retirement landed in Clarion 1.3.0).
 - **Note:** the entry is retained as historical record, not deleted (the register keeps retired asterisks for audit).
 

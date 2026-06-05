@@ -26,7 +26,7 @@ for brand moments.
 
 | Member | Thread | Lang | Domain authority | Status |
 |--------|--------|------|------------------|--------|
-| **Clarion** | aqua `#4ECDC4` | Rust | Code structure **+ identity authority (SEI)** | built · in use |
+| **Loomweave** | aqua `#4ECDC4` | Rust | Code structure **+ identity authority (SEI)** | built · in use |
 | **Filigree** | sky `#38BDF8` | Python | Work state / issue lifecycle | built · in use |
 | **Wardline** | coral `#F4845F` | Python | Trust-boundary analysis | built · in use |
 | **Legis** | violet `#A78BFA` | Python | Git/CI governance & attestations | 1.0.0rc1 |
@@ -67,7 +67,7 @@ and type system.
 
 | Repo | URL | Used for |
 |------|-----|----------|
-| Clarion | https://github.com/tachyon-beep/clarion | Domain, MCP surface, SEI, copy/tone |
+| Loomweave | https://github.com/tachyon-beep/clarion | Domain, MCP surface, SEI, copy/tone |
 | Filigree | https://github.com/tachyon-beep/filigree | **Canonical theme** (`src/filigree/static/dashboard.html`, `js/state.js`, `js/views/kanban.js`), dashboard UI |
 | Wardline | https://github.com/foundryside-dev/wardline | Trust model, CLI scan output, agent-first framing |
 | Legis | https://github.com/tachyon-beep/legis | Governance 2×2, combination matrix, operating model |
@@ -180,7 +180,7 @@ the terminal voice.
   `☀` theme, `▸ ▾ ▴` disclosure, `⚖` governance. Reuse these rather than
   importing an icon library — it keeps the kits faithful.
 - **Federation marks (designed for this system).** Each member has a custom,
-  stroke-based geometric **mark** in `assets/marks/` (`loom`, `clarion`,
+  stroke-based geometric **mark** in `assets/marks/` (`loom`, `loomweave`,
   `filigree`, `wardline`, `legis`, `charter`, `shuttle`). They riff on
   weaving/structure (a woven knot, a branching spine, a nested diamond, a warded
   boundary, a balance, a ruled charter, a shuttle on a dashed thread). All are
@@ -203,7 +203,7 @@ the terminal voice.
 - `colors_and_type.css` — the token source of truth (colors, type roles, radii, shadows, spacing, thread palette, light theme)
 
 **`assets/marks/`** — the seven federation glyphs + the adjacent specimen, as standalone SVGs
-- `loom.svg` · `clarion.svg` · `filigree.svg` · `wardline.svg` · `legis.svg` · `charter.svg` · `shuttle.svg`
+- `loom.svg` · `loomweave.svg` · `filigree.svg` · `wardline.svg` · `legis.svg` · `charter.svg` · `shuttle.svg`
 - `lacuna.svg` — the adjacent demonstration specimen (off-palette, dashed)
 
 **`preview/`** — the Design System tab cards (Brand, Type, Colors, Spacing, Components)

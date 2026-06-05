@@ -104,7 +104,7 @@ function MemberCard({ m, open, onToggle, dim }) {
 }
 
 function Roster() {
-  const [openId, setOpenId] = useState("clarion");
+  const [openId, setOpenId] = useState("loomweave");
   const toggle = (id) => setOpenId(openId === id ? null : id);
   return (
     <section style={{ padding: "20px 30px 40px", maxWidth: 980, margin: "0 auto" }}>
@@ -143,7 +143,7 @@ function LacunaStrip() {
 }
 
 const MODES = {
-  solo: { label: "Solo", text: "Each tool has a complete, respectable use-case by itself. Filigree files, works, and closes a bug with Clarion absent or broken." },
+  solo: { label: "Solo", text: "Each tool has a complete, respectable use-case by itself. Filigree files, works, and closes a bug with Loomweave absent or broken." },
   pair: { label: "Pair", text: "Combined with any one sibling it creates a meaningful capability — Wardline findings become tracked Filigree work; never a broken fragment." },
   suite: { label: "Suite", text: "All together form something richer: the agent understands the code, its trust posture, what it may do, and every unit of work — keyed on one identity." },
 };

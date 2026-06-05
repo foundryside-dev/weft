@@ -4,10 +4,10 @@ Lean registry of terms whose usage **within this hub** must stay consistent. (Cr
 
 | Term | Hub meaning | Don't say |
 |---|---|---|
-| **member** | One of the 5 realized federation products (Clarion, Filigree, Wardline, Legis, Charter) | Don't call Shuttle or Lacuna a "member" |
+| **member** | One of the 5 realized federation products (Loomweave, Filigree, Wardline, Legis, Charter) | Don't call Shuttle or Lacuna a "member" |
 | **thought-bubble** | Shuttle's status: a roadmap idea, no repo, displaceable | Don't call Shuttle "proposed member" or imply a reserved slot |
 | **demonstration specimen** | Lacuna's role: the deliberately-flawed target the suite runs against | Don't call Lacuna a member or a customer |
-| **SEI** | Stable Entity Identity — opaque, Clarion-minted; the identity | Don't equate SEI with the `locator` |
+| **SEI** | Stable Entity Identity — opaque, Loomweave-minted; the identity | Don't equate SEI with the `locator` |
 | **locator** | `{plugin_id}:{kind}:{qualname}` — the mutable *address*, demoted from identity by ADR-038 | Don't call the locator an "identity" or "entity id (identity)" |
 | **enrich-only** | Composition that adds capability without being required for the other's semantics | Don't call any integration "load-bearing" (the failure mode) |
 | **asterisk** | A *documented* axiom violation with a written retirement condition | Don't use "asterisk" for an undocumented coupling |

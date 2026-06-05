@@ -10,7 +10,7 @@ This folder (`~/loom`) is the **authoritative source of truth for federation-wid
 
 | Member | Repo | Lang | Domain authority | Briefing |
 |---|---|---|---|---|
-| Clarion | `~/clarion` | Rust | Code structure **+ identity authority (SEI)** | [members/clarion.md](./members/clarion.md) |
+| Loomweave | `~/clarion` | Rust | Code structure **+ identity authority (SEI)** | [members/loomweave.md](./members/loomweave.md) |
 | Filigree | `~/filigree` | Python | Work state / issue lifecycle | [members/filigree.md](./members/filigree.md) |
 | Wardline | `~/wardline` | Python | Trust-boundary analysis | [members/wardline.md](./members/wardline.md) |
 | Legis | `~/legis` | Python | Git/CI governance & attestations | [members/legis.md](./members/legis.md) |
