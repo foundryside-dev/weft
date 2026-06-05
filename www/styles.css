@@ -1,9 +1,8 @@
 /* ============================================================================
    LOOM FEDERATION — hub site layout
    ----------------------------------------------------------------------------
-   Layered on colors_and_type.css (the token + type source of truth). This file
-   only carries layout + component styling for the federation hub, faithfully
-   recreating the loom-hub UI kit from the Loom Design System handoff:
+   Layered on colors_and_type.css (the token + type source of truth). Faithful
+   recreation of the loom-hub UI kit from the Loom Design System handoff:
    terminal-grade, dark-teal canonical, JetBrains Mono product face with
    Space Grotesk reserved for brand moments.
    ============================================================================ */
@@ -25,8 +24,15 @@ body {
 
 .mark { display: block; flex: 0 0 auto; }
 
+/* ---- links --------------------------------------------------------------- */
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 2px; }
+/* external-link affordance */
+.ext::after { content: " \2197"; font-size: 0.85em; color: var(--text-muted); }
+
 /* ---- shared section width ------------------------------------------------ */
-.hero, .roster, .composition, .hub-footer { max-width: 980px; margin: 0 auto; }
+.hero, .roster, .composition, .weave, .hub-footer { max-width: 980px; margin: 0 auto; }
 
 /* ============================ HEADER ============================ */
 .hub-header {
@@ -45,16 +51,15 @@ body {
 .path-hint { font-size: 11px; color: var(--text-muted); margin-left: 2px; }
 
 .hub-nav { display: flex; gap: 4px; margin-left: auto; flex-wrap: wrap; }
-.hub-nav a, .nav-placeholder {
+.hub-nav a {
   font-size: 12px; color: var(--text-secondary); text-decoration: none;
   padding: 6px 11px; border-radius: var(--radius); white-space: nowrap;
   transition: background var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
 }
 .hub-nav a:hover, .hub-nav a:focus-visible {
-  background: var(--surface-overlay); color: var(--text-primary); outline: none;
+  background: var(--surface-overlay); color: var(--text-primary); text-decoration: none;
 }
-.hub-nav a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-.nav-placeholder { color: var(--text-muted); cursor: default; opacity: 0.75; }
+.hub-nav a.ext::after { content: " \2197"; font-size: 0.8em; opacity: 0.6; }
 
 /* ============================ HERO ============================ */
 .hero { padding: 64px 30px 40px; }
@@ -92,18 +97,24 @@ body {
 .section-label { margin-bottom: 16px; }
 .member-list { display: flex; flex-direction: column; gap: 10px; }
 
+/* card = container; toggle = the clickable header; detail = revealed sibling */
 .member-card {
   background: var(--surface-raised);
   border: 1px solid var(--border-default);
   border-left: 3px solid var(--thread, var(--accent));
   border-radius: var(--radius);
+  overflow: hidden;
+}
+.member-card.is-dim { opacity: 0.72; }
+
+.member-toggle {
+  display: block; width: 100%; text-align: left;
+  background: transparent; border: 0; color: inherit; font: inherit;
   padding: 16px 18px; cursor: pointer;
   transition: background var(--dur-fast) var(--ease);
-  text-align: left; width: 100%; font: inherit; color: inherit;
 }
-.member-card:hover { background: var(--surface-overlay); }
-.member-card:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-.member-card.is-dim { opacity: 0.72; }
+.member-toggle:hover { background: var(--surface-overlay); }
+.member-toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
 
 .member-row { display: flex; align-items: center; gap: 12px; }
 .member-row .mark { color: var(--thread, var(--accent)); }
@@ -118,14 +129,15 @@ body {
 }
 
 .member-detail {
-  margin-top: 13px; padding-top: 13px;
-  border-top: 1px solid var(--border-default);
   display: none;
+  margin: 0 18px; padding: 13px 0 16px;
+  border-top: 1px solid var(--border-default);
 }
-.member-card[aria-expanded="true"] .member-detail { display: block; }
+.member-toggle[aria-expanded="true"] + .member-detail { display: block; }
 .detail-label { margin-bottom: 6px; }
-.detail-answer { font-size: 13px; color: var(--text-primary); line-height: 1.5; font-style: italic; }
-.detail-repo { font-size: 11px; color: var(--text-muted); margin-top: 10px; }
+.detail-answer { display: block; font-size: 13px; color: var(--text-primary); line-height: 1.5; font-style: italic; }
+.detail-repo { display: inline-block; margin-top: 11px; font-size: 11.5px; }
+.detail-repo-none { color: var(--text-muted); }
 
 /* ---- Lacuna — adjacent specimen (same world, set apart) ----------------- */
 .lacuna-block { margin-top: 22px; }
@@ -136,20 +148,23 @@ body {
   border: 1.5px dashed var(--lacuna-border);
   border-radius: var(--radius);
   transition: border-color var(--dur-fast) var(--ease);
+  text-decoration: none; color: inherit;
 }
-.lacuna-strip:hover { border-color: var(--lacuna-accent-dim); }
+.lacuna-strip:hover { border-color: var(--lacuna-accent-dim); text-decoration: none; }
+.lacuna-strip:focus-visible { outline: 2px solid var(--lacuna-accent); outline-offset: 2px; }
 .lacuna-strip .mark { color: var(--lacuna-accent); }
 .lacuna-body { flex: 1; min-width: 0; }
 .lacuna-kind { font-size: 11px; color: var(--lacuna-accent-dim); }
 .lacuna-loc { font-size: 11px; color: var(--lacuna-accent); white-space: nowrap; margin-left: auto; padding-left: 8px; }
+.lacuna-strip.ext::after { content: ""; } /* suppress global ext arrow; loc text carries the cue */
 
 /* ====================== COMPOSITION LAW ====================== */
-.composition { padding: 28px 30px 44px; }
+.composition { padding: 28px 30px 24px; }
 .comp-title {
   font-family: var(--font-display); font-size: 26px; font-weight: 600;
   letter-spacing: -0.015em; color: var(--text-primary); margin: 0 0 4px;
 }
-.comp-lede { max-width: 640px; margin-bottom: 20px; }
+.comp-lede { max-width: 660px; margin-bottom: 20px; }
 .mode-toggle { display: flex; gap: 6px; margin-bottom: 16px; flex-wrap: wrap; }
 .mode-btn {
   font-family: var(--font-mono); font-size: 12px; font-weight: 600;
@@ -169,6 +184,38 @@ body {
 }
 .mode-panel .mode-text { font-size: 15px; color: var(--text-primary); line-height: 1.55; }
 
+/* ====================== HOW THEY COMPOSE (weave) ====================== */
+.weave { padding: 16px 30px 44px; }
+.facts { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 16px 0 28px; }
+.fact {
+  background: var(--surface-raised); border: 1px solid var(--border-default);
+  border-left: 3px solid var(--accent); border-radius: var(--radius-lg);
+  padding: 18px 20px;
+}
+.fact-title { font-size: 15px; font-weight: 600; color: var(--text-primary); margin: 7px 0 8px; }
+.fact-body { font-size: 13px; color: var(--text-secondary); line-height: 1.55; }
+
+.bindings { list-style: none; margin: 12px 0 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.bindings li {
+  font-size: 13px; color: var(--text-secondary); line-height: 1.5;
+  padding: 11px 14px; background: var(--surface-raised);
+  border: 1px solid var(--border-default); border-radius: var(--radius);
+  display: flex; align-items: baseline; gap: 7px; flex-wrap: wrap;
+}
+.b-name { font-weight: 600; color: var(--thread, var(--accent)); }
+.b-arrow { color: var(--text-muted); }
+.b-desc { color: var(--text-secondary); }
+.weave-foot { margin-top: 16px; }
+
+/* ---- small inline status tags (status-coloured, alpha fill) -------------- */
+.tag {
+  display: inline-block; font-size: 10px; font-weight: 600; letter-spacing: 0.04em;
+  padding: 2px 7px; border-radius: var(--radius-sm); white-space: nowrap; margin-left: 2px;
+}
+.tag-ok   { color: var(--ready); background: color-mix(in oklab, var(--ready) 16%, transparent); }
+.tag-warn { color: var(--aging); background: color-mix(in oklab, var(--aging) 16%, transparent); }
+.tag-dim  { color: var(--text-muted); background: var(--surface-overlay); }
+
 /* ============================ FOOTER ============================ */
 .hub-footer {
   border-top: 1px solid var(--border-default);
@@ -176,15 +223,22 @@ body {
 }
 .hub-footer .mark { color: var(--text-muted); }
 .foot-note { font-size: 11px; color: var(--text-muted); }
-.foot-meta { font-size: 11px; color: var(--text-muted); margin-left: auto; }
+.foot-links { display: flex; gap: 14px; flex-wrap: wrap; margin-left: auto; }
+.foot-links a { font-size: 11px; color: var(--text-secondary); }
+.foot-links a:hover { color: var(--text-primary); }
+.foot-meta { font-size: 11px; color: var(--text-muted); }
 
 /* ============================ RESPONSIVE ============================ */
+@media (max-width: 720px) {
+  .facts { grid-template-columns: 1fr; }
+}
 @media (max-width: 640px) {
   .hub-header { gap: 12px; padding: 12px 18px; }
   .path-hint { display: none; }
   .hero { padding: 44px 18px 32px; }
-  .roster, .composition { padding-left: 18px; padding-right: 18px; }
+  .roster, .composition, .weave { padding-left: 18px; padding-right: 18px; }
   .hub-footer { padding: 18px; }
+  .foot-links { margin-left: 0; flex-basis: 100%; }
   .member-status { margin-left: 0; flex-basis: 100%; padding-left: 0; margin-top: 4px; }
 }
 

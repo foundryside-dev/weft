@@ -1,8 +1,8 @@
 /* ============================================================================
    LOOM FEDERATION — hub interactions (progressive enhancement)
    The page is content-complete without JS: every member card and the default
-   composition panel render server-side. This script only layers in the
-   interactive behaviour faithful to the loom-hub UI kit:
+   composition panel render server-side, and all links work. This script only
+   layers in interactive behaviour faithful to the loom-hub UI kit:
      · single-open accordion on the member roster (default: clarion)
      · the Solo / Pair / Suite composition-law toggle (default: pair)
    ============================================================================ */
@@ -10,19 +10,19 @@
   "use strict";
 
   /* ---- Member roster: single-open accordion --------------------------- */
-  var cards = Array.prototype.slice.call(document.querySelectorAll(".member-card"));
+  var toggles = Array.prototype.slice.call(document.querySelectorAll(".member-toggle"));
 
   function setOpen(target) {
-    cards.forEach(function (c) {
-      c.setAttribute("aria-expanded", String(c === target));
+    toggles.forEach(function (t) {
+      t.setAttribute("aria-expanded", String(t === target));
     });
   }
 
-  cards.forEach(function (card) {
-    card.addEventListener("click", function () {
-      var isOpen = card.getAttribute("aria-expanded") === "true";
+  toggles.forEach(function (toggle) {
+    toggle.addEventListener("click", function () {
+      var isOpen = toggle.getAttribute("aria-expanded") === "true";
       // Toggle: clicking the open card closes it; otherwise open it (closing the rest).
-      setOpen(isOpen ? null : card);
+      setOpen(isOpen ? null : toggle);
     });
   });
 

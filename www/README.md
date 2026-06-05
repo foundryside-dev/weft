@@ -15,7 +15,7 @@ build step, no runtime dependencies. GitHub-Pages-deployable as-is.
 
 | File | Purpose |
 |---|---|
-| `index.html` | The page: header, hero (federation axiom), member roster, composition-law toggle, Lacuna strip, footer. Content-complete server-side. |
+| `index.html` | The page: header, hero (federation axiom), member roster (cards expand to repo links), composition-law toggle, **how-they-compose** (SEI + `loom` transport + representative bindings, grounded in `federation-map.md`), Lacuna strip, footer. Content-complete server-side. |
 | `colors_and_type.css` | **Token source of truth, copied verbatim from the design system.** Surfaces, text, accent, the per-member thread palette, Lacuna scheme, radii, elevation, spacing, the mono/display type roles, and the documented light theme. |
 | `styles.css` | Hub layout + components, layered on the tokens. |
 | `main.js` | Progressive enhancement only: single-open roster accordion + Solo/Pair/Suite toggle. |
@@ -52,17 +52,22 @@ preloaded fonts resolve under a normal origin.
 - **No theme-flash / font-flash.** Both brand faces are `<link rel="preload">`-ed
   before first paint (the design's recurring "missing brand fonts" fix).
 
-## No outbound links (pending the org migration)
+## Links — wired to `foundryside-dev`
 
-The suite is mid-migration to a consolidated GitHub org, so the site ships with
-**zero outbound hyperlinks**. The design naturally suits this: repo references
-are plain filesystem paths (`~/clarion`, `~/lacuna`), and nav items either point
-to real on-page sections (Doctrine/Federation → composition law, Members →
-roster) or are inert `role="note"` placeholders (SEI, Glossary) until those docs
-land.
+The link freeze is lifted: the suite is consolidating under the
+**`foundryside-dev`** GitHub org (the hub already lives at
+`foundryside-dev/loom`), so the site points there throughout:
 
-**To go live after the freeze lifts:** wire the inert nav placeholders and any
-repo references to real `href`s. Nothing else needs to change.
+- **Member cards** expand to a real repo link — `github.com/foundryside-dev/<member>`.
+- **Lacuna** links to `foundryside-dev/lacuna`; **Shuttle** stays link-free (no repo).
+- **Nav + footer** link to the hub's own docs on GitHub (doctrine, SEI, glossary,
+  federation-map, compatibility, asterisk-register) and the source repo.
+- In-page nav (Members → roster, Compose → the weave section) are real anchors.
+
+**Caveat:** `filigree`, `clarion`, `legis`, and `charter` still live under
+`tachyon-beep` today — those four repo links 404 until the repos migrate to
+`foundryside-dev` (as intended). `loom`, `wardline`, and `lacuna` resolve now.
+External links carry an `↗` affordance and open in a new tab.
 
 ## Notes
 

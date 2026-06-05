@@ -1,15 +1,37 @@
+{#-
+  overrides/home.html — the Loom Federation custom landing, rendered as the
+  site HOME with NO Material chrome (no sidebar, no TOC, no header bar).
+
+  This is a STANDALONE document — it deliberately does NOT `extends base.html`,
+  so the terminal-grade landing keeps its own header / footer / layout and its
+  own progressive-enhancement JS (member accordion, Solo/Pair/Suite toggle).
+
+  Wiring:
+  - Selected by `README.md` front-matter `template: home.html` (the build-docs
+    mirror prepends that to the generated docs/README.md, which maps to the
+    site root index.html).
+  - Landing assets (styles.css, colors_and_type.css, main.js, fonts/) are copied
+    by build-docs.sh into `docs/_home/` as a unit, so colors_and_type.css's
+    relative `url('fonts/...')` still resolves. Asset paths below use
+    `{{ base_url }}` so the page works at any deploy sub-path.
+  - The body markup is the landing from `www/index.html`. Marks are inline SVG,
+    so no image assets are required here.
+  - Material owns the doc-page light/dark toggle, but this chrome-less home
+    pins the canonical dark theme via `data-theme="dark"` on <html>, matching
+    the standalone landing's design intent.
+-#}
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Loom Federation — hub</title>
-<meta name="description" content="Loom Federation is an agent-first family of small, local-first developer tools. Each member is authoritative for one domain, useful on its own, and enrich-only — never load-bearing — when composed.">
-<!-- Preload brand + product faces before first paint (kills the substitute-font flash). -->
-<link rel="preload" href="fonts/SpaceGrotesk-Variable.ttf" as="font" type="font/ttf" crossorigin>
-<link rel="preload" href="fonts/JetBrainsMono-Variable.ttf" as="font" type="font/ttf" crossorigin>
-<link rel="stylesheet" href="colors_and_type.css">
-<link rel="stylesheet" href="styles.css">
+<title>{{ config.site_name }} — hub</title>
+<meta name="description" content="{{ config.site_description }}">
+<link rel="preload" href="{{ base_url }}/_home/fonts/SpaceGrotesk-Variable.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="preload" href="{{ base_url }}/_home/fonts/JetBrainsMono-Variable.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="stylesheet" href="{{ base_url }}/_home/colors_and_type.css">
+<link rel="stylesheet" href="{{ base_url }}/_home/styles.css">
+{% if config.extra.home_favicon %}<link rel="icon" href="{{ base_url }}/{{ config.extra.home_favicon }}">{% endif %}
 </head>
 <body>
 
@@ -30,9 +52,9 @@
   <nav class="hub-nav" aria-label="Primary">
     <a href="#roster">Members</a>
     <a href="#compose">Compose</a>
-    <a class="ext" href="https://github.com/foundryside-dev/loom/blob/main/doctrine.md" target="_blank" rel="noopener">Doctrine</a>
-    <a class="ext" href="https://github.com/foundryside-dev/loom/blob/main/sei-standard.md" target="_blank" rel="noopener">SEI</a>
-    <a class="ext" href="https://github.com/foundryside-dev/loom/blob/main/glossary.md" target="_blank" rel="noopener">Glossary</a>
+    <a href="{{ base_url }}/doctrine/">Doctrine</a>
+    <a href="{{ base_url }}/sei-standard/">SEI</a>
+    <a href="{{ base_url }}/glossary/">Glossary</a>
   </nav>
 </header>
 
@@ -254,7 +276,7 @@
       <li><span class="b-name thread-wardline">Wardline</span> <span class="b-arrow">→</span> <span class="b-name thread-clarion">Clarion</span> <span class="b-desc">taint facts enrich the entity graph</span></li>
       <li><span class="b-name thread-charter">Charter</span> <span class="b-arrow">→</span> <span class="b-name thread-clarion">Clarion</span> <span class="b-desc">SEI consumer for trace links</span> <span class="tag tag-dim">planned · scaffold-state</span></li>
     </ul>
-    <p class="t-meta weave-foot">Full 5×5 matrix in <a class="ext" href="https://github.com/foundryside-dev/loom/blob/main/federation-map.md" target="_blank" rel="noopener">federation-map.md</a>. Two named asterisks tracked in <a class="ext" href="https://github.com/foundryside-dev/loom/blob/main/asterisk-register.md" target="_blank" rel="noopener">asterisk-register.md</a>.</p>
+    <p class="t-meta weave-foot">Full 5×5 matrix in <a href="{{ base_url }}/federation-map/">federation-map</a>. Two named asterisks tracked in <a href="{{ base_url }}/asterisk-register/">asterisk-register</a>.</p>
   </section>
 
 </main>
@@ -272,12 +294,13 @@
   <span class="foot-note">~/loom is documentation only — there is nothing called &ldquo;Loom Federation&rdquo; to install or run.</span>
   <nav class="foot-links" aria-label="Resources">
     <a class="ext" href="https://github.com/foundryside-dev/loom" target="_blank" rel="noopener">Source</a>
-    <a class="ext" href="https://github.com/foundryside-dev/loom/blob/main/federation-map.md" target="_blank" rel="noopener">Federation map</a>
-    <a class="ext" href="https://github.com/foundryside-dev/loom/blob/main/compatibility.md" target="_blank" rel="noopener">Compatibility</a>
+    <a href="{{ base_url }}/federation-map/">Federation map</a>
+    <a href="{{ base_url }}/compatibility/">Compatibility</a>
+    <a href="{{ base_url }}/doctrine/">Doctrine</a>
   </nav>
   <span class="foot-meta">MIT · 2026</span>
 </footer>
 
-<script src="main.js"></script>
+<script src="{{ base_url }}/_home/main.js"></script>
 </body>
 </html>
