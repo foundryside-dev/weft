@@ -20,6 +20,10 @@ Rows = the producer/initiator; columns = the other side. Numbers in cells refere
 
 *(Charter cells marked "planned" are designed in ADRs but the federation adapters are deferred — Charter is scaffold-state. See [members/charter.md](./members/charter.md).)*
 
+> **Building your own tool to drop into this matrix?** See the
+> [Federation SDK](./federation-sdk.md) — the member-builder's view of these same
+> bindings, with the conformance spine and the oracle gate.
+
 ## The two structural facts that hold the matrix together
 
 1. **SEI is the connective tissue.** Every cell binds on Loomweave's [Stable Entity Identity](./sei-standard.md). A combination is only as strong as its weakest binding; a tool keying on a mutable `locator` silently orphans every combination it is in. SEI is **LOCKED** (2026-06-05) — the interface is frozen; remaining member backfills are conformance tasks under the locked standard ([conflict-register.md](./conflict-register.md) §B-2).
@@ -29,7 +33,7 @@ Rows = the producer/initiator; columns = the other side. Numbers in cells refere
 
 Two pairs do not yet pass the failure test cleanly; both are named with retirement conditions in the **[asterisk-register.md](./asterisk-register.md)**:
 
-- **A-1 (LIVE):** Wardline→Filigree findings are pipeline-coupled through Loomweave's SARIF translator. Retires on Wardline's native Filigree emitter.
+- **A-1 (LIVE):** Wardline→Filigree findings are pipeline-coupled through Loomweave's SARIF translator. Wardline's native Filigree emitter has **shipped** (`~/wardline/src/wardline/core/filigree_emit.py`); the asterisk stays live until (Wardline, Filigree) composition with Loomweave absent is demonstrated end-to-end (currently exercised only at the unit/server-wiring tier — see [asterisk-register.md](./asterisk-register.md) A-1).
 - **A-2 (RETIRED 2026-06-05):** Loomweave's plugin importing `wardline.core.registry.REGISTRY` — now reads an on-disk vocabulary descriptor instead.
 
 ## What is *not* on the matrix

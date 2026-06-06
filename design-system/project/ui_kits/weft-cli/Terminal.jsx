@@ -41,7 +41,7 @@ const SESSIONS = {
       <L><span style={K.err}>● PY-WL-101</span>  <span style={{ color: "var(--text-primary)" }}>demo.build_record</span></L>
       <L ind={1} k="out">declares return trust <span style={K.ok}>ASSURED</span> but returns <span style={K.err}>EXTERNAL_RAW</span> —</L>
       <L ind={1} k="out">untrusted data reaches a trusted producer with no validation.</L>
-      <L ind={1} k="dim">demo.py:8 · entity <span style={{ color: "var(--text-primary)" }}>clarion:sei:7f3a…b1</span></L>
+      <L ind={1} k="dim">demo.py:8 · entity <span style={{ color: "var(--text-primary)" }}>loomweave:sei:7f3a…b1</span></L>
       <div style={{ height: 8 }} />
       <L k="dim">2 finding(s) NONE-severity (engine facts) — hidden</L>
       <Prompt tool="echo" cmd="$?" />
@@ -51,11 +51,11 @@ const SESSIONS = {
   loomweave: {
     member: "loomweave", label: "loomweave · MCP",
     render: () => (<>
-      <Prompt tool="clarion" cmd="serve   # 39-tool MCP surface over stdio" />
+      <Prompt tool="loomweave" cmd="serve   # 39-tool MCP surface over stdio" />
       <L k="dim">consult-mode agent → entity_orientation_pack_get("auth.session.build_record")</L>
       <div style={{ height: 8 }} />
       <L><span style={K.acc}>◆ entity</span>  auth.session.build_record  <span style={K.dim}>fn · python</span></L>
-      <L ind={1} k="out"><span style={K.dim}>sei</span>        clarion:sei:7f3a…b1  <span style={K.ok}>● stable</span></L>
+      <L ind={1} k="out"><span style={K.dim}>sei</span>        loomweave:sei:7f3a…b1  <span style={K.ok}>● stable</span></L>
       <L ind={1} k="out"><span style={K.dim}>callers</span>    14 · 2 subsystems · entry-point: no</L>
       <L ind={1} k="out"><span style={K.dim}>enriched</span>   <Tag id="wardline">wardline</Tag>taint EXTERNAL_RAW→ASSURED</L>
       <L ind={1} k="out"><span style={{ paddingLeft: 0 }} /><span style={{ marginLeft: 62, display: "inline-block" }} /><Tag id="filigree">filigree</Tag>issue fg-da8d · fixing</L>
@@ -85,7 +85,7 @@ const SESSIONS = {
       <Prompt tool="make" cmd="tour   # drive every live tool against the specimen" />
       <L k="dim">target: ~/lacuna · the deliberately-flawed demonstration specimen</L>
       <div style={{ height: 8 }} />
-      <L><span style={thread("loomweave")}>clarion </span><span style={K.ok}>✓ live</span>   <span style={K.dim}>catalog built · 312 entities · SEI minted</span></L>
+      <L><span style={thread("loomweave")}>loomweave </span><span style={K.ok}>✓ live</span>   <span style={K.dim}>catalog built · 312 entities · SEI minted</span></L>
       <L><span style={thread("wardline")}>wardline</span> <span style={K.ok}>✓ live</span>   <span style={K.dim}>4 baselined lacunae surfaced · gate green</span></L>
       <L><span style={thread("filigree")}>filigree</span> <span style={K.ok}>✓ live</span>   <span style={K.dim}>findings → 4 tracked issues</span></L>
       <L><span style={thread("legis")}>legis   </span> <span style={K.warn}>◐ design-only</span>  <span style={K.dim}>labelled, never faked</span></L>

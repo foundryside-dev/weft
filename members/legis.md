@@ -2,7 +2,7 @@
 
 **Domain authority:** git/CI governance & attestations — change provenance (branch/commit/PR/CI state) and SEI-keyed governance verdicts, overrides, sign-offs, and audit lineage. The federation's **governance surface**.
 **Repo:** `~/legis` · **Language:** Python (FastAPI)
-**Surface facts (snapshot 2026-06-05 — NOT authoritative here; see the repo):** v1.0.0rc (rc1 shipped 2026-06-03); HTTP service live (git/CI surfaces, overrides, protected overrides, signoff binding, policy evaluation, governance integrity, Wardline routing); MCP surface designed, in flight. Authoritative: `~/legis/README.md`, `~/legis/pyproject.toml`, `~/legis/CHANGELOG.md`.
+**Surface facts (snapshot 2026-06-06 — NOT authoritative here; see the repo):** v1.0.0rc3 (rc1 shipped 2026-06-03); HTTP service live (git/CI surfaces, overrides, protected overrides, signoff binding, policy evaluation, governance integrity, Wardline routing); MCP surface shipped (~13 read-mode tools, `src/legis/mcp.py`). Authoritative: `~/legis/README.md`, `~/legis/pyproject.toml`, `~/legis/CHANGELOG.md`.
 
 ## What it owns (authoritative in Legis)
 

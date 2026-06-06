@@ -15,7 +15,7 @@ for each, with output drawn from the tools' own READMEs.
 | File | What it is |
 |------|------------|
 | `index.html` | Mounts React; defines the cursor `blink` keyframe |
-| `Marks.jsx` | Shared glyph set (tab icons in thread colors) |
+| `CliMarks.jsx` | Shared glyph set (tab icons in thread colors) |
 | `Terminal.jsx` | `Terminal` window + `SESSIONS` content; `L` / `Prompt` / `Tag` line primitives |
 
 ## Reuse
@@ -24,7 +24,8 @@ for each, with output drawn from the tools' own READMEs.
 - The window chrome (traffic lights + tab bar) is a reusable terminal frame.
 
 ## Notes
-- **Lacuna** is the deliberately-flawed *demonstration specimen* the suite is run
-  against — not a roster member. It appears only as the `make tour` target.
+- **Lacuna** is not part of Weft — it's the **demo suite**: a separate sample
+  codebase of deliberately-buggy code that the tools are run against and pick up.
+  It appears only as the `make tour` target, never as a roster member.
 - Design-only members (Legis, Charter) are **labelled, never faked**, mirroring
   the real tour harness.

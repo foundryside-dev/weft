@@ -158,6 +158,45 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-
 .lacuna-loc { font-size: 11px; color: var(--lacuna-accent); white-space: nowrap; margin-left: auto; padding-left: 8px; }
 .lacuna-strip.ext::after { content: ""; } /* suppress global ext arrow; loc text carries the cue */
 
+/* ============================ PRODUCT DIRECTORY ============================ */
+/* A no-JS directory of curated cheat-sheets — one anchor card per realized
+   member, linking into its docs product page. Reuses the thread grammar
+   (glyph colour + 4px left-rule), never a fill. */
+.products { padding: 8px 30px 40px; max-width: 980px; margin: 0 auto; }
+.products .section-label { margin-bottom: 6px; }
+.products-lede { max-width: 660px; margin: 0 0 18px; }
+.product-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px;
+}
+.product-card {
+  display: flex; flex-direction: column; gap: 9px;
+  background: var(--surface-raised);
+  border: 1px solid var(--border-default);
+  border-left: 3px solid var(--thread, var(--accent));
+  border-radius: var(--radius-lg);
+  padding: 16px 18px;
+  color: inherit; text-decoration: none;
+  transition: background var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease);
+}
+.product-card:hover { background: var(--surface-overlay); text-decoration: none; }
+.product-card:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.product-card .mark { color: var(--thread, var(--accent)); }
+.product-top { display: flex; align-items: center; gap: 11px; }
+.product-head { display: flex; align-items: baseline; gap: 9px; flex-wrap: wrap; min-width: 0; }
+.product-name { font-size: 15px; font-weight: 600; color: var(--text-primary); }
+.product-lang { font-size: 11px; color: var(--text-muted); }
+.product-domain { font-size: 12px; color: var(--thread, var(--accent)); }
+.product-what { font-size: 12.5px; color: var(--text-secondary); line-height: 1.5; flex: 1; }
+.product-link {
+  font-size: 11.5px; font-weight: 600; color: var(--accent);
+  margin-top: 2px; align-self: flex-start;
+}
+.product-card:hover .product-link { text-decoration: underline; }
+/* www cards are external (GitHub blobs) and carry .ext; suppress the global ↗
+   after the whole card block — the "Cheat-sheet →" link text carries the cue. */
+.product-card.ext::after { content: ""; }
+.products-foot { margin-top: 16px; }
+
 /* ====================== COMPOSITION LAW ====================== */
 .composition { padding: 28px 30px 24px; }
 .comp-title {
@@ -227,16 +266,21 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-
 .foot-links a { font-size: 11px; color: var(--text-secondary); }
 .foot-links a:hover { color: var(--text-primary); }
 .foot-meta { font-size: 11px; color: var(--text-muted); }
+/* parent-org attribution: Foundryside (org) above Weft (federation) — neutral, never a thread color */
+.foot-org { display: flex; align-items: center; gap: 8px; font-size: 11px; color: var(--text-muted); text-decoration: none; transition: color 0.15s var(--ease); }
+.foot-org .mark { color: inherit; }
+.foot-org:hover { color: var(--text-secondary); }
 
 /* ============================ RESPONSIVE ============================ */
 @media (max-width: 720px) {
   .facts { grid-template-columns: 1fr; }
+  .product-grid { grid-template-columns: 1fr; }
 }
 @media (max-width: 640px) {
   .hub-header { gap: 12px; padding: 12px 18px; }
   .path-hint { display: none; }
   .hero { padding: 44px 18px 32px; }
-  .roster, .composition, .weave { padding-left: 18px; padding-right: 18px; }
+  .roster, .products, .composition, .weave { padding-left: 18px; padding-right: 18px; }
   .hub-footer { padding: 18px; }
   .foot-links { margin-left: 0; flex-basis: 100%; }
   .member-status { margin-left: 0; flex-basis: 100%; padding-left: 0; margin-top: 4px; }

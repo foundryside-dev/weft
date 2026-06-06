@@ -11,7 +11,8 @@ and thread palette, content/voice rules, visual foundations, and iconography.
 Then explore the other files as needed:
 
 - `colors_and_type.css` — the token source of truth. Link it, or copy the values.
-- `assets/marks/` — the seven federation glyphs (inline the SVG so `currentColor`
+- `assets/marks/` — the parent-org mark (`foundryside`) + the seven federation
+  glyphs (inline the SVG so `currentColor`
   applies; loading via `<img>` won't pick up the thread color).
 - `preview/` — small specimen cards for every token and component.
 - `ui_kits/<kit>/` — interactive recreations (weft-hub, filigree-dashboard,

@@ -9,3 +9,20 @@
 __pycache__/
 *.pyc
 .venv/
+
+# Filigree issue tracker
+.filigree/
+.filigree.conf
+.gitignore
+.mcp.json
+AGENTS.md
+CLAUDE.md
+.agents/skills/filigree-workflow/SKILL.md
+.agents/skills/filigree-workflow/examples/sprint-plan.json
+.agents/skills/filigree-workflow/references/team-coordination.md
+.agents/skills/filigree-workflow/references/workflow-patterns.md
+.claude/settings.json
+.claude/skills/filigree-workflow/SKILL.md
+.claude/skills/filigree-workflow/examples/sprint-plan.json
+.claude/skills/filigree-workflow/references/team-coordination.md
+.claude/skills/filigree-workflow/references/workflow-patterns.md

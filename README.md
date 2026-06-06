@@ -10,7 +10,7 @@ This folder (`~/weft`) is the **authoritative source of truth for federation-wid
 
 | Member | Repo | Lang | Domain authority | Briefing |
 |---|---|---|---|---|
-| Loomweave | `~/clarion` | Rust | Code structure **+ identity authority (SEI)** | [members/loomweave.md](./members/loomweave.md) |
+| Loomweave | `~/loomweave` | Rust | Code structure **+ identity authority (SEI)** | [members/loomweave.md](./members/loomweave.md) |
 | Filigree | `~/filigree` | Python | Work state / issue lifecycle | [members/filigree.md](./members/filigree.md) |
 | Wardline | `~/wardline` | Python | Trust-boundary analysis | [members/wardline.md](./members/wardline.md) |
 | Legis | `~/legis` | Python | Git/CI governance & attestations | [members/legis.md](./members/legis.md) |
@@ -37,6 +37,7 @@ The hub drifted because it **restated project-internal facts that move** (versio
 
 - **New here?** [doctrine.md](./doctrine.md) (the federation law) → [federation-map.md](./federation-map.md) (how they compose) → the member briefing you care about.
 - **Building a cross-tool integration?** [contracts-index.md](./contracts-index.md) (points to the authoritative schema in the owning repo) + [sei-standard.md](./sei-standard.md) (identity is the spine).
+- **Building your own tool to drop into the federation?** [federation-sdk.md](./federation-sdk.md) — the member-builder's interface contract: the conformance spine, every interface surface, and the oracle gate.
 - **Pre-release conflict flush?** [conflict-register.md](./conflict-register.md) — walk Class B before any point release.
 - **Shared vocabulary?** [glossary.md](./glossary.md). **Documented axiom violations?** [asterisk-register.md](./asterisk-register.md).
 - **How it ships / launch & go-to-market?** [SHIPPING.md](./SHIPPING.md) (PM-decided 2026-06-05) + [compatibility.md](./compatibility.md) (integration-liveness now; version matrix at 1.0).

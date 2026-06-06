@@ -186,3 +186,327 @@ So I'd **not** swap the font — Space Grotesk is working correctly, and switchi
 
 Want me to export the two font files so you can re-upload them through that button?
 
+## User
+
+ok, here's something that caught us all by surprise, can you please rename the overall federation to 'weft' (from loom) and code analyzer to loomweave (from clarion)
+
+## User
+
+Fixing design-system issues
+
+## User
+
+Fixing design-system issues
+
+## Assistant
+
+## Assistant
+
+_[tool: grep]_
+
+_[tool: grep]_
+
+_[tool: grep]_
+
+_[tool: list_files]_
+
+Motion tokens — these are easing/duration, genuinely not one of the categorizable kinds, so `@kind other`. And the three `Marks.jsx` need unique component names. Let me see how each is referenced before renaming.
+
+_[tool: read_file]_
+
+Let me see what each `Marks.jsx` actually exports (the collision is on the `Marks` name specifically).
+
+_[tool: read_file]_
+
+The collision is by **filename** (`Marks.jsx` → component `Marks`) across three kits. The files export `Mark`/`MEMBERS`/`SHUTTLE` — there's no actual cross-kit dependency on a `Marks` symbol — so I'll rename the hub and cli files to unique names (leaving filigree as the canonical `Marks`) and update their script tags. And tag the three motion tokens as `@kind other`.
+
+_[tool: str_replace_edit]_
+
+_[tool: copy_files]_
+
+Now update the script tags in the two index.html files and the README rows:
+
+_[tool: str_replace_edit]_
+
+_[tool: str_replace_edit]_
+
+_[tool: str_replace_edit]_
+
+_[tool: str_replace_edit]_
+
+_[tool: check_design_system]_
+
+**No issues found.** All three resolved:
+
+- **3 unclassified tokens** — `--ease`, `--dur-fast`, `--dur` are motion tokens (easing curve + durations), so I tagged each `/* @kind other */` to mark them intentionally uncategorized.
+- **Duplicate `Marks`** — renamed `weft-hub/Marks.jsx` → `HubMarks.jsx` and `weft-cli/Marks.jsx` → `CliMarks.jsx` (filigree keeps the canonical `Marks`), and updated their `<script>` tags + README rows. No cross-kit dependency on the name, so nothing else changed.
+
+The kits still render exactly as before — only filenames changed, and each `index.html` now points at its renamed glyph set. Want me to spot-check the two renamed kits in the preview, or are we good?
+
+## User
+
+also we have 'lacuna' which isn't part of the project, its the demo suite (i.e. a project with buggy code that is picked up)
+
+## Assistant
+
+_[tool: read_file]_
+
+_[tool: read_file]_
+
+_[tool: grep]_
+
+Let me check how Lacuna is currently described, so I can align the docs with that clarification.
+
+_[tool: str_replace_edit]_
+
+_[tool: str_replace_edit]_
+
+The docs already frame Lacuna correctly — but your clarification is worth making unambiguous: it's a *separate sample codebase* (a project of buggy code) that the Weft tools get pointed at and ingest, not a brand/federation entity. Let me sharpen the wording in the two places that define it, so "a project, not part of Weft" reads clearly.
+
+_[tool: str_replace_edit]_
+
+Let me also align the CSS comment block that defines the Lacuna tokens, for consistency:
+
+_[tool: read_file]_
+
+I broke the sentence flow with the next line. Let me read and fix:
+
+_[tool: str_replace_edit]_
+
+_[tool: check_design_system]_
+
+Clean — no issues. Done.
+
+I tightened the Lacuna framing in the three places it's defined so it's unambiguous that it's **the demo suite, not part of Weft**:
+
+- **README** — now opens with "Lacuna is not part of Weft at all — it's the **demo suite**: a separate sample codebase, seeded with deliberate bugs, that the Weft tools are pointed at and pick up."
+- **weft-cli README** — the note now calls it "a separate sample codebase of deliberately-buggy code that the tools are run against," appearing only as the `make tour` target.
+- **colors_and_type.css** — the Lacuna token block comment header is now "the demo suite (ADJACENT, not part of Weft)" with matching explanation.
+
+The visual scheme (off-palette magenta, dashed frame, warm surface) and its "adjacent, not a member" treatment stay exactly as they were — only the descriptive language got sharpened to match how you described it.
+
+## User
+
+can you include a mark for 'foundryside' which is the organisation in github (technically foundryside.dev) - it is the org which has the weft federation
+
+## Assistant
+
+_[tool: read_file]_
+
+_[tool: read_file]_
+
+Foundryside is the parent org above Weft. Let me look at the existing mark style and the federation hierarchy before designing a mark that fits.
+
+_[tool: grep]_
+
+_[tool: read_file]_
+
+_[tool: read_file]_
+
+Marks are abstract geometric stroke glyphs (~2px stroke, `currentColor`, 32×32) — each an idea, not a literal drawing. Foundryside is the **parent org that forges & holds** the federation, so I'll design a *crucible/forge vessel* holding a molten core with a single thread rising out — "the foundry that casts the weave." Distinct from all eight existing glyphs while echoing Loomweave's node language.
+
+Let me check the accent color and where the org attribution would naturally live (hub footer, brand-logo card).
+
+_[tool: write_file]_
+
+Now I'll prototype the mark and check it at small sizes before wiring it everywhere.
+
+_[tool: show_html]_
+
+_[tool: write_file]_
+
+Candidate A is the winner — reads clearly as a crucible holding a molten core with a thread rising to a node, and it holds up at 26px. Stable and foundational, fitting for the parent org. Let me create the asset and wire it in everywhere.Now add `foundryside` to the `MARK_PATHS` in all three kits. Let me add it as the first entry (parent org, above the members):
+
+_[tool: read_file]_
+
+_[tool: run_script]_
+
+_[tool: str_replace_edit]_
+
+Now the hub footer — natural home for the parent-org attribution. Let me wire in a "part of Foundryside" link with the new mark:
+
+_[tool: read_file]_
+
+Now a DS brand card so the mark is documented and visible in the Design System tab. Let me match the existing brand-card style:
+
+_[tool: write_file]_
+
+Now update the README inventory and SKILL to document the org mark:
+
+_[tool: read_file]_
+
+_[tool: grep]_
+
+_[tool: str_replace_edit]_
+
+_[tool: str_replace_edit]_
+
+Now let me verify everything renders — the new brand card and the hub footer attribution:
+
+_[tool: show_html]_
+
+_[tool: save_screenshot]_
+
+_[tool: save_screenshot]_
+
+_[tool: str_replace_edit]_
+
+Renders well — the org→federation→members hierarchy is clear. The "members" label is a touch tight against the last glyph. Let me give it breathing room, then verify the hub footer:
+
+_[tool: show_html]_
+
+_[tool: save_screenshot]_
+
+The footer now reads "part of Foundryside · foundryside.dev" with the crucible mark, sitting cleanly between the Weft note and "MIT · 2026". Everything's wired. Let me recompile to confirm the system is clean and the new card registered.
+
+_[tool: check_design_system]_
+
+_[tool: delete_file]_
+
+Clean — the new brand card registered (Brand: 22). Let me clean up scratch files and do the final handoff.
+
+_[tool: done]_
+
+_[tool: fork_verifier_agent]_
+
+Done. I designed and installed a **Foundryside** org mark across the system.
+
+**The mark** — a forge crucible holding a molten core with a single thread drawn out the top, ending in a node: "the foundry that casts and holds the federation." It's an abstract geometric stroke glyph in the same language as the others (2px stroke, `currentColor`, 32×32), tested for legibility down to 26px, and deliberately distinct from all eight existing glyphs. As the parent org it renders in `--text-primary` / `--accent`, never a member thread color.
+
+**Wired in:**
+- `assets/marks/foundryside.svg` — the standalone asset
+- Added a `foundryside` entry to `MARK_PATHS` in all three kits, so `<Mark name="foundryside">` works everywhere
+- **Hub footer** now carries a "part of Foundryside · foundryside.dev" attribution linking to the org
+- New DS brand card `preview/brand-foundryside.html` showing the lockup + the **Foundryside (org) ▸ Weft (federation) ▸ members** hierarchy
+- Documented in README (marks inventory + federation-marks note) and SKILL
+
+`check_design_system` is clean (26 cards, no issues). One thing to confirm with you: I positioned Foundryside as the **parent org above** Weft (org → federation → members), using your color hierarchy (neutral for the org, accent for Weft). If you'd rather it read as a peer or be styled differently, easy to adjust.
+
+## User
+
+Verifier agent check completed
+
+## Assistant
+
+Verified clean. The Foundryside org mark is fully installed — asset, all three kits, hub footer attribution, the new DS brand card, and docs — with no console errors and the hierarchy rendering correctly. Ready for you whenever you want to tweak the org's positioning or styling.
+
+## User
+
+Regenerate "Foundryside — org mark": lets just riff on it a bit more
+
+## Assistant
+
+_[tool: write_file]_
+
+They want more directions on the mark. Let me prototype several distinct "forge / foundation / holds-the-federation" riffs and eyeball them at large and small sizes before assembling a comparison.
+
+_[tool: show_html]_
+
+_[tool: save_screenshot]_
+
+_[tool: write_file]_
+
+Good spread. Reading them:
+- **A** (crucible, current) — clean, reads as forge vessel.
+- **C** (anvil) — muddy at small size, weakest. Dropping it.
+- **E** (cradle + core) — bold and stable, reads as a vessel holding a glowing seed.
+- **F** (foundation/risers) — the federation founded on the org's ground; distinct.
+- **G** (crucible + sparks) — forge actively casting; a livelier take on A.
+- **H** (enclosure + weave) — literally holds the Weft weave inside an org boundary; conceptually the strongest "parent that contains the federation."
+
+Let me turn the asset into a riff sheet of the five keepers so you can pick a direction.
+
+_[tool: show_html]_
+
+_[tool: save_screenshot]_
+
+_[tool: str_replace_edit]_
+
+The sheet reads well but the name/concept labels are below the fold — the card needs more height. Let me bump it and confirm the full layout:
+
+_[tool: str_replace_edit]_
+
+_[tool: str_replace_edit]_
+
+_[tool: str_replace_edit]_
+
+_[tool: save_screenshot]_
+
+_[tool: save_screenshot]_
+
+The width override made it overflow. Let me capture it normally so the iframe fits the full card:
+
+_[tool: save_screenshot]_
+
+The iframe crops the 780px-wide card. Let me scale it down in-capture to see the whole sheet at once:
+
+_[tool: delete_file]_
+
+The full riff sheet reads clearly — five distinct directions (Crucible/current, Cradle, Forge, Foundation, Enclosure), each with a large mark, an accent proof chip, and a one-line concept. Let me clean up scratch files and refresh the asset in your review pane.
+
+_[tool: show_to_user]_
+
+Riffed the org mark into **five directions**, all in the same geometric stroke language — the card now shows them side by side so you can pick:
+
+- **Crucible** *(current)* — forge vessel, molten core, a thread drawn out the top.
+- **Cradle** — an open vessel holding a glowing seed. Simplest, most stable.
+- **Forge** — the crucible actively casting, sparks rising. Liveliest take.
+- **Foundation** — three risers on a baseline: the federation founded on the org's ground.
+- **Enclosure** — an org boundary that literally holds the Weft weave inside it. Most direct "parent that contains the federation."
+
+Each is shown large plus an accent app-chip proof so you can judge it small.
+
+Tell me which one (or a hybrid — e.g. *Enclosure's weave inside the Crucible*), and I'll lock it in: regenerate `foundryside.svg`, update the three kits' `MARK_PATHS`, the hub footer, and restore this card to the proper org-mark + hierarchy layout. Right now only the **Crucible** is live in the system — the others exist just on this sheet.
+
+## User
+
+actually foundation looks great
+
+## Assistant
+
+_[tool: write_file]_
+
+Foundation it is — the federation founded on the org's ground. Let me lock it in everywhere.Now swap the `foundryside` entry in all three kits' `MARK_PATHS` to the Foundation design:
+
+_[tool: run_script]_
+
+Now restore the brand card to the proper org-mark + hierarchy layout, using the Foundation mark:
+
+_[tool: write_file]_
+
+_[tool: check_design_system]_
+
+_[tool: save_screenshot]_
+
+_[tool: show_html]_
+
+The screenshot is the cached riff sheet — let me force a reload of the new card:
+
+_[tool: save_screenshot]_
+
+_[tool: delete_file]_
+
+_[tool: done]_
+
+The Foundation mark is now live in the lockup and the org→federation→members hierarchy. The system is clean (no issues). Let me clean up and do the handoff — the hub footer auto-picks up the new mark via the `<Mark>` component.
+
+_[tool: fork_verifier_agent]_
+
+Locked in **Foundation** as the Foundryside org mark — the three risers rising from a baseline, the federation founded on the org's ground, each member capped with a node.
+
+Updated everywhere:
+- `assets/marks/foundryside.svg` — the standalone asset
+- All three kits' `MARK_PATHS` (hub, cli, filigree dashboard)
+- The hub footer attribution auto-updates via `<Mark name="foundryside">`
+- The DS brand card restored to the proper **org mark + Foundryside ▸ Weft ▸ members** hierarchy layout
+
+`check_design_system` is clean. Verifier is running in the background — I'll flag if it surfaces anything, otherwise you're all set.
+
+## User
+
+Verifier agent check completed
+
+## Assistant
+
+Verified clean. The **Foundation** mark is now the Foundryside org mark across the whole system — asset, all three kits, hub footer, and the brand card with its org→federation→members hierarchy. All set.
+

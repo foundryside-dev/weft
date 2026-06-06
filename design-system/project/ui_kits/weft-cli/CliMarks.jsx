@@ -3,6 +3,21 @@
 const { createElement: h } = React;
 
 const MARK_PATHS = {
+  foundryside: (
+    <>
+      <g stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M5 24 H27"/>
+        <path d="M11 24 V15"/>
+        <path d="M16 24 V10"/>
+        <path d="M21 24 V15"/>
+      </g>
+      <g fill="currentColor">
+        <circle cx="11" cy="15" r="2.1"/>
+        <circle cx="16" cy="10" r="2.3"/>
+        <circle cx="21" cy="15" r="2.1"/>
+      </g>
+    </>
+  ),
   weft: (
     <g stroke="currentColor" strokeWidth="2.4" strokeLinecap="round">
       <path d="M11 6 V18.8"/><path d="M11 23.2 V26"/>
@@ -73,7 +88,7 @@ function Mark({ name, size = 24, style, className }) {
 
 // Federation roster — single source for kits.
 const MEMBERS = [
-  { id: "loomweave",  name: "Loomweave",  thread: "var(--thread-loomweave)",  lang: "Rust",   domain: "Code structure + identity authority (SEI)", answers: "what is this codebase, where do I touch, what is the durable identity?", status: "built · in use", repo: "~/clarion" },
+  { id: "loomweave",  name: "Loomweave",  thread: "var(--thread-loomweave)",  lang: "Rust",   domain: "Code structure + identity authority (SEI)", answers: "what is this codebase, where do I touch, what is the durable identity?", status: "built · in use", repo: "~/loomweave" },
   { id: "filigree", name: "Filigree", thread: "var(--thread-filigree)", lang: "Python", domain: "Work state / issue lifecycle", answers: "what work exists, what state is it in, what happened?", status: "built · in use", repo: "~/filigree" },
   { id: "wardline", name: "Wardline", thread: "var(--thread-wardline)", lang: "Python", domain: "Trust-boundary analysis", answers: "what is allowed, and does this still satisfy the constraints?", status: "built · in use", repo: "~/wardline" },
   { id: "legis",    name: "Legis",    thread: "var(--thread-legis)",    lang: "Python", domain: "Git/CI governance & attestations", answers: "what changed, and is this change governed?", status: "1.0.0rc1", repo: "~/legis" },

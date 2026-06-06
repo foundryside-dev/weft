@@ -38,10 +38,11 @@ that every cross-tool fact keys on, so a binding survives a rename tomorrow.
 
 ### Lacuna — the adjacent specimen
 
-**Lacuna** is the deliberately-flawed *demonstration specimen* the suite is run
-against — explicitly **not a roster member**. It gets its own scheme so it can be
-linked from the Weft hub (and the member tools) and read as *similar, but
-pointedly not woven in*. The rule:
+**Lacuna** is not part of Weft at all — it's the **demo suite**: a separate
+sample codebase, seeded with deliberate bugs, that the Weft tools are pointed at
+and pick up. It's the *demonstration target*, **not a roster member** and not a
+brand entity. It gets its own scheme so it can be linked from the Weft hub (and
+the member tools) and read as *similar, but pointedly not woven in*. The rule:
 
 - **Same world.** It inherits the entire Weft system — surfaces, type, spacing —
   so it's unmistakably the same environment.
@@ -87,7 +88,7 @@ an engineer explaining a system they've thought hard about, not a marketer
 selling it.
 
 - **Lowercase, terminal-native.** Commands, tool names in running prose, paths
-  (`~/weft`, `.filigree/`), and ids (`PY-WL-101`, `fg-da8d50`, `clarion:sei:7f3a…b1`)
+  (`~/weft`, `.filigree/`), and ids (`PY-WL-101`, `fg-da8d50`, `loomweave:sei:7f3a…b1`)
   are written as they appear in a shell. Sentence case for prose; never Title
   Case headings-as-marketing.
 - **Doctrine voice.** Big claims are stated as law, often as a single bolded
@@ -107,7 +108,7 @@ selling it.
   icons inside the product UI (`🐛 ✨ 📋 📊 🎯`), never in headings or marketing.
   No exclamation marks. No "revolutionary," no "seamless."
 - **Metaphor, used sparingly and on-theme.** Weaving (threads, warp/weft, the
-  shuttle, filigree, the weft) — always in service of the composition idea,
+  shuttle, filigree, the loom) — always in service of the composition idea,
   never decorative.
 
 Representative lines:
@@ -181,7 +182,8 @@ the terminal voice.
   importing an icon library — it keeps the kits faithful.
 - **Federation marks (designed for this system).** Each member has a custom,
   stroke-based geometric **mark** in `assets/marks/` (`weft`, `loomweave`,
-  `filigree`, `wardline`, `legis`, `charter`, `shuttle`). They riff on
+  `filigree`, `wardline`, `legis`, `charter`, `shuttle`) — plus `foundryside`,
+  the parent-org mark above the federation. They riff on
   weaving/structure (a woven knot, a branching spine, a nested diamond, a warded
   boundary, a balance, a ruled charter, a shuttle on a dashed thread). All are
   `currentColor` on a `0 0 32` grid — **inline the SVG** (or use `<Mark>` in the
@@ -202,12 +204,13 @@ the terminal voice.
 - `SKILL.md` — Agent-Skill front-matter so this system is usable from Claude Code
 - `colors_and_type.css` — the token source of truth (colors, type roles, radii, shadows, spacing, thread palette, light theme)
 
-**`assets/marks/`** — the seven federation glyphs + the adjacent specimen, as standalone SVGs
+**`assets/marks/`** — the parent-org mark, the seven federation glyphs + the adjacent specimen, as standalone SVGs
+- `foundryside.svg` — the parent **org** mark (a forge crucible holding a molten core, a thread drawn out the top): the GitHub org `foundryside.dev` that forges & holds the Weft federation. Not a member; renders in `--text-primary` / `--accent`, never a thread color.
 - `weft.svg` · `loomweave.svg` · `filigree.svg` · `wardline.svg` · `legis.svg` · `charter.svg` · `shuttle.svg`
 - `lacuna.svg` — the adjacent demonstration specimen (off-palette, dashed)
 
 **`preview/`** — the Design System tab cards (Brand, Type, Colors, Spacing, Components)
-- brand: `brand-logo`, `brand-members`, `brand-lacuna`
+- brand: `brand-logo`, `brand-members`, `brand-foundryside`, `brand-lacuna`
 - type: `type-brandfont`, `type-pairing`, `type-display`, `type-body`, `type-mono`
 - colors: `colors-surfaces`, `colors-text`, `colors-accent`, `colors-threads`, `colors-status`, `colors-priority`
 - spacing: `spacing-radii`, `spacing-elevation`, `spacing-scale`

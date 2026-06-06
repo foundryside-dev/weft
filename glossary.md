@@ -55,19 +55,19 @@ A vocabulary verdict is part of ADR-acceptance evidence, not a courtesy. This ru
 
 | Term | Products | Semantics by product | Authority |
 |---|---|---|---|
-| `severity` | Loomweave ↔ Filigree | Loomweave internal: `INFO\|WARN\|ERROR\|CRITICAL` for defects, `NONE` for facts. Filigree wire: `critical\|high\|medium\|low\|info` (lowercase). | Clarion ADR-017 — explicit mapping table; `metadata.clarion.internal_severity` round-trip slot |
-| `rule_id` | Loomweave + Wardline → Filigree | Namespaced prefix per emitter: `CLA-PY-*`, `CLA-INFRA-*`, `CLA-FACT-*`, `CLA-SEC-*`, `WLN-*` (Wardline's own rule IDs, e.g. the `PY-WL-*` family, are authoritative in Wardline — see [members/wardline.md](./members/wardline.md)). Filigree stores byte-for-byte; round-trip preserved. | Clarion ADR-017, ADR-022 — namespacing convention + grammar enforcement at the Loomweave-plugin boundary |
-| `finding` (wire shape) | Loomweave + Wardline → Filigree | Cross-product unified record type. Field ownership documented; extension via `metadata` slot (top-level keys outside the enumerated set are silently dropped). | Clarion ADR-004 — full wire schema with explicit ownership |
+| `severity` | Loomweave ↔ Filigree | Loomweave internal: `INFO\|WARN\|ERROR\|CRITICAL` for defects, `NONE` for facts. Filigree wire: `critical\|high\|medium\|low\|info` (lowercase). | Loomweave ADR-017 — explicit mapping table; `metadata.loomweave.internal_severity` round-trip slot |
+| `rule_id` | Loomweave + Wardline → Filigree | Namespaced prefix per emitter: `LMWV-PY-*`, `LMWV-INFRA-*`, `LMWV-FACT-*`, `LMWV-SEC-*`, `WLN-*` (Wardline's own rule IDs, e.g. the `PY-WL-*` family, are authoritative in Wardline — see [members/wardline.md](./members/wardline.md)). Filigree stores byte-for-byte; round-trip preserved. | Loomweave ADR-017, ADR-022 — namespacing convention + grammar enforcement at the Loomweave-plugin boundary |
+| `finding` (wire shape) | Loomweave + Wardline → Filigree | Cross-product unified record type. Field ownership documented; extension via `metadata` slot (top-level keys outside the enumerated set are silently dropped). | Loomweave ADR-004 — full wire schema with explicit ownership |
 
-### Renamed clashes (resolved by Clarion ADR-024)
+### Renamed clashes (resolved by Loomweave ADR-024)
 
 Each row names the pre-rename collision and the post-rename Loomweave field name; Filigree's vocabulary is unchanged.
 
 | Term (post-rename) | Products | Resolution | Authority |
 |---|---|---|---|
-| `scope_level` (Loomweave) ← was `priority` | Loomweave ↔ Filigree | Loomweave's guidance scope-of-applicability field is now `scope_level` (six-level string enum) plus a companion `scope_rank` integer (1..6) for `ORDER BY`. Filigree's `priority` (P0..P4) keeps its name. The shared word is gone. | Clarion ADR-024 |
-| `pinned` (Loomweave) ← was `critical` | Loomweave ↔ Filigree | Loomweave's guidance budget-protection flag is now `pinned: bool`. Filigree's `severity:critical` tier and informal "Critical" P0 label keep their meanings. | Clarion ADR-024 |
-| `provenance` (Loomweave) ← was `source` | Within-Loomweave + Loomweave ↔ Filigree | Loomweave's `finding.source` struct (`{tool, tool_version, run_id}`) is now `finding.provenance`; the guidance `entity.properties.source` enum is now `entity.properties.provenance`. `entity.source` (`SourceRange`) is unchanged. Filigree's `source:` taxonomy label keeps its meaning. | Clarion ADR-024 |
+| `scope_level` (Loomweave) ← was `priority` | Loomweave ↔ Filigree | Loomweave's guidance scope-of-applicability field is now `scope_level` (six-level string enum) plus a companion `scope_rank` integer (1..6) for `ORDER BY`. Filigree's `priority` (P0..P4) keeps its name. The shared word is gone. | Loomweave ADR-024 |
+| `pinned` (Loomweave) ← was `critical` | Loomweave ↔ Filigree | Loomweave's guidance budget-protection flag is now `pinned: bool`. Filigree's `severity:critical` tier and informal "Critical" P0 label keep their meanings. | Loomweave ADR-024 |
+| `provenance` (Loomweave) ← was `source` | Within-Loomweave + Loomweave ↔ Filigree | Loomweave's `finding.source` struct (`{tool, tool_version, run_id}`) is now `finding.provenance`; the guidance `entity.properties.source` enum is now `entity.properties.provenance`. `entity.source` (`SourceRange`) is unchanged. Filigree's `source:` taxonomy label keeps its meaning. | Loomweave ADR-024 |
 
 ### No-clash informational entries
 
@@ -77,8 +77,8 @@ Each row names the pre-rename collision and the post-rename Loomweave field name
 | `kind` | Loomweave (three uses) | `entity.kind`, `edge.kind`, `finding.kind` — disambiguated by struct context. Filigree uses `type` for the analogous concept on issues. |
 | `status` | Loomweave + Filigree | Distinct state machines on distinct objects: Loomweave `runs.status` / `findings.status`, Filigree per-type issue state machines. Always disambiguated by table or struct. |
 | `entity` | Loomweave | Loomweave code object (function, class, module, guidance, file, subsystem). Other products do not use this term. |
-| `SEI` (Stable Entity Identity) | Loomweave (authority) → Wardline, Filigree, Legis, Charter (consumers) | Durable, opaque surrogate identity for a code entity, minted and resolved by Loomweave; the single key every cross-tool binding uses, stable across rename/move/edit. Single meaning suite-wide — `no clash`. Authority: the [SEI standard](./sei-standard.md) for the suite definition; Clarion ADR-038 (`~/clarion/docs/clarion/adr/ADR-038-sei-token-and-signature.md`) for Loomweave's token form, persistence, and the reserved `clarion:eid:` namespace. Consumers MUST treat it opaque (do not parse). |
-| `locator` | Loomweave (authority) → suite | The mutable address form `{plugin_id}:{kind}:{qualname}` (the pre-SEI entity id, **demoted by Clarion ADR-038 from *identity* to *address***). Resolvable to a current SEI; changes on rename/move. Single meaning suite-wide — `no clash`. |
+| `SEI` (Stable Entity Identity) | Loomweave (authority) → Wardline, Filigree, Legis, Charter (consumers) | Durable, opaque surrogate identity for a code entity, minted and resolved by Loomweave; the single key every cross-tool binding uses, stable across rename/move/edit. Single meaning suite-wide — `no clash`. Authority: the [SEI standard](./sei-standard.md) for the suite definition; Loomweave ADR-038 (`~/loomweave/docs/loomweave/adr/ADR-038-sei-token-and-signature.md`) for Loomweave's token form, persistence, and the reserved `loomweave:eid:` namespace. Consumers MUST treat it opaque (do not parse). |
+| `locator` | Loomweave (authority) → suite | The mutable address form `{plugin_id}:{kind}:{qualname}` (the pre-SEI entity id, **demoted by Loomweave ADR-038 from *identity* to *address***). Resolvable to a current SEI; changes on rename/move. Single meaning suite-wide — `no clash`. |
 | `subsystem` | Loomweave | Cluster of entities produced by Loomweave's clustering phase. Loomweave-only. |
 | `briefing` | Loomweave | Structured per-entity summary served to consult-mode agents. Loomweave-only. |
 | `guidance sheet` | Loomweave | Institutional knowledge attached to an entity. Loomweave-only. |
@@ -87,23 +87,23 @@ Each row names the pre-rename collision and the post-rename Loomweave field name
 | `requirement` / `obligation` | Charter | Charter's owned domain term for a stated obligation with traceability and verification evidence. Charter-only. |
 | `attestation` / `verdict` / `sign-off` | Legis | Legis governance records (CLEAR / VIOLATION / UNKNOWN, overrides, signoffs), keyed on SEI. Legis-only. |
 
-### Wardline taint-store wire terms (Clarion ADR-036)
+### Wardline taint-store wire terms (Loomweave ADR-036)
 
 These terms cross the Wardline↔Loomweave wire in the taint-store contract (`/api/wardline/*` routes on Loomweave). All are `no clash`.
 
 | Term | Products | Semantics | Authority |
 |---|---|---|---|
-| `wardline_json` | Loomweave ↔ Wardline | The taint/provenance fact blob. **Opaque to Loomweave and Wardline-owned**: Loomweave stores and returns it verbatim, never parses or validates it. All taint semantics stay Wardline-side. | Clarion ADR-036 — `no clash` |
-| `scan_id` | Loomweave ↔ Wardline | Wardline's scan generation identifier for a taint fact; a queryable column for observability. Wardline-namespaced. | Clarion ADR-036 — `no clash` |
-| `content_hash_at_compute` | Loomweave ↔ Wardline | The containing-file content hash Wardline recorded **at compute time** (whole-file `blake3`, hex). | Clarion ADR-036 — `no clash` |
-| `current_content_hash` | Loomweave ↔ Wardline | The entity's containing-file content hash **as derived now** at read time, returned on fetch. Match → fresh; mismatch/absent → stale → Wardline recomputes. | Clarion ADR-036 — `no clash` |
-| `unresolved_qualnames` | Loomweave ↔ Wardline | Pre-composed qualnames a batch write could **not** resolve to an `exact` Loomweave entity; returned so Wardline can fall back rather than guess. | Clarion ADR-036 — `no clash` |
+| `wardline_json` | Loomweave ↔ Wardline | The taint/provenance fact blob. **Opaque to Loomweave and Wardline-owned**: Loomweave stores and returns it verbatim, never parses or validates it. All taint semantics stay Wardline-side. | Loomweave ADR-036 — `no clash` |
+| `scan_id` | Loomweave ↔ Wardline | Wardline's scan generation identifier for a taint fact; a queryable column for observability. Wardline-namespaced. | Loomweave ADR-036 — `no clash` |
+| `content_hash_at_compute` | Loomweave ↔ Wardline | The containing-file content hash Wardline recorded **at compute time** (whole-file `blake3`, hex). | Loomweave ADR-036 — `no clash` |
+| `current_content_hash` | Loomweave ↔ Wardline | The entity's containing-file content hash **as derived now** at read time, returned on fetch. Match → fresh; mismatch/absent → stale → Wardline recomputes. | Loomweave ADR-036 — `no clash` |
+| `unresolved_qualnames` | Loomweave ↔ Wardline | Pre-composed qualnames a batch write could **not** resolve to an `exact` Loomweave entity; returned so Wardline can fall back rather than guess. | Loomweave ADR-036 — `no clash` |
 
 ### Deferred clashes (tracked, not resolved)
 
 | Term | Products | Status | Tracked by |
 |---|---|---|---|
-| L7 qualname format | Loomweave ↔ Wardline | Loomweave's L7 emits combined dotted `module.qualified_name`; Wardline's `FingerprintEntry` stores `(module, qualified_name)` as separate fields. Reconciliation is handled in the qualname-normalization contract (Clarion ADR-018) at cross-product join time. | Clarion ADR-018 amendment trigger |
+| L7 qualname format | Loomweave ↔ Wardline | Loomweave's L7 emits combined dotted `module.qualified_name`; Wardline's `FingerprintEntry` stores `(module, qualified_name)` as separate fields. Reconciliation is handled in the qualname-normalization contract (Loomweave ADR-018) at cross-product join time. | Loomweave ADR-018 amendment trigger |
 
 ## Wardline-side terms (for cross-product reader benefit)
 

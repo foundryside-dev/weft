@@ -10,7 +10,7 @@ Lacuna's flaws are **intentional and permanent** — catalogued in `tour/lacunae
 
 - Planted trust-boundary violations for **Wardline** to catch (e.g. PY-WL-101/102/103/104 in `specimen/trust_flow.py`, `exception_flow.py`).
 - Planted structural findings for **Loomweave** (dead entity, circular import in `specimen/dead_code.py`, `cycle_a.py`/`cycle_b.py`).
-- Tracked work in **Filigree** (`.filigree/`), Loomweave analysis (`.clarion/`), Wardline baseline (`.wardline/`). Legis/Charter wiring is design-only so far.
+- Tracked work in **Filigree** (`.filigree/`), Loomweave analysis (`.loomweave/`), Wardline baseline (`.wardline/`). Legis/Charter wiring is design-only so far.
 
 ## What it demonstrates (the matrix, end to end)
 

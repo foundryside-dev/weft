@@ -11,7 +11,7 @@ It is named only so the change-execution gap is visible on the roadmap. The even
 ## What already references it (and why that's mostly stale)
 
 - **Filigree** has `migrate-to-shuttle` tooling and `shuttle://` milestone-reference URIs from its planning-deprecation work — but there is nothing to migrate *to* or resolve *against* yet. See [uri-scheme.md](../uri-scheme.md) and [conflict-register.md](../conflict-register.md) §B-3.
-- **Loomweave / Charter** explicitly out-scope change execution (Clarion NG-07; Charter ADR-001), correctly leaving the gap unfilled.
+- **Loomweave / Charter** explicitly out-scope change execution (Loomweave NG-07; Charter ADR-001), correctly leaving the gap unfilled.
 
 ## If it ever becomes real
 

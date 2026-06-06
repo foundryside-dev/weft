@@ -1,0 +1,189 @@
+{
+  "plugins": [
+    "react",
+    "import"
+  ],
+  "rules": {
+    "react/forbid-elements": [
+      "warn",
+      {
+        "forbid": []
+      }
+    ],
+    "no-restricted-imports": [
+      "warn",
+      {
+        "patterns": [
+          {
+            "group": [
+              "ui_kits/filigree-dashboard/**",
+              "ui_kits/weft-cli/**",
+              "ui_kits/weft-hub/**"
+            ],
+            "message": "Import design-system components from 'index.js', not component internals."
+          }
+        ]
+      }
+    ],
+    "no-restricted-syntax": [
+      "warn",
+      {
+        "selector": "Literal[value=/#[0-9a-fA-F]{3,8}\\b/]",
+        "message": "Raw hex color — use a design-system color token via var()."
+      },
+      {
+        "selector": "Literal[value=/\\b\\d+px\\b/]",
+        "message": "Raw px value — use a design-system spacing token via var()."
+      },
+      {
+        "selector": "Literal[value=/font-family\\s*:\\s*(?!['\\\"]?(?:JetBrains Mono|Space Grotesk))/i]",
+        "message": "Font not provided by the design system. Available: JetBrains Mono, Space Grotesk."
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": [
+        "**/index.js"
+      ],
+      "rules": {
+        "no-restricted-imports": "off"
+      }
+    }
+  ],
+  "x-omelette": {
+    "components": {},
+    "tokens": [
+      "--accent",
+      "--accent-hover",
+      "--accent-subtle",
+      "--aging",
+      "--border-default",
+      "--border-strong",
+      "--dur",
+      "--dur-fast",
+      "--ease",
+      "--font-display",
+      "--font-mono",
+      "--font-sans",
+      "--glow-accent",
+      "--lacuna-accent",
+      "--lacuna-accent-dim",
+      "--lacuna-border",
+      "--lacuna-flaw",
+      "--lacuna-overlay",
+      "--lacuna-surface",
+      "--prio-0",
+      "--prio-1",
+      "--prio-2",
+      "--prio-3",
+      "--prio-4",
+      "--radius",
+      "--radius-full",
+      "--radius-lg",
+      "--radius-sm",
+      "--ready",
+      "--sev-critical",
+      "--sev-high",
+      "--sev-info",
+      "--sev-low",
+      "--sev-medium",
+      "--shadow-modal",
+      "--shadow-pop",
+      "--space-1",
+      "--space-12",
+      "--space-2",
+      "--space-3",
+      "--space-4",
+      "--space-5",
+      "--space-6",
+      "--space-8",
+      "--stale",
+      "--status-done",
+      "--status-open",
+      "--status-wip",
+      "--surface-base",
+      "--surface-hover",
+      "--surface-overlay",
+      "--surface-raised",
+      "--text-muted",
+      "--text-primary",
+      "--text-secondary",
+      "--thread",
+      "--thread-charter",
+      "--thread-filigree",
+      "--thread-legis",
+      "--thread-loomweave",
+      "--thread-shuttle",
+      "--thread-wardline"
+    ],
+    "tokenKinds": {
+      "--surface-base": "color",
+      "--surface-raised": "color",
+      "--surface-overlay": "color",
+      "--surface-hover": "color",
+      "--border-default": "color",
+      "--border-strong": "color",
+      "--text-primary": "font",
+      "--text-secondary": "font",
+      "--text-muted": "font",
+      "--accent": "color",
+      "--accent-hover": "color",
+      "--accent-subtle": "color",
+      "--status-open": "color",
+      "--status-wip": "color",
+      "--status-done": "color",
+      "--ready": "color",
+      "--aging": "color",
+      "--stale": "color",
+      "--prio-0": "color",
+      "--prio-1": "color",
+      "--prio-2": "color",
+      "--prio-3": "color",
+      "--prio-4": "color",
+      "--sev-critical": "color",
+      "--sev-high": "color",
+      "--sev-medium": "color",
+      "--sev-low": "color",
+      "--sev-info": "color",
+      "--thread-loomweave": "color",
+      "--thread-filigree": "color",
+      "--thread-wardline": "color",
+      "--thread-legis": "color",
+      "--thread-charter": "color",
+      "--thread-shuttle": "color",
+      "--lacuna-accent": "color",
+      "--lacuna-accent-dim": "color",
+      "--lacuna-surface": "color",
+      "--lacuna-overlay": "color",
+      "--lacuna-border": "color",
+      "--lacuna-flaw": "color",
+      "--radius-sm": "radius",
+      "--radius": "radius",
+      "--radius-lg": "radius",
+      "--radius-full": "radius",
+      "--shadow-pop": "shadow",
+      "--shadow-modal": "shadow",
+      "--glow-accent": "shadow",
+      "--space-1": "spacing",
+      "--space-2": "spacing",
+      "--space-3": "spacing",
+      "--space-4": "spacing",
+      "--space-5": "spacing",
+      "--space-6": "spacing",
+      "--space-8": "spacing",
+      "--space-12": "spacing",
+      "--font-display": "font",
+      "--font-mono": "font",
+      "--font-sans": "font",
+      "--ease": "other",
+      "--dur-fast": "other",
+      "--dur": "other",
+      "--thread": "color"
+    },
+    "fontFamilies": [
+      "JetBrains Mono",
+      "Space Grotesk"
+    ]
+  }
+}

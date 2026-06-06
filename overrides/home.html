@@ -51,9 +51,11 @@
   </div>
   <nav class="hub-nav" aria-label="Primary">
     <a href="#roster">Members</a>
+    <a href="#products">Cheat-sheets</a>
     <a href="#compose">Compose</a>
     <a href="{{ base_url }}/doctrine/">Doctrine</a>
     <a href="{{ base_url }}/sei-standard/">SEI</a>
+    <a href="{{ base_url }}/federation-sdk/">SDK</a>
     <a href="{{ base_url }}/glossary/">Glossary</a>
   </nav>
 </header>
@@ -218,7 +220,7 @@
     <!-- Lacuna — adjacent, not a member -->
     <div class="lacuna-block">
       <div class="t-label lacuna-label">Adjacent — not a member</div>
-      <a class="lacuna-strip ext" href="https://github.com/foundryside-dev/lacuna" target="_blank" rel="noopener" aria-label="Lacuna — demonstration specimen (not a member) — open repository">
+      <a class="lacuna-strip ext" href="https://github.com/foundryside-dev/lacuna" target="_blank" rel="noopener" aria-label="Lacuna — the demo suite (not part of Weft) — open repository">
         <svg class="mark" width="28" height="28" viewBox="0 0 32 32" fill="none" role="img" aria-label="lacuna">
           <path d="M19 6 H25 A1 1 0 0 1 26 7 V25 A1 1 0 0 1 25 26 H7 A1 1 0 0 1 6 25 V7 A1 1 0 0 1 7 6 H13"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="2.6 3" fill="none"/>
@@ -227,13 +229,84 @@
         <span class="lacuna-body">
           <span class="member-head">
             <span class="member-name">Lacuna</span>
-            <span class="lacuna-kind">demonstration specimen</span>
+            <span class="lacuna-kind">demo suite</span>
           </span>
-          <span class="member-domain">The deliberately-flawed app the suite is run against. Point the tools at it and watch them work.</span>
+          <span class="member-domain">A separate sample codebase, seeded with deliberate bugs — point the Weft tools at it and they pick them up.</span>
         </span>
         <span class="lacuna-loc">github.com/foundryside-dev/lacuna</span>
       </a>
     </div>
+  </section>
+
+  <!-- ====================== PRODUCT DIRECTORY ====================== -->
+  <section id="products" class="products">
+    <div class="t-label section-label">Product cheat-sheets</div>
+    <p class="t-body products-lede">Each realized member has a curated cheat-sheet — what it does, how to use it, how it composes, and a short snapshot of its most-used commands. The full reference stays in each repo.</p>
+    <div class="product-grid">
+
+      <a class="product-card thread-loomweave" href="{{ base_url }}/products/loomweave/">
+        <span class="product-top">
+          <svg class="mark" width="26" height="26" viewBox="0 0 32 32" fill="none" role="img" aria-label="loomweave">
+            <g stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 5 V27"/><path d="M16 11 H24"/><path d="M16 21 H8"/></g>
+            <g fill="currentColor"><circle cx="16" cy="5" r="2.4"/><circle cx="24" cy="11" r="2.4"/><circle cx="8" cy="21" r="2.4"/><circle cx="16" cy="27" r="2.4"/></g>
+          </svg>
+          <span class="product-head"><span class="product-name">Loomweave</span> <span class="product-lang">Rust</span></span>
+        </span>
+        <span class="product-domain">Code structure + identity authority (SEI)</span>
+        <span class="product-what">Turns a codebase into a queryable, identity-stable graph an agent reads instead of grepping — and mints the SEI every binding keys on.</span>
+        <span class="product-link">Cheat-sheet &rarr;</span>
+      </a>
+
+      <a class="product-card thread-filigree" href="{{ base_url }}/products/filigree/">
+        <span class="product-top">
+          <svg class="mark" width="26" height="26" viewBox="0 0 32 32" fill="none" role="img" aria-label="filigree">
+            <g stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M16 4 L28 16 L16 28 L4 16 Z"/><path d="M16 11 L21 16 L16 21 L11 16 Z" fill="currentColor" stroke="none"/></g>
+          </svg>
+          <span class="product-head"><span class="product-name">Filigree</span> <span class="product-lang">Python</span></span>
+        </span>
+        <span class="product-domain">Work state / issue lifecycle</span>
+        <span class="product-what">Turns a swarm of stateless agents into a coordinated workforce — race-free work claims, a dependency-aware ready queue, pre-computed orientation.</span>
+        <span class="product-link">Cheat-sheet &rarr;</span>
+      </a>
+
+      <a class="product-card thread-wardline" href="{{ base_url }}/products/wardline/">
+        <span class="product-top">
+          <svg class="mark" width="26" height="26" viewBox="0 0 32 32" fill="none" role="img" aria-label="wardline">
+            <g stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 4 V28"/><path d="M6 10 H15"/><path d="M6 16 H15"/><path d="M6 22 H15"/><path d="M18 16 L26 11 V21 L18 16Z" fill="currentColor"/></g>
+          </svg>
+          <span class="product-head"><span class="product-name">Wardline</span> <span class="product-lang">Python</span></span>
+        </span>
+        <span class="product-domain">Trust-boundary analysis</span>
+        <span class="product-what">Answers, statically, whether the data each trust-annotated function works with is as trusted as it claims — a semantic-tainting analyzer with SARIF output.</span>
+        <span class="product-link">Cheat-sheet &rarr;</span>
+      </a>
+
+      <a class="product-card thread-legis" href="{{ base_url }}/products/legis/">
+        <span class="product-top">
+          <svg class="mark" width="26" height="26" viewBox="0 0 32 32" fill="none" role="img" aria-label="legis">
+            <g stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 6 V25"/><path d="M9 25 H23"/><path d="M7 9 H25"/><path d="M7 9 L4 16 H10 L7 9Z"/><path d="M25 9 L22 16 H28 L25 9Z"/></g>
+          </svg>
+          <span class="product-head"><span class="product-name">Legis</span> <span class="product-lang">Python</span></span>
+        </span>
+        <span class="product-domain">Git/CI governance &amp; attestations</span>
+        <span class="product-what">Makes every governed action at the git/CI boundary produce one attributable, tamper-evident audit record, and grades who must answer server-side.</span>
+        <span class="product-link">Cheat-sheet &rarr;</span>
+      </a>
+
+      <a class="product-card thread-charter" href="{{ base_url }}/products/charter/">
+        <span class="product-top">
+          <svg class="mark" width="26" height="26" viewBox="0 0 32 32" fill="none" role="img" aria-label="charter">
+            <g stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5 H24 V27 H8 Z"/><path d="M12 11 H20"/><path d="M12 16 H17"/><path d="M11.5 21.5 L14 24 L20 17.5"/></g>
+          </svg>
+          <span class="product-head"><span class="product-name">Charter</span> <span class="product-lang">Python</span></span>
+        </span>
+        <span class="product-domain">Requirements, traceability, verification</span>
+        <span class="product-what">The obligations system-of-record — what must be true, kept separate from proposed or stale guesses, with how each is verified and when it goes stale.</span>
+        <span class="product-link">Cheat-sheet &rarr;</span>
+      </a>
+
+    </div>
+    <p class="t-meta products-foot">Shuttle is a roadmap thought-bubble, not a realized member — it has no cheat-sheet. See the <a href="{{ base_url }}/products/">product index</a> for how each cheat-sheet is structured.</p>
   </section>
 
   <!-- ====================== COMPOSITION LAW ====================== -->
@@ -298,6 +371,17 @@
     <a href="{{ base_url }}/compatibility/">Compatibility</a>
     <a href="{{ base_url }}/doctrine/">Doctrine</a>
   </nav>
+  <a class="foot-org ext" href="https://foundryside.dev" target="_blank" rel="noopener" aria-label="part of Foundryside — foundryside.dev">
+    <svg class="mark" width="17" height="17" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+      <g stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M5 24 H27"/><path d="M11 24 V15"/><path d="M16 24 V10"/><path d="M21 24 V15"/>
+      </g>
+      <g fill="currentColor">
+        <circle cx="11" cy="15" r="2.1"/><circle cx="16" cy="10" r="2.3"/><circle cx="21" cy="15" r="2.1"/>
+      </g>
+    </svg>
+    <span>part of Foundryside · foundryside.dev</span>
+  </a>
   <span class="foot-meta">MIT · 2026</span>
 </footer>
 

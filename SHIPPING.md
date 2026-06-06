@@ -36,8 +36,8 @@ The "single product vs separate products" question is two independent decisions:
 | # | Decision | Choice | Consequence |
 |---|----------|--------|-------------|
 | 1 | **Org / brand** | **Consolidate into one `weft` GitHub org.** | Migrate `foundryside-dev/wardline` + the four `tachyon-beep/*` repos under one org. Set up redirects; update badges/CI/links. |
-| 2 | **Suite version** | **One-time coordinated Weft 1.0 now → independent semver + compatibility matrix forever after.** | 1.0 = the **four-tool code-and-debug toolkit** (filigree, clarion, wardline, legis), gated by **wardline (pre-1.0)** and legis (rc2→1.0). **Charter is not a 1.0 gate** — it joins on its own cadence. After 1.0, no monolithic release train; the "suite version" becomes a published tested-combination matrix. |
-| 3 | **Hero front door** | **Per-tool PyPI / crates.io is primary; hub is a thin index.** | Invest in each tool's standalone install story (`pip install filigree`, `cargo install clarion`, …). The hub narrates + routes; it is not the install path. |
+| 2 | **Suite version** | **One-time coordinated Weft 1.0 now → independent semver + compatibility matrix forever after.** | 1.0 = the **four-tool code-and-debug toolkit** (filigree, loomweave, wardline, legis), gated by **wardline (pre-1.0)** and legis (rc2→1.0). **Charter is not a 1.0 gate** — it joins on its own cadence. After 1.0, no monolithic release train; the "suite version" becomes a published tested-combination matrix. |
+| 3 | **Hero front door** | **Per-tool PyPI / crates.io is primary; hub is a thin index.** | Invest in each tool's standalone install story (`pip install filigree`, `cargo install loomweave`, …). The hub narrates + routes; it is not the install path. |
 | 4 | **Claude Code marketplace** | **Deferred, not dropped.** | A Weft plugin marketplace (mirroring the proven `~/skillpacks` `marketplace.json` pattern; filigree already ships a `filigree-workflow` skill) is a *post-1.0* distribution play, not a launch surface. |
 
 ## Members (authoritative — kill the stale lists)
@@ -50,7 +50,7 @@ on its own cadence and **does not gate 1.0**.
 | Product | Lang | Owns | Launch state |
 |---------|------|------|--------------|
 | **filigree** | Python | Work state: issues, plans, observations, findings | 2.3 — shipped · *1.0 unit* |
-| **clarion** | Rust (+Py plugin) | Code identity + structural entity graph | 1.3 — shipped · *1.0 unit* |
+| **loomweave** | Rust (+Py plugin) | Code identity + structural entity graph | 1.0 — shipped · *1.0 unit* |
 | **wardline** | Python | Trust-boundary taint analysis → SARIF | pre-1.0 — **the 1.0 gate** · *1.0 unit* |
 | **legis** | Python | Git/CI, governance, attestations | 1.0.0rc2 — *1.0 unit* |
 | **charter** | Python | Requirements, traceability, verification evidence | early — **non-gating; joins on own cadence** |
@@ -93,7 +93,7 @@ Follows directly from "separate packages, single front door":
 ## Open risks
 
 - **Coordinated-1.0 gate stalls the launch** if wardline slips. Mitigation: the
-  launch is a *brand* moment over already-shipping tools; filigree/clarion need
+  launch is a *brand* moment over already-shipping tools; filigree/loomweave need
   not wait to keep releasing independently. Charter is descoped from the gate.
 - **Org migration breaks inbound links / PyPI-to-repo URLs.** Mitigation: GitHub
   redirects + a badge/URL sweep before announcing.

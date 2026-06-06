@@ -87,13 +87,14 @@ html, body {
   --thread-charter:  #E3B341;  /* gold    — requirements & verification    */
   --thread-shuttle:  #6B7C8C;  /* slate   — roadmap thought-bubble (dim)   */
 
-  /* ---- Lacuna — the demonstration specimen (ADJACENT, not a member) ---- *
-   * Lacuna is the deliberately-flawed app the suite is run against. It      *
-   * inherits the whole Weft system so it reads as the same world, then      *
-   * sets itself apart three ways: an OFF-palette dusty magenta that appears *
-   * in no member thread (the "MissingNo" of the suite); a warm-neutral      *
-   * "specimen" surface that is noticeably less teal than Weft's; and a      *
-   * DASHED / ticketed border treatment instead of Weft's solid left-rules. *
+  /* ---- Lacuna — the demo suite (ADJACENT, not part of Weft) ----------- *
+   * Lacuna is NOT a member. It's a separate sample codebase, seeded with   *
+   * deliberate bugs, that the Weft tools are run against. It inherits the   *
+   * whole Weft system so it reads as the same world, then sets itself apart *
+   * three ways: an OFF-palette dusty magenta that appears in no member      *
+   * thread (the "MissingNo" of the suite); a warm-neutral "specimen"        *
+   * surface that is noticeably less teal than Weft's; and a DASHED /        *
+   * ticketed border treatment instead of Weft's solid left-rules.          *
    * Use it when linking OUT to Lacuna from a Weft surface.                  */
   --lacuna-accent:     #CE7AAE;  /* dusty magenta — off the federation wheel */
   --lacuna-accent-dim: #8E5A77;  /* hovers, secondary marks                  */
@@ -129,9 +130,9 @@ html, body {
   --font-sans: 'JetBrains Mono', ui-monospace, monospace; /* product body stays mono */
 
   /* ---- Motion --------------------------------------------------------- */
-  --ease: cubic-bezier(0.4, 0, 0.2, 1);
-  --dur-fast: 0.15s;   /* card hover, button states                        */
-  --dur:      0.2s;    /* panel slide, theme swap                          */
+  --ease: cubic-bezier(0.4, 0, 0.2, 1); /* @kind other */
+  --dur-fast: 0.15s;   /* @kind other */  /* card hover, button states     */
+  --dur:      0.2s;    /* @kind other */  /* panel slide, theme swap        */
 }
 
 /* ---- Light theme (the dashboard's documented alternate) --------------- */

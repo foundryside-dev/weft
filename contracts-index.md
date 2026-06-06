@@ -4,6 +4,8 @@
 
 **Identity is the spine.** Every binding below keys on **[SEI](./sei-standard.md)** (opaque, Loomweave-minted). A binding still keyed on a `locator` is legacy to migrate.
 
+**Building a whole member, not one binding?** The [Federation SDK](./federation-sdk.md) is the member-builder's companion to this index — same surfaces, organized by the obligations a new tool must meet to drop in.
+
 ---
 
 ## 1. Entity associations — Filigree ↔ Loomweave (Filigree ADR-029)
@@ -14,37 +16,37 @@ Bind a Filigree issue to a Loomweave entity. The `entity_associations` table liv
   `GET|POST /api/issue/{issue_id}/entity-associations`, `DELETE /api/issue/{issue_id}/entity-associations?entity_id=…`, `GET /api/entity-associations?entity_id=…` (reverse lookup).
 - **Filigree MCP:** `entity_association_add`, `entity_association_remove`, `entity_association_list`, `entity_association_list_by_entity`.
 - **Loomweave side:** `issues_for(entity_id, include_contained)` / the `entity_issue_list` MCP tool returns bound issues with drift status.
-- **Authoritative:** `~/filigree/docs/federation/contracts.md` + Filigree ADR-029; Clarion ADR-029 (`~/clarion/docs/clarion/adr/ADR-029-entity-associations-binding.md`). See [members/filigree.md](./members/filigree.md).
+- **Authoritative:** `~/filigree/docs/federation/contracts.md` + Filigree ADR-029; Loomweave ADR-029 (`~/loomweave/docs/loomweave/adr/ADR-029-entity-associations-binding.md`). See [members/filigree.md](./members/filigree.md).
 
 ## 2. SEI identity resolution — Loomweave (authority) → all consumers
 
-Loomweave's HTTP read API exposes identity resolution: `resolve(locator)`, `resolve_sei(sei)`, `lineage(sei)`, and `_capabilities` advertising `sei: {supported, version}`. Opaque on the wire; fail-closed on non-locator input (reserved `clarion:eid:` prefix).
+Loomweave's HTTP read API exposes identity resolution: `resolve(locator)`, `resolve_sei(sei)`, `lineage(sei)`, and `_capabilities` advertising `sei: {supported, version}`. Opaque on the wire; fail-closed on non-locator input (reserved `loomweave:eid:` prefix).
 
-- **Authoritative:** [sei-standard.md](./sei-standard.md) (the contract) + Clarion ADR-038 (token form) + `~/clarion/docs/federation/contracts.md`. Conformance fixtures at `~/clarion/docs/federation/fixtures/sei-conformance-oracle.json`.
+- **Authoritative:** [sei-standard.md](./sei-standard.md) (the contract) + Loomweave ADR-038 (token form) + `~/loomweave/docs/federation/contracts.md`. Conformance fixtures at `~/loomweave/docs/federation/fixtures/sei-conformance-oracle.json`.
 
-## 3. Wardline taint-fact store — Wardline ↔ Loomweave (Clarion ADR-036)
+## 3. Wardline taint-fact store — Wardline ↔ Loomweave (Loomweave ADR-036)
 
 Wardline computes per-entity taint facts and persists them to Loomweave; Loomweave stores the `wardline_json` blob **opaque** (never parses it). Routes on Loomweave: `POST /api/wardline/taint-facts` (write, disabled by default), `GET /api/wardline/taint-facts?qualname=`, `POST /api/wardline/taint-facts:batch-get`, `POST /api/wardline/taint-facts/by-sei`.
 
-- **Authoritative:** `~/clarion/docs/federation/contracts.md` + Clarion ADR-036. Wire terms in [glossary.md](./glossary.md).
+- **Authoritative:** `~/loomweave/docs/federation/contracts.md` + Loomweave ADR-036. Wire terms in [glossary.md](./glossary.md).
 
-## 4. Wardline findings → Filigree (today via Loomweave; native emitter pending)
+## 4. Wardline findings → Filigree (native emitter shipped; A-1 live pending composition test)
 
-Wardline findings reach Filigree's intake (`POST /api/v1/scan-results`). **Today** this routes through Loomweave's `clarion sarif import` translator — this is **asterisk [A-1](./asterisk-register.md#a-1--wardline--filigree-findings-are-pipeline-coupled-through-loomweave)**, retiring when Wardline ships a native Filigree emitter.
+Wardline findings reach Filigree's scan-results intake. The legacy path routes through Loomweave's `loomweave sarif import` translator into the classic `POST /api/v1/scan-results` — this is **asterisk [A-1](./asterisk-register.md#a-1--wardline--filigree-findings-are-pipeline-coupled-through-loomweave)**. Wardline's **native Filigree emitter has now shipped** (`~/wardline/src/wardline/core/filigree_emit.py`), posting directly to the federation generation (`POST /api/weft/scan-results`); A-1 stays live until the Loomweave-absent Wardline+Filigree composition is demonstrated end-to-end (see the asterisk for the exact evidence level).
 
-- **Authoritative:** Clarion ADR-015 Rev 2; `~/wardline/docs/integration/2026-05-29-wardline-weft-integration-brief.md`; Filigree scan-results intake in `~/filigree/docs/federation/contracts.md`.
+- **Authoritative:** Loomweave ADR-015 Rev 2; `~/wardline/docs/integration/2026-05-29-wardline-weft-integration-brief.md`; Filigree scan-results intake in `~/filigree/docs/federation/contracts.md`.
 
-## 5. Qualname normalization — Wardline → Loomweave (Clarion ADR-018)
+## 5. Qualname normalization — Wardline → Loomweave (Loomweave ADR-018)
 
 Wardline emits a pre-composed dotted qualname as `metadata.wardline.qualname = module_dotted_name(file_path) + "." + __qualname__`; Loomweave reconciles it to entity IDs/SEIs (owning the catalog that makes qualnames meaningful — doctrine §6).
 
-- **Authoritative:** `~/clarion/docs/federation/contracts.md` (§ qualname normalization) + Clarion ADR-018; Wardline integration brief.
+- **Authoritative:** `~/loomweave/docs/federation/contracts.md` (§ qualname normalization) + Loomweave ADR-018; Wardline integration brief.
 
 ## 6. Legis governance consumption + git-rename provider seam — Legis ↔ Loomweave
 
 Legis is a **pull-only** consumer of Loomweave's SEI surface (`resolve` / `resolve_sei` / `lineage`) for SEI-keyed attestations and an audit spine; it re-establishes lineage integrity at its own boundary (SEI REQ-L-01, Option 3). Legis also **supplies** the git-rename signal via `GET /git/renames?rev_range=…`; Loomweave consumes it through the typed `GitRenameSource` / `LegisGitRenameSource` seam (REQ-C-05). Operative enablement is jointly gated on Loomweave driving a committed rev-range.
 
-- **Authoritative:** `~/legis/docs/federation/sei-conformance.md` + `~/clarion/docs/federation/contracts.md` (§ legis governance consumption / WS9). See [members/legis.md](./members/legis.md).
+- **Authoritative:** `~/legis/docs/federation/sei-conformance.md` + `~/loomweave/docs/federation/contracts.md` (§ legis governance consumption / WS9). See [members/legis.md](./members/legis.md).
 
 ## 7. Legis ↔ Filigree — SEI-keyed sign-off binding
 
@@ -56,7 +58,7 @@ Legis binds governed sign-offs to Filigree issues using the entity-association s
 
 Legis routes Wardline findings (`POST /wardline/scan-results` on Legis) through its 2×2 enforcement cells (chill / coached / structured / protected). **Trust vocabulary passes through verbatim** — "Wardline analyses, Legis governs"; Legis never re-adjudicates trust.
 
-- **Authoritative:** Legis (`src/legis/service/wardline.py`, `wardline/*`) + `~/clarion/docs/federation/contracts.md` (§ trust-vocabulary convergence).
+- **Authoritative:** Legis (`src/legis/service/wardline.py`, `wardline/*`) + `~/loomweave/docs/federation/contracts.md` (§ trust-vocabulary convergence).
 
 ## 9. Charter preflight-fact envelope — Charter → Legis (Charter ADR-006)
 

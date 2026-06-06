@@ -12,7 +12,7 @@ and the interactive composition-law toggle (Solo / Pair / Suite).
 | File | What it is |
 |------|------------|
 | `index.html` | Mounts React + the components below |
-| `Marks.jsx` | Federation glyph set (`<Mark name="…">`) + `MEMBERS` / `SHUTTLE` data |
+| `HubMarks.jsx` | Federation glyph set (`<Mark name="…">`) + `MEMBERS` / `SHUTTLE` data |
 | `Hub.jsx` | The page: `HubHeader`, `Hero`, `Roster` → `MemberCard`, `CompositionLaw`, footer |
 
 ## Components to reuse

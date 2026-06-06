@@ -99,6 +99,15 @@ nav:
       - URI scheme: uri-scheme.md
   - Identity:
       - SEI standard: sei-standard.md
+  - SDK:
+      - Build a member: federation-sdk.md
+  - Products:
+      - products/index.md
+      - Loomweave: products/loomweave.md
+      - Filigree: products/filigree.md
+      - Wardline: products/wardline.md
+      - Legis: products/legis.md
+      - Charter: products/charter.md
   - Members:
       - Loomweave: members/loomweave.md
       - Filigree: members/filigree.md

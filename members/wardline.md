@@ -2,7 +2,7 @@
 
 **Domain authority:** trust policy & rule enforcement — trust declarations, baselines, policy findings. The federation's **trust-policy surface**.
 **Repo:** `~/wardline` · **Language:** Python
-**Surface facts (snapshot 2026-06-05 — NOT authoritative here; see the repo):** v1.0.0rc1; semantic-tainting static analyzer; SARIF v2.1.0 output; an **8-state taint lattice** (not a "Tier 1–4" model), **3 canonical decorators** (`external_boundary`, `trust_boundary`, `trusted`), **~20 rules** (`PY-WL-101..120`). Authoritative: `~/wardline/src/wardline/{_version.py,core/taints.py,decorators/__init__.py,scanner/rules/}`, `~/wardline/README.md`.
+**Surface facts (snapshot 2026-06-06 — NOT authoritative here; see the repo):** v1.0.0rc1; semantic-tainting static analyzer; SARIF v2.1.0 output; an **8-state taint lattice** (not a "Tier 1–4" model), **3 canonical decorators** (`external_boundary`, `trust_boundary`, `trusted`), **~20 rules** (`PY-WL-101..120`). Authoritative: `~/wardline/src/wardline/{_version.py,core/taints.py,decorators/__init__.py,scanner/rules/}`, `~/wardline/README.md`.
 
 ## What it owns (authoritative in Wardline)
 

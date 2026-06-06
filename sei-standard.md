@@ -3,7 +3,7 @@
 **Date:** 2026-06-01 (promoted into the Weft hub 2026-06-05)
 **Status:** **LOCKED — 2026-06-05** (owner declaration). SEI is the canonical, frozen federation identity interface. The shape is no longer open for per-subsystem input; **post-lock changes require a versioned revision** of this standard. Conformance remains oracle-gated and ungrandfathered (§0.1): a subsystem is conformant only when it passes the §8 oracle. Any member whose locator→SEI backfill has not yet run is a *conformance/migration* task **under** the locked standard — not a reason the standard is unlocked.
 **Authority:** **Authoritative here.** This is the suite-wide SEI standard. It previously lived in the Wardline specs tree with an instruction to "propagate the normative sections into clarion/filigree"; it is now promoted into the Weft hub as its canonical home, and the member repos point here. Loomweave is the identity **authority/implementer**; Wardline, Filigree, Legis, and Charter are **consumers** that conform.
-**Companions:** [doctrine.md](./doctrine.md) (the federation axiom SEI serves), [glossary.md](./glossary.md) (`SEI` / `locator` terms), Clarion ADR-038 (`~/clarion/docs/clarion/adr/ADR-038-sei-token-and-signature.md`, Loomweave's token form).
+**Companions:** [doctrine.md](./doctrine.md) (the federation axiom SEI serves), [glossary.md](./glossary.md) (`SEI` / `locator` terms), Loomweave ADR-038 (`~/loomweave/docs/loomweave/adr/ADR-038-sei-token-and-signature.md`, Loomweave's token form).
 
 **SEI is the gold standard for the suite.** All conforming subsystems **must** conform to it — **no matter how close any of them feels to it today.** Conformance is **demonstrated** via the §8 oracle, never **assumed** from apparent compatibility, and no subsystem is grandfathered (§0.1).
 
@@ -71,8 +71,8 @@ SEI is **locked.** The single canonical identity interface is SEI (the §0.2 sup
 ## 0.5 Pre-lock requirements intake (point-in-time log, 2026-06-02)
 
 > This is a historical intake snapshot kept for provenance; current per-subsystem status lives in each member's repo. As of 2026-06-02 all then-conforming subsystems had reported and Loomweave's open items (REQ-C-01/02) were resolved in ADR-038. The standard is substantially **built**:
-> - The shared **§8 conformance oracle EXISTS** (`~/clarion/docs/federation/fixtures/sei-conformance-oracle.json`).
-> - **Loomweave** (authority) shipped SEI end-to-end (migrations `0004_sei_prior_index` + `0005_sei`, `clarion-storage/src/sei.rs`, a passing `sei_conformance_oracle.rs`, the git-rename signal, the HTTP callers/callees linkages). **ADR-038 is Accepted.**
+> - The shared **§8 conformance oracle EXISTS** (`~/loomweave/docs/federation/fixtures/sei-conformance-oracle.json`).
+> - **Loomweave** (authority) shipped SEI end-to-end (migrations `0004_sei_prior_index` + `0005_sei`, `loomweave-storage/src/sei.rs`, a passing `sei_conformance_oracle.rs`, the git-rename signal, the HTTP callers/callees linkages). **ADR-038 is Accepted.**
 > - **Legis** is implemented through Sprint 6 and **passes the oracle as a consumer** (`legis/tests/conformance/test_sei_oracle.py`).
 > - **Wardline** shipped its SEI-client and the dossier (incl. a live `clarion_e2e` round-trip).
 > - **Charter** declared its SEI-consumer contract (ADR-005) as design; its adapter is part of Charter's deferred federation-adapter work.
@@ -94,7 +94,7 @@ SEI is **locked.** The single canonical identity interface is SEI (the §0.2 sup
 
 | Concept | What it is | Mutability | Role |
 |---|---|---|---|
-| **SEI** | opaque durable token, `clarion:eid:<blake3(locator ++ 0x00 ++ mint_run_id)[:32 hex]>` | minted once, then **stable** across rename/move/edit | the **identity** — the only key cross-tool bindings use |
+| **SEI** | opaque durable token, `loomweave:eid:<blake3(locator ++ 0x00 ++ mint_run_id)[:32 hex]>` | minted once, then **stable** across rename/move/edit | the **identity** — the only key cross-tool bindings use |
 | **Locator** | `{plugin_id}:{kind}:{qualname}` (the pre-SEI id) | **mutable** (changes on rename / module move) | the **address** — human-readable, resolvable to current SEI |
 | **content_hash** | the per-entity content hash Loomweave computes (`entities.content_hash`, the entity body) | changes on edit | the **freshness** signal |
 
@@ -140,7 +140,7 @@ Identity resolution over the HTTP read API (consumers are HTTP clients):
 - `resolve_sei(sei)` → `{ current_locator, content_hash, alive: true }`, or `{ alive: false, lineage: [...] }` when orphaned/superseded.
 - `lineage(sei)` → the ordered event list.
 - `_capabilities` advertises `sei: { supported: true, version: N }` so a consumer can detect a pre-SEI Loomweave and **degrade** rather than guess.
-- **Input validation (fail-closed) — [REQ-F-01/02].** `resolve(locator)` **MUST reject** a non-locator input — including an already-migrated, SEI-shaped string — with a documented error, never a silent mis-resolution. The SEI prefix `clarion:eid:` is a **reserved prefix** a locator can never take; a structural colon-count check is insufficient.
+- **Input validation (fail-closed) — [REQ-F-01/02].** `resolve(locator)` **MUST reject** a non-locator input — including an already-migrated, SEI-shaped string — with a documented error, never a silent mis-resolution. The SEI prefix `loomweave:eid:` is a **reserved prefix** a locator can never take; a structural colon-count check is insufficient.
 - **No binding keyed on a locator, on any surface — [REQ-C-04].** No cross-tool binding may be keyed on a locator. Every Loomweave surface returning an entity identity for use as a binding key — HTTP **and** MCP — MUST carry the **SEI**; a locator may also appear, but only explicitly labelled as the mutable address.
 
 SEI is opaque on the wire. Batch variants mirror the existing `…:batch-get` shape.
@@ -151,7 +151,7 @@ SEI is opaque on the wire. Batch variants mirror the existing `…:batch-get` sh
 |---|---|
 | **Loomweave** (authority) | mint + persist SEI; retain prior-index state (§3.1); run the deterministic matcher; fail-closed mint+lineage on ambiguity; serve `resolve` / `resolve_sei` / `lineage`; advertise the `sei` capability + version; carry SEI (never a bare locator as a binding key) on **every** identity-bearing surface — HTTP **and** MCP (§4, REQ-C-04) |
 | **Wardline** | key taint facts (and dossier reads) on **SEI**, resolving locator→SEI via Loomweave; treat SEI opaque; degrade gracefully when the `sei` capability is absent |
-| **Filigree** (frozen) | **no code change, but not auto-conformant** (§0.1) — it already stores an opaque `clarion_entity_id`, so the standard only makes that stored value an SEI going forward, but conformance still requires the locator→SEI backfill (§7) and an oracle pass. Its `content_hash_at_attach` drift check now cleanly means the **content axis** (STALE); the identity axis (ORPHAN) lives in Loomweave's `resolve_sei` |
+| **Filigree** (frozen) | **no code change, but not auto-conformant** (§0.1) — it already stores an opaque `loomweave_entity_id`, so the standard only makes that stored value an SEI going forward, but conformance still requires the locator→SEI backfill (§7) and an oracle pass. Its `content_hash_at_attach` drift check now cleanly means the **content axis** (STALE); the identity axis (ORPHAN) lives in Loomweave's `resolve_sei` |
 | **Legis** | governance attestations keyed on **SEI**; consume `lineage` as the audit trail; as the suite's git-interface owner, may *supply* the git-rename signal the matcher consumes (§6). Implemented through Sprint 6; passes the oracle as a consumer |
 | **Charter** | requirement trace links keyed on **SEI**; store SEI opaque, never mint/parse; mark links stale on lineage change; fall back to fragile file/symbol refs when Loomweave absent. Declared in Charter ADR-005; adapter pending |
 
@@ -176,7 +176,7 @@ When Loomweave first runs SEI-aware, it mints an SEI for every current entity. A
 
 ## 8. Conformance oracle (shared test suite)
 
-A shared, fixtures-based conformance suite every tool runs against a reference Loomweave (`~/clarion/docs/federation/fixtures/sei-conformance-oracle.json`):
+A shared, fixtures-based conformance suite every tool runs against a reference Loomweave (`~/loomweave/docs/federation/fixtures/sei-conformance-oracle.json`):
 
 - **identity round-trip + opacity:** mint → `resolve` both directions → consumer treats SEI opaque
 - **rename fixture:** rename with unchanged body → SEI carried, `locator_changed` event

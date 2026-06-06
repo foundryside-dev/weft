@@ -35,7 +35,7 @@ echo "build-docs: regenerating ${DOCS}/ (mirror of root markdown)"
 
 # 1. Clean slate (idempotent).
 rm -rf "${DOCS}"
-mkdir -p "${DOCS}" "${DOCS}/members" "${DOCS}/registries" "${DOCS}/design-system"
+mkdir -p "${DOCS}" "${DOCS}/members" "${DOCS}/registries" "${DOCS}/design-system" "${DOCS}/products"
 
 # 2. Mirror root authoritative markdown (read-only sources; copied verbatim).
 #    Root *.md (top-level only — not recursive).
@@ -47,6 +47,8 @@ done
 #    members/*.md and registries/*.md — preserve subdir layout for relative links.
 cp "${ROOT}"/members/*.md       "${DOCS}/members/"     2>/dev/null || true
 cp "${ROOT}"/registries/*.md    "${DOCS}/registries/"  2>/dev/null || true
+#    products/*.md — the per-member curated cheat-sheets (index + one per member).
+cp "${ROOT}"/products/*.md      "${DOCS}/products/"    2>/dev/null || true
 
 #    design-system/README.md is a link target (from THEMING.md). It has no
 #    onward markdown links, so mirroring just the README is strict-safe.

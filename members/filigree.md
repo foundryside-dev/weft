@@ -2,7 +2,7 @@
 
 **Domain authority:** work state & workflow lifecycle — issues, observations, finding triage state. The federation's **work-state surface**.
 **Repo:** `~/filigree` · **Language:** Python
-**Surface facts (snapshot 2026-06-05 — NOT authoritative here; see the repo):** v2.3.0, shipped; ~115 MCP tools; HTTP `classic` + `weft` generations; web dashboard. Authoritative: `~/filigree/README.md`, `~/filigree/pyproject.toml`, `~/filigree/docs/mcp.md`.
+**Surface facts (snapshot 2026-06-06 — NOT authoritative here; see the repo):** v3.0.0rc2 (release candidate, branch `release/3.0.0`); 116 MCP tools; HTTP `classic` + `weft` generations; web dashboard. Authoritative: `~/filigree/README.md`, `~/filigree/pyproject.toml`, `~/filigree/docs/mcp.md`.
 
 ## What it owns (authoritative in Filigree)
 
