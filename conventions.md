@@ -159,27 +159,30 @@ couplings. The hub coordinates; it does not block any member's independent relea
   - **(h) Namespace charset `[A-Za-z0-9_-]+`, matched case-insensitively** — an uppercase-namespaced sibling must register as a boundary.
 
   A single command must restore all blocks; a write must never empty the file.
-- **Reference:** **loomweave** (`instructions.rs`, exemplary), with **filigree** and
-  **legis** now also conforming on their release channels. The cross-tool investigation
-  (filigree issue `filigree-bcbd4d66fd`) originally found filigree and legis both (i)
+- **Reference:** **all four writers now conform** — loomweave (`instructions.rs`,
+  exemplary), filigree, legis, and wardline. The cross-tool investigation (filigree
+  issue `filigree-bcbd4d66fd`) originally found filigree and legis both (i)
   **truncate-to-EOF** on a missing own end-marker and (ii) **swallow a sandwiched
-  sibling block** — **both since FIXED and source-verified 2026-06-08** (filigree
-  `7998d75` on `release/3.0.0` + installed rc6; legis `a9a358a` on `origin/main` + rc4 +
-  installed rc4). **The remaining non-conformer is `wardline`** (fails (c)/(e)/(g) — see
-  row), and it is **co-resident with filigree in `~/lacuna`'s `CLAUDE.md` + `AGENTS.md`**,
-  so it is now the live foreign-deletion/truncation risk. **The C-4 gate (campaign
-  `weft-eb3dee402f`) stays LIVE — now on `wardline`, not filigree.** Hypothesis for the
-  original *full* 0-byte emptying (still not closed): wardline's **non-atomic** bare
-  `write_text` (truncate-then-write) could leave a truncated/empty file on a crash
-  mid-write — a crash-truncation candidate, not a confirmed empty-content path
-  (`render_block()` is always non-empty). *NB: this scorecard was INVERTED before this
-  pass — it certified the two fixed members as non-conforming and the one defective
-  member as conforming; corrected by source-verification against each member repo.*
+  sibling block**, and wardline additionally (iii) wrote **non-atomically** and could
+  **swallow a foreign block** across an unclosed own-open — **all since FIXED and
+  source + test-verified 2026-06-08**: filigree `7998d75` (`release/3.0.0` + installed
+  rc6); legis `a9a358a` (`origin/main` + rc4 + installed rc4); wardline `c58da86` +
+  `779e3c5` (rc4, 22/22 managed-block tests green). **The C-4 conformance leg of the
+  gate (`weft-eb3dee402f`) is now MET** — the contract is normative here and every
+  writer satisfies it; the campaign issue is clear to close on the conformance
+  criterion. The original *full* 0-byte-emptying hypothesis (wardline's non-atomic
+  truncate-then-write on a crash) is now **closed by construction**: all wardline writes
+  go through the atomic temp+`os.replace`, refuse-empty path. **Open forward-port
+  caveat:** filigree's and legis's `main` branches still lag their fix branches — a
+  post-launch trunk-merge must carry these fixes forward. *NB: this scorecard was
+  INVERTED before the 2026-06-08 pass (it certified the fixed members as non-conforming
+  and the defective member as conforming); corrected by source-verification against
+  each member repo.*
 
 | Member | State | Evidence |
 |---|---|---|
 | filigree | **conforming** (`release/3.0.0` + installed 3.0.0rc6) | (b)/(c)/(d) hold: the rewrite is bounded at the first foreign-namespace fence (`_first_foreign_fence_pos` + `_INSTR_FENCE_RE`), incl. the well-formed replace path (`own_end < foreign` guard) — no truncate-to-EOF across a foreign block; append-on-missing-end preserves the tail. (g) atomic temp+rename with refuse-empty guard; no inject path emits empty content. SessionStart auto-refresh (`hooks.py`) now runs the safe path. Fixed by `7998d75` (filigree-bcbd4d66fd) + `a17fa68`. **Caveat:** `release/3.0.0`-only — `main` still carries the vulnerable inject path (`main:install.py:191,198`); forward-port risk if `main` becomes post-launch trunk. *Prior "pending / fix landing now" cell was STALE — fix had already landed. Source-verified 2026-06-08.* |
-| wardline | **does NOT conform** (fails (c)/(e)/(g)) — `src/wardline/install/block.py`, rc4 / installed 1.0.0rc4 | (b) `_FENCE_RE` is wardline-namespaced + non-greedy (`block.py:22-25`) and (d) append-on-missing-end preserves text (`:47-51`) — both hold. **(g) FAILS:** writes are bare `Path.write_text` (`:44,50,60`) — non-atomic truncate-in-place, no `os.replace`/temp-rename, no refuse-to-empty (the atomic writer at `summary_cache.py:215` is **not** reused) → a crash mid-write truncates the agent doc. **(c) FAILS — reachable:** from a pre-existing unclosed own-open before a foreign block (clause-(c) territory), the non-greedy primary match (`:47,55-57`) bridges *across* the foreign block to a later own-close and swallows it; append-on-missing-end (`:50`) manufactures that later close, and the non-atomic (g) write is itself a way to leave the orphan-open state. **(e) FAILS:** the canonicalising `_FENCE_RE.sub("", suffix)` (`:56`) deletes an own duplicate sitting beyond a foreign block. *Prior "conforms (all reachable orderings)" cell was WRONG — its stated mechanism (".sub() swallows the foreign block") was mis-attributed (`.sub()` removes only own blocks) and "not reachable" was false. Source-verified 2026-06-08.* |
+| wardline | **conforming** (rc4 + editable install) — `src/wardline/install/block.py` | (b)–(h) satisfied. Adopts the foreign-fence-bounded algorithm: a generic **case-insensitive** namespaced fence detector (clause (h)), a balance/nesting-aware `_first_real_foreign_block_pos` (`:71`) + `_first_own_open_fence_pos` (`:97`), and three explicit span branches — append-on-missing-end (d) / well-formed-replace + foreign-safe own-dup canonicalisation (e) / bounded recovery (c) — that **never cross a real foreign fence**; own-duplicates-beyond-foreign preserved+surfaced (e); foreign blocks never reordered (f); all writes routed through an atomic mode-preserving `_atomic_write_text` (temp + `os.replace`, refuse-empty guard `:156,172`) (g); plus a convergence guard against unbounded growth. Fixed by `c58da86` + `779e3c5` (the latter closes two adversarial-review findings: a quoted foreign marker in own body forcing spurious recovery → sticky corruption, and a case-sensitive dedup miss). 22/22 managed-block tests green (foreign-sandwich, unclosed-own+foreign, two-call-orphan, uppercase-boundary, atomic-refuse-empty, shielded-dup-converge); suite 2607 green; live-verified on installed rc4. wardline issue `wardline-906d19b29a` closed. **Source + test-verified 2026-06-08** (ran the test file: 22 passed). |
 | loomweave | **conforms (rc3 + installed)** | `crates/loomweave-cli/src/instructions.rs` is exemplary at code tier (namespaced `<!-- loomweave:instructions -->` block with `:v{version}:{hash}` provenance, preserves filigree+wardline, atomic temp-rename, malformed-recovery, both files), wired into `install --instructions` + `doctor`. **Live on `rc3`/`origin/rc3` (commit `0a93731`) and in the installed channel (1.1.0-rc3 — verified 2026-06-08).** The *only* gap is `main`, which lags `rc3` by 45 commits incl. this surface, pending the gated `rc3`→`main` merge (`weft-46f866cb85`, deliberately held below the dogfood-#2 gate). Corrects a prior stale cell that read "branch-only / no surface" — there is no `feat/agent-instructions-injection` branch; that was main/old-rc1 inference, not source-of-truth. |
 | legis | **conforming** (rc4 + `origin/main` + installed 1.0.0rc4) | (b)/(c)/(d)/(g) hold: `inject_instructions` bounds at the first foreign fence (`_first_foreign_fence_pos`) and anchors only its own top-level open fence (`_first_own_open_fence_pos`) — no truncate-to-EOF, no sibling-swallow; append-on-missing-end preserved; `_atomic_write_text` refuses empty writes (`install.py:229-231`). SessionStart + MCP-boot auto-refresh run the safe path. Fixed by `a9a358a` (weft id `legis-068e359d28`); 64/64 install tests green incl. sandwich / bounded-recovery / refuse-empty vectors. *Prior "pending (non-conforming)" cell was STALE. NB: local `main` is 77 commits behind `origin/main` and predates the fix — verify against `origin/main`, not local main. Source-verified 2026-06-08.* |
 | charter | **exempt** | does not write to shared agent docs. |
