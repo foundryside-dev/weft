@@ -16,6 +16,7 @@ This manifest declares the structure, derivation discipline, ownership, and revi
 | [uri-scheme.md](./uri-scheme.md) | Cross-product addressing status | `weft://` closed; SEI is the spine |
 | [contracts-index.md](./contracts-index.md) | Index of cross-product contracts | Points to owning-repo schema authority |
 | [conflict-register.md](./conflict-register.md) | Conflicts & ambiguities (Class A/B) | First-class deliverable |
+| [conventions.md](./conventions.md) | Suite-wide behavioral conventions + per-member conformance | Behavioral sibling of the glossary; hub states, components conform locally (doctrine §8 model) |
 | [compatibility.md](./compatibility.md) | Integration-liveness matrix (+ post-1.0 version matrix) | Technical face of SHIPPING decision 2 |
 | [SHIPPING.md](./SHIPPING.md) | Go-to-market / launch / packaging decisions | PM-owned; authoritative for release posture |
 | [roadmap-ideas.md](./roadmap-ideas.md) | Speculative sub-app candidate bench | Ideas only — NOT the roster |

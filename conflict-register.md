@@ -66,6 +66,145 @@
 
 ---
 
+## 2026-06-06 ground-truth sweep (code-verified)
+
+**Date of sweep:** 2026-06-06. **Method:** per-member executable-source extraction
+(build manifests, file bytes, server code, error paths, live CLI/MCP runs) +
+adversarial code re-verification — docs treated as hypotheses, because the member
+repos' *own* docs had drifted too. 6 of 11 candidate calls survived verification; the
+5 rejected are listed so they are not silently re-raised. Per-member doc-vs-code drift
+is recorded under [conventions.md](./conventions.md) "Member-owned findings" (owned by
+each repo, not fixed here).
+
+### B-5 — Charter is not a 1.0 launch gate  *(RULED)*
+
+**Conflict.** [compatibility.md](./compatibility.md) listed Charter as a "1.0 launch
+gate" and attributed the gate to "Wardline + Charter"; [SHIPPING.md](./SHIPPING.md)
+Decision 2 says Charter is **non-gating** and joins on its own cadence.
+**Ruling.** SHIPPING.md wins — release posture / gate membership is SHIPPING's domain
+(see §B-6). Charter is non-gating; the gate is Wardline (pre-1.0) + Legis (rc→1.0).
+compatibility.md corrected. **Owner:** hub/PM.
+
+### B-6 — Canon fragmentation: canon is split by domain  *(RULED)*
+
+**Conflict.** [SHIPPING.md](./SHIPPING.md) flags "three docs claim canon and disagree."
+README, federation-map, and compatibility each gesture at owning roster/posture/contract canon.
+**Ruling.** Do **not** crown one doc for everything (that caused the fragmentation).
+Canon is **split by domain**: roster/membership/composition-law → [doctrine.md](./doctrine.md)
+(already ruled §B-1); release posture/gate → [SHIPPING.md](./SHIPPING.md); cross-product
+contract index → [contracts-index.md](./contracts-index.md). README, federation-map, and
+compatibility are **derived views that point to the domain owner**, not competing canon.
+Volatile per-member facts live in each repo (the hub points). **Owner:** hub/PM.
+
+### B-7 — Shuttle: "thought-bubble" vs "future 6th member"  *(RULED)*
+
+**Conflict.** [doctrine.md](./doctrine.md) (roster canon, §B-1) says Shuttle is a
+speculative thought-bubble — not a member, no repo, displaceable, may not even be called
+Shuttle. [SHIPPING.md](./SHIPPING.md):58 called it the "future 6th member."
+**Ruling.** Reconcile under doctrine.md (roster canon). SHIPPING.md reworded to doctrine's
+"speculative thought-bubble, displaceable, not committed" framing — *not* "planned/reserved
+member," which over-promotes. doctrine keeps canon. **Owner:** hub/PM.
+
+### A-12 — Charter schema namespace `loom.charter.*` → `weft.charter.*`  *(DONE — landed 2026-06-07)*
+
+**Was.** Charter's code + ADR-006 + its **entire MCP envelope** use the `loom.charter.*`
+namespace (**54 sites**, e.g. `loom.charter.preflight_facts.v1`, `loom.charter.<entity>.vN`).
+**Ruling (owner, 2026-06-06).** This is **un-propagated Loom→Weft rename lag, not intended
+canon.** The canonical namespace is **`weft.charter.*`**. Because the Loom→Weft *federation*
+rename is a brand/suite-prefix change and **no charter emitter is shipped to a consumer yet**,
+it is renamed **now, pre-launch** — the only free window (a versioned schema namespace cannot
+move cleanly once consumers bind to it).
+**What changes.** Charter renames its code + ADR-006 + MCP envelope schema strings
+`loom.charter.*` → `weft.charter.*` (tracked `weft-a46edbbf98`, now CLOSED). **LANDED on
+charter `main` (commit `cbbcb2f`, 2026-06-07): 54 `weft.charter.*` / 0 `loom.charter.*` in
+src, 164 tests green, SEI untouched.** Hub cites `weft.charter.*` as canonical, now matched
+by charter code. (The `clarion_entity` trace-kind enum is DEFERRED — persisted DB value +
+external producer = a federation-wide schema decision, not a charter-local edit.)
+**Scope guard.** This is the *federation-prefix* rename only. It does **NOT** touch the
+LOCKED `loomweave:eid:` SEI scheme (member identity, frozen — §B-2) nor the `clarion →
+loomweave` member rename (a separate target — those go to *Loomweave*, not Weft).
+**Owner.** charter (code/ADR), hub/PM (decision + tracking).
+
+### Rejected calls (verified false against code — recorded so they are not re-raised)
+
+- **A-1 asterisk reword (rejected):** a proposed reword of asterisk A-1's blocker to "awaiting Filigree's `/api/weft/findings/promote` route" is false — that route **is shipped** on Filigree `release/3.0.0` (`files.py:852`), and Wardline's native emitter has shipped. So **both clauses of A-1's retirement condition may now be met**, but retirement needs a *live* (Wardline+Filigree, Loomweave-absent) composition run — see the dated note on [asterisk-register.md](./asterisk-register.md) A-1. Do not retire on code-reading alone.
+- **C-1 reference reassignment (rejected):** rested on a misquoted filigree commit; filigree *co-authored* the standard (not a "mirror"). loomweave is the C-1 reference (ADR-005 origin); filigree C-1 is pending (unshipped). Recorded in [conventions.md](./conventions.md).
+- **C-2 "loomweave conforms" (rejected → corrected):** loomweave's WAL checkpoint is on an rc branch, not shipped — `reference †` (not-shipped), not `conforms`.
+- **wardline C-6 rationale (rejected → corrected):** `file_finding` vs `scan_file_findings` are two distinct deliberate tools, not naming drift; rationale corrected in conventions.md.
+- **bulk "fill all unverified cells" (rejected → applied cell-by-cell, NOT bulk-verified):** the verifier rejected promoting cells to `conforms` on grep / `check-ignore` rather than shipped firsthand behaviour. Cells were applied individually at each extractor's stated `source_tier` — **only the cells that drove a survived call were adversarially re-derived; the rest are single-extractor `code`-tier**, flagged in conventions.md's "Verification calibration" note. The matrix is re-checkable against `file:line`, not independently re-verified per cell.
+
+---
+
+## 2026-06-07 decisions
+
+### A-13 — Federation loopback token renamed to `WEFT_FEDERATION_TOKEN`  *(DECIDED — implementing)*
+
+**Was.** The federation loopback bearer (guarding the `weft` HTTP generation) had
+**multiple member-scoped names**: `FILIGREE_API_TOKEN` (filigree client),
+`FILIGREE_FEDERATION_API_TOKEN` (filigree daemon — the name exported in `~/.bashrc`),
+and `WARDLINE_FILIGREE_TOKEN` (wardline's own name for the same *value*). lacuna's
+`.mcp.json` referenced `${FILIGREE_API_TOKEN}` (unset) → silent 401, system broken.
+This is the glossary §8 "same thing, two names" drift made operational.
+**Ruling (owner, 2026-06-07).** Canonical name is **`WEFT_FEDERATION_TOKEN`** — it is
+*federation*-scope plumbing (guards the `weft` generation), so it takes the Weft prefix,
+not a member name. Supersedes both `FILIGREE_*` names (kept as **deprecated fallback
+aliases** through the transition so the existing `~/.bashrc` export keeps working) and
+supersedes filigree issue `filigree-3ee7250b54`'s `FILIGREE_API_TOKEN` convention. This
+is **deconfliction plumbing, not a security key** — the operator/authority-key custody
+question is the separate C-8 / key-custody-sidecar track.
+**What changes.** filigree (anchor: daemon + client + `.mcp.json` template + `doctor`
+check, fallback chain `WEFT_FEDERATION_TOKEN` → `FILIGREE_FEDERATION_API_TOKEN` →
+`FILIGREE_API_TOKEN`, on `release/3.0.0`); loomweave (`token_env`, the C-3 reference);
+wardline (adopt the federation name with `WARDLINE_FILIGREE_TOKEN` fallback, **or**
+document the value-mapping in the glossary — wardline's call); operator
+(`export WEFT_FEDERATION_TOKEN="$FILIGREE_FEDERATION_API_TOKEN"`). legis + charter: no
+token-named references today (re-check when charter wires adapters). Hub docs updated:
+`conventions.md` C-3, `glossary.md` (managed clash), `federation-sdk.md`.
+**Owner.** filigree (daemon/anchor) + each member (own client) + hub/PM (decision + register).
+
+### A-14 — Federation config/store consolidation into `.weft/` + `weft.toml`  *(DECIDED — rolling out)*
+
+**Was.** Each member scattered its own runtime dir and config differently —
+filigree `.filigree/` + `.filigree.conf`, loomweave `.loomweave/`, wardline
+`.wardline/`, legis **cwd-relative** sqlite URLs (`legis-checks.db` etc.) dropped
+wherever the process ran. "Federated" had become "sloppy": no shared layout, stores
+littering the working tree, no single place an operator declares federation config.
+**Ruling (PM, 2026-06-07).** Two surfaces, two owners — codified as **conventions
+[C-9](./conventions.md#c-9)**:
+- **`.weft/<member>/`** holds machine-written runtime state; each member is the **sole
+  writer** of its own subtree, never touches a sibling's.
+- **`weft.toml`** (project root) is **operator-authored, members read-only** — *no
+  member installer writes it* (C-4's multi-writer truncation lesson, gate
+  `weft-eb3dee402f`, applied pre-emptively to a second shared file).
+- **Enrich-only; malformed = absent (normative).** A member runs with no `weft.toml`
+  and **must not hard-fail** on a malformed one — silent fallback to defaults. (Raised
+  by legis as a federation-parity risk: if one member hard-fails on a bad shared file
+  and another degrades, the federation is inconsistent on the *same* file. Resolved:
+  all members degrade silently; hard-fail would make `weft.toml` load-bearing,
+  violating doctrine §5.)
+- **Member-private keys ship now; shared keys are hub-pinned and PENDING.** `[<member>]`
+  private overrides (canonical store knob `store_dir`) are member-owned. Cross-member
+  keys (sibling endpoints, cross-read flags) live **once** at a well-known top-level
+  path and **no member bakes them until the hub pins the layout** — **loomweave drafts
+  that proposal**.
+- **Backcompat = filigree only** (retains `.filigree.conf` reads, migrates forward,
+  reuses the `from_conf` relocation path from the fg-da8d50 split-brain fix); the other
+  realized members **clean-break**.
+- **Authority keys do not move** into `.weft/` — capability confinement (proposed C-8),
+  not store tidiness, governs Legis operator/signing keys.
+**Sequencing.** **Fast-follow, not a dogfood-#2 gate blocker** — store relocation ships
+per member independently; the C-4 gate stays scoped to the managed-block fix.
+Clean-break orphans lacuna's `.loomweave/`/`.wardline/` dirs → re-init owned by the
+retrofit propagation issues (`weft-46f866cb85`, `weft-71ce4f8253`).
+**State.** legis **landed** the member-private form (all four stores under `.weft/legis/`,
+`[legis].store_dir`, malformed-tolerant, keys untouched, 676 green) and is the C-9
+**reference** for that form. filigree / loomweave / wardline **pending**. Shared-key
+layout **pending** loomweave's proposal.
+**Owner.** each member (own relocation) + loomweave (shared-schema proposal) + hub/PM
+(C-9 + this ruling).
+
+---
+
 ## How to use this register
 
 - Before a point release, walk Class B: every item must be **ruled** (done) or have an **owner actively closing it** (B-2 Filigree backfill, B-3 deferred-with-owner).

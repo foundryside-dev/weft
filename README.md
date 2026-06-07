@@ -4,6 +4,8 @@ Weft is a federation of sibling developer-tools projects, each authoritative for
 
 This folder (`~/weft`) is the **authoritative source of truth for federation-wide interoperability** — the roster, the doctrine, the shared identity model, the integration matrix, the asterisk register, the glossary, and the cross-product contract index. It is **documentation only**: no code, no runtime, no store. There is nothing called "Weft" to install or run.
 
+> **Canon is split by domain** (resolved 2026-06-06 — [conflict-register.md](./conflict-register.md) §B-6): **[doctrine.md](./doctrine.md)** owns the roster/membership/composition-law, **[SHIPPING.md](./SHIPPING.md)** owns release posture/gate, **[contracts-index.md](./contracts-index.md)** owns the contract index. This README, [federation-map.md](./federation-map.md), and [compatibility.md](./compatibility.md) are **derived views that point to the domain owner**, not competing canon.
+
 > **As of 2026-06-05 this hub was rebuilt to be authoritative.** It previously drifted badly (wrong roster, stale versions, wrong identity model). The fix is structural — see *The authority model* below — and every conflict found is recorded in **[conflict-register.md](./conflict-register.md)**.
 
 ## The roster

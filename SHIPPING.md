@@ -55,7 +55,7 @@ on its own cadence and **does not gate 1.0**.
 | **legis** | Python | Git/CI, governance, attestations | 1.0.0rc2 — *1.0 unit* |
 | **charter** | Python | Requirements, traceability, verification evidence | early — **non-gating; joins on own cadence** |
 
-**shuttle** = future 6th member (transactional scoped change execution); **no repo, not in scope for 1.0.**
+**shuttle** = a **speculative roadmap thought-bubble** (transactional scoped change execution) — **no repo, displaceable by any better idea, not a committed member**, and not in scope for 1.0 (per [doctrine.md](./doctrine.md) roster canon; [conflict-register.md](./conflict-register.md) §B-7).
 
 The forward roadmap (charter, then shuttle) extends Weft *up* into requirements
 and *down* into change execution — bookending the code-and-debug core.
@@ -84,7 +84,7 @@ Follows directly from "separate packages, single front door":
 
 1. **Publish the authoritative member list** (above) and retire the shuttle-as-#4
    framing everywhere. *(Hand this section to the doc agent now to stop drift.)*
-2. **Reconcile the three canon docs** to a single source of truth.
+2. **Reconcile the three canon docs.** *Resolved 2026-06-06 ([conflict-register.md](./conflict-register.md) §B-6): canon is **split by domain** — doctrine.md owns roster/membership, SHIPPING.md owns release posture, contracts-index.md owns contracts; README / federation-map / compatibility become derived views that point to the domain owner. Not "one doc for everything" — that framing caused the fragmentation.*
 3. **Drive wardline (and legis rc2) to 1.0** — these gate the coordinated launch. Charter is explicitly *not* on this path.
 4. **Stand up the `weft` org** and migrate the five repos.
 5. **Publish the v1.0 compatibility matrix** (which versions speak the `weft`

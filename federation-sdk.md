@@ -154,7 +154,8 @@ releases.
 | Entity associations (reverse) | `GET /api/entity-associations?entity_id=…` | Given an entity id, every issue bound to it. MCP: `entity_association_list_by_entity`. |
 | Reconciliation feed | `GET /api/weft/changes` | Incremental cursor. Carries `issue_deleted` tombstones + `affected_entities` — on delete, purge your mirrored bindings (I-3). |
 
-Auth: optional bearer (`FILIGREE_API_TOKEN`) gates the `/api/weft/*` surface;
+Auth: optional bearer (`WEFT_FEDERATION_TOKEN`; deprecated aliases `FILIGREE_API_TOKEN`
+/ `FILIGREE_FEDERATION_API_TOKEN` during transition) gates the `/api/weft/*` surface;
 unset = loopback-trust, wire-compatible.
 
 ### 2.3 Wardline — trust-boundary findings & qualname producer

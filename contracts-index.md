@@ -62,7 +62,7 @@ Legis routes Wardline findings (`POST /wardline/scan-results` on Legis) through 
 
 ## 9. Charter preflight-fact envelope — Charter → Legis (Charter ADR-006)
 
-Charter exposes a versioned `weft.charter.preflight_facts.v1` envelope (requirement impact, verification freshness, baseline drift, traceability gaps). **Legis alone decides enforcement; Charter provides facts only.** *Designed, adapter pending* (Charter is scaffold-state).
+Charter exposes a versioned `weft.charter.preflight_facts.v1` envelope (requirement impact, verification freshness, baseline drift, traceability gaps). **Legis alone decides enforcement; Charter provides facts only.** *Designed, adapter pending — no emitter shipped.* **Canonical namespace is `weft.charter.*`** — landed in charter code on `main` (commit `cbbcb2f`, 2026-06-07; 54 `weft.charter.*` / 0 `loom.charter.*` in src). Still *designed, adapter pending — no emitter shipped*. See [conflict-register.md](./conflict-register.md) §A-12.
 
 - **Authoritative:** Charter ADR-006 (`~/charter/docs/architecture/decisions/ADR-006-legis-preflight-fact-envelope.md`). See [members/charter.md](./members/charter.md).
 

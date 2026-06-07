@@ -32,6 +32,30 @@ The one pre-existing idea. Receives an approved scoped change, applies it increm
 - **Pairwise stories:** with Loomweave, dependencies become entities with SEI; with Wardline, complements (external-package risk vs in-code taint); with Legis, dependency risk becomes a governed gate; with Charter, a security requirement traces to a dependency finding.
 - **Go/no-go risk:** low–medium. Cleanly bounded and clearly not owned today. Main risk is scope sprawl into general SCA tooling — would need a tight "provenance, not a vuln scanner" charter.
 
+### 3. "Heddle" — temporal / change-impact authority  ·  *PM-selected for a go/no-go spike (2026-06-06)*
+
+- **Bounded domain:** per-entity **change history keyed on SEI across runs**, and the
+  downstream-propagation query over the structural graph it snapshots. Answers the
+  one thing no member can answer today: *"given this diff/PR, which SEIs changed, by
+  whom, when — what is downstream-affected over the call graph, and what must be
+  re-verified?"*
+- **Gap it fills:** the loudest *functional* gap and the most tangible unmet
+  **information** need for a coding agent. Loomweave deliberately stores only the
+  point-in-time graph — its `high_churn` / `recently_changed` tools are dead no-ops
+  *because no member stores per-entity history*. Charter's deferred impact-analysis
+  surface is only the requirements-side slice.
+- **Pairwise stories (enrich-only):** Loomweave's dead churn tools light up as a
+  downstream consumer; Charter pulls "what to re-verify"; Legis pulls gate scope;
+  Wardline scopes a re-scan to the changed set. Absent → each peer keeps its
+  point-in-time view; nothing breaks.
+- **Go/no-go risk — the whole reason it's a spike, not a build:** naive framing makes
+  it a **forbidden aggregator** (doctrine §6; Charter's anti-signal). It survives
+  go/no-go **only if** scoped as a bounded *temporal-graph authority* that owns one
+  unowned thing — change history over time — and *enriches* rather than orchestrates.
+  Proving or killing that reframing is exactly what the spike must do. See
+  [pm/2026-06-06-federation-product-analysis.md](./pm/2026-06-06-federation-product-analysis.md)
+  §4 Recommendation #2.
+
 ---
 
 ## Borderline (likely a feature of an existing member — flagged honestly)

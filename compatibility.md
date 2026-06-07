@@ -32,6 +32,6 @@ Per [SHIPPING.md](./SHIPPING.md) decision 2, after the one-time coordinated **We
 | Filigree | _tbd_ | yes (publishes `classic` + `weft`) | shipped (snapshot v2.3.0); SEI standard locked — Filigree's locator→SEI backfill is a conformance task under the lock |
 | Wardline | _tbd_ | consumer (SEI client) | **1.0 launch gate** (snapshot 1.0.0rc1) |
 | Legis | _tbd_ | consumer | snapshot 1.0.0rc |
-| Charter | _tbd_ | consumer (planned) | **1.0 launch gate** (snapshot 0.1.0 scaffold) |
+| Charter | _tbd_ | consumer (planned) | **non-gating; joins on own cadence** (snapshot 0.1.0 — core + read-only MCP shipped, adapters pending; see `~/charter`) — per [SHIPPING.md](./SHIPPING.md) Decision 2, [conflict-register.md](./conflict-register.md) §B-5 |
 
-> Versions above are **snapshots, not authoritative** — each member's release truth lives in its repo. The coordinated 1.0 launch is **gated by the slowest member** (Wardline + Charter), per [SHIPPING.md](./SHIPPING.md).
+> Versions above are **snapshots, not authoritative** — each member's release truth lives in its repo. The coordinated 1.0 launch is **gated by Wardline (pre-1.0) + Legis (rc→1.0)**; **Charter is non-gating** (joins on its own cadence), per [SHIPPING.md](./SHIPPING.md) Decision 2 and [conflict-register.md](./conflict-register.md) §B-5. Release posture is owned by [SHIPPING.md](./SHIPPING.md); this table defers to it.
