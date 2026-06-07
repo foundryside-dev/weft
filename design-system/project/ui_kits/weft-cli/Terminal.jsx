@@ -102,7 +102,7 @@ function Terminal() {
   const [tab, setTab] = useState("wardline");
   const S = SESSIONS[tab];
   return (
-    <div style={{ width: 760, maxWidth: "94vw", margin: "0 auto", borderRadius: "var(--radius-lg)", overflow: "hidden", border: "1px solid var(--border-strong)", boxShadow: "var(--shadow-modal)", background: "#070C0E" }}>
+    <div style={{ width: 760, maxWidth: "94vw", margin: "0 auto", borderRadius: "var(--radius-lg)", overflow: "hidden", border: "1px solid var(--border-strong)", boxShadow: "var(--shadow-modal)", background: "#0C0A07" }}>
       {/* window chrome */}
       <div style={{ display: "flex", alignItems: "center", gap: 8, padding: "9px 13px", background: "var(--surface-raised)", borderBottom: "1px solid var(--border-default)" }}>
         <span style={{ display: "flex", gap: 7 }}>

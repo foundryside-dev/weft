@@ -15,10 +15,21 @@ This system captures both layers of the brand:
    lifted verbatim from the one real GUI in the suite (Filigree's dashboard) and
    the CLI/MCP surfaces of the rest.
 
-The visual language is intentionally **developer-grade, not marketing-grade**:
-near-black teal surfaces, JetBrains Mono everywhere in product, a single sky
-accent, semantic status colors, and one display face (Space Grotesk) reserved
-for brand moments.
+The visual language is intentionally **developer-grade, not marketing-grade** —
+but no longer the generic dark-teal dev-tool uniform of the last decade. This
+**"Loom"** revision commits to the brand's own metaphor: warm espresso-ink
+surfaces, a dyed-**amber** accent, JetBrains Mono everywhere in product,
+semantic status colors, the per-member **threads** treated as fiber (a soft glow
+on a left-rule), and one display face (Space Grotesk) reserved for brand moments.
+The documented light theme is **"Specimen"** — a warm-paper field-ledger.
+
+> **What changed in this revision (Loom).** The system sheds the cold near-black
+> teal + single sky-blue accent — the dev-tool cliché — for a warm, crafted
+> identity that finally looks like the loom it's named after: an espresso-ink
+> ground, a dyed-amber accent, glowing thread rules, and a warm-paper
+> **"Specimen"** light theme. Token *names* and all semantics are unchanged
+> (color still only ever means a status, severity, or member), so every consumer
+> repaints automatically.
 
 ---
 
@@ -26,12 +37,12 @@ for brand moments.
 
 | Member | Thread | Lang | Domain authority | Status |
 |--------|--------|------|------------------|--------|
-| **Loomweave** | aqua `#4ECDC4` | Rust | Code structure **+ identity authority (SEI)** | built · in use |
-| **Filigree** | sky `#38BDF8` | Python | Work state / issue lifecycle | built · in use |
-| **Wardline** | coral `#F4845F` | Python | Trust-boundary analysis | built · in use |
-| **Legis** | violet `#A78BFA` | Python | Git/CI governance & attestations | 1.0.0rc1 |
-| **Charter** | gold `#E3B341` | Python | Requirements, traceability, verification | scaffolded |
-| *Shuttle* | slate `#6B7C8C` | — | *Change execution (roadmap thought-bubble)* | no repo |
+| **Loomweave** | aqua `#52C9B8` | Rust | Code structure **+ identity authority (SEI)** | built · in use |
+| **Filigree** | sky `#56B7E2` | Python | Work state / issue lifecycle | built · in use |
+| **Wardline** | coral `#F0875E` | Python | Trust-boundary analysis | built · in use |
+| **Legis** | violet `#B79BF2` | Python | Git/CI governance & attestations | 1.0.0rc1 |
+| **Charter** | gold `#E9B04A` | Python | Requirements, traceability, verification | scaffolded |
+| *Shuttle* | slate `#8C7C68` | — | *Change execution (roadmap thought-bubble)* | no repo |
 
 **SEI** (Stable Entity Identity) is the spine: one durable id per code entity
 that every cross-tool fact keys on, so a binding survives a rename tomorrow.
@@ -47,9 +58,10 @@ the member tools) and read as *similar, but pointedly not woven in*. The rule:
 - **Same world.** It inherits the entire Weft system — surfaces, type, spacing —
   so it's unmistakably the same environment.
 - **Not part of.** Three deliberate departures set it apart: an **off-palette
-  dusty magenta** (`--lacuna-accent #CE7AAE`) that appears in no member thread (a
-  nod to it being "the MissingNo of the suite"); a **warm-neutral "specimen"
-  surface** (`--lacuna-surface #1A1822`, noticeably less teal); and a **dashed /
+  dusty magenta** (`--lacuna-accent #C77FA6`) that appears in no member thread (a
+  nod to it being "the MissingNo of the suite"); a **cool mauve-ink "specimen"
+  surface** (`--lacuna-surface #1E1922`, which now *reverses* Weft's warmth — the
+  temperature contrast flipped when the system went warm); and a **dashed /
   ticketed border** treatment instead of Weft's solid left-rules.
 - Planted flaws (*lacunae*) reuse the stale red (`--lacuna-flaw`) and are
   permanent — "do not fix."
@@ -120,35 +132,37 @@ Representative lines:
 
 ## Visual foundations
 
-**Overall vibe.** A terminal at rest. Near-black teal, monospaced, dense, calm.
+**Overall vibe.** A loom at rest. Warm espresso ink, monospaced, dense, calm.
 Color is rationed and always *semantic* — it means a status, a severity, or a
 member, never decoration. The system reads as one continuous developer tool.
 
-- **Color.** A single dark teal surface ramp (`#0B1215` → `#243A45`), one sky
-  accent (`#38BDF8`), and a tight semantic set: open/wip/done, ready (emerald) /
+- **Color.** A warm espresso surface ramp (`#14110D` → `#39301F`), one dyed-amber
+  accent (`#E9B04A`), and a tight semantic set: open/wip/done, ready (emerald) /
   aging (amber) / stale (red), a P0→P4 priority ramp, and finding severities. On
   top sits the **thread palette** — one hue per member — used for identity
   (glyph color, a 3–4px left rule, a tab underline, a dossier row). A documented
-  **light theme** mirrors every token. Define new colors only in `oklch` from
-  these anchors; don't invent.
+  **light theme** ("Specimen" — warm paper, oxblood ink) mirrors every token.
+  Define new colors only in `oklch` from these anchors; don't invent.
 - **Type.** Two faces, one voice. **JetBrains Mono** is the product face — all
   UI, code, body, data, at deliberately small/dense sizes (dashboard chrome runs
   at 11–12px). **Space Grotesk** is the brand face — wordmark, hub headlines,
   slide titles only. Tight tracking on display (`-0.02em`); generous line-height
   on body (1.6). Uppercase labels carry `0.12em` tracking.
-- **Backgrounds.** Flat. No gradients, no hero images, no illustration, no
-  texture. The darkest surface (`#070C0E`) is reserved for terminal bodies.
-  Depth comes from the surface ramp and hairline borders, not light.
+- **Backgrounds.** Near-flat. No hero images, no illustration, no photographic
+  texture. The one concession is the **loom signature**: a *whisper* of
+  warp-thread texture (`--weave-warp`) behind ambient surfaces only (hub hero,
+  board gutters) and a soft fiber glow (`--glow-thread`) on member left-rules.
+  Depth still comes from the surface ramp and hairline borders, not light.
 - **Borders & cards.** Cards are `--surface-raised` with a 1px `--border-default`
   hairline and a 6px radius. State is shown by a **4px left rule** (type or
   semantic color), not by fills. Chips use a 3px radius; popovers/modals 8px.
-- **Elevation.** Minimal and dark. Dropdowns/popovers get a soft `0 10 25 /.45`
-  shadow; modals `0 20 50 /.55`. The only "glow" is a brief accent box-shadow
+- **Elevation.** Minimal and dark. Dropdowns/popovers get a soft `0 10 25 /.50`
+  shadow; modals `0 20 50 /.60`. The only "glow" is a brief accent box-shadow
   pulse when a card's data changes. No colored ambient shadows.
 - **Radii.** `3 / 6 / 8 / full`. Pills and status dots are fully round; nothing
   else is heavily rounded. No pill-shaped buttons.
 - **Hover / press.** Hover lightens the surface one step (`raised → hover`) or,
-  on text, `secondary → primary`; accent buttons darken (`#38BDF8 → #0EA5E9`).
+  on text, `secondary → primary`; accent buttons darken (`#E9B04A → #D69A33`).
   Presses don't scale or bounce. Focus is a 2px accent outline.
 - **Motion.** Functional and fast. `0.15s` for hover/button states, `0.2s` for
   the detail-panel slide and theme swap, both on `cubic-bezier(.4,0,.2,1)`. A

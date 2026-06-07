@@ -78,7 +78,7 @@ function MemberCard({ m, open, onToggle, dim }) {
       background: "var(--surface-raised)", border: "1px solid var(--border-default)",
       borderLeft: `3px solid ${m.thread}`, borderRadius: "var(--radius)",
       padding: "16px 18px", cursor: "pointer", opacity: dim ? 0.72 : 1,
-      transition: "background .15s, transform .15s",
+      transition: "transform .15s, box-shadow .15s",
     }} onMouseEnter={(e) => { e.currentTarget.style.background = "var(--surface-overlay)"; }}
        onMouseLeave={(e) => { e.currentTarget.style.background = "var(--surface-raised)"; }}>
       <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
@@ -161,7 +161,7 @@ function CompositionLaw() {
             padding: "8px 16px", borderRadius: "var(--radius)", cursor: "pointer",
             border: "1px solid " + (mode === k ? "var(--accent)" : "var(--border-strong)"),
             background: mode === k ? "var(--accent)" : "var(--surface-overlay)",
-            color: mode === k ? "#06222F" : "var(--text-secondary)",
+            color: mode === k ? "var(--text-on-accent)" : "var(--text-secondary)",
           }}>{MODES[k].label}</button>
         ))}
       </div>

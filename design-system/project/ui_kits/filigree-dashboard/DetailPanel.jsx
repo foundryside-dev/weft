@@ -64,7 +64,7 @@ function DetailPanel({ issue, onClose }) {
               </div>
             </Field>
             <div style={{ display: "flex", gap: 8, marginTop: 8 }}>
-              <button style={{ fontFamily: "var(--font-mono)", fontSize: 12, fontWeight: 600, padding: "8px 14px", borderRadius: "var(--radius)", border: "1px solid var(--accent)", background: "var(--accent)", color: "#06222F", cursor: "pointer" }}>Advance state</button>
+              <button style={{ fontFamily: "var(--font-mono)", fontSize: 12, fontWeight: 600, padding: "8px 14px", borderRadius: "var(--radius)", border: "1px solid var(--accent)", background: "var(--accent)", color: "var(--text-on-accent)", cursor: "pointer" }}>Advance state</button>
               <button style={{ fontFamily: "var(--font-mono)", fontSize: 12, padding: "8px 14px", borderRadius: "var(--radius)", border: "1px solid var(--border-strong)", background: "var(--surface-overlay)", color: "var(--text-secondary)", cursor: "pointer" }}>Claim</button>
             </div>
           </div>

@@ -25,11 +25,15 @@ function Card({ i, onOpen }) {
       position: "relative", background: "var(--surface-raised)",
       border, borderLeft: ready ? "4px solid var(--ready)" : agingBorder ? `4px solid ${agingBorder}` : border,
       borderRadius: "var(--radius)", padding: "10px 11px 10px 16px", cursor: "pointer",
-      transition: "background .15s",
+      // fiber-glow: the loom signature — the strand blooms softly off the left edge
+      boxShadow: ready ? "-2px 0 9px -4px var(--ready)" : agingBorder ? `-2px 0 9px -4px ${agingBorder}` : "none",
+      // NB: do NOT transition `background` here — it's a theme var (--surface-raised);
+      // Chromium traps the old computed fill when the theme flips, leaving the card dark.
+      transition: "box-shadow .15s, border-color .15s",
     }} onMouseEnter={(e) => (e.currentTarget.style.background = "var(--surface-hover)")}
        onMouseLeave={(e) => (e.currentTarget.style.background = "var(--surface-raised)")}>
       {!ready && !agingBorder && (
-        <div style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: 4, borderRadius: "var(--radius) 0 0 var(--radius)", background: typeColor }} />
+        <div style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: 4, borderRadius: "var(--radius) 0 0 var(--radius)", background: typeColor, boxShadow: `0 0 7px -1px ${typeColor}` }} />
       )}
       <div style={{ display: "flex", alignItems: "center", gap: 7, marginBottom: 5 }}>
         <span style={{ fontSize: 13 }}>{TYPE_ICONS[i.type]}</span>
@@ -72,7 +76,7 @@ function Kanban({ issues, onOpen }) {
   const cols = { open: [], wip: [], done: [] };
   issues.forEach((i) => cols[i.cat] && cols[i.cat].push(i));
   return (
-    <div style={{ display: "flex", gap: 16, padding: 16, flex: 1, overflowX: "auto" }}>
+    <div style={{ display: "flex", gap: 16, padding: 16, flex: 1, overflowX: "auto", backgroundImage: "var(--weave-warp)" }}>
       <Column label="Open" color={CATEGORY_COLORS.open} items={cols.open} onOpen={onOpen} />
       <Column label="In Progress" color={CATEGORY_COLORS.wip} items={cols.wip} onOpen={onOpen} />
       <Column label="Done" color={CATEGORY_COLORS.done} items={cols.done} onOpen={onOpen} />

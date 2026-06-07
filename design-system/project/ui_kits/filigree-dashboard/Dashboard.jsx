@@ -14,7 +14,7 @@ function NavBtn({ active, onClick, children, title }) {
 
 function Pill({ on, onClick, children, tone }) {
   const styles = on
-    ? { background: "var(--accent)", color: "#06222F", border: "1px solid var(--accent)" }
+    ? { background: "var(--accent)", color: "var(--text-on-accent)", border: "1px solid var(--accent)" }
     : { background: "var(--surface-overlay)", color: "var(--text-secondary)", border: "1px solid var(--border-strong)" };
   return <button onClick={onClick} style={{ fontFamily: "var(--font-mono)", fontSize: 11, fontWeight: 600, padding: "4px 9px", borderRadius: "var(--radius)", cursor: "pointer", ...styles }}>{children}</button>;
 }
@@ -91,7 +91,7 @@ function App() {
           <span style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 14, fontWeight: 600, color: "var(--accent)" }}>
             <Mark name="filigree" size={16} style={{ color: "var(--accent)" }} /> Filigree
           </span>
-          <button style={{ fontFamily: "var(--font-mono)", fontSize: 11, background: "var(--accent)", color: "#06222F", padding: "4px 9px", borderRadius: "var(--radius)", border: "none", cursor: "pointer" }}>+ New</button>
+          <button style={{ fontFamily: "var(--font-mono)", fontSize: 11, background: "var(--accent)", color: "var(--text-on-accent)", padding: "4px 9px", borderRadius: "var(--radius)", border: "none", cursor: "pointer" }}>+ New</button>
           <nav style={{ display: "flex", gap: 2 }}>
             <NavBtn active={view === "kanban"} onClick={() => setView("kanban")}>Kanban</NavBtn>
             <NavBtn active={view === "ready"} onClick={() => setView("ready")}>Ready</NavBtn>

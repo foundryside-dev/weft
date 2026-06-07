@@ -65,7 +65,7 @@ each product implements in its own stack:
 
 - centered ≤980px column (hub/docs) **or** fixed top-nav + bottom-stats footer
   with a scrolling middle (dashboard);
-- the dark-teal **surface ramp** for depth (no shadows-as-depth, no gradients);
+- the warm-espresso **surface ramp** for depth (no shadows-as-depth, no gradients);
 - **state shown by a 4px left rule** (member thread or semantic colour), not fills;
 - radii `3 / 6 / 8`, mono-forward dense type, JetBrains Mono in product / Space
   Grotesk for brand moments only;

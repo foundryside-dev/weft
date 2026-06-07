@@ -3,9 +3,11 @@
 // is_ready = no open blockers, impact = downstream blocks count.
 
 const TYPE_ICONS = { bug: "🐛", feature: "✨", task: "📋", epic: "📊", milestone: "🎯" };
-const TYPE_COLORS = { bug: "#EF4444", feature: "#8B5CF6", task: "#3B82F6", epic: "#F59E0B", milestone: "#10B981" };
-const CATEGORY_COLORS = { open: "#64748B", wip: "#38BDF8", done: "#7B919C" };
-const PRIORITY_COLORS = { 0: "#EF4444", 1: "#F97316", 2: "#6B7280", 3: "#D1D5DB", 4: "#D1D5DB" };
+// Loom palette — warmed to match colors_and_type.css (hex, not var(), because
+// the cards build alpha tints by string-concat: catColor + "33").
+const TYPE_COLORS = { bug: "#E25C49", feature: "#B79BF2", task: "#56B7E2", epic: "#E9B04A", milestone: "#5FB98E" };
+const CATEGORY_COLORS = { open: "#8A7A64", wip: "#56B7E2", done: "#897C66" };
+const PRIORITY_COLORS = { 0: "#E25C49", 1: "#EC8A3C", 2: "#8A7A64", 3: "#C9BBA0", 4: "#C9BBA0" };
 const PRIORITY_LABEL = ["Critical", "High", "Medium", "Low", "Backlog"];
 
 const ISSUES = [
