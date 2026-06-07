@@ -203,6 +203,38 @@ layout **pending** loomweave's proposal.
 **Owner.** each member (own relocation) + loomweave (shared-schema proposal) + hub/PM
 (C-9 + this ruling).
 
+### A-15 — Federation token written literally into host-local agent-transport config  *(DECIDED — implementing)*
+
+**Was.** C-3 mandated `${ENV}` indirection and "never a literal" for plumbing tokens.
+But the agent runtime (Claude Code) can only populate a `.mcp.json` **streamable-http**
+`Authorization` header by `${ENV}` expansion or a literal — it cannot read filigree's
+auto-minted `.weft/filigree/federation_token` file. So the indirection left exactly one
+surface where an *unset* `${WEFT_FEDERATION_TOKEN}` silently 401s → the agent loses its
+tracker → coordinates blind. That is **the lacuna failure**, and it is the precise
+deconfliction failure the suite exists to prevent — caused *by* the secret-protecting
+indirection on a token that is **not a secret**.
+**Ruling (PM, 2026-06-07).** For the **auto-provisioned loopback federation token**,
+`install` / `doctor --fix` MAY write the **resolved literal** into host-local
+streamable-http `.mcp.json` headers by default. Rationale: it is **deconfliction
+plumbing, not a security key** (per filigree's own README + `federation_token.py`
+docstring: "loopback deconfliction plumbing, **not** an authority key (C-8)"); these
+are agentic-first tools meant to *just work* for the agent without an export dance.
+**Condition (what makes it safe).** `doctor` must detect **host-drift** — a header
+literal ≠ the locally-resolvable token (stale clone / foreign host) → flag, and
+`--fix` re-localizes. This converts "a git-tracked literal silently 401s on another
+host" into a detected, one-command-fixable drift (C-7's honest-failure principle
+applied to the literal). **stdio** entries carry no token and are untouched.
+**Scope guard.** This does **not** loosen `${ENV}`/`token_env` for operator secrets,
+cross-environment configs, or **authority keys** — Legis operator/signing keys stay
+operator-held and out of agent reach (capability confinement, proposed C-8). It is a
+narrow carve-out for one non-secret token on one transport surface.
+**Reference.** **filigree** — `federation_token.py` 3-tier resolution (`$WEFT_FEDERATION_TOKEN`
+override → auto-minted `0600 .weft/filigree/federation_token` → off) + the
+`install`/`doctor --fix` literal swap. Amends [conventions.md](./conventions.md) C-3;
+refines the §A-13 token rename.
+**Owner.** filigree (install/doctor/`federation_token.py`) + each member writing an
+`.mcp.json` streamable-http entry + hub/PM (C-3 amendment + this ruling).
+
 ---
 
 ## How to use this register

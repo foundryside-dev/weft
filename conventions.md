@@ -103,6 +103,20 @@ couplings. The hub coordinates; it does not block any member's independent relea
   `FILIGREE_API_TOKEN` and `FILIGREE_FEDERATION_API_TOKEN` (now deprecated **fallback
   aliases** for the transition) and supersedes issue `filigree-3ee7250b54`'s
   `FILIGREE_API_TOKEN` choice. See [conflict-register.md](./conflict-register.md) §A-13.
+- **Literal carve-out — host-local agent-transport config (DECIDED 2026-06-07).** The
+  one place a *literal* is permitted: the **auto-provisioned loopback federation token**
+  written into **host-local agent-transport config** — specifically `.mcp.json`
+  **streamable-http** `Authorization` headers, which the agent runtime can only populate
+  by `${ENV}` expansion or a literal (it cannot read the `.weft/` token file). Because
+  this token is **deconfliction plumbing, not a secret**, and because the `${ENV}`
+  indirection is *itself* the unset→silent-401 deconfliction-failure vector (the lacuna
+  failure C-3's own "Why" cites), `install` / `doctor --fix` MAY write the resolved
+  literal there by default — **provided `doctor` detects host-drift** (a header literal
+  ≠ the locally-resolvable token → flag + `--fix` re-localizes; this is C-7's honest-
+  failure principle applied to the literal, and it is what makes the literal safe to
+  ship in a git-tracked file). **stdio** entries carry no token and are untouched. This
+  does **not** loosen the rule for operator secrets, cross-environment configs, or
+  authority keys (the carve-out below). See [conflict-register.md](./conflict-register.md) §A-15.
 - **Why:** config **hygiene + portability + connectivity diagnostics** — *not* secret
   protection. These tokens are loopback/federation plumbing, not secrets (Weft is
   deconfliction-first, not a security system). The `${ENV}` convention keeps configs
@@ -115,11 +129,16 @@ couplings. The hub coordinates; it does not block any member's independent relea
   goal-seeking, not malice). That is **capability confinement**, not hygiene, and is
   tracked separately (proposed **C-8**), not satisfied by this rule.
 - **Reference:** **loomweave** — `loomweave.yaml` `token_env` (renaming `FILIGREE_API_TOKEN` → `WEFT_FEDERATION_TOKEN` under the canonical-name decision; keep the old name as a fallback during transition).
+- **Reference (literal/auto-mint facet):** **filigree** — `federation_token.py` 3-tier
+  resolution (`$WEFT_FEDERATION_TOKEN` override → auto-minted `0600`
+  `<.weft/filigree>/federation_token` → off) makes federation auth on-by-default with
+  zero ceremony for same-host siblings; `install`/`doctor --fix` write the resolved
+  literal into streamable-http `.mcp.json` headers per the carve-out.
 
 | Member | State | Evidence |
 |---|---|---|
 | loomweave | **reference** | `config.rs` defaults `token_env`; refuses unauthenticated HTTP on a routable interface if `${token_env}` is unset; literal creds only under `#[cfg(test)]`. |
-| filigree | **conforms** | `core.py` `token_env`; daemon + client moving to canonical `WEFT_FEDERATION_TOKEN` with `FILIGREE_FEDERATION_API_TOKEN` / `FILIGREE_API_TOKEN` as deprecated fallbacks (implementing on `release/3.0.0`); `hmac.compare_digest`; no literal in any shipped config. |
+| filigree | **conforms (installed rc6)** | `WEFT_FEDERATION_TOKEN` canonical (fallbacks `FILIGREE_FEDERATION_API_TOKEN` / `FILIGREE_API_TOKEN`), `hmac.compare_digest`. **`federation_token.py` 3-tier auto-mint** (env → `0600 .weft/filigree/federation_token` → off) is the literal/auto-mint reference; `install`/`doctor --fix` write the resolved literal into streamable-http `.mcp.json` headers (the §A-15 carve-out), gated by a doctor host-drift check. Code-verified live in installed rc6, 2026-06-07. |
 | wardline | **conforms** | `filigree/config.py:18-32` reads `WARDLINE_FILIGREE_TOKEN` (its own name — "only the token *value* must match") from env or a git-ignored `.env`; `.mcp.json` `env={}`. Under the rename, wardline to adopt `WEFT_FEDERATION_TOKEN` (fallback `WARDLINE_FILIGREE_TOKEN`) **or** document the value-mapping in the glossary — wardline's call (§A-13). |
 | legis | **conforms** | reads tokens from env; no literal in shipped config. |
 | charter | **exempt** | no credentialed transport surface yet (read-only consumer). |
@@ -268,17 +287,19 @@ couplings. The hub coordinates; it does not block any member's independent relea
 
 | Member | State | Evidence |
 |---|---|---|
-| legis | **conforms (member-private form) — reference** | `src/legis/config.py`: all four stores (check/governance/binding/pull) resolve under `.weft/legis/`; `[legis].store_dir` read **read-only** from `weft.toml`; absent/section-less/malformed → built-in defaults; `ensure_sqlite_parent` mkdirs at open-time; signing keys untouched. 676 passed / ruff+mypy clean; acceptance criterion smoke-tested (runs with no `weft.toml`). Shared-key layout: N/A (pending). |
-| filigree | **pending** | backcompat relocation `.filigree/`→`.weft/filigree/` retaining the legacy `.filigree.conf` read, reusing the `from_conf` relocation machinery (the fg-da8d50 split-brain fix); single resolved anchor. weft.toml read deferred to the pinned shared layout. *(Its existing `.weft` refs are an unrelated `generations/weft` module, not this contract.)* |
-| loomweave | **pending** | clean-break `.loomweave/`→`.weft/loomweave/` + federation resolver preferring `.weft/filigree/` (tolerating `.filigree/`); SEI scheme frozen. **Owns the shared `weft.toml` schema proposal.** |
-| wardline | **pending** | clean-break `.wardline/`→`.weft/wardline/`; `doctor` updates its layout checks but **must not** write `weft.toml` or a sibling subtree. |
-| charter | **pending (not installed)** | no live store / not installed; adopts on first store/install. |
+| legis | **reference (member-private form) — installed rc4** | `src/legis/config.py`: all four stores (check/governance/binding/pull) resolve under `.weft/legis/`; `[legis].store_dir` read **read-only** from `weft.toml`; absent/section-less/malformed → built-in defaults; `ensure_sqlite_parent` mkdirs at open-time; signing keys untouched. Reinstall **cleared the prior split-brain** (the installed build now resolves `.weft/legis/`, code-verified in lacuna 2026-06-07). rc4 **unmerged to main** (main still rc3). Shared-key layout: N/A (pending). |
+| filigree | **✓† (installed rc6, unmerged to main)** | `.filigree/`→`.weft/filigree/` live: `WEFT_DIR_NAME`/`resolve_store_dir` (`core.py`) + one-shot `migrate_store_to_weft` + `[filigree].store_dir` from `weft.toml`. Currently **also** keeps a permanent legacy `.filigree/` read (conf > `.weft/filigree/` > legacy) — the clean-break ruling drops that rung to *one-shot-import-only* (cascade pending). main still 2.2.0. Code-verified live in rc6, 2026-06-07. |
+| loomweave | **✓† (installed rc3, unmerged to main)** | clean-break `.loomweave/`→`.weft/loomweave/` (`loomweave-core::store`); federation resolver is **`.weft/filigree/`-only — legacy `.filigree/` tolerance already REMOVED** (negative test `legacy_filigree_port_is_not_resolved_after_clean_break`); `[loomweave].store_dir` read-only fail-soft; SEI frozen. main still v1.0.0. **Owns the shared `weft.toml` schema proposal** (`weft-a2f4cf95c7`). Code-verified live in rc3, 2026-06-07. |
+| wardline | **✓† (installed rc4, unmerged to main)** | clean-break `.wardline/`→`.weft/wardline/` (`core/paths.py`, sole writer, never writes `weft.toml`/sibling subtree); sibling-endpoint URL keys + `_is_safe_url`/`trust_config_urls` guards **retired**; `doctor` updated for the `.weft/` layout. main ~32 commits behind. Code-verified live in rc4, 2026-06-07. |
+| charter | **pending (not installed)** | no live store / not installed (v0.1.0); adopts on first store/install. |
 
 ---
 
 ## Consolidated matrix
 
-`R` reference · `R†` reference-but-not-shipped · `✓` conforms · `…` pending · `—` exempt · `?` unknown
+`R` reference · `R†` reference-but-not-shipped · `✓` conforms · `✓†` conforms in the installed/branch build, **unmerged to main (unreleased)** · `…` pending · `—` exempt · `?` unknown
+
+> **C-9 + C-3 cells re-verified 2026-06-07** against the *installed* builds (lacuna's reinstalled suite), not just branch source. The `✓†` state records the recurring suite-wide fact the propagation P1s track: the work is live in the installed binary but the branch is **not merged to main / not released** (`weft-677779a3d0`/`-46f866cb85`/`-71ce4f8253`/`-9da517a67e`).
 
 | Convention | filigree | loomweave | wardline | legis | charter |
 |---|:--:|:--:|:--:|:--:|:--:|
@@ -289,7 +310,7 @@ couplings. The hub coordinates; it does not block any member's independent relea
 | C-5 `doctor` applies fixes | ✓ | R | ✓ | … | … |
 | C-6 MCP envelope | … | … | … | … | R |
 | C-7 401-vs-unreachable | ✓ | R | … | … | — |
-| C-9 `.weft/`+`weft.toml` layout | … | … | … | R | … |
+| C-9 `.weft/`+`weft.toml` layout | ✓† | ✓† | ✓† | R | … |
 
 loomweave is the dominant reference member (C-1/C-2†/C-3/C-5/C-7); charter is the
 C-6 reference; legis is the C-9 reference (member-private form). No member is reference
