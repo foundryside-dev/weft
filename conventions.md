@@ -293,6 +293,38 @@ couplings. The hub coordinates; it does not block any member's independent relea
 | wardline | **✓† (installed rc4, unmerged to main)** | clean-break `.wardline/`→`.weft/wardline/` (`core/paths.py`, sole writer, never writes `weft.toml`/sibling subtree); sibling-endpoint URL keys + `_is_safe_url`/`trust_config_urls` guards **retired**; `doctor` updated for the `.weft/` layout. main ~32 commits behind. Code-verified live in rc4, 2026-06-07. |
 | charter | **pending (not installed)** | no live store / not installed (v0.1.0); adopts on first store/install. |
 
+### C-10 — Honest federation seams: report scope, provenance, and config-state; no silent success
+
+- **Rule.** A cross-member operation (emit, scan, gate, govern, promote) MUST be honest
+  about its own effect:
+  - **(a) Effective scope/destination.** The response echoes *where the side effect
+    landed* (which project/store), so a misroute cannot read as success. (N1, `weft-7a399b8124`.)
+  - **(b) Payload provenance.** Suppression/baseline/severity truth is carried *across*
+    the seam, so an accepted/baselined defect is not reborn as fresh urgent work on the
+    other side. (N2, `weft-171fc22a50`.)
+  - **(c) Config-state.** An unconfigured/disabled capability says so, with the
+    enablement path — it never presents an inert surface as functional. (N3, `weft-df8d2ef454`.)
+  - **(d) No vacuous green / no silent success.** A `pass`/`ok`/2xx that evaluated no
+    threshold or wrote nowhere meaningful declares `NOT_EVALUATED` / names what it did;
+    it must not read as success. (W2, `weft-b937e53854`.)
+- **Why.** The **agentic-first corollary of C-7** (which distinguishes *failure* modes),
+  generalised to *success* reporting. An agent reasons from what the tool tells it, so a
+  seam silent or dishonest about its own effect/scope/config produces *confidently-wrong*
+  behaviour — the exact deconfliction failure the suite exists to prevent, moved up to
+  the reasoning layer. Named from the dogfood-#2 throughline ("the plumbing works but the
+  federation is quiet about itself").
+- **Reference:** **none yet** — a cross-cutting gap (like C-4 at naming). Partial facets:
+  loomweave's honest-empty `result_kind` tri-state + the C-7 ladder are (a)/(d)-adjacent;
+  charter's C-6 envelope (`meta.producer`, honest-empty) is the closest discipline.
+
+| Member | State | Evidence |
+|---|---|---|
+| filigree | **pending** | silent 2xx misroute (R1 `weft-7a399b8124`); no finding→issue close-feedback (N6); F2 bridge-visibility hint. |
+| wardline | **pending** | emit echoes no destination (N1); suppression/baseline truth dropped at the seam (N2); vacuous-green gate (W2 `weft-b937e53854`). |
+| loomweave | **pending** | `worktree_dirty` scope mismatch vs git (N5); honest-empty `result_kind` is a partial facet. |
+| legis | **pending** | governance inert by default with no config-state signal (N3 `weft-df8d2ef454`); dirty-tree refusal without a snapshot path (N4). |
+| charter | **pending** | no cross-member side-effect surface yet; its C-6 envelope discipline is the nearest exemplar to generalise from. |
+
 ---
 
 ## Consolidated matrix
@@ -311,10 +343,12 @@ couplings. The hub coordinates; it does not block any member's independent relea
 | C-6 MCP envelope | … | … | … | … | R |
 | C-7 401-vs-unreachable | ✓ | R | … | … | — |
 | C-9 `.weft/`+`weft.toml` layout | ✓† | ✓† | ✓† | R | … |
+| C-10 honest federation seams | … | … | … | … | … |
 
 loomweave is the dominant reference member (C-1/C-2†/C-3/C-5/C-7); charter is the
 C-6 reference; legis is the C-9 reference (member-private form). No member is reference
-for C-4 (the unowned cross-tool gap) or for C-9's shared-key layout (hub-pending).
+for C-4 (the unowned cross-tool gap), C-9's shared-key layout (hub-pending), or C-10
+(the newly-named honest-seams bar — dogfood-#2's "works but quiet about itself" tier).
 (C-8 — authority-key confinement — is reserved/proposed; see the C-3 carve-out.)
 
 ### Verification calibration (honest confidence)
