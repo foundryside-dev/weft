@@ -15,6 +15,38 @@ member's work is **live in its installed build but unmerged to `main`** (the `�
 state in [conventions.md](./conventions.md)) — so this runbook is **merge → release →
 reinstall**, not "build."
 
+### Current deployment state (verified first-principles 2026-06-08)
+
+The dogfood-2 fixes are **almost entirely landed and locally live; the gap is now
+push + merge, not implementation.** Verified by reading each installed artifact (not
+the tracker):
+
+- **filigree — LIVE (installed rc8, copy install).** F1 (per-project token + canonical
+  store-dir), F2 (un-bridged-findings line), F3 (container types non-startable), R1
+  (route fail-closed + C-10a read-echo), N2 (promote suppression-guard + hardening),
+  plus C2/C3/Le1. **Local install is ahead of `origin/release/3.0.0` by 6 and unmerged
+  to `main`** — push + merge outstanding.
+- **legis — LIVE (installed rc4, copy install).** N3, N4, W3, Le1. Ahead of origin by 1.
+- **wardline — LIVE via *editable* install (`.pth` → `/home/john/wardline/src`, tracks
+  rc4 HEAD).** C-4 foreign-safe block injector (`c58da86`/`779e3c5`), F1 emit-path
+  mint-read (`e3ee92e`), N1 destination-echo (`25971c9`), W1/W2/W3. *Caveat: editable
+  means "live" == working tree; a real versioned `wardline install` must be cut so the
+  fixes survive independent of this checkout.*
+- **loomweave — STALE (the one laggard).** Compiled binary is `1.1.0-rc3` and PREDATES
+  `cb49008` (L1 whole-project finding browser + N5 consumer-visible `worktree_dirty_note`);
+  `strings` on the binary confirms neither is present. **`cb49008` is also not pushed
+  (ahead of `origin/rc3` by 1).** Needs **push + `cargo` rebuild/reinstall** to go live.
+
+**Merge-inversion note:** for filigree/legis/wardline the *installed* build is **ahead**
+of both `origin` and `main` — so for them the operative step is **push + merge-to-main to
+bring the trunk up to the already-installed code**, not "build then install." loomweave
+is the inverse (code committed, binary stale) and needs the rebuild.
+
+**Reinstall / push set (so nothing silently stays at an old snapshot):**
+filigree `release/3.0.0` (≥`ee63114`, rc8) · legis `rc4` (≥`4a254f2`) · wardline `rc4`
+(≥`e3ee92e`; cut a versioned install off editable) · loomweave `rc3` (≥`cb49008`; **push
+first**, then rebuild the binary).
+
 ## The load-bearing invariant
 
 **Order matters because clean-break siblings resolve against filigree.** A sibling
