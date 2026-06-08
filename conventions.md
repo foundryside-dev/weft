@@ -72,8 +72,8 @@ couplings. The hub coordinates; it does not block any member's independent relea
 
 | Member | State | Evidence |
 |---|---|---|
-| loomweave | **reference** | on-disk `.loomweave/.gitignore` complete + ADR-005 header; `git add -A --dry-run` stages nothing. **Caveat:** the *generated* on-disk file has drifted from the ADR-005 template — it excludes `loomweave.db`, which ADR-005 mandates *tracked* (member finding LW-1). |
-| filigree | **pending** | `install.py:258-330` `FILIGREE_DIR_GITIGNORE` complete on `release/3.0.0`@rc4 (`d4f8921`); **absent from installed rc3** (grep=0). Co-author of the standard, not yet shipped. |
+| loomweave | **reference** | on-disk `.weft/loomweave/.gitignore` complete; `git add -A --dry-run` stages nothing. The generated file excludes `loomweave.db` — this is **correct, not drift**: ADR-005's "tracked db" mandate was deliberately **reversed by C1 (`weft-d822a7de2d`)** and `install.rs:37,44` cites the reversal in-comment (`loomweave analyze` rebuilds the db, so excluding it keeps the consumer's tree clean for legis signing). Former finding LW-1 is therefore void — see LW-1 below. |
+| filigree | **conforms** | `install.py:409` `FILIGREE_DIR_GITIGNORE` (marker `managed-by: filigree`) ships in the installed build; the whole `.weft/` is root-ignored with the nested ignore as the un-ignore safety net (verified first-principles 2026-06-09). Co-author of the suite-wide standard (`d4f8921`). |
 | wardline | **conforms** | `.gitignore` excludes `findings.jsonl`, `.env`, `.mcp.json`, agent docs; live secret/db/lock leak test passes. *Minor:* section comments, not the full durable-vs-ephemeral header; owns no live DB dot-dir. |
 | legis | **conforms** | ignores its runtime artifacts; no live db/credential stages. (runtime tier) |
 | charter | **pending** | not installed; dot-dir hygiene unverified firsthand. |
@@ -328,10 +328,10 @@ couplings. The hub coordinates; it does not block any member's independent relea
 
 | Member | State | Evidence |
 |---|---|---|
-| filigree | **pending** | silent 2xx misroute (R1 `weft-7a399b8124`); no finding→issue close-feedback (N6); F2 bridge-visibility hint. |
-| wardline | **pending** | emit echoes no destination (N1); suppression/baseline truth dropped at the seam (N2); vacuous-green gate (W2 `weft-b937e53854`). |
-| loomweave | **pending** | `worktree_dirty` scope mismatch vs git (N5); honest-empty `result_kind` is a partial facet. |
-| legis | **pending** | governance inert by default with no config-state signal (N3 `weft-df8d2ef454`); dirty-tree refusal without a snapshot path (N4). |
+| filigree | **conforms** | unscoped writes fail closed (400, no default-project fallback) + `X-Filigree-Project` echo (R1, `dashboard.py:889-900`); finding→issue status surfaced via LEFT JOIN (N6, `weft-c815d5e77d` closed); F2 un-bridged-findings line in session-context (count predicate reads the new `suppression_state` key — dogfood-3 confirmed it self-heals on re-scan; the "0 baselined" miscount was a clean-break transition artifact, not a code defect). Verified 2026-06-09. **Residuals (tracked):** classic-router/ADR-029 writes outside the fail-closed set (`weft-eff938d3b6`); baselined findings still land `status:open` and `finding_list` lacks a suppression filter (N2 `weft-171fc22a50`, filter-gap `weft-d7273d61e3`). |
+| wardline | **conforms** | destination echo block names where it posted + `project_pinned` (N1, `core/filigree_emit.py:84-111`); honest gate `verdict=NOT_EVALUATED` is unrepresentable-as-PASSED (W2, `core/run.py:93-140`, `weft-b937e53854`). Verified 2026-06-09. **Residual (tracked):** echoes the *pinned* not the daemon-*resolved* project (`weft-eff938d3b6`); N2 suppression-carry residual (`weft-171fc22a50`). |
+| loomweave | **conforms** | `WORKTREE_DIRTY_NOTE` emitted on every status path documenting the un-indexed-untracked source scope + the `staleness==fresh` gate guidance (N5, `tools/status.rs:22-37`); honest-empty `result_kind` tri-state. Verified 2026-06-09. |
+| legis | **conforms** | `legis doctor` report-only checks name each enablement path + `_recovery_for` next_actions for `CELL_NOT_ENABLED`/`INVALID_CELL_SPEC` (N3, `weft-df8d2ef454` closed; inert-by-default is by-design, C-8). N4 was **MISDIAGNOSED** — the default keyless posture *governs* a dirty tree (stamped `artifact_status=dirty`), never refuses (`ingest.py:204-216`, `weft-a7a92a40dd` closed). Verified 2026-06-09. **Residual (tracked):** `check_binding_ledger` (`weft-a92805f4cf`); `scan_route` description (`weft-1e7eeec1b6`). |
 | charter | **pending** | no cross-member side-effect surface yet; its C-6 envelope discipline is the nearest exemplar to generalise from. |
 
 ---
@@ -381,7 +381,7 @@ re-checkable against the cited `file:line`. Re-running the live tools per member
 These are member-repo defects (their *own* docs disagree with their *own* code, or a
 generated artifact drifted). The hub records them; each member owns the fix.
 
-- **LW-1 (loomweave):** generated `.loomweave/.gitignore` excludes `loomweave.db`, but ADR-005 mandates it *tracked* — the generated artifact drifted from its `install.rs` template.
+- **LW-1 (loomweave): VOID (resolved 2026-06-09).** Was: generated `.gitignore` excludes `loomweave.db` against ADR-005's "tracked" mandate. That mandate was deliberately **reversed by C1 (`weft-d822a7de2d`)** — excluding the db keeps the consumer's tree clean so legis can sign. `install.rs:37,44` cites the reversal in-comment; the exclusion is now correct, not drift. No member action.
 - **LW-2 (loomweave):** `README.md`/`CHANGELOG` version drift — README says "v1.0.0 current" while the working branch's `Cargo.toml` is `1.1.0-rc2`; CHANGELOG orders `[1.0.0] 2026-06-05` above `[1.3.0]`.
 - **WD-1 (wardline):** `README.md`/`ROADMAP.md` say "four policy rules / 0.3.0 shipped"; code has **20 rules** (`PY-WL-101..120`) at `1.0.0rc1`.
 - **LG-1 (legis):** `README.md:9` says `1.0.0rc1` and "MCP forthcoming"; code is `1.0.0rc4` with the **13-tool MCP shipped**. No `--version` flag exists. `install`/`session-context` are rc4-only (installed rc3 lacks them).
