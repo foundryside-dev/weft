@@ -1,5 +1,8 @@
 // Dashboard.jsx — Filigree dashboard shell: nav, filter bar, views, footer.
+// This kit CONSUMES the Weft component library (Tabs/IssueCard/Dialog/Toast)
+// from the compiled bundle rather than re-implementing chrome.
 const { useState, useMemo } = React;
+const { Tabs, Toast } = window.WeftDesignSystem_9a241d;
 
 function NavBtn({ active, onClick, children, title }) {
   return (
@@ -65,6 +68,8 @@ function App() {
   const [ready, setReady] = useState(false);
   const [theme, setTheme] = useState("dark");
   const [pills, setPills] = useState({ open: true, active: true, done: true });
+  const [toast, setToast] = useState(null);
+  const notify = (t) => { setToast(t); window.clearTimeout(notify._t); notify._t = window.setTimeout(() => setToast(null), 3400); };
 
   const issues = useMemo(() => {
     let list = ISSUES.slice();
@@ -91,13 +96,20 @@ function App() {
           <span style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 14, fontWeight: 600, color: "var(--accent)" }}>
             <Mark name="filigree" size={16} style={{ color: "var(--accent)" }} /> Filigree
           </span>
-          <button style={{ fontFamily: "var(--font-mono)", fontSize: 11, background: "var(--accent)", color: "var(--text-on-accent)", padding: "4px 9px", borderRadius: "var(--radius)", border: "none", cursor: "pointer" }}>+ New</button>
-          <nav style={{ display: "flex", gap: 2 }}>
-            <NavBtn active={view === "kanban"} onClick={() => setView("kanban")}>Kanban</NavBtn>
-            <NavBtn active={view === "ready"} onClick={() => setView("ready")}>Ready</NavBtn>
-            <NavBtn active={view === "graph"} onClick={() => setView("graph")}>Graph</NavBtn>
-            <NavBtn active={view === "insights"} onClick={() => setView("insights")}>Insights</NavBtn>
-            <NavBtn active={view === "files"} onClick={() => setView("files")}>Files</NavBtn>
+          <button onClick={() => notify({ tone: "var(--accent)", icon: "✨", title: "Issue created", body: "fg-new1 · open · via dashboard" })} style={{ fontFamily: "var(--font-mono)", fontSize: 11, background: "var(--accent)", color: "var(--text-on-accent)", padding: "4px 9px", borderRadius: "var(--radius)", border: "none", cursor: "pointer" }}>+ New</button>
+          <nav>
+            <Tabs
+              variant="pill"
+              value={view}
+              onChange={setView}
+              tabs={[
+                { id: "kanban", label: "Kanban" },
+                { id: "ready", label: "Ready" },
+                { id: "graph", label: "Graph" },
+                { id: "insights", label: "Insights" },
+                { id: "files", label: "Files" },
+              ]}
+            />
           </nav>
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
@@ -122,7 +134,7 @@ function App() {
           {view === "insights" && <Placeholder label="Insights" />}
           {view === "files" && <Placeholder label="Files" />}
         </div>
-        <DetailPanel issue={sel} onClose={() => setSel(null)} />
+        <DetailPanel issue={sel} onClose={() => setSel(null)} onNotify={notify} />
       </main>
 
       {/* Footer stats */}
@@ -134,8 +146,21 @@ function App() {
         <span>Deps: <b style={{ color: "var(--text-primary)" }}>{stats.deps}</b></span>
         <span style={{ marginLeft: "auto", color: "var(--text-muted)" }}>filigree v{PROJECT.version} · ethereal</span>
       </footer>
+
+      {/* Transient toast (library component) — above overlays, viewport-anchored */}
+      {toast && (
+        <div style={{ position: "fixed", right: 16, bottom: 16, zIndex: 200 }}>
+          <Toast tone={toast.tone} icon={toast.icon} title={toast.title} onDismiss={() => setToast(null)}>{toast.body}</Toast>
+        </div>
+      )}
     </div>
   );
 }
 
-ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+// Self-mount only on this kit's own page. When this file is pulled into the
+// design-system bundle, #root either doesn't exist yet (bundle loads in <head>)
+// or already belongs to a consumer — so stay inert and never clobber it.
+const __dashRoot = document.getElementById("root");
+if (__dashRoot && __dashRoot.childElementCount === 0) {
+  ReactDOM.createRoot(__dashRoot).render(<App />);
+}

@@ -11,13 +11,17 @@ and the interactive composition-law toggle (Solo / Pair / Suite).
 ## Files
 | File | What it is |
 |------|------------|
-| `index.html` | Mounts React + the components below |
-| `HubMarks.jsx` | Federation glyph set (`<Mark name="…">`) + `MEMBERS` / `SHUTTLE` data |
-| `Hub.jsx` | The page: `HubHeader`, `Hero`, `Roster` → `MemberCard`, `CompositionLaw`, footer |
+| `index.html` | Mounts React + the design-system bundle + the components below |
+| `HubData.jsx` | Federation roster data (`MEMBERS` / `SHUTTLE`); aliases the library `Mark` / `Tabs` / `Stat` onto window |
+| `Hub.jsx` | The page: `HubHeader`, `Hero` (with a `Stat` strip), `Roster` → `MemberCard`, `CompositionLaw` (library `Tabs`), footer |
+
+**This kit consumes the Weft component library** — the federation glyphs are the
+library `Mark`, the composition-law switch is `Tabs` (pill), and the hero metrics
+are `Stat` — all from `window.WeftDesignSystem_9a241d`.
 
 ## Components to reuse
-- `<Mark name="weft|loomweave|filigree|wardline|legis|charter|shuttle" size color>` — the glyph set, inherits `currentColor`.
-- `<MemberCard m={…} />` — thread-ruled roster card with expand.
+- `<Mark name="weft|loomweave|filigree|wardline|legis|charter|shuttle" size color>` — the library glyph set, inherits `currentColor`.
+- `<MemberCard m={…} />` — thread-ruled roster card with expand (kit-local).
 - `MEMBERS` — the canonical roster array (name, thread, lang, domain, status, repo).
 
 ## Notes

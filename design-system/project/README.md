@@ -73,10 +73,14 @@ The Lacuna mark (`assets/marks/lacuna.svg`) is a broken specimen frame (the *gap
 
 ## Sources
 
-This system was built by reading the members' real repositories. The reader is
-encouraged to explore them further to design with higher fidelity — the
-Filigree dashboard source in particular is the canonical origin of this palette
-and type system.
+This system was **imported from the `weft` federation hub repository**, where it
+lives under `design-system/project/`:
+
+> **https://github.com/foundryside-dev/weft** — `design-system/project/`
+
+The reader is encouraged to explore that repo (and the member repos below)
+further to design with higher fidelity — the Filigree dashboard source in
+particular is the canonical origin of this palette and type system.
 
 | Repo | URL | Used for |
 |------|-----|----------|
@@ -216,6 +220,7 @@ the terminal voice.
 **Root**
 - `README.md` — this file (overview, sources, content + visual foundations, iconography, index)
 - `SKILL.md` — Agent-Skill front-matter so this system is usable from Claude Code
+- `styles.css` — the global-CSS **entry point** consumers link; a one-line `@import` of `colors_and_type.css`
 - `colors_and_type.css` — the token source of truth (colors, type roles, radii, shadows, spacing, thread palette, light theme)
 
 **`assets/marks/`** — the parent-org mark, the seven federation glyphs + the adjacent specimen, as standalone SVGs
@@ -223,17 +228,29 @@ the terminal voice.
 - `weft.svg` · `loomweave.svg` · `filigree.svg` · `wardline.svg` · `legis.svg` · `charter.svg` · `shuttle.svg`
 - `lacuna.svg` — the adjacent demonstration specimen (off-palette, dashed)
 
-**`preview/`** — the Design System tab cards (Brand, Type, Colors, Spacing, Components)
+**`components/`** — the reusable React primitives (each is `<Name>.jsx` + `<Name>.d.ts` + `<Name>.prompt.md`, with one live `@dsCard` per directory mounting the compiled bundle). Consume them as `const { Button } = window.WeftDesignSystem_9a241d` after loading `_ds_bundle.js`.
+- `core/` — **Button** (primary / secondary / ghost / danger / ready · 3 sizes), **Badge** (status pill), **Tag** (semantic inline chip — status / type / severity / thread)
+- `forms/` — **Input** (accent focus ring), **Select** (styled native select), **Checkbox**
+- `marks/` — **Mark**, the full federation glyph set (org · umbrella · members · roadmap · specimen), `currentColor`-driven
+- `issue-card/` — **IssueCard**, the canonical Filigree kanban card (ready / aging / stale / type-rule / blocked states) · *starting point*
+- `dossier/` — **Dossier**, the SEI-keyed entity woven from all five tools (composes `Mark`) · *starting point*
+- `overlay/` — **Dialog**, the centered modal + right-edge slide-in panel (flat dim backdrop, Esc/backdrop close)
+- `navigation/` — **Tabs**, accent/thread underline tabs + the dashboard's pill nav
+- `feedback/` — **Toast** (transient notification) + **ChangeFlash** (the one-shot accent pulse on data change)
+- `popover/` — **Tooltip** (hover/focus hint) + **Dropdown** (trigger + popover menu)
+- `data/` — **Table** (config-driven data grid for the Ready queue) + **Stat** (KPI / footer metric)
+
+**`preview/`** — the remaining Design System tab specimen cards (Brand, Type, Colors, Spacing)
 - brand: `brand-logo`, `brand-members`, `brand-foundryside`, `brand-lacuna`
 - type: `type-brandfont`, `type-pairing`, `type-display`, `type-body`, `type-mono`
 - colors: `colors-surfaces`, `colors-text`, `colors-accent`, `colors-threads`, `colors-status`, `colors-priority`
 - spacing: `spacing-radii`, `spacing-elevation`, `spacing-scale`
-- components: `comp-buttons`, `comp-badges`, `comp-issuecard`, `comp-inputs`, `comp-dossier`
+- brand: `brand-specimen` (dark vs light theme parity — every token has a warm-paper value)
 
 **`ui_kits/`** — high-fidelity, interactive recreations (each with its own README)
-- `weft-hub/` — the federation portfolio / doctrine landing (brand layer)
-- `filigree-dashboard/` — the one real GUI: kanban board + issue detail click-thru
-- `weft-cli/` — the agent-first terminal: scan, MCP dossier, governance verdict, the Lacuna tour
+- `weft-hub/` — the federation portfolio / doctrine landing (brand layer) (**consumes the component library** — Mark/Tabs/Stat)
+- `filigree-dashboard/` — the one real GUI: kanban board + issue detail click-thru (**consumes the component library** — Tabs/IssueCard/Dialog/Toast)
+- `weft-cli/` — the agent-first terminal: scan, MCP dossier, governance verdict, the Lacuna tour (**consumes the component library** — Mark/Tabs)
 
 **Fonts:** JetBrains Mono and Space Grotesk are **bundled locally** in `fonts/`
 as variable TTFs (with their `OFL.txt` licenses) and wired via `@font-face` in

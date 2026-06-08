@@ -111,19 +111,19 @@ function Terminal() {
         <span style={{ marginLeft: 8, fontSize: 11.5, color: "var(--text-muted)" }}>agent@weft — {S.label} — stdio</span>
         <Mark name="weft" size={14} style={{ color: "var(--text-muted)", marginLeft: "auto" }} />
       </div>
-      {/* tab bar */}
-      <div style={{ display: "flex", gap: 2, padding: "7px 9px 0", background: "var(--surface-raised)", borderBottom: "1px solid var(--border-default)" }}>
-        {order.map((t) => (
-          <button key={t} onClick={() => setTab(t)} style={{
-            fontFamily: "var(--font-mono)", fontSize: 11.5, padding: "6px 12px", cursor: "pointer",
-            border: "none", borderBottom: `2px solid ${tab === t ? `var(--thread-${SESSIONS[t].member})` : "transparent"}`,
-            background: "transparent", color: tab === t ? "var(--text-primary)" : "var(--text-muted)",
-            display: "flex", alignItems: "center", gap: 7,
-          }}>
-            <Mark name={SESSIONS[t].member} size={13} style={thread(SESSIONS[t].member)} />
-            {SESSIONS[t].label}
-          </button>
-        ))}
+      {/* tab bar — library Tabs (underline), tinted by the active member's thread */}
+      <div style={{ padding: "7px 12px 0", background: "var(--surface-raised)" }}>
+        <Tabs
+          variant="underline"
+          value={tab}
+          onChange={setTab}
+          accent={`var(--thread-${S.member})`}
+          tabs={order.map((t) => ({
+            id: t,
+            label: SESSIONS[t].label,
+            icon: <Mark name={SESSIONS[t].member} size={13} style={thread(SESSIONS[t].member)} />,
+          }))}
+        />
       </div>
       {/* body */}
       <div style={{ padding: "16px 18px 22px", fontFamily: "var(--font-mono)", fontSize: 13, lineHeight: 1.65, minHeight: 300 }}>
@@ -151,4 +151,8 @@ function App() {
     </div>
   );
 }
-ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+// Self-mount only on this kit's own page (see Dashboard.jsx for rationale).
+const __cliRoot = document.getElementById("root");
+if (__cliRoot && __cliRoot.childElementCount === 0) {
+  ReactDOM.createRoot(__cliRoot).render(<App />);
+}

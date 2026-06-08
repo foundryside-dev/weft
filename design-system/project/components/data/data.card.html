@@ -1,0 +1,58 @@
+<!-- @dsCard group="Components" name="Table & stat" subtitle="The data grid (Ready queue) and KPI / footer metrics" viewport="760x470" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../styles.css">
+<style>
+  html, body { margin: 0; }
+  body { background: var(--surface-base); font-family: var(--font-mono); padding: 26px 28px; }
+  #root { display: contents; }
+  .lbl { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); }
+</style>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+  const { Table, Stat, Tag } = window.WeftDesignSystem_9a241d;
+  const ROWS = [
+    { id: 'fg-7f3a', title: 'SEI backfill: locator → stable identity', priority: 0, status: 'building', cat: 'var(--status-wip)', impact: 5 },
+    { id: 'fg-da8d', title: 'Dashboard split-brain on relocated db path', priority: 1, status: 'reviewing', cat: 'var(--aging)', impact: 2 },
+    { id: 'fg-9920', title: 'context.md regen skips closed deps', priority: 1, status: 'open', cat: 'var(--status-open)', impact: 0 },
+    { id: 'fg-31c4', title: 'Ready filter ignores blocked_by cycles', priority: 2, status: 'open', cat: 'var(--status-open)', impact: 3 },
+  ];
+  function Demo() {
+    return (
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 22 }}>
+        <div style={{ display: 'flex', gap: 38 }}>
+          <Stat label="Open" value={12} tone="var(--status-open)" display />
+          <Stat label="In progress" value={5} tone="var(--status-wip)" delta="+2" display />
+          <Stat label="Done · 7d" value={28} tone="var(--ready)" delta="+9" display />
+          <Stat label="Stale" value={3} tone="var(--stale)" delta="-1" display />
+        </div>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
+          <span className="lbl">Ready queue</span>
+          <Table
+            rows={ROWS}
+            getRowKey={(r) => r.id}
+            onRowClick={() => {}}
+            columns={[
+              { key: 'id', label: 'ID', width: 96, render: (v) => <Tag tone="var(--surface-overlay)">{v}</Tag> },
+              { key: 'title', label: 'Title' },
+              { key: 'priority', label: 'P', align: 'center', width: 46, render: (v) => 'P' + v },
+              { key: 'status', label: 'Status', width: 116, render: (v, r) => <Tag tone={r.cat}>{v}</Tag> },
+              { key: 'impact', label: 'Blocks', align: 'right', width: 78, render: (v) => v ? '⚡' + v : '—' },
+            ]}
+          />
+        </div>
+      </div>
+    );
+  }
+  ReactDOM.createRoot(document.getElementById('root')).render(<Demo />);
+</script>
+</body>
+</html>

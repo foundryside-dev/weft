@@ -1,5 +1,7 @@
-// Kanban.jsx — the 3-column board + issue cards (faithful to Filigree's renderCard).
+// Kanban.jsx — the 3-column board. Cards are the library <IssueCard>; the board
+// only owns column layout + bucketing now.
 const { useState: useStateK } = React;
+const { IssueCard } = window.WeftDesignSystem_9a241d;
 
 function ageLabel(i) {
   if (i.cat !== "wip" || !i.ageH) return null;
@@ -65,7 +67,7 @@ function Column({ label, color, items, onOpen }) {
       </div>
       <div style={{ display: "flex", flexDirection: "column", gap: 8, overflowY: "auto", paddingRight: 4, minHeight: 200 }}>
         {items.length
-          ? items.map((i) => <Card key={i.id} i={i} onOpen={onOpen} />)
+          ? items.map((i) => <IssueCard key={i.id} issue={i} onOpen={onOpen} />)
           : <div style={{ fontSize: 12, color: "var(--text-muted)", padding: 16, textAlign: "center" }}>No issues</div>}
       </div>
     </div>

@@ -14,14 +14,19 @@ for each, with output drawn from the tools' own READMEs.
 ## Files
 | File | What it is |
 |------|------------|
-| `index.html` | Mounts React; defines the cursor `blink` keyframe |
-| `CliMarks.jsx` | Shared glyph set (tab icons in thread colors) |
+| `index.html` | Mounts React + the design-system bundle; defines the cursor `blink` keyframe |
+| `CliData.jsx` | Aliases the library `Mark` / `Tabs` onto window for the page scripts |
 | `Terminal.jsx` | `Terminal` window + `SESSIONS` content; `L` / `Prompt` / `Tag` line primitives |
+
+**This kit consumes the Weft component library** — the tab icons are the library
+`Mark`, and the session switcher is the library `Tabs` (underline), tinted live
+by the active member's thread. The terminal line primitives (`L` / `Prompt` /
+`Tag`) stay kit-local — they're a bespoke monospace renderer, not general UI.
 
 ## Reuse
 - `SESSIONS` is a map of `{ member, label, render() }` — add a session by adding a key.
-- `L`, `Prompt`, `Tag` are the terminal line primitives; colors come from the `K` map → tokens.
-- The window chrome (traffic lights + tab bar) is a reusable terminal frame.
+- `L`, `Prompt`, `Tag` are the kit-local terminal line primitives; colors come from the `K` map → tokens.
+- The window chrome (traffic lights + tab bar) is a reusable terminal frame; the tab bar itself is the library `Tabs`.
 
 ## Notes
 - **Lacuna** is not part of Weft — it's the **demo suite**: a separate sample

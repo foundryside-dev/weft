@@ -16,6 +16,16 @@
         "patterns": [
           {
             "group": [
+              "components/core/**",
+              "components/data/**",
+              "components/dossier/**",
+              "components/feedback/**",
+              "components/forms/**",
+              "components/issue-card/**",
+              "components/marks/**",
+              "components/navigation/**",
+              "components/overlay/**",
+              "components/popover/**",
               "ui_kits/filigree-dashboard/**",
               "ui_kits/weft-cli/**",
               "ui_kits/weft-hub/**"
@@ -38,6 +48,118 @@
       {
         "selector": "Literal[value=/font-family\\s*:\\s*(?!['\\\"]?(?:JetBrains Mono|Space Grotesk))/i]",
         "message": "Font not provided by the design system. Available: JetBrains Mono, Space Grotesk."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Badge'] > JSXAttribute > JSXIdentifier[name!=/^(?:children|variant|style|key|ref|className|style|children)$/]",
+        "message": "<Badge> doesn't accept that prop. Declared props: children, variant, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Badge'] > JSXAttribute[name.name='variant'] > Literal[value!=/^(?:solid|outline)$/]",
+        "message": "<Badge> variant must be one of 'solid' | 'outline'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Button'] > JSXAttribute > JSXIdentifier[name!=/^(?:children|variant|size|disabled|loading|type|onClick|style|key|ref|className|style|children)$/]",
+        "message": "<Button> doesn't accept that prop. Declared props: children, variant, size, disabled, loading, type, onClick, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Button'] > JSXAttribute[name.name='variant'] > Literal[value!=/^(?:primary|secondary|ghost|danger|ready)$/]",
+        "message": "<Button> variant must be one of 'primary' | 'secondary' | 'ghost' | 'danger' | 'ready'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Button'] > JSXAttribute[name.name='size'] > Literal[value!=/^(?:sm|md|lg)$/]",
+        "message": "<Button> size must be one of 'sm' | 'md' | 'lg'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Button'] > JSXAttribute[name.name='type'] > Literal[value!=/^(?:button|submit|reset)$/]",
+        "message": "<Button> type must be one of 'button' | 'submit' | 'reset'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='ChangeFlash'] > JSXAttribute > JSXIdentifier[name!=/^(?:flashKey|color|children|style|key|ref|className|style|children)$/]",
+        "message": "<ChangeFlash> doesn't accept that prop. Declared props: flashKey, color, children, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Checkbox'] > JSXAttribute > JSXIdentifier[name!=/^(?:checked|onChange|children|disabled|style|key|ref|className|style|children)$/]",
+        "message": "<Checkbox> doesn't accept that prop. Declared props: checked, onChange, children, disabled, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Dialog'] > JSXAttribute > JSXIdentifier[name!=/^(?:open|onClose|title|children|footer|variant|width|style|key|ref|className|style|children)$/]",
+        "message": "<Dialog> doesn't accept that prop. Declared props: open, onClose, title, children, footer, variant, width, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Dialog'] > JSXAttribute[name.name='variant'] > Literal[value!=/^(?:modal|panel)$/]",
+        "message": "<Dialog> variant must be one of 'modal' | 'panel'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Dossier'] > JSXAttribute > JSXIdentifier[name!=/^(?:entity|sei|fresh|facts|style|key|ref|className|style|children)$/]",
+        "message": "<Dossier> doesn't accept that prop. Declared props: entity, sei, fresh, facts, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Dropdown'] > JSXAttribute > JSXIdentifier[name!=/^(?:trigger|items|align|width|caret|style|key|ref|className|style|children)$/]",
+        "message": "<Dropdown> doesn't accept that prop. Declared props: trigger, items, align, width, caret, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Dropdown'] > JSXAttribute[name.name='align'] > Literal[value!=/^(?:left|right)$/]",
+        "message": "<Dropdown> align must be one of 'left' | 'right'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Input'] > JSXAttribute > JSXIdentifier[name!=/^(?:label|value|defaultValue|placeholder|type|readOnly|disabled|onChange|width|style|key|ref|className|style|children)$/]",
+        "message": "<Input> doesn't accept that prop. Declared props: label, value, defaultValue, placeholder, type, readOnly, disabled, onChange, width, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='IssueCard'] > JSXAttribute > JSXIdentifier[name!=/^(?:issue|onOpen|style|key|ref|className|style|children)$/]",
+        "message": "<IssueCard> doesn't accept that prop. Declared props: issue, onOpen, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Mark'] > JSXAttribute > JSXIdentifier[name!=/^(?:name|size|title|className|style|key|ref|className|style|children)$/]",
+        "message": "<Mark> doesn't accept that prop. Declared props: name, size, title, className, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Mark'] > JSXAttribute[name.name='name'] > Literal[value!=/^(?:foundryside|weft|loomweave|filigree|wardline|legis|charter|shuttle|lacuna)$/]",
+        "message": "<Mark> name must be one of 'foundryside' | 'weft' | 'loomweave' | 'filigree' | 'wardline' | 'legis' | 'charter' | 'shuttle' | 'lacuna'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Select'] > JSXAttribute > JSXIdentifier[name!=/^(?:label|value|defaultValue|onChange|children|disabled|width|style|key|ref|className|style|children)$/]",
+        "message": "<Select> doesn't accept that prop. Declared props: label, value, defaultValue, onChange, children, disabled, width, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Stat'] > JSXAttribute > JSXIdentifier[name!=/^(?:label|value|delta|deltaTone|tone|layout|display|style|key|ref|className|style|children)$/]",
+        "message": "<Stat> doesn't accept that prop. Declared props: label, value, delta, deltaTone, tone, layout, display, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Stat'] > JSXAttribute[name.name='layout'] > Literal[value!=/^(?:block|inline)$/]",
+        "message": "<Stat> layout must be one of 'block' | 'inline'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Table'] > JSXAttribute > JSXIdentifier[name!=/^(?:columns|rows|onRowClick|getRowKey|dense|empty|style|key|ref|className|style|children)$/]",
+        "message": "<Table> doesn't accept that prop. Declared props: columns, rows, onRowClick, getRowKey, dense, empty, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Tabs'] > JSXAttribute > JSXIdentifier[name!=/^(?:tabs|value|onChange|variant|accent|style|key|ref|className|style|children)$/]",
+        "message": "<Tabs> doesn't accept that prop. Declared props: tabs, value, onChange, variant, accent, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Tabs'] > JSXAttribute[name.name='variant'] > Literal[value!=/^(?:underline|pill)$/]",
+        "message": "<Tabs> variant must be one of 'underline' | 'pill'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Tag'] > JSXAttribute > JSXIdentifier[name!=/^(?:children|tone|variant|style|key|ref|className|style|children)$/]",
+        "message": "<Tag> doesn't accept that prop. Declared props: children, tone, variant, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Tag'] > JSXAttribute[name.name='variant'] > Literal[value!=/^(?:soft|severity|outline|plain)$/]",
+        "message": "<Tag> variant must be one of 'soft' | 'severity' | 'outline' | 'plain'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Toast'] > JSXAttribute > JSXIdentifier[name!=/^(?:tone|title|children|icon|onDismiss|style|key|ref|className|style|children)$/]",
+        "message": "<Toast> doesn't accept that prop. Declared props: tone, title, children, icon, onDismiss, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Tooltip'] > JSXAttribute > JSXIdentifier[name!=/^(?:content|children|placement|style|key|ref|className|style|children)$/]",
+        "message": "<Tooltip> doesn't accept that prop. Declared props: content, children, placement, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Tooltip'] > JSXAttribute[name.name='placement'] > Literal[value!=/^(?:top|bottom|left|right)$/]",
+        "message": "<Tooltip> placement must be one of 'top' | 'bottom' | 'left' | 'right'."
       }
     ]
   },
@@ -52,7 +174,59 @@
     }
   ],
   "x-omelette": {
-    "components": {},
+    "components": {
+      "Badge": {
+        "replaces": []
+      },
+      "Button": {
+        "replaces": []
+      },
+      "ChangeFlash": {
+        "replaces": []
+      },
+      "Checkbox": {
+        "replaces": []
+      },
+      "Dialog": {
+        "replaces": []
+      },
+      "Dossier": {
+        "replaces": []
+      },
+      "Dropdown": {
+        "replaces": []
+      },
+      "Input": {
+        "replaces": []
+      },
+      "IssueCard": {
+        "replaces": []
+      },
+      "Mark": {
+        "replaces": []
+      },
+      "Select": {
+        "replaces": []
+      },
+      "Stat": {
+        "replaces": []
+      },
+      "Table": {
+        "replaces": []
+      },
+      "Tabs": {
+        "replaces": []
+      },
+      "Tag": {
+        "replaces": []
+      },
+      "Toast": {
+        "replaces": []
+      },
+      "Tooltip": {
+        "replaces": []
+      }
+    },
     "tokens": [
       "--accent",
       "--accent-hover",
@@ -60,13 +234,19 @@
       "--aging",
       "--border-default",
       "--border-strong",
+      "--danger-border",
+      "--danger-fg",
+      "--danger-fill",
+      "--danger-fill-hi",
       "--dur",
       "--dur-fast",
       "--ease",
+      "--focus-ring",
       "--font-display",
       "--font-mono",
       "--font-sans",
       "--glow-accent",
+      "--glow-thread",
       "--lacuna-accent",
       "--lacuna-accent-dim",
       "--lacuna-border",
@@ -83,6 +263,10 @@
       "--radius-lg",
       "--radius-sm",
       "--ready",
+      "--ready-border",
+      "--ready-fg",
+      "--ready-fill",
+      "--ring-offset",
       "--sev-critical",
       "--sev-high",
       "--sev-info",
@@ -107,6 +291,7 @@
       "--surface-overlay",
       "--surface-raised",
       "--text-muted",
+      "--text-on-accent",
       "--text-primary",
       "--text-secondary",
       "--thread",
@@ -115,7 +300,8 @@
       "--thread-legis",
       "--thread-loomweave",
       "--thread-shuttle",
-      "--thread-wardline"
+      "--thread-wardline",
+      "--weave-warp"
     ],
     "tokenKinds": {
       "--surface-base": "color",
@@ -165,6 +351,18 @@
       "--shadow-pop": "shadow",
       "--shadow-modal": "shadow",
       "--glow-accent": "shadow",
+      "--glow-thread": "color",
+      "--weave-warp": "other",
+      "--text-on-accent": "font",
+      "--focus-ring": "color",
+      "--ring-offset": "color",
+      "--danger-fill": "color",
+      "--danger-fill-hi": "color",
+      "--danger-fg": "color",
+      "--danger-border": "color",
+      "--ready-fill": "color",
+      "--ready-fg": "color",
+      "--ready-border": "color",
       "--space-1": "spacing",
       "--space-2": "spacing",
       "--space-3": "spacing",

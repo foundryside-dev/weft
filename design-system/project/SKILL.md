@@ -15,6 +15,11 @@ Then explore the other files as needed:
   glyphs (inline the SVG so `currentColor`
   applies; loading via `<img>` won't pick up the thread color).
 - `preview/` — small specimen cards for every token and component.
+- `components/` — the reusable React primitives (Button, Badge, Tag, Input,
+  Select, Checkbox, Mark, IssueCard, Dossier, Dialog, Tabs, Toast, ChangeFlash,
+  Tooltip, Dropdown, Table, Stat). Each has a `.jsx` + `.d.ts` + `.prompt.md`;
+  consume via `window.WeftDesignSystem_9a241d` after loading the compiled
+  bundle, or copy the `.jsx` straight into a prototype.
 - `ui_kits/<kit>/` — interactive recreations (weft-hub, filigree-dashboard,
   weft-cli), each with its own README and reusable JSX components.
 
@@ -31,8 +36,10 @@ to become an expert in designing with this brand.
 
 - **Mono in product, display for brand.** JetBrains Mono for all UI/code/body;
   Space Grotesk only for the wordmark and big headlines.
-- **Dark teal, flat.** No gradients, no illustration, no glass, no marketing
-  imagery. Depth = the surface ramp + hairline borders.
+- **Warm espresso, flat.** Espresso-ink surfaces, one dyed-amber accent. No
+  gradients, no illustration, no glass, no marketing imagery. Depth = the
+  surface ramp + hairline borders (+ a whisper of warp-thread texture on
+  ambient surfaces only).
 - **Color is semantic.** Status / severity / member-thread only. Never decorative.
 - **Icons are type.** Reuse the product's emoji + unicode glyphs and the
   federation marks. Don't import an icon library unless the surface genuinely

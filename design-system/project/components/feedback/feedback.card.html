@@ -1,0 +1,48 @@
+<!-- @dsCard group="Components" name="Toast & change-flash" subtitle="Transient notifications + the one-shot accent pulse on data change" viewport="700x270" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../styles.css">
+<style>
+  html, body { margin: 0; }
+  body { background: var(--surface-base); font-family: var(--font-mono); padding: 26px 32px; display: flex; gap: 30px; align-items: flex-start; }
+  #root { display: contents; }
+  .col { display: flex; flex-direction: column; gap: 12px; }
+  .lbl { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); }
+</style>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+  const { Toast, ChangeFlash, Button, IssueCard } = window.WeftDesignSystem_9a241d;
+  function Demo() {
+    const [n, setN] = React.useState(0);
+    const ages = [2, 5, 9, 14];
+    const statuses = ['building', 'reviewing', 'fixing', 'confirmed'];
+    return (
+      <>
+        <div className="col">
+          <span className="lbl">Toasts</span>
+          <Toast tone="var(--ready)" icon="●" title="Issue advanced" onDismiss={() => {}}>fg-7f3a → building · context.md regenerated</Toast>
+          <Toast tone="var(--stale)" icon="🔗" title="Blocked" onDismiss={() => {}}>fg-da8d is blocked by fg-9920aa</Toast>
+          <Toast tone="var(--accent)" icon="⚡" title="5 downstream">advancing fg-7f3a unblocks 5 issues</Toast>
+        </div>
+        <div className="col" style={{ flex: 1 }}>
+          <span className="lbl">Change-flash (press to update)</span>
+          <ChangeFlash flashKey={n}>
+            <IssueCard issue={{ id: 'fg-7f3a', type: 'feature', priority: 0, title: 'SEI backfill: locator → stable identity', status: statuses[n % 4], cat: 'wip', assignee: 'agent-3', ageH: ages[n % 4], ready: true, impact: 5 }} />
+          </ChangeFlash>
+          <Button variant="secondary" onClick={() => setN(n + 1)} style={{ alignSelf: 'flex-start' }}>Update data ↻</Button>
+        </div>
+      </>
+    );
+  }
+  ReactDOM.createRoot(document.getElementById('root')).render(<Demo />);
+</script>
+</body>
+</html>

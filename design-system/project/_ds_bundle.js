@@ -1,20 +1,1782 @@
-/* @ds-bundle: {"format":3,"namespace":"LoomDesignSystem_ce3c4b","components":[],"sourceHashes":{"ui_kits/filigree-dashboard/Dashboard.jsx":"fd2e621fcffb","ui_kits/filigree-dashboard/DetailPanel.jsx":"6211d29f7d9f","ui_kits/filigree-dashboard/Kanban.jsx":"a8cbaaa99398","ui_kits/filigree-dashboard/Marks.jsx":"b60f925b021b","ui_kits/filigree-dashboard/data.jsx":"90ab4599260a","ui_kits/weft-cli/CliMarks.jsx":"b60f925b021b","ui_kits/weft-cli/Terminal.jsx":"4af557f6ed6e","ui_kits/weft-hub/Hub.jsx":"5edeababe17d","ui_kits/weft-hub/HubMarks.jsx":"b60f925b021b"},"inlinedExternals":[],"unexposedExports":[]} */
+/* @ds-bundle: {"format":3,"namespace":"WeftDesignSystem_9a241d","components":[{"name":"Badge","sourcePath":"components/core/Badge.jsx"},{"name":"Button","sourcePath":"components/core/Button.jsx"},{"name":"Tag","sourcePath":"components/core/Tag.jsx"},{"name":"Stat","sourcePath":"components/data/Stat.jsx"},{"name":"Table","sourcePath":"components/data/Table.jsx"},{"name":"Dossier","sourcePath":"components/dossier/Dossier.jsx"},{"name":"ChangeFlash","sourcePath":"components/feedback/ChangeFlash.jsx"},{"name":"Toast","sourcePath":"components/feedback/Toast.jsx"},{"name":"Checkbox","sourcePath":"components/forms/Checkbox.jsx"},{"name":"Input","sourcePath":"components/forms/Input.jsx"},{"name":"Select","sourcePath":"components/forms/Select.jsx"},{"name":"IssueCard","sourcePath":"components/issue-card/IssueCard.jsx"},{"name":"Mark","sourcePath":"components/marks/Mark.jsx"},{"name":"Tabs","sourcePath":"components/navigation/Tabs.jsx"},{"name":"Dialog","sourcePath":"components/overlay/Dialog.jsx"},{"name":"Dropdown","sourcePath":"components/popover/Dropdown.jsx"},{"name":"Tooltip","sourcePath":"components/popover/Tooltip.jsx"}],"sourceHashes":{"components/core/Badge.jsx":"f34ce3f9ea09","components/core/Button.jsx":"4eb6096c88d8","components/core/Tag.jsx":"c1dad8d7966f","components/data/Stat.jsx":"804b0b3317c3","components/data/Table.jsx":"3f64d98511d8","components/dossier/Dossier.jsx":"7524773afba6","components/feedback/ChangeFlash.jsx":"549207037aa2","components/feedback/Toast.jsx":"55b60937c54b","components/forms/Checkbox.jsx":"19161e09d28c","components/forms/Input.jsx":"c5b28f1a1fcf","components/forms/Select.jsx":"7c522965d2f4","components/issue-card/IssueCard.jsx":"b291487618fc","components/marks/Mark.jsx":"cd5a475c111b","components/navigation/Tabs.jsx":"31958d176987","components/overlay/Dialog.jsx":"376f92836f0c","components/popover/Dropdown.jsx":"09b1ad924434","components/popover/Tooltip.jsx":"4064419a129a","ui_kits/filigree-dashboard/Dashboard.jsx":"d7b15d512c18","ui_kits/filigree-dashboard/DetailPanel.jsx":"57db6b962e42","ui_kits/filigree-dashboard/Kanban.jsx":"88053fbcc5b9","ui_kits/filigree-dashboard/Marks.jsx":"b60f925b021b","ui_kits/filigree-dashboard/data.jsx":"948ede498470","ui_kits/weft-cli/CliData.jsx":"d44899fe9133","ui_kits/weft-cli/Terminal.jsx":"89993151e460","ui_kits/weft-hub/Hub.jsx":"883fee10f294","ui_kits/weft-hub/HubData.jsx":"a0df47df0bfa"},"inlinedExternals":[],"unexposedExports":[]} */
 
 (() => {
 
-const __ds_ns = (window.LoomDesignSystem_ce3c4b = window.LoomDesignSystem_ce3c4b || {});
+const __ds_ns = (window.WeftDesignSystem_9a241d = window.WeftDesignSystem_9a241d || {});
 
 const __ds_scope = {};
 
 (__ds_ns.__errors = __ds_ns.__errors || []);
 
+// components/core/Badge.jsx
+try { (() => {
+function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
+/**
+ * Badge — a prominent status pill (Open / Active / Done). Filled accent or
+ * bordered outline. For small inline metadata chips (type, status, severity)
+ * use <Tag> instead.
+ */
+function Badge({
+  children,
+  variant = 'solid',
+  style,
+  ...rest
+}) {
+  const base = {
+    fontFamily: 'var(--font-mono)',
+    fontSize: 11,
+    fontWeight: 600,
+    borderRadius: 'var(--radius)',
+    padding: '3px 9px',
+    display: 'inline-flex',
+    alignItems: 'center',
+    gap: 5,
+    lineHeight: 1.3
+  };
+  const VARIANTS = {
+    solid: {
+      background: 'var(--accent)',
+      color: 'var(--text-on-accent)'
+    },
+    outline: {
+      background: 'var(--surface-overlay)',
+      color: 'var(--text-secondary)',
+      border: '1px solid var(--border-strong)'
+    }
+  };
+  return /*#__PURE__*/React.createElement("span", _extends({
+    style: {
+      ...base,
+      ...(VARIANTS[variant] || VARIANTS.solid),
+      ...style
+    }
+  }, rest), children);
+}
+Object.assign(__ds_scope, { Badge });
+})(); } catch (e) { __ds_ns.__errors.push({ path: "components/core/Badge.jsx", error: String((e && e.message) || e) }); }
+
+// components/core/Button.jsx
+try { (() => {
+function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
+const {
+  useState
+} = React;
+/**
+ * Button — the Weft action control. Mono, 6px radius, no pill shapes, no scale
+ * on press. Hover lightens the surface one step (or, for primary, darkens the
+ * amber). Focus shows a 2px accent ring. Color is rationed: `danger` and
+ * `ready` are the only semantic fills.
+ */
+function Button({
+  children,
+  variant = 'secondary',
+  size = 'md',
+  disabled = false,
+  loading = false,
+  type = 'button',
+  onClick,
+  style,
+  ...rest
+}) {
+  const [hover, setHover] = useState(false);
+  const [focus, setFocus] = useState(false);
+  const base = {
+    fontFamily: 'var(--font-mono)',
+    fontWeight: 500,
+    borderRadius: 'var(--radius)',
+    border: '1px solid transparent',
+    cursor: disabled || loading ? 'default' : 'pointer',
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 6,
+    whiteSpace: 'nowrap',
+    transition: 'background var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease)',
+    opacity: loading ? 0.6 : 1,
+    pointerEvents: loading ? 'none' : undefined,
+    outline: 'none',
+    boxShadow: focus ? 'var(--focus-ring)' : undefined
+  };
+  const SIZES = {
+    sm: {
+      fontSize: 11,
+      padding: '5px 9px',
+      minHeight: 28
+    },
+    md: {
+      fontSize: 12,
+      padding: '7px 12px',
+      minHeight: 34
+    },
+    lg: {
+      fontSize: 13,
+      padding: '9px 16px',
+      minHeight: 40
+    }
+  };
+  const VARIANTS = {
+    primary: {
+      rest: {
+        background: 'var(--accent)',
+        color: 'var(--text-on-accent)',
+        borderColor: 'var(--accent)'
+      },
+      hover: {
+        background: 'var(--accent-hover)',
+        borderColor: 'var(--accent-hover)'
+      }
+    },
+    secondary: {
+      rest: {
+        background: 'var(--surface-overlay)',
+        color: 'var(--text-secondary)',
+        borderColor: 'var(--border-strong)'
+      },
+      hover: {
+        background: 'var(--surface-hover)',
+        color: 'var(--text-primary)'
+      }
+    },
+    ghost: {
+      rest: {
+        background: 'transparent',
+        color: 'var(--text-secondary)'
+      },
+      hover: {
+        background: 'var(--surface-overlay)',
+        color: 'var(--text-primary)'
+      }
+    },
+    danger: {
+      rest: {
+        background: 'var(--danger-fill)',
+        color: 'var(--danger-fg)',
+        borderColor: 'var(--danger-border)'
+      },
+      hover: {
+        background: 'var(--danger-fill-hi)'
+      }
+    },
+    ready: {
+      rest: {
+        background: 'var(--ready-fill)',
+        color: 'var(--ready-fg)',
+        borderColor: 'var(--ready-border)'
+      },
+      hover: {
+        background: 'var(--ready-fill)'
+      }
+    }
+  };
+  const v = VARIANTS[variant] || VARIANTS.secondary;
+  const composed = {
+    ...base,
+    ...SIZES[size],
+    ...v.rest,
+    ...(hover && !disabled && !loading ? v.hover : null),
+    ...(disabled ? {
+      opacity: 0.45,
+      cursor: 'default',
+      pointerEvents: 'none'
+    } : null),
+    ...style
+  };
+  return /*#__PURE__*/React.createElement("button", _extends({
+    type: type,
+    style: composed,
+    disabled: disabled,
+    onClick: onClick,
+    onMouseEnter: () => setHover(true),
+    onMouseLeave: () => setHover(false),
+    onFocus: () => setFocus(true),
+    onBlur: () => setFocus(false)
+  }, rest), loading ? 'Loading…' : children);
+}
+Object.assign(__ds_scope, { Button });
+})(); } catch (e) { __ds_ns.__errors.push({ path: "components/core/Button.jsx", error: String((e && e.message) || e) }); }
+
+// components/core/Tag.jsx
+try { (() => {
+function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
+/**
+ * Tag — a small inline metadata chip: issue id, type, status word, or
+ * severity. `tone` tints it semantically (a soft alpha wash of the hue, or a
+ * bordered outline). With no tone it's a neutral overlay chip.
+ *
+ * `tone` accepts any CSS color, including a token: "var(--thread-filigree)",
+ * "var(--sev-critical)", "var(--status-wip)", etc.
+ */
+function Tag({
+  children,
+  tone,
+  variant = 'soft',
+  style,
+  ...rest
+}) {
+  const base = {
+    fontFamily: 'var(--font-mono)',
+    fontSize: 11,
+    fontWeight: variant === 'severity' ? 600 : 400,
+    borderRadius: 'var(--radius-sm)',
+    padding: '2px 7px',
+    display: 'inline-flex',
+    alignItems: 'center',
+    gap: 4,
+    lineHeight: 1.4,
+    border: '1px solid transparent'
+  };
+  let look;
+  if (!tone || variant === 'plain') {
+    look = {
+      background: 'var(--surface-overlay)',
+      color: 'var(--text-secondary)'
+    };
+  } else if (variant === 'soft') {
+    look = {
+      background: `color-mix(in srgb, ${tone} 20%, transparent)`,
+      color: tone
+    };
+  } else if (variant === 'severity' || variant === 'outline') {
+    look = {
+      background: `color-mix(in srgb, ${tone} 18%, transparent)`,
+      color: tone,
+      borderColor: `color-mix(in srgb, ${tone} 55%, transparent)`
+    };
+  }
+  return /*#__PURE__*/React.createElement("span", _extends({
+    style: {
+      ...base,
+      ...look,
+      ...style
+    }
+  }, rest), children);
+}
+Object.assign(__ds_scope, { Tag });
+})(); } catch (e) { __ds_ns.__errors.push({ path: "components/core/Tag.jsx", error: String((e && e.message) || e) }); }
+
+// components/data/Stat.jsx
+try { (() => {
+/**
+ * Stat — a single metric: big value, uppercase label, optional delta and a
+ * tone dot. The footer counters and insight KPIs are built from these. Mono
+ * throughout; the value uses the display face when `display` is set.
+ *
+ * Layout is `block` (stacked, for a KPI grid) or `inline` (label · value on one
+ * row, for a dense footer strip).
+ */
+function Stat({
+  label,
+  value,
+  delta,
+  deltaTone,
+  tone,
+  layout = 'block',
+  display = false,
+  style
+}) {
+  const dotColor = tone || null;
+  const deltaColor = deltaTone || (typeof delta === 'string' && delta.trim().startsWith('-') ? 'var(--stale)' : 'var(--ready)');
+  if (layout === 'inline') {
+    return /*#__PURE__*/React.createElement("span", {
+      style: {
+        display: 'inline-flex',
+        alignItems: 'baseline',
+        gap: 8,
+        fontFamily: 'var(--font-mono)',
+        ...style
+      }
+    }, dotColor && /*#__PURE__*/React.createElement("span", {
+      style: {
+        width: 7,
+        height: 7,
+        borderRadius: '50%',
+        background: dotColor,
+        alignSelf: 'center',
+        flex: '0 0 auto'
+      }
+    }), /*#__PURE__*/React.createElement("span", {
+      style: {
+        fontSize: 11,
+        letterSpacing: '0.1em',
+        textTransform: 'uppercase',
+        color: 'var(--text-muted)'
+      }
+    }, label), /*#__PURE__*/React.createElement("span", {
+      style: {
+        fontSize: 13,
+        fontWeight: 600,
+        color: 'var(--text-primary)'
+      }
+    }, value), delta != null && /*#__PURE__*/React.createElement("span", {
+      style: {
+        fontSize: 11,
+        color: deltaColor
+      }
+    }, delta));
+  }
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      flexDirection: 'column',
+      gap: 5,
+      fontFamily: 'var(--font-mono)',
+      ...style
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      display: 'flex',
+      alignItems: 'center',
+      gap: 7,
+      fontSize: 11,
+      letterSpacing: '0.1em',
+      textTransform: 'uppercase',
+      color: 'var(--text-muted)',
+      fontWeight: 600
+    }
+  }, dotColor && /*#__PURE__*/React.createElement("span", {
+    style: {
+      width: 7,
+      height: 7,
+      borderRadius: '50%',
+      background: dotColor,
+      flex: '0 0 auto'
+    }
+  }), label), /*#__PURE__*/React.createElement("span", {
+    style: {
+      display: 'flex',
+      alignItems: 'baseline',
+      gap: 9
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontFamily: display ? 'var(--font-display)' : 'var(--font-mono)',
+      fontSize: display ? 34 : 26,
+      fontWeight: display ? 700 : 600,
+      letterSpacing: display ? '-0.02em' : '0',
+      lineHeight: 1,
+      color: 'var(--text-primary)'
+    }
+  }, value), delta != null && /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: 12,
+      fontWeight: 500,
+      color: deltaColor
+    }
+  }, delta)));
+}
+Object.assign(__ds_scope, { Stat });
+})(); } catch (e) { __ds_ns.__errors.push({ path: "components/data/Stat.jsx", error: String((e && e.message) || e) }); }
+
+// components/data/Table.jsx
+try { (() => {
+/**
+ * Table — the Weft data grid. Config-driven: `columns` describe header label,
+ * alignment, width, and an optional cell `render`; `rows` are plain objects.
+ * Hairline row rules, mono type, an uppercase header, hover highlight, and an
+ * optional clickable row. No zebra striping — the brand keeps tables flat.
+ *
+ * columns: { key, label?, align?, width?, render?(value,row,i) }
+ */
+function Table({
+  columns = [],
+  rows = [],
+  onRowClick,
+  getRowKey,
+  dense = false,
+  empty = 'No rows',
+  style
+}) {
+  const padY = dense ? 7 : 10;
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      border: '1px solid var(--border-default)',
+      borderRadius: 'var(--radius-lg)',
+      overflow: 'hidden',
+      fontFamily: 'var(--font-mono)',
+      background: 'var(--surface-raised)',
+      ...style
+    }
+  }, /*#__PURE__*/React.createElement("table", {
+    style: {
+      width: '100%',
+      borderCollapse: 'collapse',
+      tableLayout: 'fixed'
+    }
+  }, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", {
+    style: {
+      background: 'var(--surface-overlay)'
+    }
+  }, columns.map(c => /*#__PURE__*/React.createElement("th", {
+    key: c.key,
+    style: {
+      textAlign: c.align || 'left',
+      width: c.width,
+      padding: `${padY}px 14px`,
+      fontSize: 10.5,
+      fontWeight: 600,
+      letterSpacing: '0.1em',
+      textTransform: 'uppercase',
+      color: 'var(--text-muted)',
+      borderBottom: '1px solid var(--border-default)',
+      whiteSpace: 'nowrap'
+    }
+  }, c.label != null ? c.label : c.key)))), /*#__PURE__*/React.createElement("tbody", null, rows.length === 0 ? /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", {
+    colSpan: columns.length,
+    style: {
+      padding: '22px 14px',
+      textAlign: 'center',
+      fontSize: 12,
+      color: 'var(--text-muted)'
+    }
+  }, empty)) : rows.map((row, ri) => /*#__PURE__*/React.createElement("tr", {
+    key: getRowKey ? getRowKey(row, ri) : ri,
+    onClick: onRowClick ? () => onRowClick(row, ri) : undefined,
+    style: {
+      cursor: onRowClick ? 'pointer' : 'default',
+      transition: 'background var(--dur-fast) var(--ease)'
+    },
+    onMouseEnter: e => {
+      e.currentTarget.style.background = 'var(--surface-hover)';
+    },
+    onMouseLeave: e => {
+      e.currentTarget.style.background = 'transparent';
+    }
+  }, columns.map(c => /*#__PURE__*/React.createElement("td", {
+    key: c.key,
+    style: {
+      textAlign: c.align || 'left',
+      padding: `${padY}px 14px`,
+      fontSize: 12.5,
+      color: 'var(--text-secondary)',
+      borderBottom: ri === rows.length - 1 ? 'none' : '1px solid var(--border-default)',
+      overflow: 'hidden',
+      textOverflow: 'ellipsis',
+      whiteSpace: 'nowrap'
+    }
+  }, c.render ? c.render(row[c.key], row, ri) : row[c.key])))))));
+}
+Object.assign(__ds_scope, { Table });
+})(); } catch (e) { __ds_ns.__errors.push({ path: "components/data/Table.jsx", error: String((e && e.message) || e) }); }
+
+// components/feedback/ChangeFlash.jsx
+try { (() => {
+const {
+  useEffect,
+  useRef,
+  useState
+} = React;
+/**
+ * ChangeFlash — wraps any element and emits the brand's one-shot accent
+ * box-shadow pulse whenever `flashKey` changes (e.g. a card's data updated).
+ * This is the system's *only* ambient-ish motion besides the terminal cursor:
+ * a brief bloom that fades, not a loop. Respects prefers-reduced-motion (the
+ * pulse is skipped, the content still updates).
+ *
+ * Wrap the element whose data changes; bump `flashKey` to whatever value should
+ * trigger the pulse (a version number, updatedAt, JSON.stringify(row), …).
+ */
+function ChangeFlash({
+  flashKey,
+  color = 'var(--accent)',
+  children,
+  style
+}) {
+  const [on, setOn] = useState(false);
+  const first = useRef(true);
+  useEffect(() => {
+    if (first.current) {
+      first.current = false;
+      return undefined;
+    }
+    const reduce = typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce) return undefined;
+    setOn(true);
+    const t = setTimeout(() => setOn(false), 600);
+    return () => clearTimeout(t);
+  }, [flashKey]);
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      borderRadius: 'var(--radius)',
+      boxShadow: on ? `0 0 0 1px ${color}, 0 0 12px -1px ${color}` : '0 0 0 0 transparent',
+      transition: 'box-shadow 0.6s var(--ease)',
+      ...style
+    }
+  }, children);
+}
+Object.assign(__ds_scope, { ChangeFlash });
+})(); } catch (e) { __ds_ns.__errors.push({ path: "components/feedback/ChangeFlash.jsx", error: String((e && e.message) || e) }); }
+
+// components/feedback/Toast.jsx
+try { (() => {
+/**
+ * Toast — a small, transient notification. Surface-raised card with a 3px
+ * left rule in the tone color, a soft popover shadow, mono text, and an
+ * optional × dismiss. Tone is semantic (ready / stale / accent / a thread).
+ *
+ * Stack several in a fixed corner container; this component is just the slip.
+ */
+function Toast({
+  tone = 'var(--accent)',
+  title,
+  children,
+  icon,
+  onDismiss,
+  style
+}) {
+  return /*#__PURE__*/React.createElement("div", {
+    role: "status",
+    style: {
+      position: 'relative',
+      display: 'flex',
+      alignItems: 'flex-start',
+      gap: 10,
+      minWidth: 240,
+      maxWidth: 380,
+      background: 'var(--surface-raised)',
+      border: '1px solid var(--border-default)',
+      borderLeft: `3px solid ${tone}`,
+      borderRadius: 'var(--radius)',
+      boxShadow: 'var(--shadow-pop)',
+      padding: '11px 13px',
+      fontFamily: 'var(--font-mono)',
+      ...style
+    }
+  }, icon && /*#__PURE__*/React.createElement("span", {
+    style: {
+      color: tone,
+      fontSize: 13,
+      lineHeight: 1.4,
+      flex: '0 0 auto'
+    }
+  }, icon), /*#__PURE__*/React.createElement("div", {
+    style: {
+      flex: 1,
+      minWidth: 0
+    }
+  }, title && /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 12,
+      fontWeight: 600,
+      color: 'var(--text-primary)',
+      marginBottom: children ? 3 : 0
+    }
+  }, title), children && /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11.5,
+      color: 'var(--text-secondary)',
+      lineHeight: 1.5
+    }
+  }, children)), onDismiss && /*#__PURE__*/React.createElement("button", {
+    onClick: onDismiss,
+    "aria-label": "Dismiss",
+    style: {
+      background: 'transparent',
+      border: 'none',
+      color: 'var(--text-muted)',
+      cursor: 'pointer',
+      fontSize: 15,
+      lineHeight: 1,
+      padding: 0,
+      flex: '0 0 auto'
+    }
+  }, "\xD7"));
+}
+Object.assign(__ds_scope, { Toast });
+})(); } catch (e) { __ds_ns.__errors.push({ path: "components/feedback/Toast.jsx", error: String((e && e.message) || e) }); }
+
+// components/forms/Checkbox.jsx
+try { (() => {
+function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
+/**
+ * Checkbox — a controlled box + label. Checked state fills with the amber
+ * accent and shows an ink check. Click anywhere on the label toggles it.
+ */
+function Checkbox({
+  checked = false,
+  onChange,
+  children,
+  disabled = false,
+  style,
+  ...rest
+}) {
+  const box = {
+    width: 15,
+    height: 15,
+    borderRadius: 3,
+    border: '1px solid',
+    borderColor: checked ? 'var(--accent)' : 'var(--border-strong)',
+    background: checked ? 'var(--accent)' : 'var(--surface-overlay)',
+    color: 'var(--text-on-accent)',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    fontSize: 10,
+    flex: '0 0 auto',
+    transition: 'background var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease)'
+  };
+  return /*#__PURE__*/React.createElement("label", _extends({
+    style: {
+      display: 'inline-flex',
+      alignItems: 'center',
+      gap: 8,
+      color: 'var(--text-secondary)',
+      fontFamily: 'var(--font-mono)',
+      fontSize: 12,
+      cursor: disabled ? 'default' : 'pointer',
+      opacity: disabled ? 0.5 : 1,
+      ...style
+    }
+  }, rest), /*#__PURE__*/React.createElement("input", {
+    type: "checkbox",
+    checked: checked,
+    disabled: disabled,
+    onChange: onChange,
+    style: {
+      position: 'absolute',
+      opacity: 0,
+      width: 0,
+      height: 0
+    }
+  }), /*#__PURE__*/React.createElement("span", {
+    style: box,
+    "aria-hidden": "true"
+  }, checked ? '✓' : ''), children);
+}
+Object.assign(__ds_scope, { Checkbox });
+})(); } catch (e) { __ds_ns.__errors.push({ path: "components/forms/Checkbox.jsx", error: String((e && e.message) || e) }); }
+
+// components/forms/Input.jsx
+try { (() => {
+function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
+const {
+  useState
+} = React;
+/**
+ * Input — a single-line text field. Mono, overlay fill, strong-border, 6px
+ * radius. Focus draws the accent border + a 1px accent ring. Optional uppercase
+ * label sits above.
+ */
+function Input({
+  label,
+  value,
+  defaultValue,
+  placeholder,
+  type = 'text',
+  readOnly = false,
+  disabled = false,
+  onChange,
+  width = 260,
+  style,
+  ...rest
+}) {
+  const [focus, setFocus] = useState(false);
+  const field = {
+    fontFamily: 'var(--font-mono)',
+    fontSize: 12,
+    background: 'var(--surface-overlay)',
+    color: 'var(--text-primary)',
+    border: '1px solid',
+    borderColor: focus ? 'var(--accent)' : 'var(--border-strong)',
+    borderRadius: 'var(--radius)',
+    padding: '8px 11px',
+    width,
+    maxWidth: '100%',
+    boxSizing: 'border-box',
+    boxShadow: focus ? '0 0 0 1px var(--accent)' : 'none',
+    outline: 'none',
+    opacity: disabled ? 0.5 : 1,
+    transition: 'border-color var(--dur-fast) var(--ease), box-shadow var(--dur-fast) var(--ease)',
+    ...style
+  };
+  return /*#__PURE__*/React.createElement("label", {
+    style: {
+      display: 'block'
+    }
+  }, label && /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 10,
+      letterSpacing: '0.1em',
+      textTransform: 'uppercase',
+      color: 'var(--text-muted)',
+      marginBottom: 7
+    }
+  }, label), /*#__PURE__*/React.createElement("input", _extends({
+    type: type,
+    value: value,
+    defaultValue: defaultValue,
+    placeholder: placeholder,
+    readOnly: readOnly,
+    disabled: disabled,
+    onChange: onChange,
+    onFocus: () => setFocus(true),
+    onBlur: () => setFocus(false),
+    style: field
+  }, rest)));
+}
+Object.assign(__ds_scope, { Input });
+})(); } catch (e) { __ds_ns.__errors.push({ path: "components/forms/Input.jsx", error: String((e && e.message) || e) }); }
+
+// components/forms/Select.jsx
+try { (() => {
+function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
+/**
+ * Select — a styled native <select>. Matches the Input field (overlay fill,
+ * strong border, 6px radius) with a unicode ▾ caret. Optional uppercase label.
+ */
+function Select({
+  label,
+  value,
+  defaultValue,
+  onChange,
+  children,
+  disabled = false,
+  width = 200,
+  style,
+  ...rest
+}) {
+  const field = {
+    fontFamily: 'var(--font-mono)',
+    fontSize: 12,
+    background: 'var(--surface-overlay)',
+    color: 'var(--text-primary)',
+    border: '1px solid var(--border-strong)',
+    borderRadius: 'var(--radius)',
+    padding: '8px 28px 8px 11px',
+    width,
+    maxWidth: '100%',
+    boxSizing: 'border-box',
+    appearance: 'none',
+    WebkitAppearance: 'none',
+    MozAppearance: 'none',
+    outline: 'none',
+    cursor: disabled ? 'default' : 'pointer',
+    opacity: disabled ? 0.5 : 1,
+    ...style
+  };
+  return /*#__PURE__*/React.createElement("label", {
+    style: {
+      display: 'block'
+    }
+  }, label && /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 10,
+      letterSpacing: '0.1em',
+      textTransform: 'uppercase',
+      color: 'var(--text-muted)',
+      marginBottom: 7
+    }
+  }, label), /*#__PURE__*/React.createElement("div", {
+    style: {
+      position: 'relative',
+      display: 'inline-block',
+      width
+    }
+  }, /*#__PURE__*/React.createElement("select", _extends({
+    value: value,
+    defaultValue: defaultValue,
+    onChange: onChange,
+    disabled: disabled,
+    style: field
+  }, rest), children), /*#__PURE__*/React.createElement("span", {
+    style: {
+      position: 'absolute',
+      right: 10,
+      top: '50%',
+      transform: 'translateY(-50%)',
+      color: 'var(--text-muted)',
+      fontSize: 11,
+      pointerEvents: 'none'
+    },
+    "aria-hidden": "true"
+  }, "\u25BE")));
+}
+Object.assign(__ds_scope, { Select });
+})(); } catch (e) { __ds_ns.__errors.push({ path: "components/forms/Select.jsx", error: String((e && e.message) || e) }); }
+
+// components/issue-card/IssueCard.jsx
+try { (() => {
+const {
+  useState
+} = React;
+/**
+ * IssueCard — the canonical Filigree kanban card, faithful to the real
+ * dashboard's renderCard. A type-colored 4px left rule (or a semantic
+ * ready/aging rule with a soft fiber glow), the type emoji, a priority marker
+ * (P0/P1 number, else a dot), the title, then a metadata row of id / type /
+ * status tag / blockers / impact / assignee / age.
+ *
+ * Color is rationed and semantic throughout — the rule is the only "fill".
+ */
+const TYPE_ICONS = {
+  bug: '🐛',
+  feature: '✨',
+  task: '📋',
+  epic: '📊',
+  milestone: '🎯'
+};
+const TYPE_COLORS = {
+  bug: '#E25C49',
+  feature: '#B79BF2',
+  task: '#56B7E2',
+  epic: '#E9B04A',
+  milestone: '#5FB98E'
+};
+const CATEGORY_COLORS = {
+  open: '#8A7A64',
+  wip: '#56B7E2',
+  done: '#897C66'
+};
+const PRIORITY_COLORS = {
+  0: '#E25C49',
+  1: '#EC8A3C',
+  2: '#8A7A64',
+  3: '#C9BBA0',
+  4: '#C9BBA0'
+};
+function AgeLabel({
+  issue
+}) {
+  if (issue.cat !== 'wip' || !issue.ageH) return null;
+  const h = issue.ageH;
+  if (h < 1) return /*#__PURE__*/React.createElement("span", {
+    style: {
+      color: 'var(--text-muted)'
+    }
+  }, Math.round(h * 60), "m");
+  if (h < 24) return /*#__PURE__*/React.createElement("span", {
+    style: {
+      color: h > 4 ? 'var(--aging)' : 'var(--text-muted)'
+    }
+  }, h, "h");
+  return /*#__PURE__*/React.createElement("span", {
+    style: {
+      color: 'var(--stale)'
+    }
+  }, Math.floor(h / 24), "d");
+}
+function IssueCard({
+  issue,
+  onOpen,
+  style
+}) {
+  const [hover, setHover] = useState(false);
+  const typeColor = TYPE_COLORS[issue.type] || '#8A7A64';
+  const prioColor = PRIORITY_COLORS[issue.priority];
+  const catColor = CATEGORY_COLORS[issue.cat] || '#8A7A64';
+  const blockedBy = issue.blocked_by || issue.blockedBy || [];
+  const openBlocks = blockedBy.length;
+  const ready = issue.ready && issue.cat === 'open';
+  const agingBorder = issue.cat === 'wip' && issue.ageH > 24 ? 'var(--stale)' : issue.cat === 'wip' && issue.ageH > 4 ? 'var(--aging)' : null;
+  const border = '1px solid var(--border-default)';
+  const leftBorder = ready ? '4px solid var(--ready)' : agingBorder ? `4px solid ${agingBorder}` : border;
+  const glow = ready ? '-2px 0 9px -4px var(--ready)' : agingBorder ? `-2px 0 9px -4px ${agingBorder}` : 'none';
+  return /*#__PURE__*/React.createElement("div", {
+    onClick: () => onOpen && onOpen(issue),
+    tabIndex: 0,
+    onMouseEnter: () => setHover(true),
+    onMouseLeave: () => setHover(false),
+    style: {
+      position: 'relative',
+      background: hover ? 'var(--surface-hover)' : 'var(--surface-raised)',
+      border,
+      borderLeft: leftBorder,
+      borderRadius: 'var(--radius)',
+      padding: '10px 11px 10px 16px',
+      cursor: onOpen ? 'pointer' : 'default',
+      boxShadow: glow,
+      transition: 'box-shadow .15s, border-color .15s',
+      fontFamily: 'var(--font-mono)',
+      ...style
+    }
+  }, !ready && !agingBorder && /*#__PURE__*/React.createElement("div", {
+    style: {
+      position: 'absolute',
+      left: 0,
+      top: 0,
+      bottom: 0,
+      width: 4,
+      borderRadius: 'var(--radius) 0 0 var(--radius)',
+      background: typeColor,
+      boxShadow: `0 0 7px -1px ${typeColor}`
+    }
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      alignItems: 'center',
+      gap: 7,
+      marginBottom: 5
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: 13
+    }
+  }, TYPE_ICONS[issue.type]), issue.priority <= 1 ? /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: 11,
+      fontWeight: 700,
+      color: prioColor
+    }
+  }, "P", issue.priority) : /*#__PURE__*/React.createElement("span", {
+    style: {
+      width: 8,
+      height: 8,
+      borderRadius: '50%',
+      background: prioColor,
+      flex: '0 0 auto'
+    }
+  }), /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontWeight: 600,
+      color: 'var(--text-primary)',
+      fontSize: 12.5,
+      overflow: 'hidden',
+      textOverflow: 'ellipsis',
+      whiteSpace: 'nowrap'
+    }
+  }, issue.title)), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      alignItems: 'center',
+      gap: 7,
+      fontSize: 11,
+      color: 'var(--text-muted)',
+      flexWrap: 'wrap'
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      background: 'var(--surface-overlay)',
+      color: 'var(--text-primary)',
+      padding: '1px 6px',
+      borderRadius: 'var(--radius-sm)'
+    }
+  }, issue.id), /*#__PURE__*/React.createElement("span", {
+    style: {
+      background: 'var(--surface-overlay)',
+      color: 'var(--text-secondary)',
+      padding: '1px 6px',
+      borderRadius: 'var(--radius-sm)'
+    }
+  }, issue.type), /*#__PURE__*/React.createElement("span", {
+    style: {
+      background: `color-mix(in srgb, ${catColor} 20%, transparent)`,
+      color: catColor,
+      padding: '1px 6px',
+      borderRadius: 'var(--radius-sm)'
+    }
+  }, issue.status), openBlocks > 0 && /*#__PURE__*/React.createElement("span", {
+    style: {
+      color: 'var(--stale)'
+    }
+  }, "\uD83D\uDD17 blocked by ", openBlocks), issue.impact > 0 && /*#__PURE__*/React.createElement("span", {
+    style: {
+      color: 'var(--aging)'
+    }
+  }, "\u26A1", issue.impact), issue.assignee && /*#__PURE__*/React.createElement("span", {
+    style: {
+      color: 'var(--text-secondary)'
+    }
+  }, "\uD83D\uDC64 ", issue.assignee), /*#__PURE__*/React.createElement(AgeLabel, {
+    issue: issue
+  })));
+}
+Object.assign(__ds_scope, { IssueCard });
+})(); } catch (e) { __ds_ns.__errors.push({ path: "components/issue-card/IssueCard.jsx", error: String((e && e.message) || e) }); }
+
+// components/marks/Mark.jsx
+try { (() => {
+function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
+/**
+ * Mark — the Weft federation glyph set. Stroke-based, drawn on a 0 0 32 grid,
+ * and rendered in `currentColor` so each mark picks up its thread color from
+ * the surrounding text/element. Always inline (this component does); loading a
+ * mark via <img> will not inherit color.
+ *
+ * Names: foundryside (parent org) · weft (the woven umbrella) · loomweave ·
+ * filigree · wardline · legis · charter · shuttle (roadmap) · lacuna (the
+ * adjacent demo specimen — off-palette, dashed).
+ */
+const MARK_PATHS = {
+  foundryside: /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("g", {
+    stroke: "currentColor",
+    strokeWidth: "2",
+    strokeLinecap: "round",
+    strokeLinejoin: "round"
+  }, /*#__PURE__*/React.createElement("path", {
+    d: "M5 24 H27"
+  }), /*#__PURE__*/React.createElement("path", {
+    d: "M11 24 V15"
+  }), /*#__PURE__*/React.createElement("path", {
+    d: "M16 24 V10"
+  }), /*#__PURE__*/React.createElement("path", {
+    d: "M21 24 V15"
+  })), /*#__PURE__*/React.createElement("g", {
+    fill: "currentColor"
+  }, /*#__PURE__*/React.createElement("circle", {
+    cx: "11",
+    cy: "15",
+    r: "2.1"
+  }), /*#__PURE__*/React.createElement("circle", {
+    cx: "16",
+    cy: "10",
+    r: "2.3"
+  }), /*#__PURE__*/React.createElement("circle", {
+    cx: "21",
+    cy: "15",
+    r: "2.1"
+  }))),
+  weft: /*#__PURE__*/React.createElement("g", {
+    stroke: "currentColor",
+    strokeWidth: "2.4",
+    strokeLinecap: "round"
+  }, /*#__PURE__*/React.createElement("path", {
+    d: "M11 6 V18.8"
+  }), /*#__PURE__*/React.createElement("path", {
+    d: "M11 23.2 V26"
+  }), /*#__PURE__*/React.createElement("path", {
+    d: "M21 6 V8.8"
+  }), /*#__PURE__*/React.createElement("path", {
+    d: "M21 13.2 V26"
+  }), /*#__PURE__*/React.createElement("path", {
+    d: "M6 11 H8.8"
+  }), /*#__PURE__*/React.createElement("path", {
+    d: "M13.2 11 H26"
+  }), /*#__PURE__*/React.createElement("path", {
+    d: "M6 21 H18.8"
+  }), /*#__PURE__*/React.createElement("path", {
+    d: "M23.2 21 H26"
+  })),
+  loomweave: /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("g", {
+    stroke: "currentColor",
+    strokeWidth: "2",
+    strokeLinecap: "round",
+    strokeLinejoin: "round"
+  }, /*#__PURE__*/React.createElement("path", {
+    d: "M16 5 V27"
+  }), /*#__PURE__*/React.createElement("path", {
+    d: "M16 11 H24"
+  }), /*#__PURE__*/React.createElement("path", {
+    d: "M16 21 H8"
+  })), /*#__PURE__*/React.createElement("g", {
+    fill: "currentColor"
+  }, /*#__PURE__*/React.createElement("circle", {
+    cx: "16",
+    cy: "5",
+    r: "2.4"
+  }), /*#__PURE__*/React.createElement("circle", {
+    cx: "24",
+    cy: "11",
+    r: "2.4"
+  }), /*#__PURE__*/React.createElement("circle", {
+    cx: "8",
+    cy: "21",
+    r: "2.4"
+  }), /*#__PURE__*/React.createElement("circle", {
+    cx: "16",
+    cy: "27",
+    r: "2.4"
+  }))),
+  filigree: /*#__PURE__*/React.createElement("g", {
+    stroke: "currentColor",
+    strokeWidth: "2",
+    strokeLinejoin: "round"
+  }, /*#__PURE__*/React.createElement("path", {
+    d: "M16 4 L28 16 L16 28 L4 16 Z"
+  }), /*#__PURE__*/React.createElement("path", {
+    d: "M16 11 L21 16 L16 21 L11 16 Z",
+    fill: "currentColor",
+    stroke: "none"
+  })),
+  wardline: /*#__PURE__*/React.createElement("g", {
+    stroke: "currentColor",
+    strokeWidth: "2",
+    strokeLinecap: "round",
+    strokeLinejoin: "round"
+  }, /*#__PURE__*/React.createElement("path", {
+    d: "M18 4 V28"
+  }), /*#__PURE__*/React.createElement("path", {
+    d: "M6 10 H15"
+  }), /*#__PURE__*/React.createElement("path", {
+    d: "M6 16 H15"
+  }), /*#__PURE__*/React.createElement("path", {
+    d: "M6 22 H15"
+  }), /*#__PURE__*/React.createElement("path", {
+    d: "M18 16 L26 11 V21 L18 16Z",
+    fill: "currentColor"
+  })),
+  legis: /*#__PURE__*/React.createElement("g", {
+    stroke: "currentColor",
+    strokeWidth: "2",
+    strokeLinecap: "round",
+    strokeLinejoin: "round"
+  }, /*#__PURE__*/React.createElement("path", {
+    d: "M16 6 V25"
+  }), /*#__PURE__*/React.createElement("path", {
+    d: "M9 25 H23"
+  }), /*#__PURE__*/React.createElement("path", {
+    d: "M7 9 H25"
+  }), /*#__PURE__*/React.createElement("path", {
+    d: "M7 9 L4 16 H10 L7 9Z"
+  }), /*#__PURE__*/React.createElement("path", {
+    d: "M25 9 L22 16 H28 L25 9Z"
+  })),
+  charter: /*#__PURE__*/React.createElement("g", {
+    stroke: "currentColor",
+    strokeWidth: "2",
+    strokeLinecap: "round",
+    strokeLinejoin: "round"
+  }, /*#__PURE__*/React.createElement("path", {
+    d: "M8 5 H24 V27 H8 Z"
+  }), /*#__PURE__*/React.createElement("path", {
+    d: "M12 11 H20"
+  }), /*#__PURE__*/React.createElement("path", {
+    d: "M12 16 H17"
+  }), /*#__PURE__*/React.createElement("path", {
+    d: "M11.5 21.5 L14 24 L20 17.5"
+  })),
+  shuttle: /*#__PURE__*/React.createElement("g", {
+    stroke: "currentColor",
+    strokeWidth: "2",
+    strokeLinecap: "round",
+    strokeLinejoin: "round"
+  }, /*#__PURE__*/React.createElement("path", {
+    d: "M4 16 H28",
+    strokeDasharray: "3 3.5"
+  }), /*#__PURE__*/React.createElement("path", {
+    d: "M11 16 C11 12, 21 12, 21 16 C21 20, 11 20, 11 16 Z"
+  }), /*#__PURE__*/React.createElement("circle", {
+    cx: "16",
+    cy: "16",
+    r: "1.6",
+    fill: "currentColor",
+    stroke: "none"
+  })),
+  lacuna: /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("path", {
+    d: "M19 6 H25 A1 1 0 0 1 26 7 V25 A1 1 0 0 1 25 26 H7 A1 1 0 0 1 6 25 V7 A1 1 0 0 1 7 6 H13",
+    stroke: "currentColor",
+    strokeWidth: "2",
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeDasharray: "2.6 3",
+    fill: "none"
+  }), /*#__PURE__*/React.createElement("rect", {
+    x: "13.4",
+    y: "13.4",
+    width: "5.2",
+    height: "5.2",
+    rx: "1",
+    fill: "currentColor"
+  }))
+};
+function Mark({
+  name,
+  size = 24,
+  style,
+  className,
+  title,
+  ...rest
+}) {
+  return /*#__PURE__*/React.createElement("svg", _extends({
+    width: size,
+    height: size,
+    viewBox: "0 0 32 32",
+    fill: "none",
+    className: className,
+    style: style,
+    role: "img",
+    "aria-label": title || name
+  }, rest), MARK_PATHS[name] || null);
+}
+Object.assign(__ds_scope, { Mark });
+})(); } catch (e) { __ds_ns.__errors.push({ path: "components/marks/Mark.jsx", error: String((e && e.message) || e) }); }
+
+// components/dossier/Dossier.jsx
+try { (() => {
+/**
+ * Dossier — the SEI-keyed entity view: one durable code entity, with a row of
+ * facts woven from each federation tool (Loomweave structure, Wardline taint,
+ * Legis governance, Filigree work, Charter obligations). Each fact carries its
+ * member's Mark and thread color on the left.
+ *
+ * This is the brand's central "composition" artifact — five tools enriching one
+ * identity, never load-bearing.
+ */
+const THREADS = {
+  loomweave: 'var(--thread-loomweave)',
+  filigree: 'var(--thread-filigree)',
+  wardline: 'var(--thread-wardline)',
+  legis: 'var(--thread-legis)',
+  charter: 'var(--thread-charter)',
+  shuttle: 'var(--thread-shuttle)'
+};
+const LABELS = {
+  loomweave: 'Loomweave',
+  filigree: 'Filigree',
+  wardline: 'Wardline',
+  legis: 'Legis',
+  charter: 'Charter',
+  shuttle: 'Shuttle'
+};
+function Dossier({
+  entity,
+  sei,
+  fresh = true,
+  facts = [],
+  style
+}) {
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: 'var(--surface-raised)',
+      border: '1px solid var(--border-default)',
+      borderRadius: 'var(--radius-lg)',
+      overflow: 'hidden',
+      fontFamily: 'var(--font-mono)',
+      ...style
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '13px 16px',
+      borderBottom: '1px solid var(--border-default)',
+      display: 'flex',
+      alignItems: 'center',
+      gap: 10
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      color: 'var(--text-muted)'
+    }
+  }, "\u25C6"), /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: 13,
+      color: 'var(--text-primary)',
+      fontWeight: 600
+    }
+  }, entity), sei && /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: 10.5,
+      color: 'var(--text-muted)',
+      background: 'var(--surface-overlay)',
+      padding: '2px 7px',
+      borderRadius: 'var(--radius-sm)'
+    }
+  }, sei), fresh && /*#__PURE__*/React.createElement("span", {
+    style: {
+      marginLeft: 'auto',
+      fontSize: 10,
+      color: 'var(--ready)'
+    }
+  }, "\u25CF fresh")), facts.map((f, idx) => {
+    const thread = THREADS[f.member] || 'var(--accent)';
+    return /*#__PURE__*/React.createElement("div", {
+      key: idx,
+      style: {
+        display: 'flex',
+        alignItems: 'center',
+        gap: 11,
+        padding: '10px 16px',
+        borderBottom: idx === facts.length - 1 ? 'none' : '1px solid var(--border-default)'
+      }
+    }, /*#__PURE__*/React.createElement(__ds_scope.Mark, {
+      name: f.member,
+      size: 18,
+      style: {
+        color: thread,
+        flex: '0 0 auto'
+      }
+    }), /*#__PURE__*/React.createElement("span", {
+      style: {
+        fontSize: 10,
+        letterSpacing: '0.08em',
+        textTransform: 'uppercase',
+        color: thread,
+        width: 78,
+        flex: '0 0 auto'
+      }
+    }, LABELS[f.member] || f.member), /*#__PURE__*/React.createElement("span", {
+      style: {
+        fontSize: 12,
+        color: 'var(--text-secondary)',
+        flex: 1
+      }
+    }, f.value));
+  }));
+}
+Object.assign(__ds_scope, { Dossier });
+})(); } catch (e) { __ds_ns.__errors.push({ path: "components/dossier/Dossier.jsx", error: String((e && e.message) || e) }); }
+
+// components/navigation/Tabs.jsx
+try { (() => {
+/**
+ * Tabs — the Weft view switcher. Two variants:
+ *  - `underline` : text tabs with a 2px accent (or thread) underline on the
+ *                  active one, sitting on a hairline rule. The brand's member /
+ *                  section tab treatment.
+ *  - `pill`      : the dashboard nav style — active tab gets an overlay fill.
+ *
+ * `accent` recolors the active state (pass a thread var to tab by member).
+ */
+function Tabs({
+  tabs = [],
+  value,
+  onChange,
+  variant = 'underline',
+  accent = 'var(--accent)',
+  style
+}) {
+  const items = tabs.map(t => typeof t === 'string' ? {
+    id: t,
+    label: t
+  } : t);
+  const isUnderline = variant === 'underline';
+  return /*#__PURE__*/React.createElement("div", {
+    role: "tablist",
+    style: {
+      display: 'flex',
+      alignItems: 'stretch',
+      gap: isUnderline ? 18 : 4,
+      borderBottom: isUnderline ? '1px solid var(--border-default)' : 'none',
+      fontFamily: 'var(--font-mono)',
+      ...style
+    }
+  }, items.map(t => {
+    const active = t.id === value;
+    const base = {
+      fontFamily: 'var(--font-mono)',
+      fontSize: 12,
+      fontWeight: active ? 600 : 500,
+      cursor: 'pointer',
+      border: 'none',
+      background: 'transparent',
+      // Only the text color fades. The underline/pill-fill (binary active
+      // state) snaps instantly — a border-color/background transition can
+      // stick at its from-value in throttled/headless contexts and show the
+      // wrong tab as active.
+      transition: 'color var(--dur-fast) var(--ease)',
+      display: 'inline-flex',
+      alignItems: 'center',
+      gap: 6
+    };
+    const look = isUnderline ? {
+      padding: '9px 1px',
+      color: active ? 'var(--text-primary)' : 'var(--text-secondary)',
+      borderBottom: `2px solid ${active ? accent : 'transparent'}`,
+      marginBottom: -1
+    } : {
+      padding: '6px 12px',
+      borderRadius: 'var(--radius)',
+      color: active ? 'var(--text-primary)' : 'var(--text-secondary)',
+      background: active ? 'var(--surface-overlay)' : 'transparent'
+    };
+    return /*#__PURE__*/React.createElement("button", {
+      key: t.id,
+      role: "tab",
+      "aria-selected": active,
+      onClick: () => onChange && onChange(t.id),
+      style: {
+        ...base,
+        ...look
+      },
+      onMouseEnter: e => {
+        if (!active) e.currentTarget.style.color = 'var(--text-primary)';
+      },
+      onMouseLeave: e => {
+        if (!active) e.currentTarget.style.color = 'var(--text-secondary)';
+      }
+    }, t.icon, t.label, t.count != null && /*#__PURE__*/React.createElement("span", {
+      style: {
+        fontSize: 11,
+        color: 'var(--text-muted)',
+        fontWeight: 500
+      }
+    }, t.count));
+  }));
+}
+Object.assign(__ds_scope, { Tabs });
+})(); } catch (e) { __ds_ns.__errors.push({ path: "components/navigation/Tabs.jsx", error: String((e && e.message) || e) }); }
+
+// components/overlay/Dialog.jsx
+try { (() => {
+const {
+  useEffect
+} = React;
+/**
+ * Dialog — the Weft overlay. Two variants:
+ *  - `modal`  : centered card (8px radius, shadow-modal) over a dim backdrop.
+ *  - `panel`  : right-edge slide-in (the dashboard's detail panel), full height.
+ *
+ * Both stay mounted while closed so the open/close transition runs (0.2s ease,
+ * the brand's panel/modal duration). No backdrop blur — the brand has no glass;
+ * the backdrop is a flat dim. Esc and backdrop-click both close.
+ */
+function Dialog({
+  open = false,
+  onClose,
+  title,
+  children,
+  footer,
+  variant = 'modal',
+  width,
+  style
+}) {
+  useEffect(() => {
+    if (!open) return undefined;
+    const onKey = e => {
+      if (e.key === 'Escape' && onClose) onClose();
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [open, onClose]);
+  const isPanel = variant === 'panel';
+  const backdrop = {
+    position: 'fixed',
+    inset: 0,
+    background: 'rgba(8, 6, 3, 0.62)',
+    opacity: open ? 1 : 0,
+    pointerEvents: open ? 'auto' : 'none',
+    transition: 'opacity var(--dur) var(--ease)',
+    zIndex: 100
+  };
+  const surface = isPanel ? {
+    position: 'fixed',
+    top: 0,
+    right: 0,
+    height: '100%',
+    width: width || 460,
+    maxWidth: '100%',
+    background: 'var(--surface-raised)',
+    borderLeft: '1px solid var(--border-default)',
+    boxShadow: open ? 'var(--shadow-modal)' : 'none',
+    transform: open ? 'translateX(0)' : 'translateX(100%)',
+    transition: 'transform var(--dur) var(--ease)',
+    display: 'flex',
+    flexDirection: 'column',
+    zIndex: 101,
+    fontFamily: 'var(--font-mono)'
+  } : {
+    position: 'fixed',
+    top: '50%',
+    left: '50%',
+    width: width || 440,
+    maxWidth: 'calc(100% - 32px)',
+    maxHeight: 'calc(100% - 32px)',
+    background: 'var(--surface-raised)',
+    border: '1px solid var(--border-default)',
+    borderRadius: 'var(--radius-lg)',
+    boxShadow: 'var(--shadow-modal)',
+    transform: open ? 'translate(-50%, -50%) scale(1)' : 'translate(-50%, -48%) scale(0.98)',
+    opacity: open ? 1 : 0,
+    pointerEvents: open ? 'auto' : 'none',
+    transition: 'opacity var(--dur) var(--ease), transform var(--dur) var(--ease)',
+    display: 'flex',
+    flexDirection: 'column',
+    overflow: 'hidden',
+    zIndex: 101,
+    fontFamily: 'var(--font-mono)'
+  };
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
+    style: backdrop,
+    onClick: onClose,
+    "aria-hidden": !open
+  }), /*#__PURE__*/React.createElement("div", {
+    role: "dialog",
+    "aria-modal": "true",
+    "aria-hidden": !open,
+    style: {
+      ...surface,
+      ...style
+    }
+  }, (title || onClose) && /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      alignItems: 'center',
+      gap: 10,
+      padding: '14px 16px',
+      borderBottom: '1px solid var(--border-default)',
+      flex: '0 0 auto'
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: 13,
+      fontWeight: 600,
+      color: 'var(--text-primary)',
+      flex: 1
+    }
+  }, title), onClose && /*#__PURE__*/React.createElement("button", {
+    onClick: onClose,
+    "aria-label": "Close",
+    style: {
+      background: 'transparent',
+      border: 'none',
+      color: 'var(--text-muted)',
+      cursor: 'pointer',
+      fontSize: 18,
+      lineHeight: 1,
+      padding: 0
+    }
+  }, "\xD7")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: 16,
+      overflowY: 'auto',
+      flex: 1,
+      fontSize: 13,
+      color: 'var(--text-secondary)',
+      lineHeight: 1.6
+    }
+  }, children), footer && /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      gap: 8,
+      justifyContent: 'flex-end',
+      padding: '12px 16px',
+      borderTop: '1px solid var(--border-default)',
+      flex: '0 0 auto'
+    }
+  }, footer)));
+}
+Object.assign(__ds_scope, { Dialog });
+})(); } catch (e) { __ds_ns.__errors.push({ path: "components/overlay/Dialog.jsx", error: String((e && e.message) || e) }); }
+
+// components/popover/Dropdown.jsx
+try { (() => {
+const {
+  useState,
+  useRef,
+  useEffect
+} = React;
+/**
+ * Dropdown — a trigger button + a popover menu. Surface-raised list, hairline
+ * border, 8px radius, soft popover shadow. Items hover to surface-hover; a
+ * `danger` item reads in warm coral. Closes on select, outside-click, or Esc.
+ *
+ * Items: { label, icon?, onSelect?, danger?, disabled? } or { divider: true }.
+ */
+function Dropdown({
+  trigger,
+  items = [],
+  align = 'left',
+  width = 200,
+  caret = true,
+  style
+}) {
+  const [open, setOpen] = useState(false);
+  const ref = useRef(null);
+  useEffect(() => {
+    if (!open) return undefined;
+    const onDoc = e => {
+      if (ref.current && !ref.current.contains(e.target)) setOpen(false);
+    };
+    const onKey = e => {
+      if (e.key === 'Escape') setOpen(false);
+    };
+    document.addEventListener('mousedown', onDoc);
+    window.addEventListener('keydown', onKey);
+    return () => {
+      document.removeEventListener('mousedown', onDoc);
+      window.removeEventListener('keydown', onKey);
+    };
+  }, [open]);
+  return /*#__PURE__*/React.createElement("span", {
+    ref: ref,
+    style: {
+      position: 'relative',
+      display: 'inline-flex'
+    }
+  }, /*#__PURE__*/React.createElement("button", {
+    onClick: () => setOpen(o => !o),
+    "aria-haspopup": "menu",
+    "aria-expanded": open,
+    style: {
+      fontFamily: 'var(--font-mono)',
+      fontSize: 12,
+      fontWeight: 500,
+      display: 'inline-flex',
+      alignItems: 'center',
+      gap: 7,
+      padding: '7px 12px',
+      minHeight: 34,
+      borderRadius: 'var(--radius)',
+      background: open ? 'var(--surface-hover)' : 'var(--surface-overlay)',
+      color: open ? 'var(--text-primary)' : 'var(--text-secondary)',
+      border: '1px solid var(--border-strong)',
+      cursor: 'pointer',
+      transition: 'background var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease)'
+    }
+  }, trigger, caret && /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: 10,
+      color: 'var(--text-muted)'
+    }
+  }, "\u25BE")), open && /*#__PURE__*/React.createElement("div", {
+    role: "menu",
+    style: {
+      position: 'absolute',
+      top: '100%',
+      marginTop: 6,
+      [align === 'right' ? 'right' : 'left']: 0,
+      minWidth: width,
+      zIndex: 80,
+      background: 'var(--surface-raised)',
+      border: '1px solid var(--border-default)',
+      borderRadius: 'var(--radius-lg)',
+      boxShadow: 'var(--shadow-pop)',
+      padding: 5,
+      fontFamily: 'var(--font-mono)',
+      // Visibility is NOT gated on a transition (which can stick at the
+      // from-frame in throttled/headless contexts) — the menu is rendered
+      // only while open and is fully visible. A transform-only entrance
+      // adds polish but never hides content even at its first frame.
+      animation: 'ddMenuIn var(--dur-fast) var(--ease)',
+      ...style
+    }
+  }, items.map((it, idx) => {
+    if (it.divider) {
+      return /*#__PURE__*/React.createElement("div", {
+        key: idx,
+        style: {
+          height: 1,
+          background: 'var(--border-default)',
+          margin: '5px 0'
+        }
+      });
+    }
+    const color = it.danger ? 'var(--danger-fg)' : 'var(--text-secondary)';
+    return /*#__PURE__*/React.createElement("button", {
+      key: idx,
+      role: "menuitem",
+      disabled: it.disabled,
+      onClick: () => {
+        if (it.onSelect) it.onSelect();
+        setOpen(false);
+      },
+      style: {
+        display: 'flex',
+        alignItems: 'center',
+        gap: 9,
+        width: '100%',
+        textAlign: 'left',
+        fontFamily: 'var(--font-mono)',
+        fontSize: 12,
+        padding: '7px 9px',
+        borderRadius: 'var(--radius-sm)',
+        background: 'transparent',
+        border: 'none',
+        color: it.disabled ? 'var(--text-muted)' : color,
+        cursor: it.disabled ? 'default' : 'pointer',
+        opacity: it.disabled ? 0.55 : 1,
+        transition: 'background var(--dur-fast) var(--ease)'
+      },
+      onMouseEnter: e => {
+        if (!it.disabled) e.currentTarget.style.background = 'var(--surface-hover)';
+      },
+      onMouseLeave: e => {
+        e.currentTarget.style.background = 'transparent';
+      }
+    }, it.icon != null && /*#__PURE__*/React.createElement("span", {
+      style: {
+        flex: '0 0 auto',
+        width: 16,
+        textAlign: 'center'
+      }
+    }, it.icon), /*#__PURE__*/React.createElement("span", {
+      style: {
+        flex: 1
+      }
+    }, it.label));
+  })));
+}
+Object.assign(__ds_scope, { Dropdown });
+})(); } catch (e) { __ds_ns.__errors.push({ path: "components/popover/Dropdown.jsx", error: String((e && e.message) || e) }); }
+
+// components/popover/Tooltip.jsx
+try { (() => {
+const {
+  useState
+} = React;
+/**
+ * Tooltip — a small hover/focus popover. Surface-overlay slip, hairline border,
+ * soft popover shadow, mono 11px. No glass/blur. Appears on hover and keyboard
+ * focus; positioned around the trigger by `placement`.
+ */
+function Tooltip({
+  content,
+  children,
+  placement = 'top',
+  style
+}) {
+  const [show, setShow] = useState(false);
+  const POS = {
+    top: {
+      bottom: '100%',
+      left: '50%',
+      transform: 'translateX(-50%)',
+      marginBottom: 6
+    },
+    bottom: {
+      top: '100%',
+      left: '50%',
+      transform: 'translateX(-50%)',
+      marginTop: 6
+    },
+    left: {
+      right: '100%',
+      top: '50%',
+      transform: 'translateY(-50%)',
+      marginRight: 6
+    },
+    right: {
+      left: '100%',
+      top: '50%',
+      transform: 'translateY(-50%)',
+      marginLeft: 6
+    }
+  };
+  return /*#__PURE__*/React.createElement("span", {
+    style: {
+      position: 'relative',
+      display: 'inline-flex'
+    },
+    onMouseEnter: () => setShow(true),
+    onMouseLeave: () => setShow(false),
+    onFocus: () => setShow(true),
+    onBlur: () => setShow(false)
+  }, children, /*#__PURE__*/React.createElement("span", {
+    role: "tooltip",
+    style: {
+      position: 'absolute',
+      zIndex: 60,
+      background: 'var(--surface-overlay)',
+      color: 'var(--text-primary)',
+      border: '1px solid var(--border-strong)',
+      borderRadius: 'var(--radius-sm)',
+      padding: '4px 8px',
+      fontFamily: 'var(--font-mono)',
+      fontSize: 11,
+      lineHeight: 1.4,
+      whiteSpace: 'nowrap',
+      boxShadow: 'var(--shadow-pop)',
+      pointerEvents: 'none',
+      opacity: show ? 1 : 0,
+      transition: 'opacity var(--dur-fast) var(--ease)',
+      ...POS[placement],
+      ...style
+    }
+  }, content));
+}
+Object.assign(__ds_scope, { Tooltip });
+})(); } catch (e) { __ds_ns.__errors.push({ path: "components/popover/Tooltip.jsx", error: String((e && e.message) || e) }); }
+
 // ui_kits/filigree-dashboard/Dashboard.jsx
 try { (() => {
 // Dashboard.jsx — Filigree dashboard shell: nav, filter bar, views, footer.
+// This kit CONSUMES the Weft component library (Tabs/IssueCard/Dialog/Toast)
+// from the compiled bundle rather than re-implementing chrome.
 const {
   useState,
   useMemo
 } = React;
+const {
+  Tabs,
+  Toast
+} = window.WeftDesignSystem_9a241d;
 function NavBtn({
   active,
   onClick,
@@ -45,7 +1807,7 @@ function Pill({
 }) {
   const styles = on ? {
     background: "var(--accent)",
-    color: "#06222F",
+    color: "var(--text-on-accent)",
     border: "1px solid var(--accent)"
   } : {
     background: "var(--surface-overlay)",
@@ -196,6 +1958,12 @@ function App() {
     active: true,
     done: true
   });
+  const [toast, setToast] = useState(null);
+  const notify = t => {
+    setToast(t);
+    window.clearTimeout(notify._t);
+    notify._t = window.setTimeout(() => setToast(null), 3400);
+  };
   const issues = useMemo(() => {
     let list = ISSUES.slice();
     if (ready) list = list.filter(i => i.ready);
@@ -255,37 +2023,43 @@ function App() {
       color: "var(--accent)"
     }
   }), " Filigree"), /*#__PURE__*/React.createElement("button", {
+    onClick: () => notify({
+      tone: "var(--accent)",
+      icon: "✨",
+      title: "Issue created",
+      body: "fg-new1 · open · via dashboard"
+    }),
     style: {
       fontFamily: "var(--font-mono)",
       fontSize: 11,
       background: "var(--accent)",
-      color: "#06222F",
+      color: "var(--text-on-accent)",
       padding: "4px 9px",
       borderRadius: "var(--radius)",
       border: "none",
       cursor: "pointer"
     }
-  }, "+ New"), /*#__PURE__*/React.createElement("nav", {
-    style: {
-      display: "flex",
-      gap: 2
-    }
-  }, /*#__PURE__*/React.createElement(NavBtn, {
-    active: view === "kanban",
-    onClick: () => setView("kanban")
-  }, "Kanban"), /*#__PURE__*/React.createElement(NavBtn, {
-    active: view === "ready",
-    onClick: () => setView("ready")
-  }, "Ready"), /*#__PURE__*/React.createElement(NavBtn, {
-    active: view === "graph",
-    onClick: () => setView("graph")
-  }, "Graph"), /*#__PURE__*/React.createElement(NavBtn, {
-    active: view === "insights",
-    onClick: () => setView("insights")
-  }, "Insights"), /*#__PURE__*/React.createElement(NavBtn, {
-    active: view === "files",
-    onClick: () => setView("files")
-  }, "Files"))), /*#__PURE__*/React.createElement("div", {
+  }, "+ New"), /*#__PURE__*/React.createElement("nav", null, /*#__PURE__*/React.createElement(Tabs, {
+    variant: "pill",
+    value: view,
+    onChange: setView,
+    tabs: [{
+      id: "kanban",
+      label: "Kanban"
+    }, {
+      id: "ready",
+      label: "Ready"
+    }, {
+      id: "graph",
+      label: "Graph"
+    }, {
+      id: "insights",
+      label: "Insights"
+    }, {
+      id: "files",
+      label: "Files"
+    }]
+  }))), /*#__PURE__*/React.createElement("div", {
     style: {
       display: "flex",
       alignItems: "center",
@@ -380,7 +2154,8 @@ function App() {
     label: "Files"
   })), /*#__PURE__*/React.createElement(DetailPanel, {
     issue: sel,
-    onClose: () => setSel(null)
+    onClose: () => setSel(null),
+    onNotify: notify
   })), /*#__PURE__*/React.createElement("footer", {
     style: {
       display: "flex",
@@ -418,14 +2193,40 @@ function App() {
       marginLeft: "auto",
       color: "var(--text-muted)"
     }
-  }, "filigree v", PROJECT.version, " \xB7 ethereal")));
+  }, "filigree v", PROJECT.version, " \xB7 ethereal")), toast && /*#__PURE__*/React.createElement("div", {
+    style: {
+      position: "fixed",
+      right: 16,
+      bottom: 16,
+      zIndex: 200
+    }
+  }, /*#__PURE__*/React.createElement(Toast, {
+    tone: toast.tone,
+    icon: toast.icon,
+    title: toast.title,
+    onDismiss: () => setToast(null)
+  }, toast.body)));
 }
-ReactDOM.createRoot(document.getElementById("root")).render(/*#__PURE__*/React.createElement(App, null));
+
+// Self-mount only on this kit's own page. When this file is pulled into the
+// design-system bundle, #root either doesn't exist yet (bundle loads in <head>)
+// or already belongs to a consumer — so stay inert and never clobber it.
+const __dashRoot = document.getElementById("root");
+if (__dashRoot && __dashRoot.childElementCount === 0) {
+  ReactDOM.createRoot(__dashRoot).render(/*#__PURE__*/React.createElement(App, null));
+}
 })(); } catch (e) { __ds_ns.__errors.push({ path: "ui_kits/filigree-dashboard/Dashboard.jsx", error: String((e && e.message) || e) }); }
 
 // ui_kits/filigree-dashboard/DetailPanel.jsx
 try { (() => {
-// DetailPanel.jsx — issue detail that slides in from the right.
+// DetailPanel.jsx — issue detail hosted in the library <Dialog variant="panel">.
+// The panel chrome (slide-in, backdrop, header, footer) is the library's; this
+// file owns only the field content. Actions fire a library <Toast> via onNotify.
+const {
+  Dialog,
+  Tag,
+  Button
+} = window.WeftDesignSystem_9a241d;
 function Field({
   label,
   children
@@ -443,35 +2244,17 @@ function Field({
 }
 function DetailPanel({
   issue,
-  onClose
+  onClose,
+  onNotify
 }) {
-  const open = !!issue;
   const i = issue || {};
-  const catColor = CATEGORY_COLORS[i.cat] || "#64748B";
+  const catColor = CATEGORY_COLORS[i.cat] || "#8A7A64";
   const prioColor = PRIORITY_COLORS[i.priority];
-  return /*#__PURE__*/React.createElement("div", {
-    style: {
-      position: "absolute",
-      top: 0,
-      right: 0,
-      height: "100%",
-      width: 460,
-      maxWidth: "100%",
-      background: "var(--surface-raised)",
-      borderLeft: "1px solid var(--border-default)",
-      display: "flex",
-      flexDirection: "column",
-      transform: open ? "translateX(0)" : "translateX(100%)",
-      transition: "transform .2s var(--ease)",
-      zIndex: 20,
-      boxShadow: open ? "var(--shadow-modal)" : "none"
-    }
-  }, issue && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
+  const title = issue ? /*#__PURE__*/React.createElement("span", {
     style: {
       display: "flex",
       alignItems: "center",
-      gap: 9,
-      padding: "15px 18px 10px"
+      gap: 9
     }
   }, /*#__PURE__*/React.createElement("span", {
     style: {
@@ -490,29 +2273,37 @@ function DetailPanel({
       fontSize: 11,
       color: "var(--text-muted)"
     }
-  }, i.type), /*#__PURE__*/React.createElement("button", {
-    onClick: onClose,
-    style: {
-      marginLeft: "auto",
-      background: "transparent",
-      border: "none",
-      color: "var(--text-muted)",
-      cursor: "pointer",
-      fontSize: 18,
-      lineHeight: 1
-    }
-  }, "\xD7")), /*#__PURE__*/React.createElement("div", {
-    style: {
-      padding: "0 18px 18px",
-      overflowY: "auto",
-      flex: 1
-    }
-  }, /*#__PURE__*/React.createElement("h2", {
+  }, i.type)) : null;
+  const footer = issue ? /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(Button, {
+    variant: "secondary",
+    onClick: () => onNotify && onNotify({
+      tone: "var(--text-secondary)",
+      icon: "👤",
+      title: "Claimed",
+      body: i.id + " · assigned to you"
+    })
+  }, "Claim"), /*#__PURE__*/React.createElement(Button, {
+    variant: "primary",
+    onClick: () => onNotify && onNotify({
+      tone: "var(--ready)",
+      icon: "▸",
+      title: "State advanced",
+      body: i.id + " → next · context.md regenerated"
+    })
+  }, "Advance state")) : null;
+  return /*#__PURE__*/React.createElement(Dialog, {
+    variant: "panel",
+    open: !!issue,
+    onClose: onClose,
+    title: title,
+    footer: footer,
+    width: 460
+  }, issue && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h2", {
     style: {
       fontSize: 18,
       fontWeight: 600,
       color: "var(--text-primary)",
-      margin: "4px 0 16px",
+      margin: "0 0 16px",
       lineHeight: 1.3
     }
   }, i.title), /*#__PURE__*/React.createElement("div", {
@@ -526,14 +2317,8 @@ function DetailPanel({
     style: {
       marginBottom: 6
     }
-  }, "Status"), /*#__PURE__*/React.createElement("span", {
-    style: {
-      fontSize: 12,
-      background: catColor + "33",
-      color: catColor,
-      padding: "3px 9px",
-      borderRadius: "var(--radius-sm)"
-    }
+  }, "Status"), /*#__PURE__*/React.createElement(Tag, {
+    tone: catColor
   }, i.status)), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
     className: "t-label",
     style: {
@@ -607,36 +2392,7 @@ function DetailPanel({
     style: {
       color: catColor
     }
-  }, i.status)), /*#__PURE__*/React.createElement("div", null, "\xB7 context.md regenerated"))), /*#__PURE__*/React.createElement("div", {
-    style: {
-      display: "flex",
-      gap: 8,
-      marginTop: 8
-    }
-  }, /*#__PURE__*/React.createElement("button", {
-    style: {
-      fontFamily: "var(--font-mono)",
-      fontSize: 12,
-      fontWeight: 600,
-      padding: "8px 14px",
-      borderRadius: "var(--radius)",
-      border: "1px solid var(--accent)",
-      background: "var(--accent)",
-      color: "#06222F",
-      cursor: "pointer"
-    }
-  }, "Advance state"), /*#__PURE__*/React.createElement("button", {
-    style: {
-      fontFamily: "var(--font-mono)",
-      fontSize: 12,
-      padding: "8px 14px",
-      borderRadius: "var(--radius)",
-      border: "1px solid var(--border-strong)",
-      background: "var(--surface-overlay)",
-      color: "var(--text-secondary)",
-      cursor: "pointer"
-    }
-  }, "Claim")))));
+  }, i.status)), /*#__PURE__*/React.createElement("div", null, "\xB7 context.md regenerated")))));
 }
 Object.assign(window, {
   DetailPanel
@@ -645,10 +2401,14 @@ Object.assign(window, {
 
 // ui_kits/filigree-dashboard/Kanban.jsx
 try { (() => {
-// Kanban.jsx — the 3-column board + issue cards (faithful to Filigree's renderCard).
+// Kanban.jsx — the 3-column board. Cards are the library <IssueCard>; the board
+// only owns column layout + bucketing now.
 const {
   useState: useStateK
 } = React;
+const {
+  IssueCard
+} = window.WeftDesignSystem_9a241d;
 function ageLabel(i) {
   if (i.cat !== "wip" || !i.ageH) return null;
   const h = i.ageH;
@@ -692,7 +2452,11 @@ function Card({
       borderRadius: "var(--radius)",
       padding: "10px 11px 10px 16px",
       cursor: "pointer",
-      transition: "background .15s"
+      // fiber-glow: the loom signature — the strand blooms softly off the left edge
+      boxShadow: ready ? "-2px 0 9px -4px var(--ready)" : agingBorder ? `-2px 0 9px -4px ${agingBorder}` : "none",
+      // NB: do NOT transition `background` here — it's a theme var (--surface-raised);
+      // Chromium traps the old computed fill when the theme flips, leaving the card dark.
+      transition: "box-shadow .15s, border-color .15s"
     },
     onMouseEnter: e => e.currentTarget.style.background = "var(--surface-hover)",
     onMouseLeave: e => e.currentTarget.style.background = "var(--surface-raised)"
@@ -704,7 +2468,8 @@ function Card({
       bottom: 0,
       width: 4,
       borderRadius: "var(--radius) 0 0 var(--radius)",
-      background: typeColor
+      background: typeColor,
+      boxShadow: `0 0 7px -1px ${typeColor}`
     }
   }), /*#__PURE__*/React.createElement("div", {
     style: {
@@ -832,9 +2597,9 @@ function Column({
       paddingRight: 4,
       minHeight: 200
     }
-  }, items.length ? items.map(i => /*#__PURE__*/React.createElement(Card, {
+  }, items.length ? items.map(i => /*#__PURE__*/React.createElement(IssueCard, {
     key: i.id,
-    i: i,
+    issue: i,
     onOpen: onOpen
   })) : /*#__PURE__*/React.createElement("div", {
     style: {
@@ -861,7 +2626,8 @@ function Kanban({
       gap: 16,
       padding: 16,
       flex: 1,
-      overflowX: "auto"
+      overflowX: "auto",
+      backgroundImage: "var(--weave-warp)"
     }
   }, /*#__PURE__*/React.createElement(Column, {
     label: "Open",
@@ -1160,24 +2926,26 @@ const TYPE_ICONS = {
   epic: "📊",
   milestone: "🎯"
 };
+// Loom palette — warmed to match colors_and_type.css (hex, not var(), because
+// the cards build alpha tints by string-concat: catColor + "33").
 const TYPE_COLORS = {
-  bug: "#EF4444",
-  feature: "#8B5CF6",
-  task: "#3B82F6",
-  epic: "#F59E0B",
-  milestone: "#10B981"
+  bug: "#E25C49",
+  feature: "#B79BF2",
+  task: "#56B7E2",
+  epic: "#E9B04A",
+  milestone: "#5FB98E"
 };
 const CATEGORY_COLORS = {
-  open: "#64748B",
-  wip: "#38BDF8",
-  done: "#7B919C"
+  open: "#8A7A64",
+  wip: "#56B7E2",
+  done: "#897C66"
 };
 const PRIORITY_COLORS = {
-  0: "#EF4444",
-  1: "#F97316",
-  2: "#6B7280",
-  3: "#D1D5DB",
-  4: "#D1D5DB"
+  0: "#E25C49",
+  1: "#EC8A3C",
+  2: "#8A7A64",
+  3: "#C9BBA0",
+  4: "#C9BBA0"
 };
 const PRIORITY_LABEL = ["Critical", "High", "Medium", "Low", "Backlog"];
 const ISSUES = [{
@@ -1368,266 +3136,20 @@ Object.assign(window, {
 });
 })(); } catch (e) { __ds_ns.__errors.push({ path: "ui_kits/filigree-dashboard/data.jsx", error: String((e && e.message) || e) }); }
 
-// ui_kits/weft-cli/CliMarks.jsx
+// ui_kits/weft-cli/CliData.jsx
 try { (() => {
-// Marks.jsx — Weft federation glyph set as React components.
-// Stroke-based, inherit `color` via currentColor. Shared across UI kits.
+// CliData.jsx — the CLI kit's glyphs and the session tab control now come from
+// the Weft component library (the bundle). Mark and Tabs are aliased onto
+// window for Terminal.jsx to use.
 const {
-  createElement: h
-} = React;
-const MARK_PATHS = {
-  foundryside: /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("g", {
-    stroke: "currentColor",
-    strokeWidth: "2",
-    strokeLinecap: "round",
-    strokeLinejoin: "round"
-  }, /*#__PURE__*/React.createElement("path", {
-    d: "M5 24 H27"
-  }), /*#__PURE__*/React.createElement("path", {
-    d: "M11 24 V15"
-  }), /*#__PURE__*/React.createElement("path", {
-    d: "M16 24 V10"
-  }), /*#__PURE__*/React.createElement("path", {
-    d: "M21 24 V15"
-  })), /*#__PURE__*/React.createElement("g", {
-    fill: "currentColor"
-  }, /*#__PURE__*/React.createElement("circle", {
-    cx: "11",
-    cy: "15",
-    r: "2.1"
-  }), /*#__PURE__*/React.createElement("circle", {
-    cx: "16",
-    cy: "10",
-    r: "2.3"
-  }), /*#__PURE__*/React.createElement("circle", {
-    cx: "21",
-    cy: "15",
-    r: "2.1"
-  }))),
-  weft: /*#__PURE__*/React.createElement("g", {
-    stroke: "currentColor",
-    strokeWidth: "2.4",
-    strokeLinecap: "round"
-  }, /*#__PURE__*/React.createElement("path", {
-    d: "M11 6 V18.8"
-  }), /*#__PURE__*/React.createElement("path", {
-    d: "M11 23.2 V26"
-  }), /*#__PURE__*/React.createElement("path", {
-    d: "M21 6 V8.8"
-  }), /*#__PURE__*/React.createElement("path", {
-    d: "M21 13.2 V26"
-  }), /*#__PURE__*/React.createElement("path", {
-    d: "M6 11 H8.8"
-  }), /*#__PURE__*/React.createElement("path", {
-    d: "M13.2 11 H26"
-  }), /*#__PURE__*/React.createElement("path", {
-    d: "M6 21 H18.8"
-  }), /*#__PURE__*/React.createElement("path", {
-    d: "M23.2 21 H26"
-  })),
-  loomweave: /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("g", {
-    stroke: "currentColor",
-    strokeWidth: "2",
-    strokeLinecap: "round",
-    strokeLinejoin: "round"
-  }, /*#__PURE__*/React.createElement("path", {
-    d: "M16 5 V27"
-  }), /*#__PURE__*/React.createElement("path", {
-    d: "M16 11 H24"
-  }), /*#__PURE__*/React.createElement("path", {
-    d: "M16 21 H8"
-  })), /*#__PURE__*/React.createElement("g", {
-    fill: "currentColor"
-  }, /*#__PURE__*/React.createElement("circle", {
-    cx: "16",
-    cy: "5",
-    r: "2.4"
-  }), /*#__PURE__*/React.createElement("circle", {
-    cx: "24",
-    cy: "11",
-    r: "2.4"
-  }), /*#__PURE__*/React.createElement("circle", {
-    cx: "8",
-    cy: "21",
-    r: "2.4"
-  }), /*#__PURE__*/React.createElement("circle", {
-    cx: "16",
-    cy: "27",
-    r: "2.4"
-  }))),
-  filigree: /*#__PURE__*/React.createElement("g", {
-    stroke: "currentColor",
-    strokeWidth: "2",
-    strokeLinejoin: "round"
-  }, /*#__PURE__*/React.createElement("path", {
-    d: "M16 4 L28 16 L16 28 L4 16 Z"
-  }), /*#__PURE__*/React.createElement("path", {
-    d: "M16 11 L21 16 L16 21 L11 16 Z",
-    fill: "currentColor",
-    stroke: "none"
-  })),
-  wardline: /*#__PURE__*/React.createElement("g", {
-    stroke: "currentColor",
-    strokeWidth: "2",
-    strokeLinecap: "round",
-    strokeLinejoin: "round"
-  }, /*#__PURE__*/React.createElement("path", {
-    d: "M18 4 V28"
-  }), /*#__PURE__*/React.createElement("path", {
-    d: "M6 10 H15"
-  }), /*#__PURE__*/React.createElement("path", {
-    d: "M6 16 H15"
-  }), /*#__PURE__*/React.createElement("path", {
-    d: "M6 22 H15"
-  }), /*#__PURE__*/React.createElement("path", {
-    d: "M18 16 L26 11 V21 L18 16Z",
-    fill: "currentColor"
-  })),
-  legis: /*#__PURE__*/React.createElement("g", {
-    stroke: "currentColor",
-    strokeWidth: "2",
-    strokeLinecap: "round",
-    strokeLinejoin: "round"
-  }, /*#__PURE__*/React.createElement("path", {
-    d: "M16 6 V25"
-  }), /*#__PURE__*/React.createElement("path", {
-    d: "M9 25 H23"
-  }), /*#__PURE__*/React.createElement("path", {
-    d: "M7 9 H25"
-  }), /*#__PURE__*/React.createElement("path", {
-    d: "M7 9 L4 16 H10 L7 9Z"
-  }), /*#__PURE__*/React.createElement("path", {
-    d: "M25 9 L22 16 H28 L25 9Z"
-  })),
-  charter: /*#__PURE__*/React.createElement("g", {
-    stroke: "currentColor",
-    strokeWidth: "2",
-    strokeLinecap: "round",
-    strokeLinejoin: "round"
-  }, /*#__PURE__*/React.createElement("path", {
-    d: "M8 5 H24 V27 H8 Z"
-  }), /*#__PURE__*/React.createElement("path", {
-    d: "M12 11 H20"
-  }), /*#__PURE__*/React.createElement("path", {
-    d: "M12 16 H17"
-  }), /*#__PURE__*/React.createElement("path", {
-    d: "M11.5 21.5 L14 24 L20 17.5"
-  })),
-  shuttle: /*#__PURE__*/React.createElement("g", {
-    stroke: "currentColor",
-    strokeWidth: "2",
-    strokeLinecap: "round",
-    strokeLinejoin: "round"
-  }, /*#__PURE__*/React.createElement("path", {
-    d: "M4 16 H28",
-    strokeDasharray: "3 3.5"
-  }), /*#__PURE__*/React.createElement("path", {
-    d: "M11 16 C11 12, 21 12, 21 16 C21 20, 11 20, 11 16 Z"
-  }), /*#__PURE__*/React.createElement("circle", {
-    cx: "16",
-    cy: "16",
-    r: "1.6",
-    fill: "currentColor",
-    stroke: "none"
-  })),
-  lacuna: /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("path", {
-    d: "M19 6 H25 A1 1 0 0 1 26 7 V25 A1 1 0 0 1 25 26 H7 A1 1 0 0 1 6 25 V7 A1 1 0 0 1 7 6 H13",
-    stroke: "currentColor",
-    strokeWidth: "2",
-    strokeLinecap: "round",
-    strokeLinejoin: "round",
-    strokeDasharray: "2.6 3",
-    fill: "none"
-  }), /*#__PURE__*/React.createElement("rect", {
-    x: "13.4",
-    y: "13.4",
-    width: "5.2",
-    height: "5.2",
-    rx: "1",
-    fill: "currentColor"
-  }))
-};
-function Mark({
-  name,
-  size = 24,
-  style,
-  className
-}) {
-  return /*#__PURE__*/React.createElement("svg", {
-    width: size,
-    height: size,
-    viewBox: "0 0 32 32",
-    fill: "none",
-    className: className,
-    style: style,
-    "aria-label": name,
-    role: "img"
-  }, MARK_PATHS[name]);
-}
-
-// Federation roster — single source for kits.
-const MEMBERS = [{
-  id: "loomweave",
-  name: "Loomweave",
-  thread: "var(--thread-loomweave)",
-  lang: "Rust",
-  domain: "Code structure + identity authority (SEI)",
-  answers: "what is this codebase, where do I touch, what is the durable identity?",
-  status: "built · in use",
-  repo: "~/loomweave"
-}, {
-  id: "filigree",
-  name: "Filigree",
-  thread: "var(--thread-filigree)",
-  lang: "Python",
-  domain: "Work state / issue lifecycle",
-  answers: "what work exists, what state is it in, what happened?",
-  status: "built · in use",
-  repo: "~/filigree"
-}, {
-  id: "wardline",
-  name: "Wardline",
-  thread: "var(--thread-wardline)",
-  lang: "Python",
-  domain: "Trust-boundary analysis",
-  answers: "what is allowed, and does this still satisfy the constraints?",
-  status: "built · in use",
-  repo: "~/wardline"
-}, {
-  id: "legis",
-  name: "Legis",
-  thread: "var(--thread-legis)",
-  lang: "Python",
-  domain: "Git/CI governance & attestations",
-  answers: "what changed, and is this change governed?",
-  status: "1.0.0rc1",
-  repo: "~/legis"
-}, {
-  id: "charter",
-  name: "Charter",
-  thread: "var(--thread-charter)",
-  lang: "Python",
-  domain: "Requirements, traceability, verification",
-  answers: "what must be true, and how do we know it is?",
-  status: "scaffolded",
-  repo: "~/charter"
-}];
-const SHUTTLE = {
-  id: "shuttle",
-  name: "Shuttle",
-  thread: "var(--thread-shuttle)",
-  lang: "—",
-  domain: "Change execution (future)",
-  answers: "carry this approved change through the weave, under guard rails.",
-  status: "roadmap thought-bubble",
-  repo: "no repo"
-};
+  Mark,
+  Tabs
+} = window.WeftDesignSystem_9a241d;
 Object.assign(window, {
   Mark,
-  MEMBERS,
-  SHUTTLE
+  Tabs
 });
-})(); } catch (e) { __ds_ns.__errors.push({ path: "ui_kits/weft-cli/CliMarks.jsx", error: String((e && e.message) || e) }); }
+})(); } catch (e) { __ds_ns.__errors.push({ path: "ui_kits/weft-cli/CliData.jsx", error: String((e && e.message) || e) }); }
 
 // ui_kits/weft-cli/Terminal.jsx
 try { (() => {
@@ -1934,7 +3456,7 @@ function Terminal() {
       overflow: "hidden",
       border: "1px solid var(--border-strong)",
       boxShadow: "var(--shadow-modal)",
-      background: "#070C0E"
+      background: "#0C0A07"
     }
   }, /*#__PURE__*/React.createElement("div", {
     style: {
@@ -1973,33 +3495,24 @@ function Terminal() {
     }
   })), /*#__PURE__*/React.createElement("div", {
     style: {
-      display: "flex",
-      gap: 2,
-      padding: "7px 9px 0",
-      background: "var(--surface-raised)",
-      borderBottom: "1px solid var(--border-default)"
+      padding: "7px 12px 0",
+      background: "var(--surface-raised)"
     }
-  }, order.map(t => /*#__PURE__*/React.createElement("button", {
-    key: t,
-    onClick: () => setTab(t),
-    style: {
-      fontFamily: "var(--font-mono)",
-      fontSize: 11.5,
-      padding: "6px 12px",
-      cursor: "pointer",
-      border: "none",
-      borderBottom: `2px solid ${tab === t ? `var(--thread-${SESSIONS[t].member})` : "transparent"}`,
-      background: "transparent",
-      color: tab === t ? "var(--text-primary)" : "var(--text-muted)",
-      display: "flex",
-      alignItems: "center",
-      gap: 7
-    }
-  }, /*#__PURE__*/React.createElement(Mark, {
-    name: SESSIONS[t].member,
-    size: 13,
-    style: thread(SESSIONS[t].member)
-  }), SESSIONS[t].label))), /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/React.createElement(Tabs, {
+    variant: "underline",
+    value: tab,
+    onChange: setTab,
+    accent: `var(--thread-${S.member})`,
+    tabs: order.map(t => ({
+      id: t,
+      label: SESSIONS[t].label,
+      icon: /*#__PURE__*/React.createElement(Mark, {
+        name: SESSIONS[t].member,
+        size: 13,
+        style: thread(SESSIONS[t].member)
+      })
+    }))
+  })), /*#__PURE__*/React.createElement("div", {
     style: {
       padding: "16px 18px 22px",
       fontFamily: "var(--font-mono)",
@@ -2066,7 +3579,11 @@ function App() {
     }
   }, "Four members with no GUI drive the same loop: scan \u2192 explain \u2192 fix \u2192 rescan, over CLI and a dependency-free MCP-over-stdio server. Switch sessions below.")), /*#__PURE__*/React.createElement(Terminal, null));
 }
-ReactDOM.createRoot(document.getElementById("root")).render(/*#__PURE__*/React.createElement(App, null));
+// Self-mount only on this kit's own page (see Dashboard.jsx for rationale).
+const __cliRoot = document.getElementById("root");
+if (__cliRoot && __cliRoot.childElementCount === 0) {
+  ReactDOM.createRoot(__cliRoot).render(/*#__PURE__*/React.createElement(App, null));
+}
 })(); } catch (e) { __ds_ns.__errors.push({ path: "ui_kits/weft-cli/Terminal.jsx", error: String((e && e.message) || e) }); }
 
 // ui_kits/weft-hub/Hub.jsx
@@ -2229,7 +3746,35 @@ function Hero() {
     }
   }, /*#__PURE__*/React.createElement(Chip, null, "5 realized members"), /*#__PURE__*/React.createElement(Chip, null, "local-first \xB7 no cloud"), /*#__PURE__*/React.createElement(Chip, null, "no runtime \xB7 no broker \xB7 no store"), /*#__PURE__*/React.createElement(Chip, {
     dim: true
-  }, "Shuttle \u2014 roadmap")));
+  }, "Shuttle \u2014 roadmap")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      gap: 44,
+      marginTop: 30,
+      paddingTop: 26,
+      borderTop: "1px solid var(--border-default)"
+    }
+  }, /*#__PURE__*/React.createElement(Stat, {
+    label: "Realized members",
+    value: 5,
+    tone: "var(--ready)",
+    display: true
+  }), /*#__PURE__*/React.createElement(Stat, {
+    label: "Pairwise combos",
+    value: 10,
+    tone: "var(--accent)",
+    display: true
+  }), /*#__PURE__*/React.createElement(Stat, {
+    label: "Runtime / brokers",
+    value: 0,
+    tone: "var(--text-muted)",
+    display: true
+  }), /*#__PURE__*/React.createElement(Stat, {
+    label: "On the roadmap",
+    value: 1,
+    tone: "var(--thread-shuttle)",
+    display: true
+  })));
 }
 function MemberCard({
   m,
@@ -2247,7 +3792,7 @@ function MemberCard({
       padding: "16px 18px",
       cursor: "pointer",
       opacity: dim ? 0.72 : 1,
-      transition: "background .15s, transform .15s"
+      transition: "transform .15s, box-shadow .15s"
     },
     onMouseEnter: e => {
       e.currentTarget.style.background = "var(--surface-overlay)";
@@ -2471,25 +4016,17 @@ function CompositionLaw() {
     }
   }, "Any Weft product must satisfy all three modes. Pairwise composability is a hard rule, not an aspiration."), /*#__PURE__*/React.createElement("div", {
     style: {
-      display: "flex",
-      gap: 6,
       marginBottom: 16
     }
-  }, Object.keys(MODES).map(k => /*#__PURE__*/React.createElement("button", {
-    key: k,
-    onClick: () => setMode(k),
-    style: {
-      fontFamily: "var(--font-mono)",
-      fontSize: 12,
-      fontWeight: 600,
-      padding: "8px 16px",
-      borderRadius: "var(--radius)",
-      cursor: "pointer",
-      border: "1px solid " + (mode === k ? "var(--accent)" : "var(--border-strong)"),
-      background: mode === k ? "var(--accent)" : "var(--surface-overlay)",
-      color: mode === k ? "#06222F" : "var(--text-secondary)"
-    }
-  }, MODES[k].label))), /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/React.createElement(Tabs, {
+    variant: "pill",
+    value: mode,
+    onChange: setMode,
+    tabs: Object.keys(MODES).map(k => ({
+      id: k,
+      label: MODES[k].label
+    }))
+  })), /*#__PURE__*/React.createElement("div", {
     style: {
       background: "var(--surface-raised)",
       border: "1px solid var(--border-default)",
@@ -2569,207 +4106,26 @@ function App() {
     }
   }, "MIT \xB7 2026")));
 }
-ReactDOM.createRoot(document.getElementById("root")).render(/*#__PURE__*/React.createElement(App, null));
+
+// Self-mount only on this kit's own page (see Dashboard.jsx for rationale).
+const __hubRoot = document.getElementById("root");
+if (__hubRoot && __hubRoot.childElementCount === 0) {
+  ReactDOM.createRoot(__hubRoot).render(/*#__PURE__*/React.createElement(App, null));
+}
 })(); } catch (e) { __ds_ns.__errors.push({ path: "ui_kits/weft-hub/Hub.jsx", error: String((e && e.message) || e) }); }
 
-// ui_kits/weft-hub/HubMarks.jsx
+// ui_kits/weft-hub/HubData.jsx
 try { (() => {
-// Marks.jsx — Weft federation glyph set as React components.
-// Stroke-based, inherit `color` via currentColor. Shared across UI kits.
+// HubData.jsx — federation roster data for the hub kit. The glyph set and all
+// shared primitives now come from the Weft component library (the bundle):
+// Mark, Tabs, and Stat are aliased onto window for the page scripts to use.
 const {
-  createElement: h
-} = React;
-const MARK_PATHS = {
-  foundryside: /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("g", {
-    stroke: "currentColor",
-    strokeWidth: "2",
-    strokeLinecap: "round",
-    strokeLinejoin: "round"
-  }, /*#__PURE__*/React.createElement("path", {
-    d: "M5 24 H27"
-  }), /*#__PURE__*/React.createElement("path", {
-    d: "M11 24 V15"
-  }), /*#__PURE__*/React.createElement("path", {
-    d: "M16 24 V10"
-  }), /*#__PURE__*/React.createElement("path", {
-    d: "M21 24 V15"
-  })), /*#__PURE__*/React.createElement("g", {
-    fill: "currentColor"
-  }, /*#__PURE__*/React.createElement("circle", {
-    cx: "11",
-    cy: "15",
-    r: "2.1"
-  }), /*#__PURE__*/React.createElement("circle", {
-    cx: "16",
-    cy: "10",
-    r: "2.3"
-  }), /*#__PURE__*/React.createElement("circle", {
-    cx: "21",
-    cy: "15",
-    r: "2.1"
-  }))),
-  weft: /*#__PURE__*/React.createElement("g", {
-    stroke: "currentColor",
-    strokeWidth: "2.4",
-    strokeLinecap: "round"
-  }, /*#__PURE__*/React.createElement("path", {
-    d: "M11 6 V18.8"
-  }), /*#__PURE__*/React.createElement("path", {
-    d: "M11 23.2 V26"
-  }), /*#__PURE__*/React.createElement("path", {
-    d: "M21 6 V8.8"
-  }), /*#__PURE__*/React.createElement("path", {
-    d: "M21 13.2 V26"
-  }), /*#__PURE__*/React.createElement("path", {
-    d: "M6 11 H8.8"
-  }), /*#__PURE__*/React.createElement("path", {
-    d: "M13.2 11 H26"
-  }), /*#__PURE__*/React.createElement("path", {
-    d: "M6 21 H18.8"
-  }), /*#__PURE__*/React.createElement("path", {
-    d: "M23.2 21 H26"
-  })),
-  loomweave: /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("g", {
-    stroke: "currentColor",
-    strokeWidth: "2",
-    strokeLinecap: "round",
-    strokeLinejoin: "round"
-  }, /*#__PURE__*/React.createElement("path", {
-    d: "M16 5 V27"
-  }), /*#__PURE__*/React.createElement("path", {
-    d: "M16 11 H24"
-  }), /*#__PURE__*/React.createElement("path", {
-    d: "M16 21 H8"
-  })), /*#__PURE__*/React.createElement("g", {
-    fill: "currentColor"
-  }, /*#__PURE__*/React.createElement("circle", {
-    cx: "16",
-    cy: "5",
-    r: "2.4"
-  }), /*#__PURE__*/React.createElement("circle", {
-    cx: "24",
-    cy: "11",
-    r: "2.4"
-  }), /*#__PURE__*/React.createElement("circle", {
-    cx: "8",
-    cy: "21",
-    r: "2.4"
-  }), /*#__PURE__*/React.createElement("circle", {
-    cx: "16",
-    cy: "27",
-    r: "2.4"
-  }))),
-  filigree: /*#__PURE__*/React.createElement("g", {
-    stroke: "currentColor",
-    strokeWidth: "2",
-    strokeLinejoin: "round"
-  }, /*#__PURE__*/React.createElement("path", {
-    d: "M16 4 L28 16 L16 28 L4 16 Z"
-  }), /*#__PURE__*/React.createElement("path", {
-    d: "M16 11 L21 16 L16 21 L11 16 Z",
-    fill: "currentColor",
-    stroke: "none"
-  })),
-  wardline: /*#__PURE__*/React.createElement("g", {
-    stroke: "currentColor",
-    strokeWidth: "2",
-    strokeLinecap: "round",
-    strokeLinejoin: "round"
-  }, /*#__PURE__*/React.createElement("path", {
-    d: "M18 4 V28"
-  }), /*#__PURE__*/React.createElement("path", {
-    d: "M6 10 H15"
-  }), /*#__PURE__*/React.createElement("path", {
-    d: "M6 16 H15"
-  }), /*#__PURE__*/React.createElement("path", {
-    d: "M6 22 H15"
-  }), /*#__PURE__*/React.createElement("path", {
-    d: "M18 16 L26 11 V21 L18 16Z",
-    fill: "currentColor"
-  })),
-  legis: /*#__PURE__*/React.createElement("g", {
-    stroke: "currentColor",
-    strokeWidth: "2",
-    strokeLinecap: "round",
-    strokeLinejoin: "round"
-  }, /*#__PURE__*/React.createElement("path", {
-    d: "M16 6 V25"
-  }), /*#__PURE__*/React.createElement("path", {
-    d: "M9 25 H23"
-  }), /*#__PURE__*/React.createElement("path", {
-    d: "M7 9 H25"
-  }), /*#__PURE__*/React.createElement("path", {
-    d: "M7 9 L4 16 H10 L7 9Z"
-  }), /*#__PURE__*/React.createElement("path", {
-    d: "M25 9 L22 16 H28 L25 9Z"
-  })),
-  charter: /*#__PURE__*/React.createElement("g", {
-    stroke: "currentColor",
-    strokeWidth: "2",
-    strokeLinecap: "round",
-    strokeLinejoin: "round"
-  }, /*#__PURE__*/React.createElement("path", {
-    d: "M8 5 H24 V27 H8 Z"
-  }), /*#__PURE__*/React.createElement("path", {
-    d: "M12 11 H20"
-  }), /*#__PURE__*/React.createElement("path", {
-    d: "M12 16 H17"
-  }), /*#__PURE__*/React.createElement("path", {
-    d: "M11.5 21.5 L14 24 L20 17.5"
-  })),
-  shuttle: /*#__PURE__*/React.createElement("g", {
-    stroke: "currentColor",
-    strokeWidth: "2",
-    strokeLinecap: "round",
-    strokeLinejoin: "round"
-  }, /*#__PURE__*/React.createElement("path", {
-    d: "M4 16 H28",
-    strokeDasharray: "3 3.5"
-  }), /*#__PURE__*/React.createElement("path", {
-    d: "M11 16 C11 12, 21 12, 21 16 C21 20, 11 20, 11 16 Z"
-  }), /*#__PURE__*/React.createElement("circle", {
-    cx: "16",
-    cy: "16",
-    r: "1.6",
-    fill: "currentColor",
-    stroke: "none"
-  })),
-  lacuna: /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("path", {
-    d: "M19 6 H25 A1 1 0 0 1 26 7 V25 A1 1 0 0 1 25 26 H7 A1 1 0 0 1 6 25 V7 A1 1 0 0 1 7 6 H13",
-    stroke: "currentColor",
-    strokeWidth: "2",
-    strokeLinecap: "round",
-    strokeLinejoin: "round",
-    strokeDasharray: "2.6 3",
-    fill: "none"
-  }), /*#__PURE__*/React.createElement("rect", {
-    x: "13.4",
-    y: "13.4",
-    width: "5.2",
-    height: "5.2",
-    rx: "1",
-    fill: "currentColor"
-  }))
-};
-function Mark({
-  name,
-  size = 24,
-  style,
-  className
-}) {
-  return /*#__PURE__*/React.createElement("svg", {
-    width: size,
-    height: size,
-    viewBox: "0 0 32 32",
-    fill: "none",
-    className: className,
-    style: style,
-    "aria-label": name,
-    role: "img"
-  }, MARK_PATHS[name]);
-}
+  Mark,
+  Tabs,
+  Stat
+} = window.WeftDesignSystem_9a241d;
 
-// Federation roster — single source for kits.
+// Federation roster — single source for the hub.
 const MEMBERS = [{
   id: "loomweave",
   name: "Loomweave",
@@ -2828,9 +4184,45 @@ const SHUTTLE = {
 };
 Object.assign(window, {
   Mark,
+  Tabs,
+  Stat,
   MEMBERS,
   SHUTTLE
 });
-})(); } catch (e) { __ds_ns.__errors.push({ path: "ui_kits/weft-hub/HubMarks.jsx", error: String((e && e.message) || e) }); }
+})(); } catch (e) { __ds_ns.__errors.push({ path: "ui_kits/weft-hub/HubData.jsx", error: String((e && e.message) || e) }); }
+
+__ds_ns.Badge = __ds_scope.Badge;
+
+__ds_ns.Button = __ds_scope.Button;
+
+__ds_ns.Tag = __ds_scope.Tag;
+
+__ds_ns.Stat = __ds_scope.Stat;
+
+__ds_ns.Table = __ds_scope.Table;
+
+__ds_ns.Dossier = __ds_scope.Dossier;
+
+__ds_ns.ChangeFlash = __ds_scope.ChangeFlash;
+
+__ds_ns.Toast = __ds_scope.Toast;
+
+__ds_ns.Checkbox = __ds_scope.Checkbox;
+
+__ds_ns.Input = __ds_scope.Input;
+
+__ds_ns.Select = __ds_scope.Select;
+
+__ds_ns.IssueCard = __ds_scope.IssueCard;
+
+__ds_ns.Mark = __ds_scope.Mark;
+
+__ds_ns.Tabs = __ds_scope.Tabs;
+
+__ds_ns.Dialog = __ds_scope.Dialog;
+
+__ds_ns.Dropdown = __ds_scope.Dropdown;
+
+__ds_ns.Tooltip = __ds_scope.Tooltip;
 
 })();

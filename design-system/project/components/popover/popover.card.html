@@ -1,0 +1,64 @@
+<!-- @dsCard group="Components" name="Tooltip & dropdown" subtitle="Hover/focus tooltip and the trigger + popover menu" viewport="700x300" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../styles.css">
+<style>
+  html, body { margin: 0; }
+  body { background: var(--surface-base); font-family: var(--font-mono); padding: 28px 32px; }
+  #root { display: contents; }
+  .row { display: flex; align-items: center; gap: 26px; flex-wrap: wrap; }
+  .blk { display: flex; flex-direction: column; gap: 11px; }
+  .lbl { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); }
+  .hint { font-size: 12px; color: var(--text-secondary); }
+</style>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+  const { Tooltip, Dropdown } = window.WeftDesignSystem_9a241d;
+  function Demo() {
+    return (
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 26 }}>
+        <div className="blk">
+          <span className="lbl">Tooltip (hover or focus)</span>
+          <div className="row">
+            <Tooltip content="blocks 5 downstream"><span className="hint" style={{ color: 'var(--aging)', cursor: 'default' }}>⚡5</span></Tooltip>
+            <Tooltip content="blocked by fg-9920aa" placement="bottom"><span className="hint" style={{ color: 'var(--stale)', cursor: 'default' }}>🔗 blocked</span></Tooltip>
+            <Tooltip content="loomweave:sei:7f3a…b1" placement="right"><span className="hint" style={{ color: 'var(--text-primary)', textDecoration: 'underline dotted', cursor: 'default' }}>sei:7f3a…b1</span></Tooltip>
+          </div>
+        </div>
+        <div className="blk">
+          <span className="lbl">Dropdown menu</span>
+          <div className="row">
+            <Dropdown trigger="Actions" items={[
+              { label: 'Advance state', icon: '▸', onSelect: () => {} },
+              { label: 'Claim', icon: '👤', onSelect: () => {} },
+              { label: 'Copy id', icon: '⧉', onSelect: () => {} },
+              { divider: true },
+              { label: 'Delete issue', icon: '×', danger: true, onSelect: () => {} },
+            ]} />
+            <Dropdown trigger="Priority" align="left" width={150} items={[
+              { label: 'P0 · Critical', onSelect: () => {} },
+              { label: 'P1 · High', onSelect: () => {} },
+              { label: 'P2 · Medium', onSelect: () => {} },
+              { label: 'P3 · Low', disabled: true },
+            ]} />
+            <Dropdown trigger="⋯" caret={false} align="right" width={150} items={[
+              { label: 'Settings', icon: '⚙', onSelect: () => {} },
+              { label: 'Theme', icon: '☀', onSelect: () => {} },
+            ]} />
+          </div>
+        </div>
+      </div>
+    );
+  }
+  ReactDOM.createRoot(document.getElementById('root')).render(<Demo />);
+</script>
+</body>
+</html>

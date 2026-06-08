@@ -68,6 +68,12 @@ function Hero() {
         <Chip>no runtime · no broker · no store</Chip>
         <Chip dim>Shuttle — roadmap</Chip>
       </div>
+      <div style={{ display: "flex", gap: 44, marginTop: 30, paddingTop: 26, borderTop: "1px solid var(--border-default)" }}>
+        <Stat label="Realized members" value={5} tone="var(--ready)" display />
+        <Stat label="Pairwise combos" value={10} tone="var(--accent)" display />
+        <Stat label="Runtime / brokers" value={0} tone="var(--text-muted)" display />
+        <Stat label="On the roadmap" value={1} tone="var(--thread-shuttle)" display />
+      </div>
     </section>
   );
 }
@@ -154,16 +160,13 @@ function CompositionLaw() {
     <section style={{ padding: "28px 30px 44px", maxWidth: 980, margin: "0 auto" }}>
       <h2 style={{ fontFamily: "var(--font-display)", fontSize: 26, fontWeight: 600, letterSpacing: "-0.015em", color: "var(--text-primary)", margin: "0 0 4px" }}>The composition law</h2>
       <p className="t-body" style={{ maxWidth: 640, marginBottom: 20 }}>Any Weft product must satisfy all three modes. Pairwise composability is a hard rule, not an aspiration.</p>
-      <div style={{ display: "flex", gap: 6, marginBottom: 16 }}>
-        {Object.keys(MODES).map((k) => (
-          <button key={k} onClick={() => setMode(k)} style={{
-            fontFamily: "var(--font-mono)", fontSize: 12, fontWeight: 600,
-            padding: "8px 16px", borderRadius: "var(--radius)", cursor: "pointer",
-            border: "1px solid " + (mode === k ? "var(--accent)" : "var(--border-strong)"),
-            background: mode === k ? "var(--accent)" : "var(--surface-overlay)",
-            color: mode === k ? "var(--text-on-accent)" : "var(--text-secondary)",
-          }}>{MODES[k].label}</button>
-        ))}
+      <div style={{ marginBottom: 16 }}>
+        <Tabs
+          variant="pill"
+          value={mode}
+          onChange={setMode}
+          tabs={Object.keys(MODES).map((k) => ({ id: k, label: MODES[k].label }))}
+        />
       </div>
       <div style={{
         background: "var(--surface-raised)", border: "1px solid var(--border-default)",
@@ -197,4 +200,8 @@ function App() {
   );
 }
 
-ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+// Self-mount only on this kit's own page (see Dashboard.jsx for rationale).
+const __hubRoot = document.getElementById("root");
+if (__hubRoot && __hubRoot.childElementCount === 0) {
+  ReactDOM.createRoot(__hubRoot).render(<App />);
+}
