@@ -27,7 +27,7 @@ Rows = the producer/initiator; columns = the other side. Numbers in cells refere
 ## The two structural facts that hold the matrix together
 
 1. **SEI is the connective tissue.** Every cell binds on Loomweave's [Stable Entity Identity](./sei-standard.md). A combination is only as strong as its weakest binding; a tool keying on a mutable `locator` silently orphans every combination it is in. SEI is **LOCKED** (2026-06-05) — the interface is frozen; remaining member backfills are conformance tasks under the locked standard ([conflict-register.md](./conflict-register.md) §B-2).
-2. **Filigree's `weft` HTTP generation is the federation transport.** Siblings pin to a named generation; evolution is additive (new generation, never mutate). See [contracts-index.md](./contracts-index.md) and Filigree ADR-002.
+2. **Filigree's `weft` HTTP generation is the federation transport.** Siblings pin to a named generation; evolution is additive (new generation, never mutate). See [contracts-index.md](./contracts-index.md) and Filigree ADR-002. For the *runtime* wiring of this transport — which process listens where, which member emits to which endpoint, and how to verify a member actually reaches the tracker — see [federation-topology.md](./federation-topology.md).
 
 ## Asterisks on the matrix
 

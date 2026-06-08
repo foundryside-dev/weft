@@ -82,6 +82,13 @@ them one at a time and re-run the dogfood orientation after each.
   Fold in the **F1 fix** here: wardline's outbound emit must resolve the federation
   token via the C-3 auto-mint path (env → `.weft/filigree/federation_token` → off) so
   it authenticates with zero `.mcp.json` env-block ceremony.
+  - **Emit-URL repoint (separate from the token):** the token fix is necessary but not
+    sufficient — the `--filigree-url` in each member's `.mcp.json` must point **path-scoped
+    at the `:8749` server-mode daemon** and the project must be **registered** in
+    `server.json`. As of 2026-06-09 filigree+wardline point at local dashboards and legis is
+    unregistered (only lacuna is correct). See [federation-topology.md](./federation-topology.md)
+    for the model + liveness check and [pm/2026-06-09-federation-emit-remediation.md](./pm/2026-06-09-federation-emit-remediation.md)
+    for the concrete repoint/registration diffs.
 - **legis** — merge rc4 → `main`, release, **reinstall (clears the split-brain — the
   version string was ahead of the code).** `weft-9da517a67e`.
 - After each: run lacuna orientation (`session-context`, a scan) — it's the canary.
