@@ -84,13 +84,28 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-
 .axiom-label { margin-bottom: 7px; }
 .axiom-text { font-size: 15px; color: var(--text-primary); line-height: 1.5; }
 
-.chips { display: flex; gap: 9px; margin-top: 24px; flex-wrap: wrap; }
-.chip {
-  font-size: 11px; color: var(--text-secondary);
-  border: 1px solid var(--border-default); background: var(--surface-raised);
-  border-radius: var(--radius-sm); padding: 3px 9px;
+/* Hero metric strip — the refactored weft-hub kit's `Stat` row (display variant). */
+.hero-stats {
+  display: flex; gap: 44px; flex-wrap: wrap;
+  margin-top: 30px; padding-top: 26px;
+  border-top: 1px solid var(--border-default);
 }
-.chip-dim { color: var(--text-muted); }
+.stat { display: flex; flex-direction: column; gap: 5px; }
+.stat-label {
+  display: flex; align-items: center; gap: 7px;
+  font-size: 11px; font-weight: 600; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--text-muted);
+}
+.stat-dot { width: 7px; height: 7px; border-radius: 50%; flex: 0 0 auto; }
+.stat-dot.t-ready   { background: var(--ready); }
+.stat-dot.t-accent  { background: var(--accent); }
+.stat-dot.t-muted   { background: var(--text-muted); }
+.stat-dot.t-shuttle { background: var(--thread-shuttle); }
+.stat-value {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: 34px; letter-spacing: -0.02em; line-height: 1;
+  color: var(--text-primary);
+}
 
 /* ============================ ROSTER ============================ */
 .roster { padding: 20px 30px 40px; }
@@ -210,18 +225,20 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-
   letter-spacing: -0.015em; color: var(--text-primary); margin: 0 0 4px;
 }
 .comp-lede { max-width: 660px; margin-bottom: 20px; }
-.mode-toggle { display: flex; gap: 6px; margin-bottom: 16px; flex-wrap: wrap; }
+/* Pill tabs — the design system's `Tabs variant="pill"`: active gets a quiet
+   overlay fill, not the amber accent. Only the text colour transitions; the
+   pill-fill (a binary active state) snaps so it can't stick mid-transition. */
+.mode-toggle { display: flex; gap: 4px; margin-bottom: 16px; flex-wrap: wrap; }
 .mode-btn {
-  font-family: var(--font-mono); font-size: 12px; font-weight: 600;
-  padding: 8px 16px; border-radius: var(--radius); cursor: pointer;
-  border: 1px solid var(--border-strong);
-  background: var(--surface-overlay); color: var(--text-secondary);
-  transition: background var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
+  font-family: var(--font-mono); font-size: 12px; font-weight: 500;
+  padding: 6px 12px; border-radius: var(--radius); cursor: pointer;
+  border: none; background: transparent; color: var(--text-secondary);
+  transition: color var(--dur-fast) var(--ease);
 }
 .mode-btn:hover { color: var(--text-primary); }
 .mode-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 .mode-btn.is-active {
-  border-color: var(--accent); background: var(--accent); color: var(--text-on-accent);
+  font-weight: 600; background: var(--surface-overlay); color: var(--text-primary);
 }
 .mode-panel {
   background: var(--surface-raised); border: 1px solid var(--border-default);
@@ -286,6 +303,8 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-
   .hub-header { gap: 12px; padding: 12px 18px; }
   .path-hint { display: none; }
   .hero { padding: 44px 18px 32px; }
+  .hero-stats { gap: 24px 32px; }
+  .stat-value { font-size: 28px; }
   .roster, .products, .composition, .weave { padding-left: 18px; padding-right: 18px; }
   .hub-footer { padding: 18px; }
   .foot-links { margin-left: 0; flex-basis: 100%; }

@@ -2,7 +2,7 @@
 
 Static front door for the **Weft Federation** suite. A faithful recreation of the
 `weft-hub` UI kit from the **Weft Design System** handoff — terminal-grade,
-dark-teal canonical, JetBrains Mono as the product face with Space Grotesk
+warm-espresso canonical, JetBrains Mono as the product face with Space Grotesk
 reserved for brand moments (the wordmark + hero). Hand-rolled HTML/CSS/JS, no
 build step, no runtime dependencies. GitHub-Pages-deployable as-is.
 
@@ -16,7 +16,7 @@ build step, no runtime dependencies. GitHub-Pages-deployable as-is.
 | File | Purpose |
 |---|---|
 | `index.html` | The page: header, hero (federation axiom), member roster (native `<details>` cards that expand to repo links), composition-law toggle, **how-they-compose** (SEI + `weft` transport + representative bindings, grounded in `federation-map.md`), Lacuna strip, footer. Content-complete server-side. |
-| `colors_and_type.css` | **Token source of truth, copied from the design system.** Surfaces, text, accent, the per-member thread palette, Lacuna scheme, radii, elevation, spacing, the mono/display type roles, and the documented light theme. (`--text-muted` was raised to `#638697` at the design-system source to clear WCAG AA contrast — see below.) |
+| `colors_and_type.css` | **Token source of truth, copied verbatim from the design system.** Surfaces, text, accent, the per-member thread palette, Lacuna scheme, radii, elevation, spacing, the mono/display type roles, the documented light theme, and the `ddMenuIn` popover-entrance keyframe (carried for parity; no popover on this page uses it). The palette is the warm-espresso "Loom" theme — `--text-muted` is `#7F6F58`. |
 | `styles.css` | Hub layout + components, layered on the tokens. |
 | `main.js` | Progressive enhancement only: upgrades the roster to single-open + adds keyboard support to the Solo/Pair/Suite tablist. |
 | `fonts/` | JetBrains Mono (upright + italic) and Space Grotesk variable TTFs + their OFL licenses. Bundled locally — fully offline, no CDN. |
@@ -47,12 +47,17 @@ preloaded fonts resolve under a normal origin.
   most recently snapshotted at `1.0.0rc3`; this site ships only once every member
   reaches its release milestone, so Legis is shown at its `1.0.0` release (the
   design's own rule marks status as a non-authoritative snapshot).
-- **`--text-muted` raised to `#638697` for WCAG AA.** The prior `#5A7D8C` sat at
-  ≈4.27:1 on `--surface-base` — below the 4.5:1 normal-text bar for the 11px
-  metadata/labels it paints. The new value clears AA (≈4.85:1) and is changed at
-  the design-system source (`design-system/project/`), not just this copy, so the
-  token stays in sync.
-- **Dark only.** Dark teal is the canonical theme and the hub kit ships no theme
+- **Hero metric strip + pill tabs (the refactored hub kit).** The hero closes on
+  a 4-metric `Stat` strip (realized members · pairwise combos · runtime/brokers ·
+  on the roadmap — 5/10/0/1) recreated from the design system's `Stat` display
+  variant; it replaces the old qualitative chip row, whose counts it now states
+  directly. The Solo/Pair/Suite switch is the system's `Tabs variant="pill"` — a
+  quiet `--surface-overlay` fill on the active tab (not the amber accent), with
+  only the text colour transitioning so the active fill can't stick mid-animation.
+- **Tokens copied verbatim.** `colors_and_type.css` is the unedited design-system
+  token file (warm-espresso "Loom" palette); re-copy it on a design-system update
+  rather than editing tokens here.
+- **Dark only.** Warm espresso is the canonical theme and the hub kit ships no theme
   toggle, so none is added here (the tokens *do* define a full light theme under
   `[data-theme="light"]` if one is wanted later).
 - **No theme-flash / font-flash.** Both brand faces are `<link rel="preload">`-ed
@@ -86,5 +91,3 @@ affordance and open in a new tab.
   with JS off; the default (Pair) composition panel renders server-side. JS only
   upgrades the roster to single-open and adds keyboard navigation to the mode
   tablist.
-- `colors_and_type.css` is the verbatim design-system token file — if the design
-  system updates, re-copy it rather than editing tokens here.

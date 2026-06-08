@@ -287,3 +287,16 @@ html, body {
 .thread-legis    { --thread: var(--thread-legis); }
 .thread-charter  { --thread: var(--thread-charter); }
 .thread-shuttle  { --thread: var(--thread-shuttle); }
+
+/* ---- Motion --------------------------------------------------------------
+   The system's only ambient motion is brief and never gates visibility. This
+   popover-entrance keyframe is deliberately safe: its first frame is already
+   legible (opacity 0.7, a 4px lift), so if a throttled/headless context pauses
+   the animation the menu still reads. Honour reduced-motion by skipping it. */
+@keyframes ddMenuIn {
+  from { opacity: 0.7; transform: translateY(-4px); }
+  to   { opacity: 1;   transform: translateY(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  @keyframes ddMenuIn { from { opacity: 1; } to { opacity: 1; } }
+}
