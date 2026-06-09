@@ -3,6 +3,19 @@
 > **Workspace path:** `pm/product/` (NOT the `docs/product/` default — `docs/` is
 > gitignored here as the mkdocs build dir). Resume with `/own-product pm/product`.
 
+## Mental model (the identity/continuity design in one image)
+**The desk and the daily hire.** A **desk** is a *line of effort* (Product Manager / program-mgmt /
+web-dev) — stable, with a nameplate and a drawer of handover notes (= A′ stable handle + mechanism A).
+An **employee** is one agent session — *hired for a day, never rehired*: boots fresh, works the desk,
+leaves (= the minted per-session run id). Each morning the new hire **reads the desk's handover folder**
+instead of reconstructing everything (A) — and the folder is *dated* ("as of close-of-business
+yesterday, against the office as it stood then"), so they check what moved overnight rather than trust a
+stale note (provenance stamp; the `f983ebd` lesson). You never ask *"is today's PM better than
+yesterday's"* — interchangeable daily hires for one desk (within-role anti-goal). Different **desks** are
+the deconfliction lanes; the **stomp** is one desk's hire rifling another desk's half-finished work (B/C).
+The real failure mode the metaphor exposes: not the turnover, but a **stale/empty handover folder** — why
+A must be reconciled-against-reality, not just "yesterday's notes."
+
 ## The bet right now
 **Now:** dogfood readiness + the coordinated clean-break launch — drive the suite to
 a green dogfood and ship the launch as the clean break. Metric: dogfood-pass rate +
