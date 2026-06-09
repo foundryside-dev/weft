@@ -1,7 +1,7 @@
 # Annex — How We Got Here
 
-**STATUS: DRAFT — for owner sign-off (companion to the proposal).** This is the journey behind
-`pm/2026-06-09-agent-continuity-write-safety-PROPOSAL-draft.md`. The work was exploratory; the
+**STATUS: ADOPTED — companion to the signed-off proposal (owner sign-off 2026-06-09, PDR-0008).** This is the journey behind
+`pm/2026-06-09-agent-continuity-write-safety-PROPOSAL.md`. The work was exploratory; the
 *path* matters, so nothing is dropped here. This annex preserves the original concept, the
 discovery method and its findings, the operator inputs, the full PDR arc with its reversals, and
 a consolidated record of everything rejected and why.
@@ -294,6 +294,6 @@ id* is here and cheap; *trust the id is unforgeable* is Tabard's job, out of sco
 
 ---
 
-*Draft prepared 2026-06-09 by the Weft product-management line, companion to
-`pm/2026-06-09-agent-continuity-write-safety-PROPOSAL-draft.md`. Nothing in the source decision
+*Prepared 2026-06-09 by the Weft product-management line, companion to
+`pm/2026-06-09-agent-continuity-write-safety-PROPOSAL.md` (owner sign-off 2026-06-09, PDR-0008). Nothing in the source decision
 trail has been discarded; superseded forms are preserved here by design.*

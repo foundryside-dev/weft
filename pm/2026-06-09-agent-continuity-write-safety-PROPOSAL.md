@@ -1,10 +1,10 @@
 # Agent Continuity & Write-Safety — Sign-off Proposal
 
-**STATUS: DRAFT — for owner sign-off.** This consolidates the current, internally-consistent
-state of the *Next* bet for a single approval decision. It is current-state only: the
+**STATUS: ADOPTED — owner sign-off 2026-06-09 (blanket approval, all sign-off items incl. the ★ escalation-drafting authorisation; see PDR-0008).** This consolidates the current, internally-consistent
+state of the *Next* bet. It is current-state only: the
 decision trail, the dead-ends, and the reversals that produced this shape live in the
-companion annex, `pm/2026-06-09-agent-continuity-write-safety-ANNEX-draft.md` ("How We Got
-Here"). The seven decision records (PDR-0001…0007) and the discovery study are cross-referenced
+companion annex, `pm/2026-06-09-agent-continuity-write-safety-ANNEX.md` ("How We Got
+Here"). The seven decision records (PDR-0001…0007), the sign-off (PDR-0008), and the discovery study are cross-referenced
 there.
 
 ---
@@ -273,6 +273,6 @@ The owner is asked to approve the following. Check to confirm; annotate any you 
 
 ---
 
-*Draft prepared 2026-06-09 by the Weft product-management line for owner sign-off. Decision trail
-and rejected alternatives: `pm/2026-06-09-agent-continuity-write-safety-ANNEX-draft.md`. Source
-decision records: `pm/product/decisions/0001…0007`.*
+*Prepared 2026-06-09 by the Weft product-management line; **owner sign-off 2026-06-09 (PDR-0008)**.
+Decision trail and rejected alternatives: `pm/2026-06-09-agent-continuity-write-safety-ANNEX.md`. Source
+decision records: `pm/product/decisions/0001…0008`.*

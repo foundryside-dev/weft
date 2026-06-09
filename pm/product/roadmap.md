@@ -13,10 +13,14 @@
   enrich-only guardrail (metrics.md)
 
 ## Next (shaped, decreasing certainty)
-- **Agent continuity & write-safety** — reshaped by agent user-research (PDR-0003;
-  discovery in `pm/2026-06-09-agent-identity-discovery-interviews.md`). Two orthogonal,
-  **identity-free, path-keyed** mechanisms; personas / advisory lanes / the Tabard
-  dependency all **dropped**.
+- **Agent continuity & write-safety** — **SIGNED OFF 2026-06-09 (PDR-0008);** shape & sequence
+  committed, build follows launch. Consolidated proposal:
+  `pm/2026-06-09-agent-continuity-write-safety-PROPOSAL.md` (+ annex). Reshaped by agent
+  user-research (PDR-0003; discovery in `pm/2026-06-09-agent-identity-discovery-interviews.md`).
+  Identity-free, path/activity-keyed mechanisms; personas / advisory lanes / the Tabard
+  dependency all **dropped**. *Authorised next (no further sign-off): the B/A′ design-spike brief,
+  the B Claude-Code feature-request **draft** (not filed), and scoping A+A′ — all as design work
+  parallel to launch.*
   - **A — reconciled handover** (sha-stamped, path-keyed, intent + verification-status +
     raw diff, TTL; *no* staleness inference): a **filigree feature** on `filigree-c2009921cf`
     (session/run) + `get_session_changes` + `reconciliation_debt_list`. Cheap → ships
@@ -47,3 +51,8 @@
 - **Shuttle** — change-execution (must follow attribution; you cannot safely execute
   a change without first attributing who authorized it).
 - **Cross-host federation** — the HTTP/cross-host half of verified-actor + emit.
+- **Cross-project ticket coordination** — cascade a hub ticket's children into member trackers +
+  safely *address* across per-project DBs (**federated**, NOT a shared hub store — doctrine §6).
+  Builds on ADR-029 entity associations + the counterpart convention; intersects the in-flight
+  project↔DB resolution fixes (`weft-a9ae398c5b`, `weft-eff938d3b6`). The shared-hub-DB variant is
+  parked as doctrine-incompatible. Concept: `pm/2026-06-09-cross-project-ticket-coordination-concept.md`.
