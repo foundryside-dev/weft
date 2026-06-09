@@ -1,4 +1,4 @@
-# Current State — Weft Federation        Checkpoint: 2026-06-09 (discovery + bet reshape)
+# Current State — Weft Federation        Checkpoint: 2026-06-10 (federation evaluation + post-launch stack)
 
 > **Workspace path:** `pm/product/` (NOT the `docs/product/` default — `docs/` is
 > gitignored here as the mkdocs build dir). Resume with `/own-product pm/product`.
@@ -8,102 +8,76 @@
 web-dev) — stable, with a nameplate and a drawer of handover notes (= A′ stable handle + mechanism A).
 An **employee** is one agent session — *hired for a day, never rehired*: boots fresh, works the desk,
 leaves (= the minted per-session run id). Each morning the new hire **reads the desk's handover folder**
-instead of reconstructing everything (A) — and the folder is *dated* ("as of close-of-business
-yesterday, against the office as it stood then"), so they check what moved overnight rather than trust a
-stale note (provenance stamp; the `f983ebd` lesson). You never ask *"is today's PM better than
-yesterday's"* — interchangeable daily hires for one desk (within-role anti-goal). Different **desks** are
-the deconfliction lanes; the **stomp** is one desk's hire rifling another desk's half-finished work (B/C).
-The real failure mode the metaphor exposes: not the turnover, but a **stale/empty handover folder** — why
-A must be reconciled-against-reality, not just "yesterday's notes."
-
-**Second axis — the pool (concurrency).** A line of effort can be staffed by a *pool* of interchangeable
-daily hires working at once. A pool has no personal desk — it shares a **whiteboard** (which is just A's
-path-keyed handover generalised: a desk is a pool of one). Among fungible concurrent peers, *who* you are
-carries no signal — only **what you just did + what you're about to do**. So pool coordination is an
-**activity register / IPC** (mechanism C, **hook-fed** so it can't rot): "pool P · ran X · about to touch
-Y" — peers route around or flag "that'll collide." Activity-keyed, **not** identity (this is where the
-"subrole" urge belonged, and why it was wrong — PDR-0007). C anticipates; **B catches mechanically when a
-peer overrides the advisory.**
+instead of reconstructing everything (A) — and the folder is *dated*, so they check what moved overnight
+rather than trust a stale note (provenance stamp; the `f983ebd` lesson). Different **desks** are the
+deconfliction lanes; the **stomp** is one desk's hire rifling another desk's half-finished work (B/C).
+**Second axis — the pool:** fungible concurrent peers share a **whiteboard** (A generalised); among them
+*who you are* carries no signal — coordination is an **activity register** (mechanism C, hook-fed so it
+can't rot). C anticipates; **B catches mechanically when a peer overrides the advisory.**
 
 ## The bet right now
-**Now:** dogfood readiness + the coordinated clean-break launch — drive the suite to
-a green dogfood and ship the launch as the clean break. Metric: dogfood-pass rate +
-the enrich-only / tree-cleanliness guardrails (metrics.md).
+**Now:** gold-standard clean-break launch (PDR-0011) — contract-correctness class + conformance
+oracle + emit fix close before the cutover, because the clean break freezes the cross-member API.
+Wave-sequenced (`pm/2026-06-10-gold-standard-launch-sequencing.md`), **owner dispatching live.**
+Metric: dogfood-pass rate + enrich-only / tree-cleanliness guardrails (metrics.md).
 
 ## In flight
-- Dogfood/launch readiness gate — `weft-cd62a4da9b` — **GATED TO GOLD-STANDARD (PDR-0011,
-  owner "do it right").** Blocked by G1 `weft-37455bf407` + G5 `weft-7436c1959e` + G13
-  `weft-61d27fb808` + **oracle umbrella `weft-1e053eac02`** + C-4 `weft-eb3dee402f`. The
-  contract-correctness class (G1/G9/G11/G13/G15/G18) + the executable conformance oracle (GS-7)
-  must close pre-launch because the clean break freezes the cross-member API; deployment/doc
-  gaps are post-launch-safe polish. **Cousins G9/G11/G15/G18 are untracked → being filed into
-  member DBs by the parallel stream → need hub counterparts to wire into the gate (pending,
-  don't race the stream).** Sequencing → `/axiom-program-management`.
-- Hub↔member counterpart reconciliation — done this session: 19/27 hub tickets now
-  carry `has-counterpart`; 15 new member issues filed; convention recorded in memory.
-- Federation emit remediation — runbook drafted (`pm/2026-06-09-federation-emit-remediation.md`), **not applied**; sequenced into the launch cutover.
-- lacuna specimen `make ci` red — filed `lacuna-0a7d5200a1` (DEMO-1).
-- **Federation interface audit (2026-06-10)** — `pm/2026-06-10-federation-interface-audit.md` (21
-  agents, 10 seams). Verdict: interfaces sound as contract *designs*, not yet gold-standard; 25 gaps
-  (1 critical / 4 high). **Launch-critical subset:** **G1** (`weft-37455bf407` — silent zero-findings
-  under a green `verified` status; *being fixed by legis + hardened by wardline*) + **G5** emit-drift
-  (`weft-7436c1959e`; in the emit runbook) + the conformance-oracle cluster (G6/G12/G14/G15/G16 —
-  post-launch hardening, not a ship-blocker). Member-DB tickets are being filed by a **parallel
-  stream — the hub does NOT duplicate** (coordinate, don't collide). Gate-reconciliation pending
-  (several `weft-cd62a4da9b` children are fixed / misscoped / possibly-stale per the audit's
-  reconciliation table → closing them *de-risks* the gate).
+- **Launch gate `weft-cd62a4da9b` — now blocks on all NINE PDR-0011 items:** G1 `weft-37455bf407`
+  (being worked, legis+wardline) · G5 `weft-7436c1959e` (emit runbook drafted, NOT applied — Wave 0)
+  · G13 `weft-61d27fb808` · C-4 `weft-eb3dee402f` · oracle umbrella `weft-1e053eac02` · **contract
+  cousins G9 `weft-94284025f5` / G11 `weft-c7e3486246` / G15 `weft-045076e30f` / G18
+  `weft-eef2fa8bbb` (wired + bumped P2 this session — the PDR-0011 pending coordination is CLOSED).**
+  Dispatch rule: every contract fix = producer + consumer + golden vector, per seam, never per repo.
+- **ADR-049 freeze posture** — `weft-dfeb20c4fa` (child of the oracle umbrella): the freeze-set must
+  enumerate ADR-049 as out-of-freeze, versioned with the Rust feature (PDR-0012).
+- **Rust line epic `weft-9823a04785`** — board-visible now; OUT of the launch envelope (PDR-0012).
+- **Quarantine forensics** — `weft-df29917f29` (hub) / `clarion-2c959a059e` (loomweave): mine the
+  rogue-agent branch for the B spike BEFORE salvage-or-discard. Branch must not be deleted first.
+- **Board stale-in-done** — C-1/WL-1/FIL-2/LW-1/C-2/C-9/LEG-1/2/3 shipped on release branches, held
+  short of closed until cutover (source-fixed ≠ live-fixed). ~252 truly-unmerged commits across four
+  release branches; **the merge/cutover choreography is the biggest unscheduled item** → hand the
+  gate + wave nomination to `/axiom-program-management` for the formal dependency model + forecast.
+
+## Post-launch stack (PDR-0013 — committed order)
+1. **Build A → A′ → B** (PDR-0008); B's design spike consumes the quarantine forensics.
+2. **Instrument the scoreboard** `weft-6636667996` (dogfood pass rate lands DURING dogfood #2).
+3. **Mechanize close-the-loop** `weft-ff30fd979f` (scope decided at A's scoping — fold-in vs alone).
+4. **Cross-project ticket coordination** — promoted bench → Next.
+Discovery queue: **Heddle spike `weft-e4589e6570` first**, then **propagation/live-state ledger
+spike `weft-61c24f622e`** (default hypothesis: legis feature, not a new member). Standing admission
+bar in roadmap.md (dogfood evidence + grep test + enrich-only + doctrine + hook-fed).
 
 ## Open questions / blocked-on-owner
-- **The bet is SIGNED OFF (PDR-0008, 2026-06-09).** Shape + sequence committed; proposal+annex
-  adopted. Build follows launch; the spike + escalation-draft + A/A′ scoping are authorised now.
-- **C1 — concurrency shape: largely ANSWERED** by operator data (PDR-0003): the
-  stomp event is sub-weekly, structural (never zero), human-suppressed. C1 is no
-  longer "ask agents" (they're blind to it) — residual is *magnitude*, for the B spike.
-- **B's home — RESOLVED in-house (PDR-0009):** B is built as Claude Code hooks (PreToolUse on
-  Edit/Write + Bash) with state in filigree; a two-tier keep/forget classifier (whitelist →
-  lightweight-LLM) does self-write-suppression + activity-filtering. **No external dependency; the
-  upstream escalation is WITHDRAWN** (the feature-request draft is repurposed as the internal B spec).
-  All four mechanisms are now weft features.
-- **Benched idea (2026-06-09):** cross-project ticket coordination (cascade + safe cross-DB
-  addressing). Later; federated variant only (shared hub DB parked, doctrine §6). Concept:
-  `pm/2026-06-09-cross-project-ticket-coordination-concept.md`.
-- **B design spike — open inputs:** self-write suppression, hunk-vs-file granularity,
-  multi-file transaction semantics, non-Write-path tripwire, worktree-scope (the live
-  2026-06-09 stomp crossed a worktree boundary).
-- **P3 / actor-identifier (PDR-0005, PDR-0006) — open design input for the spike:** the stable
-  handle = the **line of effort** (PM / program-mgmt / web-dev — this repo runs these in parallel),
-  supplied by spawn context; the minted per-session run id is the event-attribution unit. Decided:
-  mint a per-session id, replace free-text `--actor`, handle = line-of-effort (coarse, dodges the
-  per-area deference hazard), trust deferred to Tabard. Open for the spike: claim-binds-to-handle
-  vs event-binds-to-run-id split, and the exact spawn-context source.
-- D1 (seat-registry location) is **moot** — persona/registry dropped; everything is path-keyed.
+- **Launch cutover is owner-reserved** (PDR-0011) — PM sets the bar and coordinates; owner pulls
+  the trigger.
+- **New-member admission is owner-reserved** (doctrine §7) — fires only if Heddle/propagation
+  spikes return "go, and it's a member not a feature."
+- **ADR-049 escalation trigger** (PDR-0012): if oracle review finds launch artifacts embedding
+  dialect assumptions, ADR-049 becomes launch-gating → escalate.
+- **Legis working tree** has uncommitted skill-file edits (`.agents/` + `.claude/` resync) — member
+  housekeeping, flag to whoever works legis next.
+- **B design-spike open inputs** (carried): self-write suppression, hunk-vs-file granularity,
+  multi-file transactions, non-Write-path tripwire, worktree scope (the 2026-06-09 stomp crossed
+  one; check whether the quarantine case did too), keep/forget classifier tiering + whitelist +
+  Tier-2 latency budget, claim-binds-to-handle vs event-binds-to-run-id, spawn-context source.
 
-## Last checkpoint did
-- Bootstrapped the suite product workspace (PDR-0001); standard grant confirmed.
-- Ran agent **user-research** (3 rounds, 12 neutral `claude -p` interviews + 3 observed
-  operator cases incl. one live stomp) on the Next bet — discovery in
-  `pm/2026-06-09-agent-identity-discovery-interviews.md`.
-- **Reshaped the Next bet (PDR-0003, supersedes PDR-0002):** dropped personas /
-  advisory lanes / the Tabard dependency; the bet is now two identity-free, path-keyed
-  mechanisms — **A: reconciled handover** (filigree feature, cheap, ships first) +
-  **B: pre-write compare-and-swap guard** (the correctness fix + operator's real pain;
-  harness-layer; design-spike now). C (presence/avoidance) is v2.
-- Added the operator-supplied **stomp-intervention metric** (BASELINE ~1/wk → 0).
-- **Value reframe (PDR-0004):** the bet's payoff is **delegation leverage / supervision-load
-  reduction**, NOT catastrophe insurance — recovery is near-trivial now and getting cheaper, so
-  the win is "the operator stops being the live deconfliction backstop and can fire-and-forget."
-  Success metric reframed to supervision load; stomp-rate demoted to a proxy. Feature set + A-first
-  sequencing unchanged.
+## Last checkpoint did (2026-06-10)
+- Resumed + reconciled; ran the whole-federation evaluation (resume brief in session; grounded in
+  the interface audit + in-flight deep-dive). Grant re-confirmed verbatim by owner.
+- **Wired G9/G11/G15/G18 into the gate at P2** — gate now matches PDR-0011 exactly.
+- **PDR-0012**: Rust analyzer out of launch envelope; ADR-049 declared out-of-freeze; Rust line
+  epic filed. **PDR-0013**: post-launch priority stack + new-tool discovery pipeline + standing
+  agentic-first admission bar.
+- Filed: `weft-9823a04785` (Rust epic), `weft-dfeb20c4fa` (ADR-049), `weft-df29917f29` +
+  `clarion-2c959a059e` (quarantine, counterparted), `weft-61c24f622e` (propagation spike),
+  `weft-6636667996` (scoreboard), `weft-ff30fd979f` (close-the-loop). Heddle promoted (comment on
+  `weft-e4589e6570`). Roadmap updated (PDR-0012/0013 stamps).
 
 ## Next session, start here
-Bet signed off (PDR-0008); these are authorised design work, parallel to launch:
-1. **B design-spike brief** (self-write suppression, granularity, multi-file transactions,
-   non-Write-path + worktree tripwire, the handle/run-id binding, and now per PDR-0009: the
-   keep/forget classifier tiering + the whitelist's initial contents + Tier-2 latency budget).
-   B is **in-house hooks** (PDR-0009); the repurposed design spec is
-   `pm/2026-06-09-claude-code-write-guard-feature-request-DRAFT.md`. No upstream filing.
-2. **A is nearly free** — scope the filigree handover feature (sha-stamp + path-key +
-   intent/verification payload + raw diff + TTL; NO staleness inference) on
-   `filigree-c2009921cf` + `get_session_changes` + `reconciliation_debt_list`.
-3. Now-bet (dogfood/launch, `weft-cd62a4da9b`) keeps **build** priority; the spike is
-   design work and runs parallel (PDR-0003/0008). Don't pull A/B *build* ahead of launch.
+1. **Hand the gate + `pm/2026-06-10-gold-standard-launch-sequencing.md` to
+   `/axiom-program-management`** — formal dependency model + cutover choreography (the biggest
+   unscheduled risk). Don't race the member dispatch streams; coordinate via the gate comments.
+2. **B design-spike brief** — now including the quarantine-branch forensics (clarion-2c959a059e).
+3. **Scope A on `filigree-c2009921cf`** (+ `get_session_changes` + `reconciliation_debt_list`) and
+   make the close-the-loop fold-in call (`weft-ff30fd979f`) there.
+4. Launch keeps *build* priority; everything above is design/coordination work in parallel.

@@ -44,7 +44,7 @@ not by a controlling runtime.
 - **A cloud service.** Local-first, offline, no telemetry-home.
 
 ## Authority grant
-Granted by: john (john@foundryside.dev)     Last reviewed: 2026-06-09
+Granted by: john (john@foundryside.dev)     Last reviewed: 2026-06-10 (re-confirmed verbatim)
 Review cadence: monthly, or on any vision change
 
 Autonomous within strategy — the agent MAY, without asking:

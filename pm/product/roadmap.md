@@ -1,4 +1,4 @@
-# Roadmap — Weft Federation            Updated: 2026-06-09 (PDR-0003)
+# Roadmap — Weft Federation            Updated: 2026-06-10 (PDR-0012/0013)
 
 > Sequencing, WSJF / cost-of-delay, and dated forecasts are produced by
 > /axiom-program-management. This file records bets as INTENT, not a delivery
@@ -12,9 +12,14 @@
   cross-member API**, so contract defects must be right *before* launch. Correctness over
   ship-speed: own-use tooling, no client deadline. · tracker: `weft-cd62a4da9b` · **gated on**
   G1 `weft-37455bf407` + G5 `weft-7436c1959e` + G13 `weft-61d27fb808` + the oracle umbrella
-  `weft-1e053eac02` + C-4 `weft-eb3dee402f` (contract cousins G9/G11/G15/G18 to be wired in via
-  hub counterparts as the parallel stream files them) · metric: dogfood-pass rate + enrich-only
-  guardrail (metrics.md). Audit: `pm/2026-06-10-federation-interface-audit.md`.
+  `weft-1e053eac02` + C-4 `weft-eb3dee402f` + the contract cousins **G9 `weft-94284025f5` /
+  G11 `weft-c7e3486246` / G15 `weft-045076e30f` / G18 `weft-eef2fa8bbb` (wired 2026-06-10, all
+  P2)** · metric: dogfood-pass rate + enrich-only guardrail (metrics.md). Audit:
+  `pm/2026-06-10-federation-interface-audit.md`. Wave order:
+  `pm/2026-06-10-gold-standard-launch-sequencing.md` (dispatch live; contract fixes are
+  producer+consumer+golden-vector units per seam). **Rust analyzer line is OUT of the launch
+  envelope (PDR-0012);** ADR-049 dialect declared out-of-freeze via `weft-dfeb20c4fa` (child of
+  the oracle umbrella).
 
 ## Next (shaped, decreasing certainty)
 - **Agent continuity & write-safety** — **SIGNED OFF 2026-06-09 (PDR-0008);** shape & sequence
@@ -49,18 +54,43 @@
     exclusive locks** (those rebuild the human backstop — PDR-0004 — and miss non-opt-in stomps);
     a deliberate hard-lock survives as a rare explicit opt-in. Build when pools are real.
   Now-bet (launch) keeps *build* priority; B's spike is design work and runs parallel.
+- **Make the loop honest — scoreboard + close-the-loop (PDR-0013, post-launch items 2–3).**
+  Instrument the product scoreboard (`weft-6636667996`: dogfood pass rate lands *during* dogfood
+  #2; stomp tally + time-to-orient baselines before A/B ship) and mechanize close-the-loop
+  (`weft-ff30fd979f`: hook-fed work-state advance on ship/merge — the stale-board problem is a
+  product gap in filigree's domain, not a process failure; scope decided at A's scoping). These
+  outrank any new tool. · metric: every metrics.md row gets a dated instrumented reading.
+- **Rust analyzer line (post-launch versioned feature, PDR-0012)** — substantially built on
+  wardline `feat/rust-plugin` + loomweave `feat/rust-plugin-spec` (shared ADR-049 dialect +
+  conformance corpus); hub epic `weft-9823a04785`. Lands after the cutover; both members adopt
+  the dialect version together. Reversal trigger in PDR-0012 (corpus-green before cutover ⇒
+  re-evaluate inclusion).
+- **Cross-project ticket coordination — promoted from the bench (PDR-0013).** Cascade a hub
+  ticket's children into member trackers + safe cross-DB addressing (**federated**, NOT a shared
+  hub store — doctrine §6). Evidence: counterpart convention sustained by hand (19/27 manual);
+  the Rust line proved real work spans members invisibly. Builds on ADR-029 entity associations +
+  the counterpart convention. Concept: `pm/2026-06-09-cross-project-ticket-coordination-concept.md`.
+  · metric: counterpart filing becomes mechanical (0 manual sweeps).
 
 ## Later (directional bets, no order, no dates)
 - **Crypto agent-identity authority** ("Tabard/Seal") — spike-then-decide; doctrine §2/§6
   amendment required. **No longer a dependency of the Next bet** (discovery showed the
   continuity/write-safety layer is identity-free); stands on its own merits.
   `pm/2026-06-06-agent-identity-component-plan.md`.
-- **Heddle** — temporal / change-impact authority go/no-go spike. `weft-e4589e6570`.
+- **Heddle** — temporal / change-impact authority. **Next discovery slot (PDR-0013 #1):** the
+  go/no-go spike `weft-e4589e6570` runs once launch dispatch settles. Read-side complement to
+  mechanism B ("if I touch X, what breaks?" — today answered by grep-plus-hope or human
+  blast-radius review = supervision load).
+- **Propagation/live-state ledger** — "what is actually built/installed/live where" (PDR-0013 #2,
+  spike `weft-61c24f622e`). Three independent source-fixed ≠ live-fixed incidents. Default
+  hypothesis: a **legis feature**, not a new member; hook-fed, enrich-only, grep-test gated.
 - **Shuttle** — change-execution (must follow attribution; you cannot safely execute
-  a change without first attributing who authorized it).
+  a change without first attributing who authorized it). **Standing doctrine flag (PDR-0013):**
+  closest of all candidates to the central-orchestrator anti-goal — when shaped, the burden of
+  proof is on showing it is deconfliction substrate, not a controlling runtime.
 - **Cross-host federation** — the HTTP/cross-host half of verified-actor + emit.
-- **Cross-project ticket coordination** — cascade a hub ticket's children into member trackers +
-  safely *address* across per-project DBs (**federated**, NOT a shared hub store — doctrine §6).
-  Builds on ADR-029 entity associations + the counterpart convention; intersects the in-flight
-  project↔DB resolution fixes (`weft-a9ae398c5b`, `weft-eff938d3b6`). The shared-hub-DB variant is
-  parked as doctrine-incompatible. Concept: `pm/2026-06-09-cross-project-ticket-coordination-concept.md`.
+
+> **Admission bar for any new tool/member (PDR-0013, standing):** dogfood-pain evidence; the grep
+> test (agents *prefer* it unprompted, measured); enrich-only; doctrine fit (§6/§7 — admission
+> itself is owner-reserved); hook-fed over discipline-fed. The suite's own dogfood nominates the
+> next member.
