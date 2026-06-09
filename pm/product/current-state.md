@@ -31,9 +31,10 @@ a green dogfood and ship the launch as the clean break. Metric: dogfood-pass rat
 the enrich-only / tree-cleanliness guardrails (metrics.md).
 
 ## In flight
-- Dogfood readiness gate — `weft-cd62a4da9b` — blocked on wardline fingerprint P1s
-  `weft-4a9d0f863c` (verifying) + `weft-08124cad2c` (confirmed) and C-4
-  `weft-eb3dee402f` (triage).
+- Dogfood/launch readiness gate — `weft-cd62a4da9b` — **blocked by G1 `weft-37455bf407`
+  + G5 `weft-7436c1959e` + C-4 `weft-eb3dee402f`** (G1/G5 added as hard blockers 2026-06-10,
+  per owner: post-launch the API-contract fix window closes, so contract-axis defects gate).
+  (The old fingerprint-P1 blocker line was stale; the audit reconciles those — see below.)
 - Hub↔member counterpart reconciliation — done this session: 19/27 hub tickets now
   carry `has-counterpart`; 15 new member issues filed; convention recorded in memory.
 - Federation emit remediation — runbook drafted (`pm/2026-06-09-federation-emit-remediation.md`), **not applied**; sequenced into the launch cutover.
