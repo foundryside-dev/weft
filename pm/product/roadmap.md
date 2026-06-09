@@ -38,11 +38,12 @@
     fallback) does self-write-suppression + activity-filtering (PDR-0009). *No upstream
     dependency; the escalation is withdrawn.* Higher severity/risk → **design-spike NOW, in
     parallel**; build after. · metric: stomp interventions → 0 (metrics.md).
-  - **C — pool activity register / IPC** (PDR-0007): a shared, **hook-fed**, **activity-keyed**
-    (not identity) register — "pool P · ran X · about to touch Y" — for *predictive* collision
-    avoidance among concurrent fungible peers; composes with B (anticipate cheaply / catch
-    mechanically). Activity, not subroles. Build when pools are real; moot if work stays
-    single-occupant-per-desk.
+  - **C — entity presence for avoidance** (PDR-0007/0010): a **loomweave-entity-keyed** (file
+    fallback, enrich-only) presence/intent marker — "someone's on `walk_calls`" — **hook-emitted
+    from *keep* events** (can't rot, classifier-filtered so not spammy) for *predictive* avoidance;
+    composes with B (anticipate cheaply / catch mechanically). **Advisory, NOT operator-cleared
+    exclusive locks** (those rebuild the human backstop — PDR-0004 — and miss non-opt-in stomps);
+    a deliberate hard-lock survives as a rare explicit opt-in. Build when pools are real.
   Now-bet (launch) keeps *build* priority; B's spike is design work and runs parallel.
 
 ## Later (directional bets, no order, no dates)
