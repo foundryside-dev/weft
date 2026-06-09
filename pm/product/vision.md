@@ -27,12 +27,16 @@ not by a controlling runtime.
 - **A central orchestrator / runtime / broker / shared store.** Doctrine §6 forbids
   shared running infrastructure; coordination is substrate, not a controller.
 - **A system that manufactures false distinctions between functionally-identical
-  agents.** No "personalities," per-agent reliability scores, or character that would
-  invite the operator to perceive one agent as "better" and dispatch on a fiction
-  (owner-stated, 2026-06-09). Actor handles are *bare labels for attribution/
-  deconfliction*, never a character; the mnemonic need is met by a spawn-context label
-  (A′), not a persona layer. (See PDR-0005; reinforces the cross-cutting-deference
-  hazard in PDR-0003.)
+  agents *within the same role*.** No per-agent "personalities," reliability scores, or
+  character that would invite perceiving one agent as "better" than another doing the
+  *same* work and dispatching on a fiction (owner-stated, 2026-06-09). **Legitimate and
+  intended — line-of-effort identity:** coarse identities mapping to genuinely distinct
+  domains/responsibilities ARE real and useful (this repo runs parallel lines — product
+  management, project/program management, web dev). They partition work by responsibility
+  (real deconfliction) and are the **right altitude for A′'s stable handle** — *not*
+  fine-grained per-file-area seats, which induce cross-cutting-deference (PDR-0003).
+  Refuse manufactured character *within* a role; keep real partition *across* lines of
+  effort. (PDR-0006; A′ handle = line of effort, PDR-0005.)
 - **A security / access-control product.** Color, scope, and identity *coordinate*;
   they never gate. Re-derive any "security" shimmer as availability/functional.
 - **A monolith.** Members stay solo-useful and enrich-only; absence of any sibling
