@@ -1,4 +1,4 @@
-# Roadmap — Weft Federation            Updated: 2026-06-09 (PDR-0002)
+# Roadmap — Weft Federation            Updated: 2026-06-09 (PDR-0003)
 
 > Sequencing, WSJF / cost-of-delay, and dated forecasts are produced by
 > /axiom-program-management. This file records bets as INTENT, not a delivery
@@ -13,20 +13,27 @@
   enrich-only guardrail (metrics.md)
 
 ## Next (shaped, decreasing certainty)
-- **Agent session continuity & the personality/identity-management layer** — the
-  three-tier shape *registry of advisory seats → adoption (verified id + per-run
-  session) → continuity (resume brief)*. Post-3.0.0. Substrate already tracked:
-  `filigree-c2009921cf` (session/run object — the keystone), `filigree-6549e739de`
-  (evidence bundle), `filigree-81d3971467` (cross-host verified-actor). Concept:
-  `pm/2026-06-09-agent-personality-identity-management-concept.md`. Scope is
-  **advisory, never enforced** (deconfliction-first). · metric: agent
-  resumption/handoff fidelity (metrics.md) · NOT a new member; features on existing
-  members + a consumer of the identity authority. Not yet sequenced — two open
-  questions gate it (C1 concurrency shape, D1 registry location; see PDR-0002).
+- **Agent continuity & write-safety** — reshaped by agent user-research (PDR-0003;
+  discovery in `pm/2026-06-09-agent-identity-discovery-interviews.md`). Two orthogonal,
+  **identity-free, path-keyed** mechanisms; personas / advisory lanes / the Tabard
+  dependency all **dropped**.
+  - **A — reconciled handover** (sha-stamped, path-keyed, intent + verification-status +
+    raw diff, TTL; *no* staleness inference): a **filigree feature** on `filigree-c2009921cf`
+    (session/run) + `get_session_changes` + `reconciliation_debt_list`. Cheap → ships
+    first *because it's nearly free*. · metric: time-to-orient (metrics.md).
+  - **B — pre-write compare-and-swap guard** (hunk-level, self-write-suppressed,
+    transaction-aware, working-tree tripwire): the correctness fix + the operator's actual
+    pain. Lives at the **Edit/Write tool layer → likely a Claude Code / harness feature,
+    outside weft** (filing that is an owner escalation). Higher severity/risk → **design-spike
+    NOW, in parallel**; build after. · metric: stomp interventions → 0 (metrics.md).
+  - **C — liveness/presence stamp** (v2, identity-free): collision avoidance + abort-storm
+    de-escalation; build only if B livelocks.
+  Now-bet (launch) keeps *build* priority; B's spike is design work and runs parallel.
 
 ## Later (directional bets, no order, no dates)
-- **Crypto agent-identity authority** ("Tabard/Seal" — the lower layer this Next bet
-  consumes) — spike-then-decide; doctrine §2/§6 amendment required.
+- **Crypto agent-identity authority** ("Tabard/Seal") — spike-then-decide; doctrine §2/§6
+  amendment required. **No longer a dependency of the Next bet** (discovery showed the
+  continuity/write-safety layer is identity-free); stands on its own merits.
   `pm/2026-06-06-agent-identity-component-plan.md`.
 - **Heddle** — temporal / change-impact authority go/no-go spike. `weft-e4589e6570`.
 - **Shuttle** — change-execution (must follow attribution; you cannot safely execute

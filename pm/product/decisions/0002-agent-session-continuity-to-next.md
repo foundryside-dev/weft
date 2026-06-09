@@ -1,6 +1,6 @@
 # PDR-0002 — Agent session continuity / personality layer → top of Next
 
-Date: 2026-06-09   Status: accepted   Author: claude-filigree (PM)   Owner sign-off: yes ("it's a lock for what's next"; owner handed custody to PM)
+Date: 2026-06-09   Status: superseded by PDR-0003 (the disposition holds — this IS the Next bet; the *form* was reshaped by agent user-research)   Author: claude-filigree (PM)   Owner sign-off: yes ("it's a lock for what's next"; owner handed custody to PM)
 Supersedes: —   Related: roadmap.md (Next), pm/2026-06-09-agent-personality-identity-management-concept.md, pm/2026-06-06-agent-identity-component-plan.md, filigree-c2009921cf, filigree-6549e739de
 
 ## Context

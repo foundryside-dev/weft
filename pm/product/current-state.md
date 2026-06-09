@@ -1,4 +1,4 @@
-# Current State — Weft Federation        Checkpoint: 2026-06-09 (bootstrap)
+# Current State — Weft Federation        Checkpoint: 2026-06-09 (discovery + bet reshape)
 
 > **Workspace path:** `pm/product/` (NOT the `docs/product/` default — `docs/` is
 > gitignored here as the mkdocs build dir). Resume with `/own-product pm/product`.
@@ -18,27 +18,35 @@ the enrich-only / tree-cleanliness guardrails (metrics.md).
 - lacuna specimen `make ci` red — filed `lacuna-0a7d5200a1` (DEMO-1).
 
 ## Open questions / blocked-on-owner
-- **C1 — concurrency operating model (OPEN):** serial-mostly vs parallel-shared-files
-  vs standing-fleet. Decides whether the Next bet's file-lease/announcement layer is
-  built at all. Resolve via spike, not opinion.
-- **D1 — seat-registry location (OPEN, hard-to-reverse):** Filigree surface vs
-  consumer of the Tabard identity authority vs hub. Best paired with the Tabard
-  Phase-0 spike.
-- Nothing currently blocked awaiting owner sign-off (scope + grant confirmed; C3
-  disposition resolved in PDR-0002).
+- **C1 — concurrency shape: largely ANSWERED** by operator data (PDR-0003): the
+  stomp event is sub-weekly, structural (never zero), human-suppressed. C1 is no
+  longer "ask agents" (they're blind to it) — residual is *magnitude*, for the B spike.
+- **B's home — OWNER ESCALATION PENDING:** the write-guard (B) likely lives at the
+  Claude Code harness layer, *outside* weft. Filing it as an upstream feature request
+  is outward-facing → **needs the owner's call** (I'll draft, not file).
+- **B design spike — open inputs:** self-write suppression, hunk-vs-file granularity,
+  multi-file transaction semantics, non-Write-path tripwire, worktree-scope (the live
+  2026-06-09 stomp crossed a worktree boundary).
+- D1 (seat-registry location) is **moot** — persona/registry dropped; everything is path-keyed.
 
 ## Last checkpoint did
-- Bootstrapped the suite product workspace (PDR-0001); grant confirmed standard.
-- Took PM custody of the agent personality/identity concept; resolved its C3 gate →
-  top of **Next**, gated on C1/D1, advisory scope, not a new member (PDR-0002).
-- Seeded metrics as falsifiable placeholders pending instrumentation.
+- Bootstrapped the suite product workspace (PDR-0001); standard grant confirmed.
+- Ran agent **user-research** (3 rounds, 10 neutral `claude -p` interviews + 3 observed
+  operator cases incl. one live stomp) on the Next bet — discovery in
+  `pm/2026-06-09-agent-identity-discovery-interviews.md`.
+- **Reshaped the Next bet (PDR-0003, supersedes PDR-0002):** dropped personas /
+  advisory lanes / the Tabard dependency; the bet is now two identity-free, path-keyed
+  mechanisms — **A: reconciled handover** (filigree feature, cheap, ships first) +
+  **B: pre-write compare-and-swap guard** (the correctness fix + operator's real pain;
+  harness-layer; design-spike now). C (presence/avoidance) is v2.
+- Added the operator-supplied **stomp-intervention metric** (BASELINE ~1/wk → 0).
 
 ## Next session, start here
-The Next bet's first real investment is a **spike, not a feature**: pin **C1**
-(measure the actual concurrency shape from real multi-agent runs) and **D1** (registry
-location, paired with the Tabard Phase-0 spike). Only after C1 do we know if the
-file-lease/announcement layer survives. When the bet promotes toward Now, the first
-DISPATCH act is to hang a Filigree epic under `filigree-ed2ccaf10d`, linked to
-`filigree-c2009921cf`, and route it to /axiom-planning. Until launch ships, the Now
-bet (dogfood/launch) holds priority — do not pull the Next bet forward (PDR-0002
-reversal trigger).
+1. **Draft the B design-spike brief** (self-write suppression, granularity, multi-file
+   transactions, non-Write-path + worktree tripwire) — and **draft the Claude Code
+   feature-request escalation** for B's home, for the owner to send (don't send it).
+2. **A is nearly free** — scope the filigree handover feature (sha-stamp + path-key +
+   intent/verification payload + raw diff + TTL; NO staleness inference) on
+   `filigree-c2009921cf` + `get_session_changes` + `reconciliation_debt_list`.
+3. Now-bet (dogfood/launch, `weft-cd62a4da9b`) keeps **build** priority; B's spike is
+   design work and runs parallel (PDR-0003). Don't pull A/B *build* ahead of launch.
