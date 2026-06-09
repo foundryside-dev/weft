@@ -10,6 +10,16 @@ __pycache__/
 *.pyc
 .venv/
 
+# Node / the Vite app (app/) — deps + build output are generated, never committed.
+# Source lives in app/src, app/public, and the app's config files; dist/ is `npm run build` output.
+node_modules/
+app/dist/
+.vite/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.local
+
 # Filigree issue tracker
 .filigree/
 .filigree.conf

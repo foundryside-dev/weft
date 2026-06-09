@@ -1,0 +1,24 @@
+{
+  "name": "weft-hub-app",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "The Weft federation hub — documentation-only portfolio/doctrine site. Static build, no runtime.",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "prism-react-renderer": "^2.4.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.30.1"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.60.0",
+    "@vitejs/plugin-react": "^4.7.0",
+    "playwright": "^1.60.0",
+    "vite": "^5.4.20"
+  }
+}

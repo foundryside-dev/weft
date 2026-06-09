@@ -1,0 +1,9 @@
+/* ============================================================================
+   WEFT DESIGN SYSTEM — styles.css
+   ----------------------------------------------------------------------------
+   Global-CSS entry point. Consumers link THIS one file. It is a list of
+   @import lines only — every token, @font-face, and type role lives in the
+   imported closure below.
+   ============================================================================ */
+
+@import "colors_and_type.css";

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Weft — distinct threads, woven on purpose</title>
+  <meta name="description" content="Weft is an agent-first federation of small, local-first developer tools. Documentation only — there is nothing called Weft to install or run." />
+
+  <!-- Brand faces preloaded before first paint to avoid the documented font-flash.
+       The href MUST byte-match the url() the stylesheet requests (./ds-assets/fonts/…),
+       which is why the tokens CSS + fonts/ live verbatim in public/ds-assets/ rather
+       than being import-hashed through the bundler. See app/README.md. -->
+  <link rel="preload" href="./ds-assets/fonts/JetBrainsMono-Variable.ttf" as="font" type="font/ttf" crossorigin />
+  <link rel="preload" href="./ds-assets/fonts/SpaceGrotesk-Variable.ttf" as="font" type="font/ttf" crossorigin />
+
+  <!-- The token source of truth (verbatim from design-system/project) + shared styles.
+       styles.css is a one-line @import of colors_and_type.css; linking it is enough,
+       but we link the tokens directly too so the relative fonts/ url() resolves. -->
+  <link rel="stylesheet" href="./ds-assets/colors_and_type.css" />
+  <link rel="stylesheet" href="./ds-assets/styles.css" />
+</head>
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.jsx"></script>
+</body>
+</html>
