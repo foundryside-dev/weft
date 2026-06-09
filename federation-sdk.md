@@ -166,6 +166,7 @@ Briefing: [members/wardline.md](./members/wardline.md).
 | Surface | Signature (snapshot) | Role / obligation |
 |---|---|---|
 | Findings emitter | `POST /api/weft/scan-results` (Filigree generation) — `~/wardline/src/wardline/core/filigree_emit.py` | Native emitter posts findings straight to the weft transport. (See asterisk **[A-1](./asterisk-register.md)** for the legacy Loomweave-translator path.) |
+| Suppression provenance | `metadata.wardline.suppression_state` (+ `metadata.wardline.suppression_reason`) | Carries the finding's suppression signal across the seam — exactly one of `baselined` \| `waived` \| `judged`, **carried only when the state is not active** (absent ⇒ active; never emitted as the literal `active`); `suppression_reason` rides only alongside a non-active state. Filigree reads this so `finding_promote` refuses/warns on a baselined finding instead of minting a fresh P1 bug. |
 | Qualname producer | `metadata.wardline.qualname = f"{module_dotted_name(path)}.{__qualname__}"` | Pre-composed dotted qualname Loomweave reconciles to an SEI ([contracts-index.md](./contracts-index.md) §5). `module_dotted_name` is byte-for-byte with Loomweave's extractor — the shared corpus pins both halves. |
 | Taint-fact producer | writes to Loomweave `POST /api/wardline/taint-facts` (§2.1) | Computes per-entity taint, persists it opaque to the identity host. |
 

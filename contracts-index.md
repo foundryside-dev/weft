@@ -34,6 +34,8 @@ Wardline computes per-entity taint facts and persists them to Loomweave; Loomwea
 
 Wardline findings reach Filigree's scan-results intake. The legacy path routes through Loomweave's `loomweave sarif import` translator into the classic `POST /api/v1/scan-results` — this is **asterisk [A-1](./asterisk-register.md#a-1--wardline--filigree-findings-are-pipeline-coupled-through-loomweave)**. Wardline's **native Filigree emitter has now shipped** (`~/wardline/src/wardline/core/filigree_emit.py`), posting directly to the federation generation (`POST /api/weft/scan-results`); A-1 stays live until the Loomweave-absent Wardline+Filigree composition is demonstrated end-to-end (see the asterisk for the exact evidence level).
 
+The emit **pins the finding's suppression provenance**: a non-active finding carries its state under `metadata.wardline.suppression_state` (exactly one of `baselined` | `waived` | `judged`) plus an optional `metadata.wardline.suppression_reason`; an **active** finding **omits the key entirely** — absent ⇒ active, never the literal `"active"` on this seam. This is precisely what lets Filigree's ingest preserve the suppression signal so `finding_promote` refuses/warns on a baselined finding rather than minting a fresh P1. Pinning it here **closes the Wardline side of the hub follow-up C-10(b)**.
+
 - **Authoritative:** Loomweave ADR-015 Rev 2; `~/wardline/docs/integration/2026-05-29-wardline-weft-integration-brief.md`; Filigree scan-results intake in `~/filigree/docs/federation/contracts.md`.
 
 ## 5. Qualname normalization — Wardline → Loomweave (Loomweave ADR-018)
