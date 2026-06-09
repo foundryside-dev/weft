@@ -38,6 +38,15 @@ the enrich-only / tree-cleanliness guardrails (metrics.md).
   carry `has-counterpart`; 15 new member issues filed; convention recorded in memory.
 - Federation emit remediation — runbook drafted (`pm/2026-06-09-federation-emit-remediation.md`), **not applied**; sequenced into the launch cutover.
 - lacuna specimen `make ci` red — filed `lacuna-0a7d5200a1` (DEMO-1).
+- **Federation interface audit (2026-06-10)** — `pm/2026-06-10-federation-interface-audit.md` (21
+  agents, 10 seams). Verdict: interfaces sound as contract *designs*, not yet gold-standard; 25 gaps
+  (1 critical / 4 high). **Launch-critical subset:** **G1** (`weft-37455bf407` — silent zero-findings
+  under a green `verified` status; *being fixed by legis + hardened by wardline*) + **G5** emit-drift
+  (`weft-7436c1959e`; in the emit runbook) + the conformance-oracle cluster (G6/G12/G14/G15/G16 —
+  post-launch hardening, not a ship-blocker). Member-DB tickets are being filed by a **parallel
+  stream — the hub does NOT duplicate** (coordinate, don't collide). Gate-reconciliation pending
+  (several `weft-cd62a4da9b` children are fixed / misscoped / possibly-stale per the audit's
+  reconciliation table → closing them *de-risks* the gate).
 
 ## Open questions / blocked-on-owner
 - **The bet is SIGNED OFF (PDR-0008, 2026-06-09).** Shape + sequence committed; proposal+annex
