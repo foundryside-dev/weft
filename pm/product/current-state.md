@@ -40,6 +40,11 @@ the enrich-only / tree-cleanliness guardrails (metrics.md).
   **B: pre-write compare-and-swap guard** (the correctness fix + operator's real pain;
   harness-layer; design-spike now). C (presence/avoidance) is v2.
 - Added the operator-supplied **stomp-intervention metric** (BASELINE ~1/wk → 0).
+- **Value reframe (PDR-0004):** the bet's payoff is **delegation leverage / supervision-load
+  reduction**, NOT catastrophe insurance — recovery is near-trivial now and getting cheaper, so
+  the win is "the operator stops being the live deconfliction backstop and can fire-and-forget."
+  Success metric reframed to supervision load; stomp-rate demoted to a proxy. Feature set + A-first
+  sequencing unchanged.
 
 ## Next session, start here
 1. **Draft the B design-spike brief** (self-write suppression, granularity, multi-file

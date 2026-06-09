@@ -13,7 +13,8 @@
 | Metric | Target | Current | Read on |
 |--------|--------|---------|---------|
 | Time-to-orient for a resuming agent (boot → actionable "what's next") | ≤ TARGET *(set after baselining)* | not instrumented (Next-bet mechanism A builds this) | 2026-06-09 |
-| **Stomp interventions** — operator catching an agent stomping another's in-progress work (the "oh-shit-ESC" event) | **→ 0** (after Next-bet mechanism B) | **BASELINE ~1/wk diligent · ~every 2–3 days impaired · never zero** (operator-reported; 3 observed cases incl. one live mid-discovery 2026-06-09) | 2026-06-09 |
+| **Supervision load** — how much the operator must *watch* per dispatched ticket (the real outcome the Next bet buys: fire-and-forget delegation; PDR-0004) | can dispatch in parallel **without babysitting** *(set a concrete proxy after baselining)* | BASELINE — operator is today the live deconfliction backstop; cannot fire-and-forget | 2026-06-09 |
+| **Stomp interventions** (proxy/input for supervision load) — operator catching an agent stomping another's in-progress work (the "oh-shit-ESC" event) | **→ 0** (after Next-bet mechanism B) | **BASELINE ~1/wk diligent · ~every 2–3 days impaired · never zero** (operator-reported; 3 observed cases incl. one live mid-discovery 2026-06-09; recovery now near-trivial — value is supervision-load, not catastrophe, per PDR-0004) | 2026-06-09 |
 | Finding round-trip fidelity (wardline emit → filigree, suppression/baseline state preserved) | 100% of baselined findings carry provenance + are filterable | partial — N2 residual: 33 baselined findings still land `status:open` (`weft-171fc22a50`) | 2026-06-09 |
 
 ## Guardrails (must NOT degrade)
