@@ -16,6 +16,15 @@ the deconfliction lanes; the **stomp** is one desk's hire rifling another desk's
 The real failure mode the metaphor exposes: not the turnover, but a **stale/empty handover folder** — why
 A must be reconciled-against-reality, not just "yesterday's notes."
 
+**Second axis — the pool (concurrency).** A line of effort can be staffed by a *pool* of interchangeable
+daily hires working at once. A pool has no personal desk — it shares a **whiteboard** (which is just A's
+path-keyed handover generalised: a desk is a pool of one). Among fungible concurrent peers, *who* you are
+carries no signal — only **what you just did + what you're about to do**. So pool coordination is an
+**activity register / IPC** (mechanism C, **hook-fed** so it can't rot): "pool P · ran X · about to touch
+Y" — peers route around or flag "that'll collide." Activity-keyed, **not** identity (this is where the
+"subrole" urge belonged, and why it was wrong — PDR-0007). C anticipates; **B catches mechanically when a
+peer overrides the advisory.**
+
 ## The bet right now
 **Now:** dogfood readiness + the coordinated clean-break launch — drive the suite to
 a green dogfood and ship the launch as the clean break. Metric: dogfood-pass rate +

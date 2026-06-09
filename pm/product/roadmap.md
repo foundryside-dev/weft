@@ -31,8 +31,11 @@
     pain. Lives at the **Edit/Write tool layer → likely a Claude Code / harness feature,
     outside weft** (filing that is an owner escalation). Higher severity/risk → **design-spike
     NOW, in parallel**; build after. · metric: stomp interventions → 0 (metrics.md).
-  - **C — liveness/presence stamp** (v2, identity-free): collision avoidance + abort-storm
-    de-escalation; build only if B livelocks.
+  - **C — pool activity register / IPC** (PDR-0007): a shared, **hook-fed**, **activity-keyed**
+    (not identity) register — "pool P · ran X · about to touch Y" — for *predictive* collision
+    avoidance among concurrent fungible peers; composes with B (anticipate cheaply / catch
+    mechanically). Activity, not subroles. Build when pools are real; moot if work stays
+    single-occupant-per-desk.
   Now-bet (launch) keeps *build* priority; B's spike is design work and runs parallel.
 
 ## Later (directional bets, no order, no dates)
