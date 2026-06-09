@@ -7,8 +7,10 @@
 > and PDR-0003. Companion: the concept (`2026-06-09-agent-personality-identity-management-concept.md`)
 > and the C1/D1 spike brief (forthcoming).
 >
-> **Date:** 2026-06-09 · **n = 6** structured self-interviews (3 opus, 3 sonnet) across
-> 3 scenarios, **+1 observed in-the-wild case** (see Seed).
+> **Date:** 2026-06-09 · **n = 12** neutral interviews across **3 rounds** (round 1 n=6 blind ·
+> round 2 n=4 rebuttal · round 3 n=2 first-principles) **+ 3 observed operator cases** (the
+> `f983ebd` Seed, the ESC-rate testimony, the live worktree stomp). *(The per-round sections below
+> were appended as the study grew; this header is the reconciled total.)*
 
 ## Method & neutrality controls
 Each interviewee was a fresh `claude -p` instance — **not** an in-harness subagent —

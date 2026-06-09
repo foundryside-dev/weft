@@ -59,7 +59,7 @@ the enrich-only / tree-cleanliness guardrails (metrics.md).
 
 ## Last checkpoint did
 - Bootstrapped the suite product workspace (PDR-0001); standard grant confirmed.
-- Ran agent **user-research** (3 rounds, 10 neutral `claude -p` interviews + 3 observed
+- Ran agent **user-research** (3 rounds, 12 neutral `claude -p` interviews + 3 observed
   operator cases incl. one live stomp) on the Next bet — discovery in
   `pm/2026-06-09-agent-identity-discovery-interviews.md`.
 - **Reshaped the Next bet (PDR-0003, supersedes PDR-0002):** dropped personas /

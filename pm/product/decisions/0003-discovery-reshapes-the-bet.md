@@ -10,7 +10,7 @@ keyed on a personality/seat registry, advisory scope, and a *consumer*-relations
 Tabard crypto-identity authority. The owner — rightly noting "I'm not an agent; what I think is useful
 isn't" — commissioned **agent user-research**: a neutral panel (fresh `claude -p`, no project context),
 run as three rounds — blind interviews, an anti-capitulation rebuttal of the owner's counter-framing,
-and a first-principles re-design (10 interviews, 3 rounds, + 2 *observed* operator cases incl. the
+and a first-principles re-design (12 interviews across 3 rounds + 3 *observed* operator cases incl. the
 `f983ebd` stale-memory event and a quantified ESC-stomp rate). The evidence reshapes the bet enough to
 supersede 0002's form.
 
