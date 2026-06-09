@@ -1,11 +1,13 @@
-# Feature request (DRAFT — for owner review; NOT filed)
+# B (write-guard) — internal design spec  *(was: upstream feature-request draft)*
 
-> **Status:** draft prepared by the Weft PM line under PDR-0008 ★ authorisation. The owner
-> decides whether, where, and in what form to send this to the Claude Code team. Do not file
-> autonomously — sending is an outward-facing action reserved to the owner.
+> **Status: REPURPOSED — internal design input (PDR-0009).** The upstream escalation is
+> **withdrawn**: we build B ourselves as Claude Code hooks (filigree / continuity layer), so there
+> is nothing to file. The **Problem** and **Requirements** below are retained as the design input
+> for that in-house build; read "Proposed feature" as our implementation target, not an ask to
+> Anthropic. The architecture (hooks as sensors/actuators, filigree as state+decision, the
+> keep/forget classifier solving self-write-suppression) is in PDR-0009.
 >
-> **Suggested destination:** Claude Code feedback / GitHub issues. Trim the weft-specific framing
-> before sending; the core ask is general.
+> *(Original framing — an external feature request — preserved below for provenance.)*
 
 ---
 

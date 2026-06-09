@@ -18,9 +18,10 @@
   `pm/2026-06-09-agent-continuity-write-safety-PROPOSAL.md` (+ annex). Reshaped by agent
   user-research (PDR-0003; discovery in `pm/2026-06-09-agent-identity-discovery-interviews.md`).
   Identity-free, path/activity-keyed mechanisms; personas / advisory lanes / the Tabard
-  dependency all **dropped**. *Authorised next (no further sign-off): the B/A′ design-spike brief,
-  the B Claude-Code feature-request **draft** (not filed), and scoping A+A′ — all as design work
-  parallel to launch.*
+  dependency all **dropped**. **All four mechanisms are now weft features — B is built in-house as
+  Claude Code hooks (PDR-0009), so the bet has NO external dependency and the upstream escalation
+  is withdrawn.** *Authorised next (no further sign-off): the B/A′ design-spike brief and scoping
+  A+A′ — design work parallel to launch.*
   - **A — reconciled handover** (sha-stamped, path-keyed, intent + verification-status +
     raw diff, TTL; *no* staleness inference): a **filigree feature** on `filigree-c2009921cf`
     (session/run) + `get_session_changes` + `reconciliation_debt_list`. Cheap → ships
@@ -32,9 +33,11 @@
     (cheap, here); *trust-the-id* = Tabard (Later). Ships with A.
   - **B — pre-write compare-and-swap guard** (hunk-level, self-write-suppressed,
     transaction-aware, working-tree tripwire): the correctness fix + the operator's actual
-    pain. Lives at the **Edit/Write tool layer → likely a Claude Code / harness feature,
-    outside weft** (filing that is an owner escalation). Higher severity/risk → **design-spike
-    NOW, in parallel**; build after. · metric: stomp interventions → 0 (metrics.md).
+    pain. **Built in-house as Claude Code hooks** (PreToolUse on Edit/Write + Bash) with state in
+    **filigree**; a two-tier **keep/forget classifier** (preset whitelist → lightweight-LLM
+    fallback) does self-write-suppression + activity-filtering (PDR-0009). *No upstream
+    dependency; the escalation is withdrawn.* Higher severity/risk → **design-spike NOW, in
+    parallel**; build after. · metric: stomp interventions → 0 (metrics.md).
   - **C — pool activity register / IPC** (PDR-0007): a shared, **hook-fed**, **activity-keyed**
     (not identity) register — "pool P · ran X · about to touch Y" — for *predictive* collision
     avoidance among concurrent fungible peers; composes with B (anticipate cheaply / catch

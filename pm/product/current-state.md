@@ -45,8 +45,11 @@ the enrich-only / tree-cleanliness guardrails (metrics.md).
 - **C1 — concurrency shape: largely ANSWERED** by operator data (PDR-0003): the
   stomp event is sub-weekly, structural (never zero), human-suppressed. C1 is no
   longer "ask agents" (they're blind to it) — residual is *magnitude*, for the B spike.
-- **B's home — escalation DRAFT authorised, FILING still reserved:** owner approved me *drafting*
-  the upstream Claude Code feature request (PDR-0008 ★); the **send remains the owner's call**.
+- **B's home — RESOLVED in-house (PDR-0009):** B is built as Claude Code hooks (PreToolUse on
+  Edit/Write + Bash) with state in filigree; a two-tier keep/forget classifier (whitelist →
+  lightweight-LLM) does self-write-suppression + activity-filtering. **No external dependency; the
+  upstream escalation is WITHDRAWN** (the feature-request draft is repurposed as the internal B spec).
+  All four mechanisms are now weft features.
 - **Benched idea (2026-06-09):** cross-project ticket coordination (cascade + safe cross-DB
   addressing). Later; federated variant only (shared hub DB parked, doctrine §6). Concept:
   `pm/2026-06-09-cross-project-ticket-coordination-concept.md`.
@@ -81,9 +84,10 @@ the enrich-only / tree-cleanliness guardrails (metrics.md).
 ## Next session, start here
 Bet signed off (PDR-0008); these are authorised design work, parallel to launch:
 1. **B design-spike brief** (self-write suppression, granularity, multi-file transactions,
-   non-Write-path + worktree tripwire, the handle/run-id binding). **Started: the B Claude-Code
-   feature-request DRAFT exists at `pm/2026-06-09-claude-code-write-guard-feature-request-DRAFT.md`
-   — owner to review + decide whether to send (NOT filed).**
+   non-Write-path + worktree tripwire, the handle/run-id binding, and now per PDR-0009: the
+   keep/forget classifier tiering + the whitelist's initial contents + Tier-2 latency budget).
+   B is **in-house hooks** (PDR-0009); the repurposed design spec is
+   `pm/2026-06-09-claude-code-write-guard-feature-request-DRAFT.md`. No upstream filing.
 2. **A is nearly free** — scope the filigree handover feature (sha-stamp + path-key +
    intent/verification payload + raw diff + TTL; NO staleness inference) on
    `filigree-c2009921cf` + `get_session_changes` + `reconciliation_debt_list`.
