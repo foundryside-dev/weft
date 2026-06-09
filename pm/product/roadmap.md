@@ -21,6 +21,11 @@
     raw diff, TTL; *no* staleness inference): a **filigree feature** on `filigree-c2009921cf`
     (session/run) + `get_session_changes` + `reconciliation_debt_list`. Cheap → ships
     first *because it's nearly free*. · metric: time-to-orient (metrics.md).
+  - **A′ — actor-identifier assignment (P3, PDR-0005)** — the *assignment side* of the same
+    `filigree-c2009921cf` object: filigree **mints a per-session run id** (replaces free-text
+    `--actor`, kills the "everyone is `claude`" collision); claims/continuity bind to a stable
+    handle from **spawn context** (operator label / worktree / harness). *Have-a-non-colliding-id*
+    (cheap, here); *trust-the-id* = Tabard (Later). Ships with A.
   - **B — pre-write compare-and-swap guard** (hunk-level, self-write-suppressed,
     transaction-aware, working-tree tripwire): the correctness fix + the operator's actual
     pain. Lives at the **Edit/Write tool layer → likely a Claude Code / harness feature,

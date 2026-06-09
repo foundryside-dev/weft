@@ -27,6 +27,10 @@ the enrich-only / tree-cleanliness guardrails (metrics.md).
 - **B design spike — open inputs:** self-write suppression, hunk-vs-file granularity,
   multi-file transaction semantics, non-Write-path tripwire, worktree-scope (the live
   2026-06-09 stomp crossed a worktree boundary).
+- **P3 / actor-identifier (PDR-0005) — open design input for the spike:** where the stable
+  handle comes from for a memoryless agent (operator label / worktree / harness), and whether
+  claims bind to the handle while events bind to the minted run id. The decision (mint a
+  per-session id, replace free-text `--actor`; trust deferred to Tabard) is made; the *scheme* is spike work.
 - D1 (seat-registry location) is **moot** — persona/registry dropped; everything is path-keyed.
 
 ## Last checkpoint did
