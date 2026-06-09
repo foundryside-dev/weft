@@ -1,9 +1,16 @@
-# Federation emit remediation — DRAFT (not applied) · 2026-06-09
+# Federation emit remediation — APPLIED 2026-06-10 (g5-emit) · drafted 2026-06-09
+
+> **APPLIED 2026-06-10** (weft-7436c1959e, g5-emit). Changes 1–4 landed and verified
+> end-to-end; evidence at the bottom of this doc. One deviation: the Change 3 bare-curl
+> liveness check is **invalid against the current daemon** (auth now precedes routing → a
+> tokenless GET is `401` for *every* prefix, registered or not). It was superseded by an
+> authenticated `POST {}` probe (`404 NOT_FOUND` = unregistered vs `400 VALIDATION
+> scan_source-required` = registered) plus per-store finding-count deltas. See "Applied —
+> evidence" below.
 
 Closes the live regression in [federation-topology.md](../federation-topology.md): three of
 four members' wardline findings never reach the federated `:8749` daemon. Topology ratified
-(PM, 2026-06-09): **shared `:8749` daemon for all Python members.** Nothing below has been
-applied — these are diffs for review.
+(PM, 2026-06-09): **shared `:8749` daemon for all Python members.**
 
 **Prerequisites verified 2026-06-09 (read-only probe):** `:8749` is the only `--server-mode`
 process (PID 764117); `:8659/:8834/:8971/:9397` are local dashboards. All four Python projects
@@ -111,3 +118,45 @@ lacuna). `~/wardline` and `~/lacuna` are already clean.
   re-strands a key. Track + fix in filigree; the manual re-key is the stopgap.
 - Filed tracker issues: see the session that produced this doc (topology-drift P1, legis-unreg
   P2, filigree legacy-key/C2 P2, topology-doc P2).
+
+---
+
+## Applied — evidence (2026-06-10, g5-emit)
+
+**Change 1** — repointed `~/filigree/.mcp.json` (`:8834` → `:8749/api/p/filigree/…`) and
+`~/wardline/.mcp.json` (`:8659` → `:8749/api/p/wardline/…`). `--loomweave-url` untouched. Both
+`.mcp.json` are untracked local config → no repo commit (matches the "if tracked" caveat).
+
+**Change 2** — `filigree server register` for wardline + legis; re-keyed filigree
+(unregister legacy `.filigree` → register `.weft/filigree`). Daemon `/api/reload`ed live on
+each step; **never restarted** (pid 3066434 throughout). Final `server status`: 4 projects,
+all canonical `.weft/filigree` paths. (Note: `server register/unregister` take no `--actor`.)
+
+**Change 3 — verification (authenticated `POST {}` probe; bare-curl superseded, see header):**
+
+| probe stage            | filigree | wardline | legis | lacuna(canary) |
+|------------------------|----------|----------|-------|----------------|
+| baseline (pre-change)  | 400      | **404**  | **404** | 400          |
+| after register w+l     | 400      | 400      | 400   | 400            |
+| filigree re-key window | **404**  | 400      | 400   | 400            |
+| final                  | 400      | 400      | 400   | 400            |
+
+`404→400` flips prove wardline/legis registration took; the filigree `400→404→400` proves the
+re-key genuinely re-pointed (not a no-op). Canary lacuna `400` at every step.
+
+**End-to-end store deltas** (`scan_findings` per `.weft/filigree/filigree.db`; real wardline
+scan per member emitting to its own scoped URL; daemon echoed `[project 'X']`):
+
+| after emit →     | filigree | wardline | legis | lacuna | legacy `.filigree` |
+|------------------|----------|----------|-------|--------|--------------------|
+| V0 baseline      | 176      | 299      | 0     | 0      | no-db              |
+| filigree (+34)   | **210**  | 299      | 0     | 0      | no-db (flat)       |
+| wardline (+2)    | 210      | **301**  | 0     | 0      | —                  |
+| legis (+72)      | 210      | 301      | **72**| 0      | —                  |
+
+Exactly one store increments per emit; siblings flat; the legacy `.filigree` path received
+nothing (re-key lands in canonical `.weft/filigree`). lacuna untouched (canary green).
+
+**Change 4** — removed legacy `~/filigree/.filigree` (tracked → `git rm` + commit on filigree
+`release/3.0.0`, `5303297`) and `~/legis/.filigree` (untracked → `rm`). The migration-era
+`MOVED` "left in place" breadcrumb was superseded by this runbook (operator-confirmed).
