@@ -57,13 +57,29 @@ Three deltas: **add** `wardline` + `legis`; **re-key** `filigree` from
 `/home/john/filigree/.filigree` → `/home/john/filigree/.weft/filigree` (drops the stale
 legacy-path key — this is also the **C2** root cause).
 
-**⚠️ Open question to confirm before applying — the registration mechanism.** Hand-editing
-`server.json` then reloading the daemon is the brute-force path, but it **restarts the shared
-daemon and momentarily affects lacuna**, and may race the daemon's own registry writes. Confirm
-the canonical path first: does filigree expose a `register`/`unregister` verb, or does a project
-auto-register when its session connects to `:8749`? If auto-register exists, the cleaner fix is
-to repoint (Change 1) and let each member's next session register itself, then prune the stale
-`filigree→.filigree` key. **Do not hand-edit + restart until this is settled.**
+**✅ Registration mechanism — RESOLVED 2026-06-09 (source-verified, zero-touch, NO restart).**
+Do **not** hand-edit `server.json` + restart. filigree provides a canonical zero-disruption path:
+
+- **Auto-register on session:** a server-mode project's SessionStart hook
+  (`hooks.py:_ensure_dashboard_server_mode`) calls `register_project()` (idempotent,
+  lock-protected → writes `server.json`) then POSTs `/api/reload` so the daemon re-reads the
+  registry **live**. The daemon's `reload()` (`dashboard.py:530`) does an **atomic state swap**
+  and retains existing state on failure — so it picks up new projects **without a restart and
+  without disrupting lacuna or any other project**.
+- **Explicit verbs** for doing it now rather than waiting for a session:
+  `filigree server register <dir>` / `filigree server unregister <dir>` / `server status`.
+
+**Canonical apply order (no `server.json` hand-edit, no restart):**
+1. Repoint each drifted member's `.mcp.json --filigree-url` (Change 1).
+2. `filigree server register /home/john/wardline/.weft/filigree` and
+   `… /home/john/legis/.weft/filigree` (or just let each member's next session auto-register).
+3. **Re-key filigree off the legacy path:**
+   `filigree server unregister /home/john/filigree/.filigree` then
+   `filigree server register /home/john/filigree/.weft/filigree` — this prunes the stale
+   same-prefix key cleanly (the **C2** stopgap; the durable C2 fix — dedup by project root — is
+   `weft-a9ae398c5b`).
+4. The running daemon `/api/reload`s itself on each register; confirm with `filigree server status`.
+   No `kill`/restart of PID-on-`:8749` at any point.
 
 ## Change 3 — verify (the liveness check, post-apply)
 
