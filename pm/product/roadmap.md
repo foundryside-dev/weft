@@ -5,12 +5,16 @@
 > schedule. Do not compute WSJF here; hand the committed bet over for sequencing.
 
 ## Now  (committed, in-flight)
-- **Dogfood readiness + the coordinated clean-break launch** — the suite ships once
-  every member passes its lacuna dogfood and `make ci` is green; the launch *is* the
-  clean break (no cross-member backcompat). · tracker: `weft-cd62a4da9b` (dogfood
-  gate) · gated on `weft-4a9d0f863c` + `weft-08124cad2c` (wardline fingerprint P1s)
-  and `weft-eb3dee402f` (C-4 multi-owner block) · metric: dogfood-pass rate +
-  enrich-only guardrail (metrics.md)
+- **Dogfood readiness + the coordinated clean-break launch — gated to GOLD-STANDARD
+  (PDR-0011).** The suite ships once every member passes its lacuna dogfood, `make ci` is
+  green, *and* the federation interface audit's contract-correctness class + executable
+  conformance oracle close — because the clean break (no backcompat) **freezes the
+  cross-member API**, so contract defects must be right *before* launch. Correctness over
+  ship-speed: own-use tooling, no client deadline. · tracker: `weft-cd62a4da9b` · **gated on**
+  G1 `weft-37455bf407` + G5 `weft-7436c1959e` + G13 `weft-61d27fb808` + the oracle umbrella
+  `weft-1e053eac02` + C-4 `weft-eb3dee402f` (contract cousins G9/G11/G15/G18 to be wired in via
+  hub counterparts as the parallel stream files them) · metric: dogfood-pass rate + enrich-only
+  guardrail (metrics.md). Audit: `pm/2026-06-10-federation-interface-audit.md`.
 
 ## Next (shaped, decreasing certainty)
 - **Agent continuity & write-safety** — **SIGNED OFF 2026-06-09 (PDR-0008);** shape & sequence

@@ -31,10 +31,14 @@ a green dogfood and ship the launch as the clean break. Metric: dogfood-pass rat
 the enrich-only / tree-cleanliness guardrails (metrics.md).
 
 ## In flight
-- Dogfood/launch readiness gate — `weft-cd62a4da9b` — **blocked by G1 `weft-37455bf407`
-  + G5 `weft-7436c1959e` + C-4 `weft-eb3dee402f`** (G1/G5 added as hard blockers 2026-06-10,
-  per owner: post-launch the API-contract fix window closes, so contract-axis defects gate).
-  (The old fingerprint-P1 blocker line was stale; the audit reconciles those — see below.)
+- Dogfood/launch readiness gate — `weft-cd62a4da9b` — **GATED TO GOLD-STANDARD (PDR-0011,
+  owner "do it right").** Blocked by G1 `weft-37455bf407` + G5 `weft-7436c1959e` + G13
+  `weft-61d27fb808` + **oracle umbrella `weft-1e053eac02`** + C-4 `weft-eb3dee402f`. The
+  contract-correctness class (G1/G9/G11/G13/G15/G18) + the executable conformance oracle (GS-7)
+  must close pre-launch because the clean break freezes the cross-member API; deployment/doc
+  gaps are post-launch-safe polish. **Cousins G9/G11/G15/G18 are untracked → being filed into
+  member DBs by the parallel stream → need hub counterparts to wire into the gate (pending,
+  don't race the stream).** Sequencing → `/axiom-program-management`.
 - Hub↔member counterpart reconciliation — done this session: 19/27 hub tickets now
   carry `has-counterpart`; 15 new member issues filed; convention recorded in memory.
 - Federation emit remediation — runbook drafted (`pm/2026-06-09-federation-emit-remediation.md`), **not applied**; sequenced into the launch cutover.
