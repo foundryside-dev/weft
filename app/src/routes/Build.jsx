@@ -3,45 +3,43 @@ import { Link } from 'react-router-dom';
 import { CodeSample } from '../components/CodeSample.jsx';
 
 const SDK = 'https://github.com/foundryside-dev/weft/blob/main/federation-sdk.md';
-const SEI_STD = 'https://github.com/foundryside-dev/weft/blob/main/sei-standard.md';
-const LOOMWEAVE_REPO = 'https://github.com/foundryside-dev/clarion';
+const LOOMWEAVE_REPO = 'https://github.com/foundryside-dev/loomweave';
 const WARDLINE_REPO = 'https://github.com/foundryside-dev/wardline';
 
 // Build — the member-builder section, grounded in federation-sdk.md. The three
-// conformance invariants, then two ANNOTATED STATIC code samples (not runnable):
+// integration basics, then two annotated static code samples:
 // a Rust Loomweave entity-extraction plugin and a Python Wardline trust rule.
-// Samples are illustrative and schematic where a signature is uncertain — they
+// Samples are schematic where a signature is uncertain — they
 // point to the owning repo rather than fabricate an API.
 
-const INVARIANTS = [
+const INTEGRATION_BASICS = [
   {
     id: 'I-1',
-    title: 'Key every cross-tool binding on SEI',
+    title: 'Use stable identity for code links',
     body:
-      'Any durable reference your member holds to another member’s code entity must key on the Stable Entity Identity — the opaque, Loomweave-minted token that survives the renames and moves developers actually perform. Store it opaque; never parse, mint, or derive it. A binding keyed on a mutable locator silently orphans on the first refactor. Degrade honestly when the sei capability is absent.',
+      'When your tool refers to code, use the stable identity from Loomweave. That keeps issues, findings, and sign-offs connected when a developer renames or moves code.',
   },
   {
     id: 'I-2',
-    title: 'Stay enrich-only / loosely cooperating',
+    title: 'Keep every tool useful on its own',
     body:
-      'Every surface your member exposes must be fully functional with every peer absent, and removing your member must never break a peer’s core flow. Federation writes you accept are off by default or additive; you compute your own domain result first, and a peer’s enrichment is layered on — never required to produce it.',
+      'A Weft tool should still deliver its core value when no other Weft tool is installed. Integrations add context; they do not become runtime requirements.',
   },
   {
     id: 'I-3',
-    title: 'Treat peer identifiers and blobs as opaque; own your drift check',
+    title: 'Be clear when context is missing',
     body:
-      'The holder of a foreign value never interprets it. Store what a peer hands you verbatim and detect drift on your own read path by snapshotting the peer’s content hash at attach time and comparing on read. The identity axis (alive / orphaned) and the content axis (fresh / stale) are separate signals — neither is inferred from the other.',
+      'If another tool is unavailable or its data is stale, say that directly. The user should always know whether they are seeing a complete answer or a best available answer.',
   },
 ];
 
-// --- Rust: a Loomweave entity-extraction plugin (federation-sdk §2.1 + the
-// loomweave briefing's locator/SEI model). Illustrative but faithful to the
+// --- Rust: a Loomweave entity-extraction plugin. Illustrative but faithful to the
 // {plugin_id}:{kind}:{qualname} + SEI + content_hash model. Schematic where a
 // real trait signature is uncertain. ---
 const RUST_SAMPLE = `
-// loomweave entity-extraction plugin (illustrative — see the contract)
+// loomweave entity-extraction plugin (example)
 // Emits 3-segment LOCATORS; Loomweave mints them to opaque SEIs.
-// Locator form (Loomweave's authority, ADR-038):  {plugin_id}:{kind}:{qualname}
+// Locator form:  {plugin_id}:{kind}:{qualname}
 // SEI form (opaque to you — recognise, never parse):
 //     loomweave:eid:<blake3(locator ++ 0x00 ++ mint_run_id)[:32 hex]>
 
@@ -74,20 +72,19 @@ impl Extractor for TomlExtractor {
     }
 }
 
-// Conformance (federation-sdk §3): you treat the returned SEI as opaque, store
+// Integration rule: treat the returned SEI as opaque, store
 // it verbatim, and never mint it yourself. On rename-with-unchanged-body the SEI
 // is carried; on a body edit during a rename Loomweave fails closed (new SEI,
-// old one orphaned). Prove it against the shared oracle, never assume it.
+// old one orphaned). Test this behavior before relying on it.
 `;
 
-// --- Python: a Wardline trust-boundary rule / decorator usage (federation-sdk
-// §2.3 + the wardline briefing). Real vocabulary: external_boundary /
-// trust_boundary / trusted decorators, a PY-WL-1xx rule, the 8-state taint
-// lattice. Wardline is deconfliction/policy, NOT a security scanner. ---
+// --- Python: a Wardline trust-boundary rule / decorator usage. Real vocabulary:
+// external_boundary / trust_boundary / trusted decorators, a PY-WL-1xx rule, the
+// 8-state taint lattice. Wardline is deconfliction/policy, NOT a security scanner. ---
 const PY_SAMPLE = `
-# wardline trust-boundary usage + a PY-WL-1xx rule (illustrative — see the contract)
+# wardline trust-boundary usage + a PY-WL-1xx rule (example)
 # Wardline is a deconfliction / trust-policy analyzer, NOT a security scanner.
-# Vocabulary (Wardline's authority): 3 canonical decorators + an 8-state taint
+# Vocabulary: 3 canonical decorators + an 8-state taint
 # lattice. Rule ids are PY-WL-101..120.
 
 from wardline import external_boundary, trust_boundary, trusted, TaintState
@@ -152,7 +149,7 @@ export function Build() {
   return (
     <div className="page-shell" style={{ padding: '28px 30px 20px' }}>
       <nav aria-label="Breadcrumb" style={{ fontSize: 12, color: 'var(--text-muted)', marginBottom: 16 }}>
-        <Link to="/" style={{ color: 'var(--text-muted)', textDecoration: 'none' }}>~/weft</Link>
+        <Link to="/" style={{ color: 'var(--text-muted)', textDecoration: 'none' }}>Weft</Link>
         <span aria-hidden> / </span>
         <span style={{ color: 'var(--text-secondary)' }}>build</span>
       </nav>
@@ -170,19 +167,17 @@ export function Build() {
         Build a member
       </h1>
       <p className="t-body" style={{ maxWidth: 740, marginTop: 0 }}>
-        A member is any tool that is authoritative for one domain, useful standalone, and enrich-only
-        when composed. You do not register with a broker and there is no <code>weft://</code> URI
-        scheme — joining is conforming to the interfaces. There is nothing to <code>pip install</code>;
-        the SDK gives you the interface, and the owning repo gives you the bytes.
+        A Weft member is a focused tool that is useful by itself and gets more helpful when paired
+        with the rest of the suite. There is no broker and no central runtime: connect through the
+        shared interfaces and keep your own tool dependable on its own.
       </p>
 
-      <SectionHeading id="invariants">The conformance spine — three invariants</SectionHeading>
+      <SectionHeading id="invariants">Integration Basics</SectionHeading>
       <p className="t-body" style={{ maxWidth: 740, marginTop: 0 }}>
-        Every member satisfies these three, regardless of which peers it touches. They fall straight
-        out of the doctrine and the locked identity standard.
+        These are the rules that keep Weft integrations predictable for users and agents.
       </p>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-        {INVARIANTS.map((inv) => (
+        {INTEGRATION_BASICS.map((inv) => (
           <div
             key={inv.id}
             style={{
@@ -202,23 +197,17 @@ export function Build() {
         ))}
       </div>
       <p style={{ fontSize: 12, color: 'var(--text-muted)', marginTop: 12 }}>
-        Conformance is oracle-gated, never assumed — a tool is conformant only when it passes the
-        shared oracle. The full checklist is in the{' '}
+        The full integration checklist is in the{' '}
         <a href={SDK} target="_blank" rel="noopener" className="ext" style={{ color: 'var(--text-secondary)' }}>
           federation SDK
-        </a>{' '}
-        §3, against the{' '}
-        <a href={SEI_STD} target="_blank" rel="noopener" className="ext" style={{ color: 'var(--text-secondary)' }}>
-          SEI standard
         </a>
         .
       </p>
 
       <SectionHeading id="samples">Two annotated plugin samples</SectionHeading>
       <p className="t-body" style={{ maxWidth: 740, marginTop: 0 }}>
-        Both are illustrative and faithful to the briefings — schematic where an exact signature is
-        uncertain, pointing to the owning repo rather than fabricating an API. Each is in its member’s
-        real language.
+        These examples show the shape of an integration without pretending to replace each
+        project’s own API reference.
       </p>
 
       <div style={{ display: 'flex', flexDirection: 'column', gap: 26, marginTop: 8 }}>
@@ -226,15 +215,15 @@ export function Build() {
           label="Loomweave entity-extraction plugin"
           language="rust"
           code={RUST_SAMPLE}
-          caption="Emits 3-segment locators that Loomweave mints to opaque SEIs (federation-sdk §2.1)."
+          caption="Emits code entities that Loomweave can turn into stable identities."
           href={LOOMWEAVE_REPO}
-          hrefLabel="foundryside-dev/clarion"
+          hrefLabel="foundryside-dev/loomweave"
         />
         <CodeSample
           label="Wardline trust-boundary rule"
           language="python"
           code={PY_SAMPLE}
-          caption="Uses the real vocabulary: external_boundary / trust_boundary / trusted + a PY-WL-1xx rule (federation-sdk §2.3)."
+          caption="Uses Wardline’s trust-boundary decorators and rule vocabulary."
           href={WARDLINE_REPO}
           hrefLabel="foundryside-dev/wardline"
         />
@@ -249,13 +238,12 @@ export function Build() {
           borderRadius: 'var(--radius)',
         }}
       >
-        <div className="t-label" style={{ marginBottom: 6 }}>Dropping in your own member</div>
+        <div className="t-label" style={{ marginBottom: 6 }}>Adding your own tool</div>
         <p style={{ fontSize: 13, color: 'var(--text-secondary)', lineHeight: 1.6, margin: 0 }}>
-          Be solo-useful first; consume identity (resolve your refs to SEIs, store them opaque, probe
-          capabilities and degrade); opt into only the surfaces you compose with; optionally expose
-          your own enrich-only surface; pass the oracle. The full path is{' '}
+          Start with a useful standalone workflow. Add stable identity for code references, connect
+          only to the tools you need, and make missing context visible to the user. The full path is{' '}
           <a href={`${SDK}#4-dropping-in-your-own-member--the-path`} target="_blank" rel="noopener" className="ext" style={{ color: 'var(--accent)' }}>
-            federation-sdk §4
+            the federation SDK
           </a>
           .
         </p>

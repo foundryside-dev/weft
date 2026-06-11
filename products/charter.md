@@ -17,7 +17,7 @@ verified and when that evidence goes stale, and answers *"what obligations does
 this change touch?"*
 
 It owns requirements, the trace-link ontology with authority + freshness states,
-immutable requirement versions, locked baselines, and verification records. It
+immutable requirement versions, baselines, and verification records. It
 is a **read-only consumer** of its peers — it never assumes their authority.
 
 ## Quick-start
@@ -26,10 +26,11 @@ Charter exposes a CLI for authoring obligations and a **read-only** MCP surface
 for agents consuming them.
 
 ```bash
-charter create     # author a requirement / obligation
-charter accept     # accept a proposed obligation into the baseline
-charter baseline   # manage locked baselines
-charter doctor     # health check
+charter req add              # author a requirement / obligation
+charter req approve          # approve a requirement version
+charter baseline create      # manage baselines
+charter verify status        # review verification freshness
+charter doctor               # health check
 ```
 
 ```text
@@ -57,26 +58,26 @@ work / finding references when peers are present.
 - **Charter ↔ Filigree / Wardline** — requirement ⇄ work and finding ⇄
   requirement trace links.
 
-!!! info "Federation adapters are pending"
+!!! info "Weft integrations are planned"
     Charter's **domain core and read-only MCP surface ship**, but its federation
-    adapters (the SEI consumer and the `preflight_facts.v1` producer) remain
-    designed-not-wired, so its matrix cells read **planned**. Status is a
-    snapshot — see the [briefing](../members/charter.md) and the repo.
+    integrations (the SEI consumer and the `preflight_facts.v1` producer) remain
+    planned, so its matrix cells read **planned**. See the
+    [briefing](../members/charter.md) and the repo for current details.
 
-## Snapshot — most-used commands & MCP verbs
+## Most-used commands & MCP verbs
 
-!!! warning "snapshot 2026-06-06 — NOT authoritative here; see the repo"
+!!! note "See the repo for the full surface"
     A curated subset, not the full surface. The requirement-identity model and
-    trace ontology are **Charter's** authority. **See
+    trace ontology live in Charter. **See
     [`~/charter/README.md`](https://github.com/foundryside-dev/charter),
     `~/charter/docs/concept.md`, and
     `~/charter/docs/architecture/decisions/`.**
 
 | Surface | Verb | Does |
 |---------|------|------|
-| CLI | `charter create` | author a requirement / obligation |
-| CLI | `charter accept` | accept a proposed obligation into the baseline |
-| CLI | `charter baseline` | manage / lock baselines |
+| CLI | `charter req add` | author a requirement / obligation |
+| CLI | `charter req approve` | approve a requirement version |
+| CLI | `charter baseline create` | manage baselines |
 | MCP | `charter_requirement_dossier_get` | the obligation dossier (current) |
 | MCP | `charter_project_context_get` | self-describing capability + authority |
 | MCP | `charter_baseline_get` / `charter_baseline_diff` | baseline state / diff |
@@ -88,5 +89,5 @@ work / finding references when peers are present.
 - **Repo / authority:** [`~/charter`](https://github.com/foundryside-dev/charter)
   (`README.md`, `docs/concept.md`, `docs/architecture/decisions/`)
 - **Briefing (federation role):** [members/charter.md](../members/charter.md)
-- **Identity / contracts:** [sei-standard.md](../sei-standard.md) ·
+- **Identity / integration docs:** [sei-standard.md](../sei-standard.md) ·
   [contracts-index.md](../contracts-index.md)

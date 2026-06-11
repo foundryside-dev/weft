@@ -1,7 +1,8 @@
 # Weft hub — site app (`app/`)
 
 A full multi-page Vite + React site for the **Weft federation hub**: the
-documentation-only front door to a federation of five sibling developer-tools.
+documentation-only front door to the live core tools, planned federation
+extensions, and the Lacuna demo app.
 This is an **integration** of the existing Weft design system — the tokens,
 fonts, federation marks, the 17-component React library, and the three UI kits
 all live in `../design-system/project/` and were vendored/ported here, not
@@ -129,7 +130,7 @@ and a self-mount block. To run them in a Vite ESM build, each was ported:
 | Dependency | Why |
 |---|---|
 | `react`, `react-dom` (18) | the component library and kits are React. |
-| `react-router-dom` (6) | multi-page routing (landing + 5 member pages + demos + build); `HashRouter` for static subpath deploy. |
+| `react-router-dom` (6) | multi-page routing (landing + federation surface pages + demos + build); `HashRouter` for static subpath deploy. |
 | `vite`, `@vitejs/plugin-react` | the build tool the task specifies; static output. |
 | **`prism-react-renderer`** (2) | syntax highlighting for the two `/build` plugin samples. Chosen over `shiki` to keep the bundle lean and the highlight **runtime** (no build-time grammar step); it ships a small Prism core. Themed with a token-driven custom theme (`src/components/CodeSample.jsx`) so samples sit in the Loom palette rather than importing a foreign Prism theme. |
 
@@ -144,40 +145,36 @@ federation `Mark` glyphs, per the design doctrine.
                         how-they-compose (SEI + weft transport + bindings),
                         the Lacuna strip, footer
 /members/loomweave      ┐
-/members/filigree       │  one thread-tinted page each: domain authority,
-/members/wardline       │  what it owns, how it composes, and a snapshot-facts
-/members/legis          │  block labeled "snapshot — not authoritative; see the
-/members/charter        ┘  repo" (Charter states adapters are pending)
-/demos                  live demos (tabbed): filigree-dashboard + weft-cli
-/demos/dashboard        ┐  deep-linkable demo selection
-/demos/cli              ┘
-/build                  the member-builder: 3 conformance invariants + two
+/members/filigree       │  live-core pages: what each tool does, what it owns,
+/members/wardline       │  how each composes, read-more links, and a current
+/members/legis          ┘  details block that points back to the owning repo
+/members/charter        ┐  planned-extension pages; Charter has core + read
+/members/heddle         ┘  MCP shipped, Heddle is early design
+/members/lacuna            demo-app page
+/demos                  see-it-run page; defaults to the Lacuna tour
+/demos/lacuna           ┐  deep-linkable demo selection
+/demos/dashboard        │  Filigree dashboard
+/demos/cli              ┘  legacy alias for the Lacuna tour
+/build                  the member-builder: 3 integration basics + two
                         annotated, copy-able static samples (Rust Loomweave
                         plugin, Python Wardline rule)
 ```
 
-## The hub audit invariant
+## The hub content rule
 
-The hub "contains no restated project-internal fact without a pointer." Member
-pages state the stable hub-owned facts (domain authority, composition role) plainly,
-but every version / count / status is rendered in a block labeled **"snapshot —
-not authoritative; see the repo"** with the repo link. All such values come from
-the facts pack (`../members/*.md`); none were invented. Repo URLs are under the
-`foundryside-dev` org; `filigree` / `clarion` / `legis` / `charter` still 404
-until they migrate (expected). Loomweave's repo is named `clarion` — the page
-states the rename is display-only. External links carry `↗`, `target=_blank`,
-`rel="noopener"`.
+The hub gives customers the plain-language story first: what each tool does,
+where it fits, and how it works with the suite. Member pages may include version
+or count details, but those blocks point back to the owning repo for current
+truth. External links carry `↗`, `target=_blank`, `rel="noopener"`.
 
 ## Judgment calls (surfaced to the PM)
 
 1. **Dashboard footer version string.** The vendored kit renders
-   `filigree v2.0.1`; the facts pack snapshot is **v3.0.0rc2**. On the hub a bare
-   restated version with no pointer brushes the audit invariant, so
-   `src/demos/dashboard/data.js` sets `PROJECT.version` to the facts-pack value,
-   and the `/demos` page frames itself as an illustrative recreation. Flagged for
-   reversal if you'd rather keep the kit byte-faithful instead.
+   `filigree v2.0.1`; the app now sets `PROJECT.version` to **v3.0.0rc12** and
+   the `/demos` page frames the issue data as illustrative. Flagged for reversal
+   if you'd rather keep the kit byte-faithful instead.
 2. **`/build` sample fidelity.** Both samples are explicitly labeled
-   "illustrative — see the contract" and kept schematic where an exact trait/base
+   "example" and kept schematic where an exact trait/base
    signature is uncertain (e.g. the Rust `Extractor` trait, the Python `Rule`
    base), pointing to the owning repo rather than fabricating an API — per the
    task's "do not fabricate APIs that contradict the briefings."

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Mark, Stat, Tabs } from '../ds/index.js';
-import { MEMBERS, SHUTTLE, LACUNA, HERO_STATS } from '../data/roster.js';
+import { CORE_MEMBERS, PROPOSED_MEMBERS, SHUTTLE, LACUNA, HERO_STATS } from '../data/roster.js';
 
 // Landing — ported from design-system/project/ui_kits/weft-hub/Hub.jsx to ESM:
 //   `const { useState } = React` → import; window-aliased Mark/Tabs/Stat → real
@@ -33,7 +33,7 @@ function Hero() {
     >
       <div style={{ display: 'flex', alignItems: 'center', gap: 9, marginBottom: 22 }}>
         <span style={{ width: 7, height: 7, borderRadius: '50%', background: 'var(--ready)' }} />
-        <span className="t-label">Authoritative · interop layer · documentation only</span>
+        <span className="t-label">Local-first tools for agentic development</span>
       </div>
       <h1
         style={{
@@ -51,10 +51,10 @@ function Hero() {
         woven on purpose.
       </h1>
       <p className="t-body" style={{ fontSize: 16, maxWidth: 680, marginTop: 22 }}>
-        Weft is an agent-first federation of small, local-first developer tools. Each member is
-        authoritative for one domain, useful on its own, and meaningfully composable with any
-        sibling — <span style={{ color: 'var(--text-primary)' }}>enrich-only, never load-bearing</span>{' '}
-        when composed.
+        Weft brings together four live tools for code understanding, work tracking,
+        trust-boundary checks, and change governance. Lacuna is the demo app that shows the
+        tools working together. Charter and Heddle are planned extensions for requirements and
+        change-impact analysis.
       </p>
       <div
         style={{
@@ -66,18 +66,19 @@ function Hero() {
         }}
       >
         <div className="t-label" style={{ marginBottom: 7 }}>
-          The federation axiom
+          How Weft works
         </div>
         <div style={{ fontSize: 15, color: 'var(--text-primary)', lineHeight: 1.5 }}>
-          Each member is authoritative for one domain, solo-useful, meaningfully composable
-          pairwise, and enrich-only — never load-bearing — when composed.
+          Each tool does one job well on its own. When another Weft tool is present, it adds
+          useful context without becoming a required runtime dependency.
         </div>
       </div>
       <div style={{ display: 'flex', gap: 9, marginTop: 24, flexWrap: 'wrap' }}>
-        <Chip>5 realized members</Chip>
+        <Chip>4 live core tools</Chip>
+        <Chip>2 planned extensions</Chip>
+        <Chip>1 demo app</Chip>
         <Chip>local-first · no cloud</Chip>
         <Chip>no runtime · no broker · no store</Chip>
-        <Chip dim>Shuttle — roadmap</Chip>
       </div>
       <div
         style={{
@@ -148,12 +149,14 @@ function MemberCard({ m, open, onToggle, dim }) {
             “{m.answers}”
           </div>
           <div style={{ display: 'flex', gap: 16, marginTop: 12, flexWrap: 'wrap' }}>
-            <Link
-              to={`/members/${m.id}`}
-              style={{ fontSize: 12, color: m.thread, textDecoration: 'none', fontWeight: 600 }}
-            >
-              open the {m.name} page →
-            </Link>
+            {m.route === false ? null : (
+              <Link
+                to={`/members/${m.id}`}
+                style={{ fontSize: 12, color: m.thread, textDecoration: 'none', fontWeight: 600 }}
+              >
+                open the {m.name} page →
+              </Link>
+            )}
             {m.repo && (
               <a
                 href={m.repo}
@@ -172,42 +175,18 @@ function MemberCard({ m, open, onToggle, dim }) {
   );
 }
 
-function LacunaStrip() {
+function SurfaceGroup({ label, hint, items, dim, openId, onToggle }) {
   return (
     <div style={{ marginTop: 22 }}>
-      <div className="t-label" style={{ marginBottom: 10, color: 'var(--lacuna-accent-dim)' }}>
-        Adjacent — not a member
+      <div style={{ display: 'flex', alignItems: 'baseline', gap: 10, marginBottom: 10, flexWrap: 'wrap' }}>
+        <div className="t-label">{label}</div>
+        {hint ? <span style={{ fontSize: 11.5, color: 'var(--text-muted)' }}>{hint}</span> : null}
       </div>
-      <a
-        href={LACUNA.repo}
-        target="_blank"
-        rel="noopener"
-        style={{ textDecoration: 'none', display: 'block' }}
-      >
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: 14,
-            padding: '15px 18px',
-            background: 'var(--lacuna-surface)',
-            border: '1.5px dashed var(--lacuna-border)',
-            borderRadius: 'var(--radius)',
-          }}
-        >
-          <Mark name="lacuna" size={28} title="Lacuna" style={{ color: 'var(--lacuna-accent)', flex: '0 0 auto' }} />
-          <div style={{ flex: 1, minWidth: 0 }}>
-            <div style={{ display: 'flex', alignItems: 'baseline', gap: 9 }}>
-              <span style={{ fontSize: 15, fontWeight: 600, color: 'var(--text-primary)' }}>Lacuna</span>
-              <span style={{ fontSize: 11, color: 'var(--lacuna-accent-dim)' }}>demonstration specimen</span>
-            </div>
-            <div style={{ fontSize: 12, color: 'var(--text-secondary)', marginTop: 2 }}>{LACUNA.blurb}</div>
-          </div>
-          <span className="ext" style={{ fontSize: 11, color: 'var(--lacuna-accent)', whiteSpace: 'nowrap' }}>
-            {LACUNA.repoLabel}
-          </span>
-        </div>
-      </a>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+        {items.map((m) => (
+          <MemberCard key={m.id} m={m} open={openId === m.id} onToggle={() => onToggle(m.id)} dim={dim} />
+        ))}
+      </div>
     </div>
   );
 }
@@ -217,16 +196,37 @@ function Roster() {
   const toggle = (id) => setOpenId(openId === id ? null : id);
   return (
     <section style={{ padding: '20px 30px 40px', maxWidth: 980, margin: '0 auto' }}>
-      <div className="t-label" style={{ marginBottom: 16 }}>
-        The roster — click to expand
+      <div style={{ display: 'flex', alignItems: 'baseline', gap: 10, marginBottom: 16, flexWrap: 'wrap' }}>
+        <div className="t-label">The federation — click to expand</div>
+        <span style={{ fontSize: 11.5, color: 'var(--text-muted)' }}>
+          live tools, planned extensions, and the demo app are shown separately
+        </span>
       </div>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-        {MEMBERS.map((m) => (
+        {CORE_MEMBERS.map((m) => (
           <MemberCard key={m.id} m={m} open={openId === m.id} onToggle={() => toggle(m.id)} />
         ))}
+      </div>
+      <SurfaceGroup
+        label="Planned extensions"
+        hint="designed to extend the core without changing how it runs"
+        items={PROPOSED_MEMBERS}
+        openId={openId}
+        onToggle={toggle}
+        dim
+      />
+      <SurfaceGroup
+        label="Demo app"
+        hint="a runnable example, not a tool you install"
+        items={[LACUNA]}
+        openId={openId}
+        onToggle={toggle}
+        dim
+      />
+      <div style={{ marginTop: 22 }}>
+        <div className="t-label" style={{ marginBottom: 10 }}>Future idea</div>
         <MemberCard m={SHUTTLE} open={openId === 'shuttle'} onToggle={() => toggle('shuttle')} dim />
       </div>
-      <LacunaStrip />
     </section>
   );
 }
@@ -234,15 +234,15 @@ function Roster() {
 const MODES = {
   solo: {
     label: 'Solo',
-    text: 'Each tool has a complete, respectable use-case by itself. Filigree files, works, and closes a bug with Loomweave absent or broken.',
+    text: 'Each core tool has a useful standalone workflow. Filigree can track work, Wardline can scan code, Loomweave can map a project, and Legis can govern a change on their own.',
   },
   pair: {
     label: 'Pair',
-    text: 'Combined with any one sibling it creates a meaningful capability — Wardline findings become tracked Filigree work; never a broken fragment.',
+    text: 'Add a second tool and the workflow gets richer: Wardline findings become tracked Filigree work, and Loomweave identity keeps links attached as code moves.',
   },
   suite: {
     label: 'Suite',
-    text: 'All together form something richer: the agent understands the code, its trust posture, what it may do, and every unit of work — keyed on one identity.',
+    text: 'Together, the core tools give an agent the code map, the work queue, the trust posture, and the governance trail for a change.',
   },
 };
 
@@ -260,11 +260,11 @@ function CompositionLaw() {
           margin: '0 0 4px',
         }}
       >
-        The composition law
+        Use One, Combine Two, Run The Suite
       </h2>
       <p className="t-body" style={{ maxWidth: 640, marginBottom: 20 }}>
-        Any Weft product must satisfy all three modes. Pairwise composability is a hard rule, not an
-        aspiration.
+        Weft is useful in layers: start with one tool, connect a pair, then run the full core
+        against the same project.
       </p>
       <div style={{ marginBottom: 16 }}>
         <Tabs
@@ -289,14 +289,12 @@ function CompositionLaw() {
   );
 }
 
-// How they compose — grounded in federation-map.md + sei-standard.md. Two
-// structural facts (SEI spine + the weft transport) plus representative bindings.
 const BINDINGS = [
-  ['Loomweave → Filigree', 'an issue stores the opaque SEI; drift is the consumer’s check via content_hash_at_attach (§1)'],
-  ['Wardline → Loomweave', 'qualname reconciliation (§5) + the taint-fact store hosted opaque (§3)'],
-  ['Wardline → Filigree', 'findings become tracked work via the weft scan-results intake (§4)'],
-  ['Legis → Filigree', 'SEI-keyed sign-offs bound to issues (§7); "Wardline analyses, Legis governs"'],
-  ['Charter → Loomweave', 'SEI consumer for trace links (§10) — designed, adapter pending'],
+  ['Loomweave → Filigree', 'issues stay attached to the same code entity even as files and names change'],
+  ['Wardline → Loomweave', 'trust-boundary findings appear in the code map where agents need them'],
+  ['Wardline → Filigree', 'scan findings become tracked work instead of loose reports'],
+  ['Legis → Filigree', 'governed sign-offs are tied back to the work item that caused them'],
+  ['Charter → Loomweave', 'planned: requirements links stay connected to the code they describe'],
 ];
 
 function HowTheyCompose() {
@@ -312,11 +310,10 @@ function HowTheyCompose() {
           margin: '0 0 4px',
         }}
       >
-        How they compose
+        How They Work Together
       </h2>
       <p className="t-body" style={{ maxWidth: 680, marginBottom: 18 }}>
-        Two structural facts hold the matrix together. Every binding is enrich-only — removing one
-        side never breaks the other’s core flow.
+        The tools share identity and hand off useful context, but each one still works on its own.
       </p>
       <div
         style={{
@@ -327,23 +324,21 @@ function HowTheyCompose() {
         }}
       >
         <div style={{ background: 'var(--surface-raised)', border: '1px solid var(--border-default)', borderRadius: 'var(--radius)', padding: '16px 18px' }}>
-          <div className="t-label" style={{ marginBottom: 6 }}>1 · SEI is the connective tissue</div>
+          <div className="t-label" style={{ marginBottom: 6 }}>1 · Stable identity keeps links attached</div>
           <div style={{ fontSize: 13, color: 'var(--text-secondary)', lineHeight: 1.55 }}>
-            Every cross-tool binding keys on Loomweave’s Stable Entity Identity — the opaque token
-            that survives the renames developers actually perform. A binding keyed on a mutable
-            locator silently orphans on the first refactor. SEI is LOCKED.
+            Loomweave gives each code entity a stable identity. Filigree, Wardline, and Legis can
+            refer to that identity so findings, issues, and sign-offs survive common refactors.
           </div>
         </div>
         <div style={{ background: 'var(--surface-raised)', border: '1px solid var(--border-default)', borderRadius: 'var(--radius)', padding: '16px 18px' }}>
-          <div className="t-label" style={{ marginBottom: 6 }}>2 · the weft transport</div>
+          <div className="t-label" style={{ marginBottom: 6 }}>2 · shared handoffs stay simple</div>
           <div style={{ fontSize: 13, color: 'var(--text-secondary)', lineHeight: 1.55 }}>
-            Filigree hosts the federation transport: named, pinnable HTTP generations (/api/weft/*).
-            Evolution is additive — a new generation, never a mutated one — so a member that pins a
-            generation is wire-stable across releases.
+            The tools exchange small, explicit payloads over local interfaces. A missing sibling
+            means less context, not a broken core workflow.
           </div>
         </div>
       </div>
-      <div className="t-label" style={{ marginBottom: 10 }}>Representative bindings</div>
+      <div className="t-label" style={{ marginBottom: 10 }}>Working integrations</div>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
         {BINDINGS.map(([pair, desc]) => (
           <div
@@ -364,13 +359,13 @@ function HowTheyCompose() {
         ))}
       </div>
       <p style={{ fontSize: 11, color: 'var(--text-muted)', marginTop: 14 }}>
-        Section numbers point to the hub’s{' '}
+        For implementation detail, see the{' '}
         <a href="https://github.com/foundryside-dev/weft/blob/main/contracts-index.md" target="_blank" rel="noopener" className="ext" style={{ color: 'var(--text-secondary)' }}>
-          contracts index
+          integration index
         </a>
-        ; the full grid lives in{' '}
+        {' '}and the full{' '}
         <a href="https://github.com/foundryside-dev/weft/blob/main/federation-map.md" target="_blank" rel="noopener" className="ext" style={{ color: 'var(--text-secondary)' }}>
-          federation-map
+          federation map
         </a>
         . Building your own member? See{' '}
         <Link to="/build" style={{ color: 'var(--accent)' }}>/build</Link>.

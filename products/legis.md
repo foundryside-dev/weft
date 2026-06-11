@@ -57,14 +57,14 @@ governs").
 - **Charter → Legis** — `preflight_facts.v1` consumer (planned;
   [contracts-index.md §9](../contracts-index.md)).
 
-Federation role and consumer-side conformance:
+Federation role and integration details:
 [members/legis.md](../members/legis.md).
 
-## Snapshot — most-used commands & MCP verbs
+## Most-used commands & MCP verbs
 
-!!! warning "snapshot 2026-06-06 — NOT authoritative here; see the repo"
+!!! note "See the repo for the full surface"
     A curated subset, not the full surface. The endpoint list and policy grammar
-    are **Legis's** authority. **See
+    live in **Legis**. **See
     [`~/legis/README.md`](https://github.com/foundryside-dev/legis),
     `~/legis/src/legis/mcp.py`, and `~/legis/CHANGELOG.md`.**
 
@@ -84,5 +84,5 @@ Federation role and consumer-side conformance:
 - **Repo / authority:** [`~/legis`](https://github.com/foundryside-dev/legis)
   (`README.md`, `src/legis/mcp.py`, `CHANGELOG.md`)
 - **Briefing (federation role):** [members/legis.md](../members/legis.md)
-- **Identity / contracts:** [sei-standard.md](../sei-standard.md) ·
+- **Identity / integration docs:** [sei-standard.md](../sei-standard.md) ·
   [contracts-index.md](../contracts-index.md)

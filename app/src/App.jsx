@@ -6,7 +6,7 @@ import { Landing } from './routes/Landing.jsx';
 import { MemberPage } from './routes/MemberPage.jsx';
 import { Demos } from './routes/Demos.jsx';
 import { Build } from './routes/Build.jsx';
-import { MEMBERS } from './data/roster.js';
+import { SITE_SURFACES } from './data/roster.js';
 
 export function App() {
   return (
@@ -16,7 +16,7 @@ export function App() {
       <main id="main">
         <Routes>
           <Route path="/" element={<Landing />} />
-          {MEMBERS.map((m) => (
+          {SITE_SURFACES.map((m) => (
             <Route key={m.id} path={`/members/${m.id}`} element={<MemberPage id={m.id} />} />
           ))}
           <Route path="/demos" element={<Demos />} />

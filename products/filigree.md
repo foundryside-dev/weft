@@ -13,7 +13,7 @@ body class: thread-filigree
 Filigree turns a swarm of stateless agents into a coordinated **workforce**. It
 owns issues, dependencies, and workflow state machines, and gives an agent three
 things it otherwise has to improvise: a **race-free claim** on a unit of work, a
-**dependency-aware ready queue**, and a **pre-computed orientation snapshot** —
+**dependency-aware ready queue**, and a **pre-computed orientation file** —
 so no two agents collide and none re-reads history to learn what to do next.
 
 It is the federation's **work-state surface**, and it hosts the named
@@ -53,10 +53,10 @@ Federation role and the transport-generation detail:
 [members/filigree.md](../members/filigree.md) and the
 [federation map](../federation-map.md).
 
-## Snapshot — most-used commands & MCP verbs
+## Most-used commands & MCP verbs
 
-!!! warning "snapshot 2026-06-06 — NOT authoritative here; see the repo"
-    A curated subset, not the full surface. The repo is the authority for the
+!!! note "See the repo for the full surface"
+    A curated subset, not the full surface. The repo owns the
     complete CLI, the full MCP tool list, route shapes, and counts.
     **See [`~/filigree/docs/cli.md`](https://github.com/foundryside-dev/filigree),
     `~/filigree/docs/mcp.md`, and `~/filigree/pyproject.toml`.**
@@ -78,5 +78,5 @@ Federation role and the transport-generation detail:
 - **Repo / authority:** [`~/filigree`](https://github.com/foundryside-dev/filigree)
   (`docs/cli.md`, `docs/mcp.md`, `pyproject.toml`)
 - **Briefing (federation role):** [members/filigree.md](../members/filigree.md)
-- **Transport / contracts:** [federation-map.md](../federation-map.md) ·
+- **Transport / integration docs:** [federation-map.md](../federation-map.md) ·
   [contracts-index.md](../contracts-index.md)

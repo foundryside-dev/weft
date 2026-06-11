@@ -52,20 +52,20 @@ is present or not.
 - **Charter → Loomweave** — SEI consumer for trace links (planned;
   [contracts-index.md §10](../contracts-index.md)).
 
-Federation role and contracts in full: [members/loomweave.md](../members/loomweave.md)
+Federation role and integrations in full: [members/loomweave.md](../members/loomweave.md)
 and the [federation map](../federation-map.md).
 
-## Snapshot — most-used commands & MCP verbs
+## Most-used commands & MCP verbs
 
-!!! warning "snapshot 2026-06-06 — NOT authoritative here; see the repo"
-    A curated subset, not the full surface. The repo is the authority for the
+!!! note "See the repo for the full surface"
+    A curated subset, not the full surface. The repo owns the
     complete CLI, the full MCP tool list, and route shapes.
     **See [`~/loomweave/README.md`](https://github.com/foundryside-dev/loomweave)
     and `~/loomweave/Cargo.toml`.**
 
 | Surface | Verb | Does |
 |---------|------|------|
-| CLI | `loomweave install` | initialise `.loomweave/`, wire the agent |
+| CLI | `loomweave install` | initialise `.weft/loomweave/`, wire the agent |
 | CLI | `loomweave analyze` | extract / refresh the structural graph |
 | CLI | `loomweave serve` | start the consult-mode MCP surface |
 | CLI | `loomweave guidance` | (re)generate guidance sheets |
@@ -81,5 +81,5 @@ and the [federation map](../federation-map.md).
 - **Repo / authority:** [`~/loomweave`](https://github.com/foundryside-dev/loomweave)
   (`README.md`, `Cargo.toml`)
 - **Briefing (federation role):** [members/loomweave.md](../members/loomweave.md)
-- **Identity contract:** [sei-standard.md](../sei-standard.md) ·
+- **Identity and integration docs:** [sei-standard.md](../sei-standard.md) ·
   [contracts-index.md](../contracts-index.md)

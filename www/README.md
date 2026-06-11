@@ -37,16 +37,12 @@ preloaded fonts resolve under a normal origin.
 - **Verbatim copy.** The roster (member names, domains, the italic "answers"
   quotes, statuses) and the composition-law text are lifted from the design's
   `Marks.jsx` / `Hub.jsx`.
-- **Roster = the brand/doctrine layer:** 5 realized members (loomweave · filigree
-  · wardline · legis · charter), **Shuttle** dimmed as a roadmap thought-bubble,
-  and **Lacuna** set apart as the adjacent demonstration specimen (off-palette
-  dusty magenta + dashed frame). Per the doctrine, member cards point to the
-  **repo path** (`~/clarion`) — the hub is documentation only; install lives on
-  each tool's own surface.
-- **`legis` status shown as `1.0.0`** — the design said `1.0.0rc1` and the repo
-  most recently snapshotted at `1.0.0rc3`; this site ships only once every member
-  reaches its release milestone, so Legis is shown at its `1.0.0` release (the
-  design's own rule marks status as a non-authoritative snapshot).
+- **Roster = the brand/doctrine layer:** the current app splits the suite into
+  four live core tools (loomweave · filigree · wardline · legis), planned
+  extensions (charter · heddle), **Shuttle** as a future idea, and **Lacuna** as
+  the demo app.
+- **`legis` status shown as `1.0.0`** — the current app presents Legis as a live
+  core tool at its `1.0.0` release.
 - **Hero metric strip + pill tabs (the refactored hub kit).** The hero closes on
   a 4-metric `Stat` strip (realized members · pairwise combos · runtime/brokers ·
   on the roadmap — 5/10/0/1) recreated from the design system's `Stat` display
@@ -75,14 +71,10 @@ The link freeze is lifted: the suite is consolidating under the
   federation-map, compatibility, asterisk-register) and the source repo.
 - In-page nav (Members → roster, Compose → the weave section) are real anchors.
 
-**Caveat:** `filigree`, `clarion`, `legis`, and `charter` still live under
-`tachyon-beep` today — those four repo links 404 until the repos migrate to
-`foundryside-dev` (as intended). This site ships only once every member reaches
-its release milestone, by which point all members are migrated and every member
-link resolves; `weft`, `wardline`, and `lacuna` already do. (Loomweave's card
-links to `foundryside-dev/clarion` and notes on-page that `clarion` is the repo
-name — the Loomweave rename is display-only.) External links carry an `↗`
-affordance and open in a new tab.
+**Caveat:** this static `www/` prototype predates the Vite app and may lag the
+current hub taxonomy. Current app links use `foundryside-dev/loomweave` for
+Loomweave and split live core, planned-extension, and demo surfaces explicitly.
+External links carry an `↗` affordance and open in a new tab.
 
 ## Notes
 

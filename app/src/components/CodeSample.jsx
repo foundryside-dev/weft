@@ -58,7 +58,7 @@ export function CodeSample({ code, language, label, caption, href, hrefLabel }) 
       >
         <span style={{ fontSize: 12, fontWeight: 600, color: 'var(--text-primary)' }}>{label}</span>
         <span style={{ fontSize: 11, color: 'var(--text-muted)' }}>{language}</span>
-        <span style={{ fontSize: 11, color: 'var(--aging)' }}>illustrative — see the contract</span>
+        <span style={{ fontSize: 11, color: 'var(--aging)' }}>example</span>
         <button type="button" className="copy-btn" style={{ marginLeft: 'auto' }} onClick={copy} aria-label="Copy code to clipboard">
           {copied ? 'copied ✓' : 'copy'}
         </button>
@@ -99,7 +99,7 @@ export function CodeSample({ code, language, label, caption, href, hrefLabel }) 
           {caption}{' '}
           {href && (
             <a href={href} target="_blank" rel="noopener" className="ext" style={{ color: 'var(--text-secondary)' }}>
-              {hrefLabel || 'see the contract'}
+              {hrefLabel || 'view source'}
             </a>
           )}
         </div>

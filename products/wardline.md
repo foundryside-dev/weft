@@ -53,11 +53,11 @@ Federation role and the A-1 retirement condition:
 [members/wardline.md](../members/wardline.md) and the
 [asterisk register](../asterisk-register.md).
 
-## Snapshot — most-used commands & MCP verbs
+## Most-used commands & MCP verbs
 
-!!! warning "snapshot 2026-06-06 — NOT authoritative here; see the repo"
+!!! note "See the repo for the full surface"
     A curated subset, not the full surface. Rule counts, decorator names, and
-    lattice states are **Wardline's** authority — this page does not restate
+    lattice states live in **Wardline** — this page does not restate
     them. **See [`~/wardline/README.md`](https://github.com/foundryside-dev/wardline),
     `~/wardline/src/wardline/scanner/rules/`, and
     `~/wardline/src/wardline/core/taints.py`.**
@@ -78,5 +78,5 @@ Federation role and the A-1 retirement condition:
 - **Repo / authority:** [`~/wardline`](https://github.com/foundryside-dev/wardline)
   (`README.md`, `src/wardline/scanner/rules/`, `core/taints.py`)
 - **Briefing (federation role):** [members/wardline.md](../members/wardline.md)
-- **Asterisk / contracts:** [asterisk-register.md](../asterisk-register.md) ·
+- **Integration docs:** [asterisk-register.md](../asterisk-register.md) ·
   [contracts-index.md](../contracts-index.md)

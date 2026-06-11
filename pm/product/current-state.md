@@ -1,4 +1,4 @@
-# Current State — Weft Federation        Checkpoint: 2026-06-10 (federation evaluation + post-launch stack)
+# Current State — Weft Federation        Checkpoint: 2026-06-11 (PDR-0014 Rust reversal + G5 closed)
 
 > **Workspace path:** `pm/product/` (NOT the `docs/product/` default — `docs/` is
 > gitignored here as the mkdocs build dir). Resume with `/own-product pm/product`.
@@ -16,21 +16,30 @@ deconfliction lanes; the **stomp** is one desk's hire rifling another desk's hal
 can't rot). C anticipates; **B catches mechanically when a peer overrides the advisory.**
 
 ## The bet right now
-**Now:** gold-standard clean-break launch (PDR-0011) — contract-correctness class + conformance
-oracle + emit fix close before the cutover, because the clean break freezes the cross-member API.
+**Now:** gold-standard clean-break launch (PDR-0011 + PDR-0014) — two-gate structure:
+- **Dogfood gate** (`weft-cd62a4da9b`): contract-correctness class + conformance oracle — 8 open
+  items. Unblocks dogfood #2.
+- **Cutover gate** (`weft-4b2f948f70`): additionally blocks on **Rust gold** (`weft-7ee9bccbd7`,
+  P1, PDR-0014). Rust physically rides the release branches now; owner ruled gate-on-gold.
 Wave-sequenced (`pm/2026-06-10-gold-standard-launch-sequencing.md`), **owner dispatching live.**
 Metric: dogfood-pass rate + enrich-only / tree-cleanliness guardrails (metrics.md).
 
 ## In flight
-- **Launch gate `weft-cd62a4da9b` — now blocks on all NINE PDR-0011 items:** G1 `weft-37455bf407`
-  (being worked, legis+wardline) · G5 `weft-7436c1959e` (emit runbook drafted, NOT applied — Wave 0)
-  · G13 `weft-61d27fb808` · C-4 `weft-eb3dee402f` · oracle umbrella `weft-1e053eac02` · **contract
-  cousins G9 `weft-94284025f5` / G11 `weft-c7e3486246` / G15 `weft-045076e30f` / G18
-  `weft-eef2fa8bbb` (wired + bumped P2 this session — the PDR-0011 pending coordination is CLOSED).**
+- **Dogfood gate `weft-cd62a4da9b` — 8 open blockers (G5 CLOSED 2026-06-09, fully documented
+  2026-06-11):** G1 `weft-37455bf407` (triage, unassigned — NOT actively worked despite earlier note)
+  · G13 `weft-61d27fb808` · C-4 `weft-eb3dee402f` · oracle umbrella `weft-1e053eac02` · G9
+  `weft-94284025f5` / G11 `weft-c7e3486246` / G15 `weft-045076e30f` / G18 `weft-eef2fa8bbb`.
   Dispatch rule: every contract fix = producer + consumer + golden vector, per seam, never per repo.
-- **ADR-049 freeze posture** — `weft-dfeb20c4fa` (child of the oracle umbrella): the freeze-set must
-  enumerate ADR-049 as out-of-freeze, versioned with the Rust feature (PDR-0012).
-- **Rust line epic `weft-9823a04785`** — board-visible now; OUT of the launch envelope (PDR-0012).
+- **Rust gold closeout `weft-7ee9bccbd7`** (P1, blocks cutover `weft-4b2f948f70` — NOT the dogfood
+  gate). **PDR-0014 (2026-06-11) reversed PDR-0012's envelope call** — the frontier sprint (Fable 5
+  + Opus 4.8) merged the Rust line into release branches (wardline rc5, loomweave rc4) before the
+  checkpoint; owner ruled gate-on-gold. Done-means: 4 clarion collision families closed
+  (`clarion-8ff7f233fa` / `clarion-fa8bcf8731` / `clarion-bdb1eccf48` / `clarion-83870dc534` — last
+  likely closed by Amendment 9 `f7f8a69`, verify first), qualname_check oracle 0 across corpora,
+  gold verdict re-issued, ADR-049 amendments in wardline lockstep.
+- **ADR-049 freeze posture** — `weft-dfeb20c4fa` (child of the oracle umbrella): freeze-set must
+  enumerate ADR-049 as out-of-freeze, versioned with the Rust feature (PDR-0012 posture STANDS).
+- **Rust line epic `weft-9823a04785`** — gates the CUTOVER (PDR-0014), no longer post-launch.
 - **Quarantine forensics** — `weft-df29917f29` (hub) / `clarion-2c959a059e` (loomweave): mine the
   rogue-agent branch for the B spike BEFORE salvage-or-discard. Branch must not be deleted first.
 - **Board stale-in-done** — C-1/WL-1/FIL-2/LW-1/C-2/C-9/LEG-1/2/3 shipped on release branches, held
@@ -38,7 +47,7 @@ Metric: dogfood-pass rate + enrich-only / tree-cleanliness guardrails (metrics.m
   release branches; **the merge/cutover choreography is the biggest unscheduled item** → hand the
   gate + wave nomination to `/axiom-program-management` for the formal dependency model + forecast.
 
-## Post-launch stack (PDR-0013 — committed order)
+## Post-launch stack (PDR-0013 — committed order, Rust removed — now gates cutover per PDR-0014)
 1. **Build A → A′ → B** (PDR-0008); B's design spike consumes the quarantine forensics.
 2. **Instrument the scoreboard** `weft-6636667996` (dogfood pass rate lands DURING dogfood #2).
 3. **Mechanize close-the-loop** `weft-ff30fd979f` (scope decided at A's scoping — fold-in vs alone).
@@ -61,23 +70,34 @@ bar in roadmap.md (dogfood evidence + grep test + enrich-only + doctrine + hook-
   one; check whether the quarantine case did too), keep/forget classifier tiering + whitelist +
   Tier-2 latency budget, claim-binds-to-handle vs event-binds-to-run-id, spawn-context source.
 
-## Last checkpoint did (2026-06-10)
-- Resumed + reconciled; ran the whole-federation evaluation (resume brief in session; grounded in
-  the interface audit + in-flight deep-dive). Grant re-confirmed verbatim by owner.
-- **Wired G9/G11/G15/G18 into the gate at P2** — gate now matches PDR-0011 exactly.
-- **PDR-0012**: Rust analyzer out of launch envelope; ADR-049 declared out-of-freeze; Rust line
-  epic filed. **PDR-0013**: post-launch priority stack + new-tool discovery pipeline + standing
-  agentic-first admission bar.
-- Filed: `weft-9823a04785` (Rust epic), `weft-dfeb20c4fa` (ADR-049), `weft-df29917f29` +
-  `clarion-2c959a059e` (quarantine, counterparted), `weft-61c24f622e` (propagation spike),
-  `weft-6636667996` (scoreboard), `weft-ff30fd979f` (close-the-loop). Heddle promoted (comment on
-  `weft-e4589e6570`). Roadmap updated (PDR-0012/0013 stamps).
+## Last checkpoint did (2026-06-11)
+- Resumed + reconciled 2026-06-10 (whole-federation evaluation; grant re-confirmed verbatim).
+- **G5 (`weft-7436c1959e`) CLOSED + fully documented** — emit remediation APPLIED + end-to-end
+  verified (commit `0a6dfc1`). Was "NOT applied" in prior brief; corrected.
+- **PDR-0014 (2026-06-11)**: PDR-0012 reversal trigger fired — frontier sprint (Fable 5 + Opus
+  4.8) merged Rust line into release branches; owner ruled gate-on-gold; `weft-7ee9bccbd7` filed
+  (P1, blocks cutover `weft-4b2f948f70`). Rust is no longer post-launch.
+- **G1 (`weft-37455bf407`)**: prior brief incorrectly said "being worked" — tracker shows triage,
+  unassigned. Needs --advance claim to start.
+- **Stale claims** (weft-pm): `weft-ab0a6555f5` + `weft-384929d1ad` expired >48h; Heddle spike
+  `weft-e4589e6570` expires tonight — release or reclaim.
+- **conventions.md C-11** (config-write discipline) drafted from config-write audit — unstaged.
+- **Prior PDR-0012/0013 filing** (2026-06-10): Rust epic `weft-9823a04785`, ADR-049
+  `weft-dfeb20c4fa`, quarantine counterparts, propagation/scoreboard/close-the-loop spikes filed.
 
 ## Next session, start here
-1. **Hand the gate + `pm/2026-06-10-gold-standard-launch-sequencing.md` to
-   `/axiom-program-management`** — formal dependency model + cutover choreography (the biggest
-   unscheduled risk). Don't race the member dispatch streams; coordinate via the gate comments.
-2. **B design-spike brief** — now including the quarantine-branch forensics (clarion-2c959a059e).
-3. **Scope A on `filigree-c2009921cf`** (+ `get_session_changes` + `reconciliation_debt_list`) and
-   make the close-the-loop fold-in call (`weft-ff30fd979f`) there.
-4. Launch keeps *build* priority; everything above is design/coordination work in parallel.
+1. **Release stale weft-pm claims** — `weft-ab0a6555f5`, `weft-384929d1ad`, and evaluate
+   `weft-e4589e6570` (Heddle, in_progress, expires tonight): release or reclaim with heartbeat.
+2. **Rust gold closeout coordination (`weft-7ee9bccbd7`)** — first check whether
+   `clarion-83870dc534` is already closed by Amendment 9 (`f7f8a69`, loomweave 2026-06-11 05:36);
+   then track the other 3 collision families (`clarion-8ff7f233fa`, `clarion-fa8bcf8731`,
+   `clarion-bdb1eccf48`) to closure. Coordinate with loomweave's live working stream (uncommitted
+   qualname.rs/extract.rs edits in flight — do NOT work around it).
+3. **G1 (`weft-37455bf407`) — advance to fixing** — P1 bug, `triage`, unassigned. `work_start
+   --advance` to promote to `confirmed → fixing`. This is the most severe dogfood gate item
+   (silent zero-findings on artifact_status=verified; the full Wardline→Legis defect flow).
+4. **Hand the gate + wave doc to `/axiom-program-management`** — formal dependency model +
+   cutover choreography. Now has TWO gates (dogfood 8 items + Rust gold), both needed.
+5. **Commit conventions.md** (C-11 config-write discipline, unstaged) + uncommitted pm/ files.
+6. **B design-spike brief** — quarantine forensics (clarion-2c959a059e) first.
+7. Launch keeps *build* priority; 2–4 above are coordination/PM work and run in parallel.

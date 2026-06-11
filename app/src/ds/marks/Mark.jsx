@@ -7,8 +7,8 @@ import React from 'react';
  * mark via <img> will not inherit color.
  *
  * Names: foundryside (parent org) · weft (the woven umbrella) · loomweave ·
- * filigree · wardline · legis · charter · shuttle (roadmap) · lacuna (the
- * adjacent demo specimen — off-palette, dashed).
+ * filigree · wardline · legis · charter · heddle (proposal) · shuttle
+ * (future idea) · lacuna (the adjacent demo app — off-palette, dashed).
  */
 const MARK_PATHS = {
   foundryside: (
@@ -62,6 +62,16 @@ const MARK_PATHS = {
     <g stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
       <path d="M8 5 H24 V27 H8 Z" /><path d="M12 11 H20" /><path d="M12 16 H17" />
       <path d="M11.5 21.5 L14 24 L20 17.5" />
+    </g>
+  ),
+  heddle: (
+    <g stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="16" cy="16" r="10" />
+      <path d="M16 9 V16 L21 19" />
+      <path d="M7 22 H25" strokeDasharray="2.5 3" />
+      <circle cx="7" cy="22" r="1.7" fill="currentColor" stroke="none" />
+      <circle cx="16" cy="22" r="1.7" fill="currentColor" stroke="none" />
+      <circle cx="25" cy="22" r="1.7" fill="currentColor" stroke="none" />
     </g>
   ),
   shuttle: (

@@ -6,12 +6,17 @@ parallel lines of effort that are NOT on the weft board.**
 
 ## Headline (read first)
 
-1. **Nothing has merged to `main` on any member.** Every member is mid-flight on an
-   unmerged release branch; `main` is **33–77 commits stale** everywhere. The
-   launch-runbook's "filigree-first coordinated cutover" has not begun. **This is the
-   single biggest unscheduled risk** — four simultaneous major/minor releases gated on a
-   hard rebrand wire-break (filigree 3.0.0 schema v26) that all members must cut over to
-   in lockstep.
+1. **The current release branches are genuinely unmerged into `origin/main`** (verified by
+   `merge-base --is-ancestor` against the fetched remotes — none is an ancestor of
+   `origin/main`). Truly-unmerged commit counts (`origin/main..origin/<branch>`): **filigree
+   131, loomweave 60, wardline 39, legis 22.** `origin/main` itself is *actively maintained*
+   (it carries prior merged PRs and is even 1 commit ahead of wardline's `rc4`) — so this is
+   "the in-flight releases haven't cut over yet," not "main is abandoned." The
+   launch-runbook's "filigree-first coordinated cutover" has not begun. **This is the single
+   biggest unscheduled risk** — four simultaneous major/minor releases gated on a hard
+   rebrand wire-break (filigree 3.0.0 schema v26) that all members must cut over to in
+   lockstep. *(Earlier draft cited inflated counts measured against a stale local `main`;
+   corrected here against `origin/main`.)*
 2. **The `line_start` "gated decision" was overtaken by execution.** I filed
    `weft-feea638ec0` / `weft-e618c4118a` yesterday as *gated/decoupled*. Wardline has
    already **shipped the full wlfp2 rekey** (drop `line_start` + entity-relative
@@ -30,7 +35,7 @@ parallel lines of effort that are NOT on the weft board.**
 
 ---
 
-## Wardline — branch `rc4` (main behind 33; rc4 = 40 ahead of main). Clean tree.
+## Wardline — branch `rc4` (39 commits unmerged vs `origin/main`; `rc4` is 1 behind `origin/main`). Clean tree.
 
 **Tracked / in-scope, DONE on rc4:**
 - WL-1 taint-resolution drift fix — `705acfe` (`weft-4a9d0f863c`, still shows in-progress).
@@ -61,7 +66,7 @@ qualname dialect, trust vocabulary + `@trusted`, builder-dataflow L2 for
 `--lang rust`, coverage posture, preview guide. Multiple adversarial panels folded. A whole
 second-language analyzer.
 
-## Loomweave — branch `feat/mcp-seam-consistency-560f` (= rc3 head; rc3 = 65 ahead of main). Clean tree.
+## Loomweave — branch `feat/mcp-seam-consistency-560f` (= `rc3` head; 60 commits unmerged vs `origin/main`). Clean tree.
 
 **Tracked / in-scope, DONE on rc3:**
 - LW-1/LW-2 `find_entity` (`weft-b7ce301e92`): `entity_find` content+substring recall
@@ -89,7 +94,7 @@ the same Rust analyzer wardline is building; shared ADR-049 dialect + conformanc
 output got entangled with the calls-MVP line and was quarantined onto a branch rather than
 merged. Decide: salvage the legitimate calls-MVP commits vs discard the branch.
 
-## Filigree — branch `release/3.0.0` (main behind 42; release/3.0.0 = **173** ahead of main). Clean tree (one trivial doc stash).
+## Filigree — branch `release/3.0.0` (**131** commits unmerged vs `origin/main`). Clean tree (one trivial doc stash).
 
 **This is a major BREAKING release in flight, not a fix branch:**
 - ADR-016 Phase 2 — remove ~115 legacy flat MCP tool names (`get_issue`→`issue_get`, …).
@@ -110,7 +115,7 @@ merged. Decide: salvage the legitimate calls-MVP commits vs discard the branch.
 close-on-fixed cascade), `docs/loom-federation-theme`/`-pointers` (site theme). WIP stash on
 `feat/dashboard-modularization` = a docs list renumber (trivial).
 
-## Legis — branch `rc4` (main behind 77; rc4 = 99 ahead of main).
+## Legis — branch `rc4` (**22** commits unmerged vs `origin/main` — a clean fast-forward; strictly ahead).
 
 - **1.0.0 FINAL cut** — `64208dd` "drop the rc". **First member to ship a final version.**
 - Dogfood LEG-1/2/3 (`weft-2232c81366` + folded): policy discoverability, `scan_route` cell

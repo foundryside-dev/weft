@@ -3,11 +3,9 @@
 // definition (the original patched it at runtime). Fake Filigree project data;
 // shapes mirror the real dashboard.
 //
-// JUDGMENT CALL (flagged in app/README.md + the report): the original kit's
-// footer renders `filigree v2.0.1`. The facts pack snapshot is v3.0.0rc2. Even
-// in demo chrome a bare restated version on the hub brushes the audit invariant,
-// so PROJECT.version is set to the facts-pack value here. The /demos page also
-// frames itself as an illustrative recreation.
+// The original kit displayed an old Filigree version. Keep the demo chrome
+// aligned with the current release line while the /demos page makes clear that
+// the issue data is illustrative.
 
 export const TYPE_ICONS = { bug: '🐛', feature: '✨', task: '📋', epic: '📊', milestone: '🎯' };
 // Loom palette — hex (not var()) because cards build alpha tints by string-concat (catColor + "33").
@@ -17,20 +15,20 @@ export const PRIORITY_COLORS = { 0: '#E25C49', 1: '#EC8A3C', 2: '#8A7A64', 3: '#
 export const PRIORITY_LABEL = ['Critical', 'High', 'Medium', 'Low', 'Backlog'];
 
 export const ISSUES = [
-  { id: 'fg-7f3a2b', type: 'feature', priority: 0, title: 'SEI backfill: locator → stable identity', status: 'building', cat: 'wip', assignee: 'agent-3', ageH: 2, ready: true, impact: 5, blocked_by: [],
-    body: "Filigree's locator→SEI backfill is the remaining lock gate for the suite identity track. Until issues key on SEI, Loomweave+Filigree orphans on rename.",
+  { id: 'fg-7f3a2b', type: 'feature', priority: 0, title: 'Stable identity for issue links', status: 'building', cat: 'wip', assignee: 'agent-3', ageH: 2, ready: true, impact: 5, blocked_by: [],
+    body: 'Keep issues attached to the same code entity when files or symbols move, using Loomweave identity data.',
     deps: ['fg-1c4099'] },
   { id: 'fg-da8d50', type: 'bug', priority: 1, title: 'Dashboard split-brain on relocated db path', status: 'fixing', cat: 'wip', assignee: 'agent-1', ageH: 6, ready: false, impact: 2, blocked_by: ['fg-9920aa'],
     body: 'When .filigree.conf relocates the db, the dashboard opened .filigree/filigree.db while CLI/MCP opened the conf path — a split-brain view. Honour from_conf.',
     deps: [] },
-  { id: 'fg-1c4099', type: 'task', priority: 2, title: 'Write federation contract index pointer doc', status: 'open', cat: 'open', assignee: null, ageH: 0, ready: true, impact: 1, blocked_by: [],
-    body: 'Each cross-product contract should point to the authoritative schema in the owning repo. weft owns the index; repos own the schemas.', deps: [] },
-  { id: 'fg-44b7e1', type: 'feature', priority: 1, title: 'Weft HTTP generation /api/weft/* contracts', status: 'reviewing', cat: 'wip', assignee: 'agent-2', ageH: 1, ready: true, impact: 3, blocked_by: [],
-    body: 'Stable /api/weft/* generation with classic compatibility for existing callers. Phase C fills endpoints one at a time.', deps: [] },
+  { id: 'fg-1c4099', type: 'task', priority: 2, title: 'Publish integration docs', status: 'open', cat: 'open', assignee: null, ageH: 0, ready: true, impact: 1, blocked_by: [],
+    body: 'Give users one place to understand how each tool connects, with links back to the owning project docs.', deps: [] },
+  { id: 'fg-44b7e1', type: 'feature', priority: 1, title: 'Shared local API for Weft integrations', status: 'reviewing', cat: 'wip', assignee: 'agent-2', ageH: 1, ready: true, impact: 3, blocked_by: [],
+    body: 'Add Weft-specific HTTP endpoints while preserving compatibility for existing Filigree callers.', deps: [] },
   { id: 'fg-9920aa', type: 'bug', priority: 0, title: 'Optimistic claim race in multi-agent start-next', status: 'confirmed', cat: 'open', assignee: null, ageH: 0, ready: true, impact: 4, blocked_by: [],
     body: 'Two agents calling start-next-work can double-claim under load. Optimistic lock must reject the second writer cleanly.', deps: [] },
-  { id: 'fg-301f8c', type: 'epic', priority: 1, title: 'Federation 2.0 — suite-aware integrations', status: 'in_progress', cat: 'wip', assignee: 'agent-2', ageH: 9, ready: true, impact: 0, blocked_by: [],
-    body: 'Umbrella epic for the Weft generation: SEI-keyed links, Wardline finding ingest, Legis sign-off binding.', deps: [] },
+  { id: 'fg-301f8c', type: 'epic', priority: 1, title: 'Weft integrations', status: 'in_progress', cat: 'wip', assignee: 'agent-2', ageH: 9, ready: true, impact: 0, blocked_by: [],
+    body: 'Umbrella epic for stable code links, Wardline finding intake, and Legis sign-off binding.', deps: [] },
   { id: 'fg-77aa12', type: 'task', priority: 2, title: 'context.md regen on every mutation', status: 'done', cat: 'done', assignee: 'agent-1', ageH: 30, ready: false, impact: 0, blocked_by: [],
     body: 'Pre-compute context.md so the session hook injects a fresh orientation at startup. Regenerate on every write.', deps: [] },
   { id: 'fg-5510bd', type: 'feature', priority: 2, title: 'Wardline finding → tracked issue cascade', status: 'done', cat: 'done', assignee: 'agent-3', ageH: 48, ready: false, impact: 0, blocked_by: [],
@@ -45,5 +43,5 @@ export const ISSUES = [
     body: 'FILIGREE_FEDERATION_API_TOKEN gates /api/weft/*, scan ingest, and /mcp. Dashboard UI stays open on loopback.', deps: [] },
 ];
 
-// Snapshot value from the facts pack (members/filigree.md), not the kit's old v2.0.1.
-export const PROJECT = { name: 'filigree', version: '3.0.0rc2' };
+// Current Filigree release line for the demo chrome.
+export const PROJECT = { name: 'filigree', version: '3.0.0rc12' };

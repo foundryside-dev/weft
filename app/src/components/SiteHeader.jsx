@@ -7,8 +7,8 @@ import { ThemeToggle } from './ThemeToggle.jsx';
 // Nav now routes via react-router. A small hamburger keeps it usable on mobile.
 const NAV = [
   { to: '/', label: 'Federation', end: true },
-  { to: '/members/loomweave', label: 'Members' },
-  { to: '/demos', label: 'Demos' },
+  { to: '/members/loomweave', label: 'Surfaces' },
+  { to: '/demos', label: 'See it run' },
   { to: '/build', label: 'Build' },
 ];
 
@@ -55,7 +55,7 @@ export function SiteHeader() {
         >
           Weft
         </span>
-        <span style={{ fontSize: 11, color: 'var(--text-muted)', marginLeft: 2 }}>~/weft</span>
+        <span style={{ fontSize: 11, color: 'var(--text-muted)', marginLeft: 2 }}>federation hub</span>
       </Link>
 
       <button

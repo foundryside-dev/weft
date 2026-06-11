@@ -8,28 +8,29 @@ import { WeftCliTerminal } from '../demos/cli/WeftCliTerminal.jsx';
 // ported from in-browser Babel globals to ESM (see src/demos/*). They prove the
 // federation is real, not slideware.
 const DEMOS = {
+  lacuna: {
+    label: 'Lacuna tour',
+    caption: 'what the specimen contains and what the tour proves',
+    detail:
+      'Start with Lacuna itself: a small library app under specimen/, a catalog of intentional flaws in tour/lacunae.toml, and a tour harness that runs the live Weft CLIs and MCP surfaces against that catalog. A real Codex or Claude session would inspect these files, run make tour or make verify, then read the generated evidence. The page below walks that same artifact trail.',
+    note: 'Lacuna is not a member product. It is the specimen the member tools are pointed at.',
+  },
   dashboard: {
     label: 'Filigree dashboard',
     caption: 'the one real GUI in the suite',
     detail:
-      'A faithful recreation of Filigree’s web dashboard — switch views (Kanban / Ready / …), toggle the status pills and the Ready filter, click any card to open its detail panel, and flip the demo’s own dark ⇄ light theme. Illustrative data; the version string is the facts-pack snapshot, not authoritative.',
+      'A faithful recreation of Filigree’s web dashboard — switch views, toggle the status pills and the Ready filter, click any card to open its detail panel, and flip the demo’s own dark ⇄ light theme. The issue data is illustrative.',
     note: 'the detail panel slides in full-height (the product’s real behavior) — Esc or the backdrop closes it.',
-  },
-  cli: {
-    label: 'Weft CLI',
-    caption: 'four members live on the CLI + MCP-over-stdio',
-    detail:
-      'The agent-first terminal. Four members have no GUI — Loomweave, Wardline, Legis, and Charter live on the command line and a dependency-free MCP-over-stdio server. Switch sessions: a tripped Wardline trust-boundary gate, a Loomweave MCP orientation read enriched with sibling facts, a Legis Coached-cell verdict, and make tour driving the suite against the Lacuna specimen — design-only members labelled, never faked.',
-    note: 'output is drawn from each tool’s own README; design-only cells are labelled honestly.',
   },
 };
 
-const ORDER = ['dashboard', 'cli'];
+const ORDER = ['lacuna', 'dashboard'];
+const ALIASES = { cli: 'lacuna' };
 
 export function Demos() {
   const { which } = useParams();
   const navigate = useNavigate();
-  const active = DEMOS[which] ? which : 'dashboard';
+  const active = DEMOS[which] ? which : ALIASES[which] || 'lacuna';
   const d = DEMOS[active];
 
   return (
@@ -39,16 +40,17 @@ export function Demos() {
           fontFamily: 'var(--font-display)',
           fontSize: 'clamp(1.9rem, 1.5rem + 1.6vw, 2.6rem)',
           fontWeight: 700,
-          letterSpacing: '-0.02em',
+          letterSpacing: 0,
           color: 'var(--text-primary)',
           margin: '0 0 6px',
         }}
       >
-        Live demos
+        See it run
       </h1>
       <p className="t-body" style={{ maxWidth: 720, marginTop: 0, marginBottom: 20 }}>
-        Two of the suite’s surfaces, running in your browser — the same component library the real
-        products use. Not slideware; click around.
+        Start with Lacuna, then inspect the product surfaces. Lacuna is the seeded
+        codebase: an agent runs the Weft command-line tools against known flaws and
+        keeps the narrative in lockstep with generated evidence.
       </p>
 
       <div style={{ marginBottom: 18 }}>

@@ -3,14 +3,13 @@ import { Link } from 'react-router-dom';
 import { Mark, Tag } from '../ds/index.js';
 import { memberById } from '../data/roster.js';
 
-const CONTRACTS_INDEX = 'https://github.com/foundryside-dev/weft/blob/main/contracts-index.md';
+const INTEGRATION_INDEX = 'https://github.com/foundryside-dev/weft/blob/main/contracts-index.md';
 const FEDERATION_MAP = 'https://github.com/foundryside-dev/weft/blob/main/federation-map.md';
 
 // MemberPage — one page per realized member. Thread-tinted via the
 // .thread-<id> class from colors_and_type.css (sets --thread). Content from the
-// member briefing: domain authority, what it owns, how it composes, and a
-// snapshot-facts block CLEARLY labeled non-authoritative with the repo link
-// (the hub audit invariant). No version/count invented — all from roster.js.
+// member briefing: product role, responsibilities, integrations, and current
+// project details with links back to the owning repo.
 
 function SectionHeading({ children }) {
   return (
@@ -40,11 +39,15 @@ export function MemberPage({ id }) {
     );
   }
 
+  const isProposed = m.group?.includes('proposed');
+  const isDemo = m.id === 'lacuna';
+  const roleVerb = isProposed ? 'is planned for' : isDemo ? 'shows' : 'handles';
+
   return (
-    <article className={`page-shell thread-${m.id}`} style={{ padding: '28px 30px 20px' }}>
+    <article className={`page-shell thread-${m.id}`} style={{ '--thread': m.thread, padding: '28px 30px 20px' }}>
       {/* breadcrumb */}
       <nav aria-label="Breadcrumb" style={{ fontSize: 12, color: 'var(--text-muted)', marginBottom: 18 }}>
-        <Link to="/" style={{ color: 'var(--text-muted)', textDecoration: 'none' }}>~/weft</Link>
+        <Link to="/" style={{ color: 'var(--text-muted)', textDecoration: 'none' }}>Weft</Link>
         <span aria-hidden> / </span>
         <span>members</span>
         <span aria-hidden> / </span>
@@ -98,20 +101,20 @@ export function MemberPage({ id }) {
           }}
         >
           <span className="t-label" style={{ display: 'block', marginBottom: 5, color: 'var(--aging)' }}>
-            status — honest
+            Status
           </span>
           {m.pending}
         </div>
       )}
 
       {/* domain authority */}
-      <SectionHeading>Domain authority</SectionHeading>
+      <SectionHeading>{isDemo ? 'Demo role' : isProposed ? 'Planned role' : 'What it does'}</SectionHeading>
       <p className="t-body" style={{ maxWidth: 720 }}>
-        {m.name} is authoritative for {m.authority}
+        {m.name} {roleVerb} {m.authority}
       </p>
 
       {/* what it owns */}
-      <SectionHeading>What it owns</SectionHeading>
+      <SectionHeading>Responsibilities</SectionHeading>
       <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 8 }}>
         {m.owns.map((o, i) => (
           <li
@@ -131,9 +134,9 @@ export function MemberPage({ id }) {
       </ul>
 
       {/* how it composes */}
-      <SectionHeading>How it composes</SectionHeading>
+      <SectionHeading>Works with</SectionHeading>
       <p className="t-body" style={{ maxWidth: 720, marginTop: 0 }}>
-        Every binding is enrich-only — removing a sibling never breaks {m.name}’s core flow.
+        These integrations add context while keeping {m.name} useful on its own.
       </p>
       <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 8 }}>
         {m.composes.map((c, i) => (
@@ -155,19 +158,39 @@ export function MemberPage({ id }) {
         ))}
       </ul>
       <p style={{ fontSize: 11.5, color: 'var(--text-muted)', marginTop: 12 }}>
-        The contracts {m.name} carries are indexed in the hub{' '}
-        <a href={CONTRACTS_INDEX} target="_blank" rel="noopener" className="ext" style={{ color: 'var(--text-secondary)' }}>
-          contracts index
+        Technical integration details live in the{' '}
+        <a href={INTEGRATION_INDEX} target="_blank" rel="noopener" className="ext" style={{ color: 'var(--text-secondary)' }}>
+          integration index
         </a>{' '}
-        and placed on the{' '}
+        and the{' '}
         <a href={FEDERATION_MAP} target="_blank" rel="noopener" className="ext" style={{ color: 'var(--text-secondary)' }}>
           federation map
         </a>
         .
       </p>
 
-      {/* surface facts — snapshot, NOT authoritative */}
-      <SectionHeading>Surface facts</SectionHeading>
+      {m.sources?.length ? (
+        <>
+          <SectionHeading>Read more</SectionHeading>
+          <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 8 }}>
+            {m.sources.map(([label, href], i) => (
+              <li key={`${label}-${i}`} style={{ fontSize: 13, color: 'var(--text-secondary)', lineHeight: 1.5 }}>
+                {href ? (
+                  <a href={href} target="_blank" rel="noopener" className="ext" style={{ color: 'var(--thread)', textDecoration: 'none' }}>
+                    {label}
+                  </a>
+                ) : (
+                  <span style={{ color: 'var(--text-primary)' }}>{label}</span>
+                )}
+                {!href && m.id === 'heddle' ? <span style={{ color: 'var(--text-muted)' }}> — early design notes</span> : null}
+              </li>
+            ))}
+          </ul>
+        </>
+      ) : null}
+
+      {/* current project details */}
+      <SectionHeading>Project details</SectionHeading>
       <div
         style={{
           background: 'var(--surface-raised)',
@@ -184,7 +207,7 @@ export function MemberPage({ id }) {
           }}
         >
           <span className="t-label" style={{ color: 'var(--aging)' }}>
-            snapshot — not authoritative; see the repo
+            Current details
           </span>
         </div>
         <dl style={{ margin: 0, padding: '6px 0' }}>
@@ -211,11 +234,18 @@ export function MemberPage({ id }) {
         </dl>
       </div>
       <p style={{ fontSize: 12, color: 'var(--text-muted)', marginTop: 12 }}>
-        These values move; the hub points rather than restates. The repo is authoritative:{' '}
-        <a href={m.repo} target="_blank" rel="noopener" className="ext" style={{ color: 'var(--thread)' }}>
-          {m.repoLabel}
-        </a>
-        {m.repoNote ? <span> — {m.repoNote}</span> : null}
+        For the latest details, use the project’s own repository.
+        {m.repo ? (
+          <>
+            {' '}
+            <a href={m.repo} target="_blank" rel="noopener" className="ext" style={{ color: 'var(--thread)' }}>
+              {m.repoLabel}
+            </a>
+            {m.repoNote ? <span> — {m.repoNote}</span> : null}
+          </>
+        ) : (
+          <span> There is no public product repo for this surface yet.</span>
+        )}
       </p>
 
       {/* nav */}
@@ -226,7 +256,7 @@ export function MemberPage({ id }) {
         <Link to="/build" style={{ fontSize: 13, color: 'var(--text-secondary)', textDecoration: 'none' }}>
           build a member →
         </Link>
-        <Link to="/demos" style={{ fontSize: 13, color: 'var(--text-secondary)', textDecoration: 'none' }}>
+        <Link to="/demos/lacuna" style={{ fontSize: 13, color: 'var(--text-secondary)', textDecoration: 'none' }}>
           see it run →
         </Link>
       </div>

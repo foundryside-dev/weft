@@ -3,7 +3,17 @@
 import { chromium } from 'playwright';
 
 const BASE = process.env.BASE || 'http://localhost:4319';
-const routes = ['/', '/members/loomweave', '/members/charter', '/demos', '/demos/cli', '/build'];
+const routes = [
+  '/',
+  '/members/loomweave',
+  '/members/charter',
+  '/members/heddle',
+  '/members/lacuna',
+  '/demos',
+  '/demos/lacuna',
+  '/demos/cli',
+  '/build',
+];
 
 let failures = 0;
 const fail = (m) => { console.log('  FAIL:', m); failures++; };
@@ -31,14 +41,18 @@ const soloBtn = page.getByRole('tab', { name: 'Solo' });
 if (await soloBtn.count()) {
   await soloBtn.first().click();
   const txt = await page.locator('body').textContent();
-  if (!txt.includes('respectable use-case')) fail('Solo pill did not show solo text');
+  if (!txt.includes('Each core tool has a useful standalone workflow')) fail('Solo pill did not show solo text');
   else console.log('interact: composition-law Solo pill switches text  OK');
 } else fail('Solo tab not found');
 
 // --- interactivity 2: dashboard kanban card opens the detail panel ---
 await page.goto(`${BASE}/#/demos`, { waitUntil: 'networkidle' });
+let bodyText = await page.locator('body').textContent();
+if (!bodyText.includes('Start with Lacuna') || !bodyText.includes('target: Lacuna')) fail('/demos did not default to the Lacuna tour');
+else console.log('route: /demos defaults to Lacuna tour  OK');
+await page.goto(`${BASE}/#/demos/dashboard`, { waitUntil: 'networkidle' });
 await page.waitForTimeout(300);
-const card = page.getByText('SEI backfill: locator → stable identity').first();
+const card = page.getByText('Stable identity for issue links').first();
 if (await card.count()) {
   await card.click();
   const dialog = page.getByRole('dialog');

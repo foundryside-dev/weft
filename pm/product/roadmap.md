@@ -1,4 +1,4 @@
-# Roadmap — Weft Federation            Updated: 2026-06-10 (PDR-0012/0013)
+# Roadmap — Weft Federation            Updated: 2026-06-11 (PDR-0014 Rust reversal)
 
 > Sequencing, WSJF / cost-of-delay, and dated forecasts are produced by
 > /axiom-program-management. This file records bets as INTENT, not a delivery
@@ -17,9 +17,11 @@
   P2)** · metric: dogfood-pass rate + enrich-only guardrail (metrics.md). Audit:
   `pm/2026-06-10-federation-interface-audit.md`. Wave order:
   `pm/2026-06-10-gold-standard-launch-sequencing.md` (dispatch live; contract fixes are
-  producer+consumer+golden-vector units per seam). **Rust analyzer line is OUT of the launch
-  envelope (PDR-0012);** ADR-049 dialect declared out-of-freeze via `weft-dfeb20c4fa` (child of
-  the oracle umbrella).
+  producer+consumer+golden-vector units per seam). **Rust gold closeout `weft-7ee9bccbd7` (P1)
+  now gates the CUTOVER `weft-4b2f948f70` — PDR-0014 (2026-06-11) reversed PDR-0012's
+  out-of-envelope call** (frontier sprint merged Rust into release branches; owner: gate-on-gold).
+  ADR-049 dialect declared out-of-freeze via `weft-dfeb20c4fa`; the out-of-freeze posture STANDS.
+  G5 `weft-7436c1959e` **CLOSED** (emit topology applied + verified, commit `0a6dfc1`).
 
 ## Next (shaped, decreasing certainty)
 - **Agent continuity & write-safety** — **SIGNED OFF 2026-06-09 (PDR-0008);** shape & sequence
@@ -60,11 +62,12 @@
   (`weft-ff30fd979f`: hook-fed work-state advance on ship/merge — the stale-board problem is a
   product gap in filigree's domain, not a process failure; scope decided at A's scoping). These
   outrank any new tool. · metric: every metrics.md row gets a dated instrumented reading.
-- **Rust analyzer line (post-launch versioned feature, PDR-0012)** — substantially built on
-  wardline `feat/rust-plugin` + loomweave `feat/rust-plugin-spec` (shared ADR-049 dialect +
-  conformance corpus); hub epic `weft-9823a04785`. Lands after the cutover; both members adopt
-  the dialect version together. Reversal trigger in PDR-0012 (corpus-green before cutover ⇒
-  re-evaluate inclusion).
+- **Rust analyzer line — NOW GATES THE CUTOVER (PDR-0014, not post-launch)** — frontier sprint
+  merged into release branches (wardline rc5, loomweave rc4); 27 residual SEI collisions across 4
+  families block gold (`weft-7ee9bccbd7`, P1, hub). Hub epic `weft-9823a04785`. Done-means: 4
+  clarion tickets closed, qualname_check oracle 0 across pinned corpora, gold verdict re-issued,
+  ADR-049 amendments in wardline lockstep. Reversal trigger in PDR-0014: if families prove
+  ADR-049-design-limit-shaped, reopen the ship-dark option with the owner.
 - **Cross-project ticket coordination — promoted from the bench (PDR-0013).** Cascade a hub
   ticket's children into member trackers + safe cross-DB addressing (**federated**, NOT a shared
   hub store — doctrine §6). Evidence: counterpart convention sustained by hand (19/27 manual);

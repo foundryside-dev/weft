@@ -18,7 +18,7 @@ export function SiteFooter() {
     >
       <Mark name="weft" size={18} title="Weft" style={{ color: 'var(--text-muted)' }} />
       <span style={{ fontSize: 11, color: 'var(--text-muted)' }}>
-        ~/weft is documentation only — there is nothing called “Weft” to install or run.
+        Weft is the federation hub. Install the individual tools from their project pages.
       </span>
       <a
         href="https://foundryside.dev"

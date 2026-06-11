@@ -334,6 +334,44 @@ couplings. The hub coordinates; it does not block any member's independent relea
 | legis | **conforms** | `legis doctor` report-only checks name each enablement path + `_recovery_for` next_actions for `CELL_NOT_ENABLED`/`INVALID_CELL_SPEC` (N3, `weft-df8d2ef454` closed; inert-by-default is by-design, C-8). N4 was **MISDIAGNOSED** — the default keyless posture *governs* a dirty tree (stamped `artifact_status=dirty`), never refuses (`ingest.py:204-216`, `weft-a7a92a40dd` closed). Verified 2026-06-09. **Residual (tracked):** `check_binding_ledger` (`weft-a92805f4cf`); `scan_route` description (`weft-1e7eeec1b6`). |
 | charter | **pending** | no cross-member side-effect surface yet; its C-6 envelope discipline is the nearest exemplar to generalise from. |
 
+### C-11 — Config-write discipline: write only consumed config, working out of the box, single-owner
+
+- **Rule (NORMATIVE).** When a tool **writes, generates, or manages** a config file (the
+  installed/generated/managed surface — not operator-authored input), it MUST obey:
+  - **(a) No orphan writes.** Write a config only if the writer itself or a **named** consumer
+    reads it. A tool never emits a config no one consumes. *(Motivating case: loomweave wrote a
+    `wardline.yaml` no tool read — removed in `f9854f0`, 2026-06-10. NB the audit found loomweave
+    still writes an orphan `config.json` stub — see scorecard.)*
+  - **(b) Works out of the box.** A freshly written config is functional **as written** — the
+    consuming path works with no manual repair. Generating a config that must be hand-fixed to
+    be read is a defect. *(Motivating case: wardline holds the works-on-write bar for the config
+    it writes; cf. the emit-topology drift `weft-7436c1959e` (G5), where shipped emit config did
+    not reach the daemon.)*
+  - **(c) Single writer, no sibling writes.** Each config has exactly one owning writer; a tool
+    never writes into a sibling member's config subtree. *(Already partially held: wardline
+    "never writes `weft.toml`/sibling subtree", C-9.)*
+- **Why.** A config nobody reads is dead weight that drifts silently and misleads the next agent
+  into reading a seam as wired when it is not; a config that needs hand-repair pushes the failure
+  onto the operator/agent and breaks the agentic-first "works on write" expectation; cross-writes
+  reintroduce the multi-owner-destruction hazard C-4 closes for agent docs. This is the
+  **config-surface sibling of C-4** (managed-doc blocks) and **C-9** (where config lives) — those
+  cover *agent docs* and *store layout*; C-11 covers *what a tool may write as config and whether
+  it works*. Named from two 2026-06-10 ground-truth learnings.
+- **Reference: wardline** — earns the clause-(b) out-of-box bar for the config it writes
+  (`core/filigree_emit.py` scoped emit + destination echo). Established by the config-write audit
+  `weft-b683a56a20` → `pm/2026-06-10-config-write-audit.md` (source-read; F1 live-confirmed).
+  Verdict: source layer substantially conforms, but the **installed build fails (b)** — the live
+  lacuna emit URL is unscoped → server-mode daemon 400s → findings don't land (F1 = the G5 defect
+  class `weft-7436c1959e`, now live-root-caused), and loomweave carries a clause-(a) regression.
+
+| Member | State | Evidence |
+|---|---|---|
+| wardline | **reference** | clause (b) earned for what it writes; the live G5 misroute is a *loomweave-side* write of wardline's URL, not wardline's own. Audit `weft-b683a56a20`. |
+| filigree | **conforms** | every config writer self-scopes to its own key (`register_project`/server.json). **Gap (F4, folded into G5):** the server-mode store carries no `mode`/`prefix` marker the loomweave scope-probe expects — the "am I server-mode?" contract is unwritten (`weft-7436c1959e`). |
+| legis | **conforms** | config writers self-scoped; reads `weft.toml` read-only. Audit `weft-b683a56a20`. |
+| loomweave | **pending** | `wardline.yaml` orphan genuinely removed (`f9854f0`), **but still writes an orphan `.weft/loomweave/config.json` stub (`install.rs:467`) no crate reads** — clause-(a) regression, same pattern (F2, `weft-da23c1f6bd`). Also the (b) write defect behind F1/G5 (emits wardline's emit URL unscoped). |
+| charter | **exempt** | no generated cross-member config surface. |
+
 ---
 
 ## Consolidated matrix
@@ -353,6 +391,7 @@ couplings. The hub coordinates; it does not block any member's independent relea
 | C-7 401-vs-unreachable | ✓ | R | … | … | — |
 | C-9 `.weft/`+`weft.toml` layout | ✓† | ✓† | ✓† | R | … |
 | C-10 honest federation seams | … | … | … | … | … |
+| C-11 config-write discipline | ✓ | … | R | ✓ | — |
 
 loomweave is the dominant reference member (C-1/C-2†/C-3/C-5/C-7); charter is the
 C-6 reference; legis is the C-9 reference (member-private form). No member is reference

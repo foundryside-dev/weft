@@ -19,20 +19,10 @@ const K = {
   err: { color: 'var(--stale)' },
   acc: { color: 'var(--accent)' },
 };
-const thread = (id) => ({ color: `var(--thread-${id})` });
+const thread = (id) => ({ color: id === 'lacuna' ? 'var(--lacuna-accent)' : `var(--thread-${id})` });
 
 function L({ k = 'out', ind = 0, children }) {
   return <div style={{ ...K[k], paddingLeft: ind * 14, whiteSpace: 'pre-wrap' }}>{children}</div>;
-}
-function Prompt({ tool, cmd }) {
-  return (
-    <div style={{ display: 'flex', gap: 8, marginTop: 4 }}>
-      <span style={K.ps}>$</span>
-      <span style={{ color: 'var(--text-primary)' }}>
-        {tool} <span style={{ color: 'var(--text-secondary)' }}>{cmd}</span>
-      </span>
-    </div>
-  );
 }
 function CliTag({ id, children }) {
   return (
@@ -43,86 +33,108 @@ function CliTag({ id, children }) {
 }
 
 const SESSIONS = {
-  wardline: {
-    member: 'wardline',
-    label: 'wardline scan',
-    render: () => (
-      <>
-        <Prompt tool="wardline" cmd="scan . --fail-on ERROR" />
-        <L k="dim">scanned 1 file(s); 3 finding(s) — 0 suppressed, 1 new → findings.jsonl</L>
-        <div style={{ height: 8 }} />
-        <L><span style={K.err}>● PY-WL-101</span>  <span style={{ color: 'var(--text-primary)' }}>demo.build_record</span></L>
-        <L ind={1} k="out">declares return trust <span style={K.ok}>ASSURED</span> but returns <span style={K.err}>EXTERNAL_RAW</span> —</L>
-        <L ind={1} k="out">untrusted data reaches a trusted producer with no validation.</L>
-        <L ind={1} k="dim">demo.py:8 · entity <span style={{ color: 'var(--text-primary)' }}>loomweave:sei:7f3a…b1</span></L>
-        <div style={{ height: 8 }} />
-        <L k="dim">2 finding(s) NONE-severity (engine facts) — hidden</L>
-        <Prompt tool="echo" cmd="$?" />
-        <L k="err">1   <span style={K.dim}># gate tripped — fix at the boundary, not the sink</span></L>
-      </>
-    ),
-  },
-  loomweave: {
-    member: 'loomweave',
-    label: 'loomweave · MCP',
-    render: () => (
-      <>
-        <Prompt tool="loomweave" cmd="serve   # 39-tool MCP surface over stdio" />
-        <L k="dim">consult-mode agent → entity_orientation_pack_get("auth.session.build_record")</L>
-        <div style={{ height: 8 }} />
-        <L><span style={K.acc}>◆ entity</span>  auth.session.build_record  <span style={K.dim}>fn · python</span></L>
-        <L ind={1} k="out"><span style={K.dim}>sei</span>        loomweave:sei:7f3a…b1  <span style={K.ok}>● stable</span></L>
-        <L ind={1} k="out"><span style={K.dim}>callers</span>    14 · 2 subsystems · entry-point: no</L>
-        <L ind={1} k="out"><span style={K.dim}>enriched</span>   <CliTag id="wardline">wardline</CliTag>taint EXTERNAL_RAW→ASSURED</L>
-        <L ind={1} k="out"><span style={{ marginLeft: 62, display: 'inline-block' }} /><CliTag id="filigree">filigree</CliTag>issue fg-da8d · fixing</L>
-        <div style={{ height: 8 }} />
-        <L k="dim">summary(id) dispatches the LLM lazily, one entity at a time.</L>
-      </>
-    ),
-  },
-  legis: {
-    member: 'legis',
-    label: 'legis · governance',
-    render: () => (
-      <>
-        <Prompt tool="legis" cmd="verdict --cell coached   # simple · judge ON" />
-        <L k="dim">policy PY-WL-101 fired at the git/CI boundary →</L>
-        <div style={{ height: 8 }} />
-        <L k="out">agent proposed override:</L>
-        <L ind={1} k="dim">"boundary validates downstream in sanitize() — false positive"</L>
-        <div style={{ height: 6 }} />
-        <L><span style={K.err}>⚖  BLOCKED</span>  <span style={K.dim}>judge rejected — sanitize() is not on the return path</span></L>
-        <L k="dim">agent must correct the code or sharpen its rationale; cannot self-clear.</L>
-        <div style={{ height: 8 }} />
-        <L k="dim">trail: append-only · keyed on SEI · survives rename/move</L>
-        <L><span style={thread('legis')}>HMAC</span> <span style={K.dim}>verdict signed · file_fingerprint + ast_path bound</span></L>
-      </>
-    ),
-  },
   tour: {
-    member: 'shuttle',
-    label: 'make tour → lacuna',
+    member: 'lacuna',
+    label: 'tour output',
     render: () => (
       <>
-        <Prompt tool="make" cmd="tour   # drive every live tool against the specimen" />
-        <L k="dim">target: ~/lacuna · the deliberately-flawed demonstration specimen</L>
+        <L k="dim">Codex / Claude operator transcript: inspect files first, then run the harness.</L>
+        <div style={{ height: 6 }} />
+        <L k="cmd">$ cd /home/john/lacuna && make tour</L>
+        <L k="dim">target: Lacuna · runs python -m tour, then regenerates docs/tour.md and docs/matrix.md</L>
         <div style={{ height: 8 }} />
-        <L><span style={thread('loomweave')}>loomweave </span><span style={K.ok}>✓ live</span>   <span style={K.dim}>catalog built · 312 entities · SEI minted</span></L>
-        <L><span style={thread('wardline')}>wardline</span> <span style={K.ok}>✓ live</span>   <span style={K.dim}>4 baselined lacunae surfaced · gate green</span></L>
-        <L><span style={thread('filigree')}>filigree</span> <span style={K.ok}>✓ live</span>   <span style={K.dim}>findings → 4 tracked issues</span></L>
-        <L><span style={thread('legis')}>legis   </span> <span style={K.warn}>◐ design-only</span>  <span style={K.dim}>labelled, never faked</span></L>
-        <L><span style={thread('charter')}>charter </span> <span style={K.warn}>◐ design-only</span>  <span style={K.dim}>labelled, never faked</span></L>
+        <L><span style={thread('loomweave')}>loomweave analyze</span> <span style={K.ok}>✓</span> <span style={K.dim}>300 entities, 563 structural edges</span></L>
+        <L><span style={thread('loomweave')}>loomweave structure</span> <span style={K.ok}>✓</span> <span style={K.dim}>dead entities plus cycle_a / cycle_b</span></L>
+        <L><span style={thread('loomweave')}>loomweave navigation</span> <span style={K.ok}>✓</span> <span style={K.dim}>call chains, coupling hotspot, entry point, subsystem</span></L>
+        <L><span style={thread('wardline')}>wardline scan</span> <span style={K.ok}>✓</span> <span style={K.dim}>PY-WL-101..126 plus analyzer notices</span></L>
+        <L><span style={thread('legis')}>legis govern</span> <span style={K.ok}>✓</span> <span style={K.dim}>43 active defects routed to surface_override</span></L>
+        <L><span style={thread('filigree')}>filigree work cycle</span> <span style={K.ok}>✓</span> <span style={K.dim}>sentinel finding promoted, claimed, closed</span></L>
         <div style={{ height: 8 }} />
-        <L k="ok">✓ narrative regenerated · matrix coverage in lockstep</L>
-        <L k="dim">degrades honestly — point the suite at Lacuna and watch it work.</L>
+        <L k="ok">the useful output is the generated evidence, not a chat transcript.</L>
+      </>
+    ),
+  },
+  specimen: {
+    member: 'loomweave',
+    label: 'specimen code',
+    render: () => (
+      <>
+        <L k="dim">What the agent reads before it trusts the demo output.</L>
+        <div style={{ height: 6 }} />
+        <L k="cmd">/home/john/lacuna/specimen/</L>
+        <L k="dim">a clean-core library app with intentionally planted flaws kept in isolated modules</L>
+        <div style={{ height: 8 }} />
+        <L><span style={K.acc}>trust_flow.py</span> <span style={K.dim}>unsafe_account_key declares ASSURED but returns EXTERNAL_RAW</span></L>
+        <L><span style={K.acc}>wardline_sinks.py</span> <span style={K.dim}>untrusted data reaches pickle, eval, shell, SQL, SSRF, SSTI, XXE sinks</span></L>
+        <L><span style={K.acc}>wardline_boundaries.py</span> <span style={K.dim}>bad trust boundaries, contradictory markers, assert-only validation</span></L>
+        <L><span style={K.acc}>pipeline.py</span> <span style={K.dim}>five-hop call chain: ingest → normalize → enrich → validate_record → persist</span></L>
+        <L><span style={K.acc}>hub.py</span> <span style={K.dim}>dispatch ranks as the coupling hotspot</span></L>
+        <L><span style={K.acc}>cycle_a.py / cycle_b.py</span> <span style={K.dim}>module-level import cycle for Loomweave to surface</span></L>
+        <div style={{ height: 8 }} />
+        <L k="warn">do not fix these files as cleanup; removing a catalogued lacuna breaks make verify.</L>
+      </>
+    ),
+  },
+  manifest: {
+    member: 'lacuna',
+    label: 'manifest',
+    render: () => (
+      <>
+        <L k="dim">The harness verifies against this manifest, not against prose claims.</L>
+        <div style={{ height: 6 }} />
+        <L k="cmd">tour/lacunae.toml</L>
+        <L k="dim">the single source of truth for expected flaws, rules, files, symbols, and coverage cells</L>
+        <div style={{ height: 8 }} />
+        <L><CliTag id="wardline">wardline</CliTag> PY-WL-101 through PY-WL-126 are represented by named specimen symbols.</L>
+        <L><CliTag id="loomweave">loomweave</CliTag> dead entity, import cycle, call chain, coupling hotspot, entry point, subsystem, relation edges.</L>
+        <L><CliTag id="filigree">filigree</CliTag> wl-log-injection is the live sentinel: preview-rule, gate-immune, promoted and work-cycled.</L>
+        <L><CliTag id="legis">legis</CliTag> policy-boundary evidence distinguishes a disabled boundary from a healthy one.</L>
+        <div style={{ height: 8 }} />
+        <L k="dim">coverage matches on rule token plus symbol, so an incidental finding cannot credit the planted one.</L>
+      </>
+    ),
+  },
+  docs: {
+    member: 'charter',
+    label: 'generated docs',
+    render: () => (
+      <>
+        <L k="dim">What the agent opens after the run to explain the result.</L>
+        <div style={{ height: 6 }} />
+        <L k="cmd">docs/tour.md</L>
+        <L k="dim">generated by make tour; byte-for-byte checked by make verify</L>
+        <div style={{ height: 8 }} />
+        <L><span style={K.ok}>tour.md</span> lists the ten live steps and their stable details.</L>
+        <L><span style={K.ok}>matrix.md</span> records which tools are live and which planted cells are exercised.</L>
+        <L><span style={K.ok}>docs/flaws/*.md</span> gives one generated explainer per catalogued lacuna.</L>
+        <div style={{ height: 8 }} />
+        <L k="warn">if docs/tour.md or docs/matrix.md drift, make verify fails and tells you to rerun make tour.</L>
+      </>
+    ),
+  },
+  verify: {
+    member: 'wardline',
+    label: 'verify gate',
+    render: () => (
+      <>
+        <L k="dim">The check a serious demo runs before it calls itself green.</L>
+        <div style={{ height: 6 }} />
+        <L k="cmd">$ cd /home/john/lacuna && make verify</L>
+        <L k="dim">asserts every lacuna whose tool is live and checks generated docs for lockstep</L>
+        <div style={{ height: 8 }} />
+        <L><span style={K.ok}>pass</span> every expected live flaw surfaced by its tool and symbol.</L>
+        <L><span style={K.err}>fail</span> a catalogued flaw disappears, a generated doc is stale, or a live tool stops surfacing a fixture.</L>
+        <L><span style={K.warn}>degrade</span> unavailable tools are labelled by capability detection, not faked.</L>
+        <div style={{ height: 8 }} />
+        <L k="dim">the green demo is not "no bugs"; it means the known bugs are present, catalogued, and surfaced.</L>
       </>
     ),
   },
 };
 
 export function WeftCliTerminal() {
-  const order = ['wardline', 'loomweave', 'legis', 'tour'];
-  const [tab, setTab] = useState('wardline');
+  const order = ['tour', 'specimen', 'manifest', 'docs', 'verify'];
+  const [tab, setTab] = useState('tour');
   const S = SESSIONS[tab];
   return (
     <div style={{ width: 760, maxWidth: '100%', margin: '0 auto', borderRadius: 'var(--radius-lg)', overflow: 'hidden', border: '1px solid var(--border-strong)', boxShadow: 'var(--shadow-modal)', background: '#0C0A07' }}>

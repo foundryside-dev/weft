@@ -1,0 +1,25 @@
+UMBRELLA oracle-harness = weft-43e8fcda0c
+G1 weft-37455bf407 -> legis:legis-54c41785fc wardline:wardline-229c7883b3
+G2 weft-feea638ec0 -> loomweave:clarion-3c47f53e99 legis:legis-bc9e5f3e60
+G3 weft-2f86803f0a -> filigree:filigree-0a68190495
+G4 weft-171fc22a50 -> filigree:filigree-c3e2b72f21 (NOTE: rescope existing ticket to the rollup; promote path is correctly guarded)
+G5 weft-7436c1959e -> (hub-only, deployment; no member counterpart)
+G6 weft-560f243c95 (reparented under weft-43e8fcda0c) -> wardline:wardline-79ba05f464
+G20 weft-a9ae398c5b -> filigree:filigree-08fcf12671
+G21 weft-1e7eeec1b6 -> legis:legis-ea23fafcbd
+G7 weft-84319a322a -> wardline:wardline-5506429b8d
+G8 weft-3610d41122 -> legis:legis-b7ce9fdc40
+G9 weft-94284025f5 -> wardline:wardline-065ffb98b0
+G10 weft-3586d8df28 -> filigree:filigree-2bd6f0af35 loomweave:clarion-c37e1714fd
+G11 weft-c7e3486246 -> filigree:filigree-04e7cb48ad legis:legis-f2bd35f88a
+G12 weft-513aa35a08 (child weft-43e8fcda0c) -> legis:legis-356fe094dd filigree:filigree-10ad50dacf
+G14 weft-8f1c6c512e (child weft-43e8fcda0c) -> loomweave:clarion-9d0e82513c legis:legis-5316097908 wardline:wardline-17ac7526d8
+G15 weft-045076e30f (child weft-43e8fcda0c) -> loomweave:clarion-18d0f42964 filigree:filigree-bd4deb8ac9
+G16 weft-06b5fa64dd (child weft-43e8fcda0c) -> legis:legis-c4cbf78fdb loomweave:clarion-73dff1d2d1
+G17 weft-7dc6479b89 -> wardline:wardline-46f74be505 loomweave:clarion-6ab5668d82(existing)
+G18 weft-eef2fa8bbb -> filigree:filigree-4d92ea1732 wardline:wardline-fbc8e91b75
+G19 weft-352862bf60 -> wardline:wardline-23c8e4bef4
+G22 weft-94f3662f52 -> filigree:filigree-790ce72b20
+G23 weft-50c8643ac1 -> filigree:filigree-bc80a673e1
+G24 weft-6708eac413 -> wardline:wardline-bfb012f2f2 loomweave:clarion-736123c407
+G25 weft-bfa254852f -> loomweave:clarion-f7d902e0bc wardline:wardline-da883a2d07
