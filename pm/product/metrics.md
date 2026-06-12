@@ -1,4 +1,4 @@
-# Metrics — Weft Federation             Last read: 2026-06-09
+# Metrics — Weft Federation             Last read: 2026-06-12
 
 > Targets below are falsifiable-by-shape PLACEHOLDERS (number + date) for the owner
 > to set real values against — most baselines are not yet instrumented. A directional
@@ -7,7 +7,7 @@
 ## North-star
 | Metric | Target (falsifiable) | Current | Read on | Trend |
 |--------|----------------------|---------|---------|-------|
-| **Dogfood pass rate** — % of planted lacuna defects an agent surfaces *and* tracks **using the suite, not grep** ("if the agent prefers grep, the tool failed") | ≥ 90% by 2026-07-31 *(placeholder — owner to set)* | BASELINE — not yet measured; dogfood-3 found `make ci` red (2/3 stages) | 2026-06-09 | — |
+| **Dogfood pass rate** — % of planted lacuna defects an agent surfaces *and* tracks **using the suite, not grep** ("if the agent prefers grep, the tool failed") | ≥ 90% by 2026-07-31 *(placeholder — owner to set)* | **First structured reading (dogfood-4, 2026-06-12):** "reach-for-it-first" verdicts 3/4 (filigree yes / loomweave graph-tier yes / wardline core yes / legis unreachable); **cross-member joins 1/4 live** (only loomweave→filigree-issues). Post-fix target: 4/4 joins at re-dogfood `weft-a05b53edcd` | 2026-06-12 | first real datum |
 
 ## Input metrics (the levers that move the north-star)
 | Metric | Target | Current | Read on |
