@@ -390,14 +390,16 @@ couplings. The hub coordinates; it does not block any member's independent relea
   doctrine §8) applied **at the tool level**, and the status-surface sibling of
   C-10 (honest seams): C-10 makes one surface honest, C-12 makes the *set* of
   surfaces coherent. Named from dogfood-4 recommendation #2 (`weft-76abb3553e`).
-- **Reference:** **none yet** — both motivating instances were violations; the fixes
-  below are single-question repairs, not a member-wide single-oracle architecture.
+- **Reference:** **loomweave ✓† (freshness question)** — its B1 fix deleted the second
+  detector and rebuilt every status surface to derive from or defer to
+  `index_diff_get`, the fullest C-12 shape shipped so far. The filigree/wardline
+  cells are single-question repairs; no member has swept *all* its question-pairs.
 
 | Member | State | Evidence |
 |---|---|---|
 | filigree | **conforms ✓† (blocked-count question)** | `db_meta.py get_stats` blocked_count now reuses `get_blocked`'s not-done predicate (same `_category_predicate_sql` path, not a parallel query) — B3 fix `weft-ecc7c34255`, source+installed-verified on `release/3.0.0` 3.0.0rc12 (2026-06-12/13, unmerged to main). Other question-pairs unswept. |
 | wardline | **conforms ✓† (config question)** | `install/doctor.py:175-190` reports the *effective* runtime config with provenance ("from `--{key}-url` launch flag" / "from env" / "not configured"), threaded from the same values the runtime uses — B8 fix `weft-dc7b805dc4`, rc5, source-verified 2026-06-12. Other question-pairs unswept. |
-| loomweave | **pending** | B1 open (`weft-4165f1ed71`): `project_status_get` and `index_diff_get` answer the freshness question from different detectors (mtime-based vs commit/diff-based) and contradict; orientation packs + SessionStart hook echo the wrong one. |
+| loomweave | **reference ✓† (freshness question)** | B1 fixed (`weft-4165f1ed71`, rc4 wave 2026-06-13): the second detector was **deleted** — `index_diff::compute_freshness` is the single oracle; `project_snapshot`/status/orientation/context/SessionStart hook all *derive from the oracle's code path*, and status notes *defer to `index_diff_get` by name*. The fullest C-12 shape shipped so far (derivation AND deferral); reference for the freshness question. Unmerged (rc4). |
 | legis | **unknown** | `doctor_get` exists alongside gate/check surfaces; single-oracle coherence not yet examined firsthand. |
 | charter | **exempt** | no freshness/staleness surface yet (local core + read-only MCP). |
 
@@ -453,7 +455,7 @@ couplings. The hub coordinates; it does not block any member's independent relea
 | C-9 `.weft/`+`weft.toml` layout | ✓† | ✓† | ✓† | R | … |
 | C-10 honest federation seams | … | … | … | … | … |
 | C-11 config-write discipline | ✓ | … | R | ✓ | — |
-| C-12 one status oracle | ✓† | … | ✓† | ? | — |
+| C-12 one status oracle | ✓† | R† | ✓† | ? | — |
 | C-13 fail-degraded on hostile input | — | R | ✓† | ✓† | — |
 
 loomweave is the dominant reference member (C-1/C-2†/C-3/C-4/C-5/C-7/C-13); charter is
