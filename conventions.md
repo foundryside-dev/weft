@@ -429,7 +429,7 @@ couplings. The hub coordinates; it does not block any member's independent relea
 |---|---|---|
 | loomweave | **reference** | per-file `too_complex` degrade in the python-plugin extractor (`d5baac5`); fixtures in `test_extractor.py`; host accepts `parse_status` rides without changes. |
 | legis | **conforms ✓†** | `policy/boundary_scan.py:58-80` wraps both `ast.parse` and the visitor walk per file; `RecursionError` → `POLICY_BOUNDARY_FILE_TOO_COMPLEX` finding ("file skipped, scan continued") — A2 fix `weft-9784d0e654`, rc5, live-verified against lacuna's `nesting_bomb.py` 2026-06-12; regression fixture (20 000-term BinOp chain) in `tests/policy/test_boundary_scan.py`. |
-| wardline | **unknown** | walks source for taint analysis; behaviour on the hostile corpus untested (dogfood-4 rec #3) and no hostile-input fixture in its suite. Treat as work. |
+| wardline | **conforms ✓† (tested)** | already conformed — per-file isolation in `scanner/pipeline.py:178-235` (parse `RecursionError` → `WLN-ENGINE-FILE-SKIPPED`, `SyntaxError` → `WLN-ENGINE-PARSE-ERROR`) + per-entity/per-rule isolation in `scanner/analyzer.py:681/819`; proven 2026-06-13 by the new hostile-corpus fixture `tests/conformance/test_hostile_input_degrade.py` (600-deep nesting + 20 000-term BinOp bombs: run completes, in-band ERROR marker per hostile file, healthy neighbour findings still reported, degraded scope in `summary.unanalyzed`). rc5, unmerged. |
 | filigree | **exempt** | no in-process source parsing (no `ast` import in `src/filigree/`); scanners delegate to external agent processes whose failures are per-scan, not per-run. |
 | charter | **exempt** | no source-walking surface. |
 
@@ -454,7 +454,7 @@ couplings. The hub coordinates; it does not block any member's independent relea
 | C-10 honest federation seams | … | … | … | … | … |
 | C-11 config-write discipline | ✓ | … | R | ✓ | — |
 | C-12 one status oracle | ✓† | … | ✓† | ? | — |
-| C-13 fail-degraded on hostile input | — | R | ? | ✓† | — |
+| C-13 fail-degraded on hostile input | — | R | ✓† | ✓† | — |
 
 loomweave is the dominant reference member (C-1/C-2†/C-3/C-4/C-5/C-7/C-13); charter is
 the C-6 reference; legis is the C-9 reference (member-private form). No member is
