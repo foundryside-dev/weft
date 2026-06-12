@@ -18,8 +18,9 @@
 #     site root index renders the custom landing (overrides/home.html). This also
 #     avoids the README.md/index.md → index.html collision (we use README, not a
 #     separate index.md).
-#   - bare directory links `](./members/)` and `](./design-system/)` (not valid
-#     page targets under `mkdocs build --strict`) are rewritten to GitHub URLs.
+#   - bare directory links such as `](./members/)`, `](../../members/)`, and
+#     `](./design-system/)` (not valid page targets under `mkdocs build --strict`)
+#     are rewritten to GitHub URLs.
 # ============================================================================
 set -euo pipefail
 
@@ -35,7 +36,7 @@ echo "build-docs: regenerating ${DOCS}/ (mirror of root markdown)"
 
 # 1. Clean slate (idempotent).
 rm -rf "${DOCS}"
-mkdir -p "${DOCS}" "${DOCS}/members" "${DOCS}/registries" "${DOCS}/design-system" "${DOCS}/products"
+mkdir -p "${DOCS}" "${DOCS}/members" "${DOCS}/registries" "${DOCS}/design-system" "${DOCS}/products" "${DOCS}/pm"
 
 # 2. Mirror root authoritative markdown (read-only sources; copied verbatim).
 #    Root *.md (top-level only — not recursive).
@@ -49,6 +50,14 @@ cp "${ROOT}"/members/*.md       "${DOCS}/members/"     2>/dev/null || true
 cp "${ROOT}"/registries/*.md    "${DOCS}/registries/"  2>/dev/null || true
 #    products/*.md — the per-member curated cheat-sheets (index + one per member).
 cp "${ROOT}"/products/*.md      "${DOCS}/products/"    2>/dev/null || true
+#    pm/**/*.md — dated/product planning records linked from authoritative docs.
+#    They remain archival unless included in nav, but copying them keeps strict
+#    link validation grounded in the full local documentation set.
+find "${ROOT}/pm" -name '*.md' -type f -print0 | while IFS= read -r -d '' pm_doc; do
+  rel="${pm_doc#"${ROOT}/"}"
+  mkdir -p "${DOCS}/$(dirname "${rel}")"
+  cp "${pm_doc}" "${DOCS}/${rel}"
+done
 
 #    design-system/README.md is a link target (from THEMING.md). It has no
 #    onward markdown links, so mirroring just the README is strict-safe.
@@ -73,19 +82,19 @@ mv "${tmp}" "${README_GEN}"
 # 4. Rewrite bare-directory links in the GENERATED copies only (these are not
 #    valid mkdocs page targets and would warn under --strict). Point them at the
 #    GitHub tree so the reference still resolves for a reader.
-#    Targets:  ](./members/)        ->  GitHub tree/main/members
-#              ](./design-system/)  ->  GitHub tree/main/design-system
+#    Targets:  ](./members/)          ->  GitHub tree/main/members
+#              ](../../members/)      ->  GitHub tree/main/members
+#              ](./design-system/)    ->  GitHub tree/main/design-system
 #    Use a portable in-place sed across all generated markdown.
-#    Also fix a known stale in-doc anchor: contracts-index.md links to the
-#    asterisk-register A-1 heading with a double-dash slug (`#a-1--wardline--...`)
-#    that predates the current toc slugifier (which emits single dashes:
-#    `#a-1-wardline-...`). The root doc is owned/edited elsewhere; we correct the
-#    anchor ONLY in the generated copy so the link resolves and --strict passes.
+#    Also fix the historic A-1 anchor if an older source copy or archived PM doc
+#    still points at the pre-sync heading. The root source now uses the current
+#    slug directly; this generated-copy rewrite keeps older copied pages strict-safe.
 A1_BAD='a-1--wardline--filigree-findings-are-pipeline-coupled-through-loomweave'
-A1_GOOD='a-1-wardline-filigree-findings-are-pipeline-coupled-through-loomweave'
+A1_GOOD='a-1-wardline-filigree-direct-composition-is-not-yet-proven-loomweave-absent'
 find "${DOCS}" -name '*.md' -type f -print0 | while IFS= read -r -d '' md; do
   sed -i \
     -e "s#](\./members/)#](${REPO_URL}/tree/main/members)#g" \
+    -e "s#](\.\./\.\./members/)#](${REPO_URL}/tree/main/members)#g" \
     -e "s#](\./design-system/)#](${REPO_URL}/tree/main/design-system)#g" \
     -e "s#${A1_BAD}#${A1_GOOD}#g" \
     "$md"

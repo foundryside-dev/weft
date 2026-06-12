@@ -2,7 +2,8 @@
 
 _Authored 2026-06-08 (`dogfood-analyst`). Synthesizes five deep-dive agent verdicts
 (wardline, filigree, loomweave, legis, federation) against the
-[2026-06-07 dogfood findings report](../../weft-dogfood-findings-2026-06-07.md). Every
+2026-06-07 dogfood findings report (archival source; not present in the current
+repo snapshot). Every
 finding below carries an adversarial verification; where a verifier found
 `evidence_holds=false`, the **corrected** status is reported, not the original._
 

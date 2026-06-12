@@ -6,15 +6,15 @@
 
 ## Why it exists
 
-Lacuna's issues are **intentional and permanent** — catalogued in `tour/lacunae.toml`, baselined in `wardline.yaml` so the demo stays repeatable (catalogued issues pass; genuinely new violations fail). Removing a seeded issue *fails* `make verify`. It exists to *be analyzed*, not to do real work:
+Lacuna's issues are **intentional and permanent** — catalogued in `tour/lacunae.toml` and baselined in the current Wardline demo state so the demo stays repeatable (catalogued issues pass; genuinely new violations fail). Removing a seeded issue *fails* `make verify`. It exists to *be analyzed*, not to do real work:
 
-- Seeded trust-boundary violations for **Wardline** to catch (e.g. PY-WL-101/102/103/104 in `specimen/trust_flow.py`, `exception_flow.py`).
-- Seeded structural findings for **Loomweave** (dead entity, circular import in `specimen/dead_code.py`, `cycle_a.py`/`cycle_b.py`).
+- Seeded trust-boundary violations for **Wardline** to catch (`PY-WL-101..126` coverage plus the fail-closed `WLN-ENGINE-PARSE-ERROR` specimen).
+- Seeded structural findings for **Loomweave** (dead entity, circular import, duplicate locator, too-complex, and related graph/quality specimens).
 - Tracked work in **Filigree**, Loomweave analysis, Wardline baseline/gates, and **Legis** governance routing. Charter is labelled as planned while its Weft integrations remain pending.
 
 ## What it demonstrates (the matrix, end to end)
 
-Lacuna is where the [federation-map](../federation-map.md) becomes runnable: Wardline+Loomweave dossier reads, Wardline→Filigree findings-as-work, Loomweave+Filigree issues bound to SEI with drift detection, and Legis governance over the live core path. It is the thing a newcomer runs to *see the suite work*. Charter remains a planned integration.
+Lacuna is where the [federation-map](../federation-map.md) becomes runnable: Wardline+Loomweave dossier reads, Wardline→Filigree findings-as-work, Loomweave+Filigree issues bound to SEI with drift detection, and Legis governance over the live core path when the signing/governance preconditions are satisfied. It is the thing a newcomer runs to *see the suite work*. Charter remains a planned integration.
 
 ## Relationship to "elspeth"
 

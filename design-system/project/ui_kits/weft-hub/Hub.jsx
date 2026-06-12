@@ -63,14 +63,15 @@ function Hero() {
         </div>
       </div>
       <div style={{ display: "flex", gap: 9, marginTop: 24, flexWrap: "wrap" }}>
-        <Chip>5 realized members</Chip>
+        <Chip>4 live core members</Chip>
+        <Chip dim>Charter — planned integration</Chip>
         <Chip>local-first · no cloud</Chip>
         <Chip>no runtime · no broker · no store</Chip>
         <Chip dim>Shuttle — roadmap</Chip>
       </div>
       <div style={{ display: "flex", gap: 44, marginTop: 30, paddingTop: 26, borderTop: "1px solid var(--border-default)" }}>
-        <Stat label="Realized members" value={5} tone="var(--ready)" display />
-        <Stat label="Pairwise combos" value={10} tone="var(--accent)" display />
+        <Stat label="Live core members" value={4} tone="var(--ready)" display />
+        <Stat label="Core pairings" value={6} tone="var(--accent)" display />
         <Stat label="Runtime / brokers" value={0} tone="var(--text-muted)" display />
         <Stat label="On the roadmap" value={1} tone="var(--thread-shuttle)" display />
       </div>

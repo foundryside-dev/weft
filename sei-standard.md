@@ -76,7 +76,10 @@ SEI is **locked.** The single canonical identity interface is SEI (the §0.2 sup
 > - **Legis** is implemented through Sprint 6 and **passes the oracle as a consumer** (`legis/tests/conformance/test_sei_oracle.py`).
 > - **Wardline** shipped its SEI-client and the dossier (incl. a live `clarion_e2e` round-trip).
 > - **Charter** declared its SEI-consumer contract (ADR-005) as design; its adapter is part of Charter's deferred federation-adapter work.
-> - **The real remaining lock gate is FILIGREE** — still `release/2.3.0` with **no SEI in source**: its locator→SEI backfill + oracle pass have not happened.
+> - **Historical note:** at this 2026-06-02 intake point, **Filigree** was still
+>   `release/2.3.0` with no SEI in source. Current Filigree (3.0.0rc12) can store
+>   opaque SEI/entity IDs through entity associations; oracle/backfill proof remains
+>   a separate conformance task rather than this historical lock gate.
 >
 > **Lock achieved 2026-06-05.** The standard is locked by owner declaration (§0.3). Filigree's locator→SEI backfill, where still outstanding, is now a *conformance/migration* task carried out under the locked standard (oracle-gated, §0.1) — it is no longer a lock blocker. See [conflict-register.md](./conflict-register.md) §B-2 (resolved).
 

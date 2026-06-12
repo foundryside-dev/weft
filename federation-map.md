@@ -2,7 +2,7 @@
 
 **Status:** **Authoritative** as the at-a-glance integration matrix. It names *which pairs compose and which contract carries each pair*, and points to [contracts-index.md](./contracts-index.md) for the contract detail and to the **owning project doc** as the schema authority. It restates no schema.
 
-**Members:** Loomweave, Filigree, Wardline, Legis, Charter (5 realized) + Lacuna (demo specimen, not a member). Shuttle is a roadmap thought-bubble (no repo). See [doctrine.md](./doctrine.md) §1–2 and [members/](./members/).
+**Members:** Loomweave, Filigree, Wardline, and Legis are the live core. Charter has a realized local core/read-only MCP surface but remains a planned Weft integration. Heddle is a design spike, Lacuna is the demo specimen, and Shuttle is a roadmap thought-bubble (no repo). See [doctrine.md](./doctrine.md) §1–2 and [members/](./members/).
 
 **Reading the matrix:** each non-empty cell is a cross-tool binding. Per the federation axiom ([doctrine.md](./doctrine.md) §5) every binding is **enrich-only** — removing one side never breaks the other's core flow. Every binding keys on **[SEI](./sei-standard.md)**.
 
@@ -13,7 +13,7 @@ Rows = the producer/initiator; columns = the other side. Numbers in cells refere
 | ↓ / → | Loomweave | Filigree | Wardline | Legis | Charter |
 |---|---|---|---|---|---|
 | **Loomweave** | — | entity-assoc drift via `issues_for` (§1); identity authority for all (§2) | qualname reconciliation (§5); taint-fact store host (§3) | serves SEI `resolve`/`lineage`; consumes git-rename seam (§6) | serves SEI to Charter trace links (§10) |
-| **Filigree** | stores opaque SEI on issues (§1) | — | receives findings (§4; today via Loomweave translator — asterisk [A-1](./asterisk-register.md)) | hosts governed sign-off binding (§7) | (planned) requirement ↔ work links |
+| **Filigree** | stores opaque SEI on issues (§1) | — | receives findings (§4; native emitter shipped, A-1 pending Loomweave-absent proof) | hosts governed sign-off binding (§7) | (planned) requirement ↔ work links |
 | **Wardline** | persists taint facts to Loomweave (§3); emits `metadata.wardline.qualname` (§5) | findings → Filigree (§4) | — | findings routed through Legis enforcement (§8) | (planned) findings ↔ trust requirements |
 | **Legis** | polls SEI/lineage; supplies git-rename signal (§6) | SEI-keyed sign-offs on issues (§7) | governs findings, trust vocab pass-through (§8) | — | consumes Charter preflight facts (§9) |
 | **Charter** | SEI consumer for trace links (§10) | (planned) link requirements to issues | (planned) link findings to requirements | exposes `preflight_facts.v1` (§9) | — |

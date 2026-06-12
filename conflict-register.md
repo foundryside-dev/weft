@@ -14,7 +14,7 @@
 
 | # | Drift (old hub said → reality) | Authoritative source | Fix |
 |---|---|---|---|
-| A-1 | Roster = 4 (filigree/clarion/wardline/**shuttle**) → reality is **5 realized members** (+ legis, + charter) and shuttle is a thought-bubble | repos exist at `~/legis`, `~/charter` | Roster ruled (§B-1); members added under [members/](./members/) |
+| A-1 | Old roster = 4 (filigree/clarion/wardline/**shuttle**) → hub ruling admitted Legis + Charter to the Weft family and excluded Shuttle; current launch taxonomy is 4 live core + Charter planned integration | repos exist at `~/legis`, `~/charter`; current adapter status in [members/charter.md](./members/charter.md) | Roster ruled (§B-1); taxonomy refreshed 2026-06-12 |
 | A-2 | `lacuna` (the demo specimen) absent → it is the federation's canonical demonstrator | `~/lacuna/README.md` | [members/lacuna.md](./members/lacuna.md) added |
 | A-3 | filigree "v2.1 / 113 MCP tools" → **2.3.0 / 115 tools** | `~/filigree/pyproject.toml`, README | weft stops restating; [members/filigree.md](./members/filigree.md) snapshots + points |
 | A-4 | clarion "v1.0 walking skeleton, v0.1 in flight / 7 MCP tools" → **v1.3.0 shipped / 39 tools** | `~/clarion/Cargo.toml`, README | weft stops restating; [members/loomweave.md](./members/loomweave.md) snapshots + points |
@@ -36,7 +36,9 @@
 
 **Conflict.** Loomweave's founding doctrine (`~/clarion/docs/suite/weft.md`, dated 2026-06-05) lists only Loomweave/Filigree/Wardline + Shuttle (proposed) and names **neither legis nor charter**. But `~/legis/README.md` calls legis "the fourth Weft product," and `~/charter/README.md` calls charter "the fifth member" with "shuttle a future sixth." Three live sources, three different rosters.
 
-**Ruling (hub, 2026-06-05, ratified by John).** The canonical roster is **five realized members: Loomweave, Filigree, Wardline, Legis, Charter.** Shuttle is a **roadmap thought-bubble, not a member** — it has no repo and is displaceable by any better idea (Charter, started 2026-06-04, is exactly such a better idea taking priority). Lacuna is the **demo specimen, not a member.** The hub ([doctrine.md](./doctrine.md)) is the body that declares the roster going forward.
+**Ruling (hub, 2026-06-05, ratified by John).** The canonical roster admitted **Loomweave, Filigree, Wardline, Legis, and Charter** to the Weft family. Shuttle is a **roadmap thought-bubble, not a member** — it has no repo and is displaceable by any better idea (Charter, started 2026-06-04, is exactly such a better idea taking priority). Lacuna is the **demo specimen, not a member.** The hub ([doctrine.md](./doctrine.md)) is the body that declares the roster going forward.
+
+**Taxonomy refresh (2026-06-12).** Admission is not the same as launch-core integration status. Current hub docs distinguish four live core tools (Loomweave, Filigree, Wardline, Legis) from Charter's realized local core/read-only MCP surface with Weft adapters still planned.
 
 **Owner / follow-up.** weft (declared). Downstream: Loomweave's founding doctrine is reduced to a pointer to [doctrine.md](./doctrine.md) (Part B of the cutover), so the divergent three-member framing no longer sits in a repo as a competing authority.
 
@@ -170,7 +172,7 @@ filigree `.filigree/` + `.filigree.conf`, loomweave `.loomweave/`, wardline
 wherever the process ran. "Federated" had become "sloppy": no shared layout, stores
 littering the working tree, no single place an operator declares federation config.
 **Ruling (PM, 2026-06-07).** Two surfaces, two owners — codified as **conventions
-[C-9](./conventions.md#c-9)**:
+[C-9](./conventions.md#c-9-federation-configstore-layout-weftmember-runtime-state-operator-owned-wefttoml)**:
 - **`.weft/<member>/`** holds machine-written runtime state; each member is the **sole
   writer** of its own subtree, never touches a sibling's.
 - **`weft.toml`** (project root) is **operator-authored, members read-only** — *no

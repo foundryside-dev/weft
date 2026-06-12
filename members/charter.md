@@ -18,4 +18,5 @@ Requirements/obligations, trace-link ontology and authority states, baselines, v
 ## Notes
 
 - Charter's README describes the implemented local core; the hub website presents Charter as a planned extension because its Weft integrations are still pending.
+- Some Charter source ADRs still carry legacy "Clarion"/"Loom" naming. The hub uses the current Weft/Loomweave terminology and treats those names as historical until Charter refreshes its own docs.
 - Because adapters are deferred, Charter's matrix cells in [federation-map.md](../federation-map.md) are marked "planned."

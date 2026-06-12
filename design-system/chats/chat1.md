@@ -1,5 +1,11 @@
 # Font Installation Issue
 
+> **Archive note (2026-06-12).** This chat is a historical design-system
+> handoff captured before the Weft taxonomy refresh. Current project
+> documentation treats Loomweave, Filigree, Wardline, and Legis as the four live
+> core members; Charter has a realized local core/read-only MCP surface but
+> remains a planned Weft integration until adapters ship.
+
 _Started 2026-06-04 19:47 UTC_
 
 ---
@@ -76,7 +82,7 @@ Loom is a suite for enterprise-grade code governance on small teams. Its members
 
 The metaphor is deliberate: distinct threads stay distinct but gain value by being woven together. Loom is a **family name** and a **composition doctrine** — not a platform, not a shared runtime, not a store, and not a broker. There is nothing called "Loom" to install, deploy, or keep running. What exists are the member products, a set of narrow interop contracts between them, and this hub (`~/loom`) which is documentation only — it holds no runtime, no store, and no code.
 
-> **Roster note.** The canonical federation roster is **5 realized members** (Clarion, Filigree, Wardline, Legis, Charter); Shuttle is a roadmap thought-bubble, not a sixth member. This roster was ruled by the hub on 2026-06-05. Legis and Charter shipped/were-designed after the founding doctrine was last written and post-date its three-member framing; the hub admits them here as the body that declares the roster. See [conflict-register.md](./conflict-register.md) §B-1 for the ruling and its evidence.
+> **Roster note (historical).** At capture time this design-system prompt treated the canonical federation roster as **five admitted products** (Clarion/Loomweave, Filigree, Wardline, Legis, Charter). The current hub taxonomy is four live core members plus Charter as planned Weft integration. Shuttle remains a roadmap thought-bubble, not a committed member.
 
 ## 2. The products and their authoritative domains
 
@@ -804,4 +810,3 @@ What I changed to kill it:
 - Confirmed the fonts are real binaries (valid TrueType signature, full byte sizes) bundled in `fonts/` with their OFL licenses — fully offline, no CDN.
 
 The hub now renders in-brand from the first frame. If the banner lingers in your view, a hard refresh should clear the stale state.
-

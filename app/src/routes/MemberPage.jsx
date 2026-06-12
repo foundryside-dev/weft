@@ -39,7 +39,7 @@ export function MemberPage({ id }) {
     );
   }
 
-  const isProposed = m.group?.includes('proposed');
+  const isProposed = m.group?.includes('planned') || m.group?.includes('proposed');
   const isDemo = m.id === 'lacuna';
   const roleVerb = isProposed ? 'is planned for' : isDemo ? 'shows' : 'handles';
 

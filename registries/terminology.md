@@ -4,7 +4,7 @@ Lean registry of terms whose usage **within this hub** must stay consistent. (Cr
 
 | Term | Hub meaning | Don't say |
 |---|---|---|
-| **member** | One of the 5 realized federation products (Loomweave, Filigree, Wardline, Legis, Charter) | Don't call Shuttle or Lacuna a "member" |
+| **member** | A product admitted to the Weft family. Current launch taxonomy separates **live core** (Loomweave, Filigree, Wardline, Legis) from **planned integration** (Charter) and design spikes (Heddle). | Don't call Shuttle or Lacuna a "member"; don't imply Charter gates the live-core launch until its adapters ship |
 | **thought-bubble** | Shuttle's status: a roadmap idea, no repo, displaceable | Don't call Shuttle "proposed member" or imply a reserved slot |
 | **demonstration specimen** | Lacuna's role: the deliberately-flawed target the suite runs against | Don't call Lacuna a member or a customer |
 | **SEI** | Stable Entity Identity — opaque, Loomweave-minted; the identity | Don't equate SEI with the `locator` |

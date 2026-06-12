@@ -24,7 +24,7 @@ map and its coordinate system."*
 ## Quick-start
 
 ```bash
-loomweave install --path .   # one-step agent setup: initialises .loomweave/
+loomweave install --path .   # one-step agent setup: initialises .weft/loomweave/
 loomweave analyze            # extract the structural graph (no LLM needed)
 loomweave serve              # expose the consult-mode MCP surface
 ```

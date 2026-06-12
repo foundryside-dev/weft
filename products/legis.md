@@ -27,14 +27,14 @@ Legis runs as a service; agents drive it over MCP (and the HTTP surface).
 
 ```bash
 legis serve     # start the HTTP governance service
-legis mcp       # start the MCP stdio surface (read-mode tools)
+legis mcp --agent-id <id>  # start the MCP stdio surface for an attributable agent
 ```
 
 ```text
-policy_evaluate { change }      # CLEAR / VIOLATION / UNKNOWN verdict
-policy_explain  { change }      # why the verdict, which cell
+policy_evaluate { policy, target }  # CLEAR / VIOLATION / UNKNOWN verdict
+policy_explain  { policy, target }  # why the verdict, which cell
 override_submit { ... }         # one verb routes all four enforcement cells
-signoff_status_get { sei }      # SEI-keyed sign-off ledger state
+signoff_status_get { seq }      # governed sign-off request state
 ```
 
 `override_submit` is the unified verb across all four cells; `NEED_INPUTS` comes
@@ -71,11 +71,11 @@ Federation role and integration details:
 | Surface | Verb | Does |
 |---------|------|------|
 | CLI | `legis serve` | start the HTTP governance service |
-| CLI | `legis mcp` | start the MCP stdio surface |
+| CLI | `legis mcp --agent-id <id>` | start the attributable MCP stdio surface |
 | MCP | `policy_evaluate` | produce a governance verdict |
 | MCP | `policy_explain` | explain the verdict and enforcement cell |
 | MCP | `override_submit` | submit an override (routes all four cells) |
-| MCP | `signoff_status_get` | SEI-keyed sign-off ledger state |
+| MCP | `signoff_status_get` | governed sign-off request state by `seq` |
 | MCP | `git_rename_feed_get` | the git-rename provider seam |
 | MCP | `scan_route` | route a scan finding into governance |
 

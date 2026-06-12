@@ -137,13 +137,11 @@ generations**. Evolution is by introducing a *new* generation, never mutating an
 existing one — so a member that pins a generation is wire-stable across Filigree
 releases.
 
-!!! warning "Generation name — owning-repo spelling"
-    Filigree ADR-002 names this generation **`loom`** (its fixtures live at
-    `tests/fixtures/contracts/loom/`); it is **published at the `/api/weft/*`
-    path** and referred to as the *weft generation* here. The path is the
-    wire-critical truth and is correct above; expect the `loom` spelling in
-    Filigree's own repo until the rebrand reaches it — pin to whatever `~/filigree`
-    ships.
+!!! note "Generation name"
+    Filigree now names the federation generation **`weft`** in source and fixtures
+    (`/api/weft/*`, `tests/fixtures/contracts/weft/`). Older `loom` references are
+    historical rebrand residue; pin to the named generation and path the installed
+    Filigree build publishes.
 
 | Surface | Signature (snapshot) | Role / obligation |
 |---|---|---|
@@ -154,9 +152,12 @@ releases.
 | Entity associations (reverse) | `GET /api/entity-associations?entity_id=…` | Given an entity id, every issue bound to it. MCP: `entity_association_list_by_entity`. |
 | Reconciliation feed | `GET /api/weft/changes` | Incremental cursor. Carries `issue_deleted` tombstones + `affected_entities` — on delete, purge your mirrored bindings (I-3). |
 
-Auth: optional bearer (`WEFT_FEDERATION_TOKEN`; deprecated aliases `FILIGREE_API_TOKEN`
-/ `FILIGREE_FEDERATION_API_TOKEN` during transition) gates the `/api/weft/*` surface;
-unset = loopback-trust, wire-compatible.
+Auth: the `/api/weft/*` surface resolves a bearer token in three tiers:
+`WEFT_FEDERATION_TOKEN` (with deprecated `FILIGREE_API_TOKEN` /
+`FILIGREE_FEDERATION_API_TOKEN` aliases during transition), then the auto-minted
+`<store_dir>/federation_token` file used by daemon/install/doctor paths, then
+absent/off. Do not assume "unset env" means unauthenticated loopback trust; check
+the resolved token state.
 
 ### 2.3 Wardline — trust-boundary findings & qualname producer
 
@@ -185,31 +186,31 @@ it never re-adjudicates trust ("Wardline analyses, Legis governs").
 | Sign-off request | `POST /signoff/request` | Open a governed sign-off. |
 | Sign-off ↔ issue bind | `POST /signoff/{request_seq}/bind-issue` · `GET /signoff/{request_seq}/binding` | Bind a sign-off to a Filigree issue via the entity-association surface (§2.2). Filigree keeps issue-lifecycle authority. |
 | Sign-off sign | `POST /signoff/{request_seq}/sign` | Record the SEI-keyed attestation. |
-| Findings enforcement intake | `POST /wardline/scan-results` | Route Wardline findings through the 2×2 enforcement cells; **trust vocabulary passes through verbatim** ([contracts-index.md](./contracts-index.md) §8). |
+| Findings enforcement intake | `POST /wardline/scan-results` | Route Wardline findings through the 2×2 enforcement cells; requires the signed artifact's `findings` key (present empty list = clean, absent key = malformed); **trust vocabulary passes through verbatim** ([contracts-index.md](./contracts-index.md) §8). |
 | Governance reads | `GET /governance/identity-gaps` · `GET /governance/lineage-integrity` | Orphan-as-governance-gap; lineage-divergence detection at the boundary. |
 | Git-rename provider | `GET /git/renames?rev_range=…` | Supplies the rename signal Loomweave's matcher consumes through the typed `GitRenameSource` seam ([contracts-index.md](./contracts-index.md) §6). |
 
 ### 2.5 Charter — preflight facts & SEI trace links *(designed, adapter pending)*
 
-!!! note "Charter is scaffold-state"
-    Charter's federation adapters are **designed in ADRs but not yet shipped**
+!!! note "Charter is local-core state"
+    Charter's local domain core and read-only MCP surface have shipped, but its
+    federation adapters are **designed in ADRs and not yet live**
     ([members/charter.md](./members/charter.md)). The interfaces below are the
-    *designed* contract; treat them as forward-looking until the adapter lands.
+    *designed* Weft integration contract; treat them as forward-looking until the
+    adapter lands.
 
 Authoritative: Charter ADR-006 (preflight facts) + ADR-005 (SEI consumer),
 `~/charter/docs/architecture/decisions/`.
 
 | Surface | Signature (snapshot) | Role / obligation |
 |---|---|---|
-| Preflight-fact envelope | `loom.charter.preflight_facts.v1` — `{ producer{tool,version,project}, facts[], freshness, summary }` | Versioned facts for Legis: `requirement_touched`, `requirement_nearby`, `requirement_verification_stale`, `requirement_verification_missing`, `baseline_drift`. **Facts only — Legis alone decides enforcement.** |
+| Preflight-fact envelope | `weft.charter.preflight_facts.v1` — `{ producer{tool,version,project}, facts[], freshness, summary }` | Versioned facts for Legis: `requirement_touched`, `requirement_nearby`, `requirement_verification_stale`, `requirement_verification_missing`, `baseline_drift`. **Facts only — Legis alone decides enforcement.** |
 | SEI trace-link consumer | stores SEI **opaque** on trace links; marks links stale on lineage change | Never mints/parses SEI; falls back to fragile file/symbol refs when Loomweave is absent (I-1, I-3). |
 
-!!! warning "Envelope name — owning-repo spelling"
-    Charter ADR-006 names the envelope `loom.charter.preflight_facts.v1`; the hub
-    [contracts-index.md](./contracts-index.md) §9 indexes it under the rebranded
-    `weft.charter.preflight_facts.v1`. The owning ADR is authoritative for the
-    wire identifier until the rebrand reaches Charter's repo — pin to whatever
-    `~/charter` ships.
+!!! note "Envelope name"
+    Charter source has moved to the `weft.charter.*` namespace, while some ADR text
+    still carries legacy `loom`/`clarion` names. The hub indexes the intended Weft
+    wire identifier; verify against `~/charter` before implementing an adapter.
 
 ---
 

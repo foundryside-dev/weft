@@ -17,8 +17,10 @@ reaching a trusted producer with no validation in between — a semantic-taintin
 static analyzer with zero runtime dependencies.
 
 Its "configuration" is the source code itself plus the adjacent trust
-declarations; there is no separate authoritative config store. It is the
-federation's **trust-policy surface**, and it emits findings as SARIF.
+declarations; `weft.toml [wardline]` and `.weft/wardline/` carry local
+operator/state concerns. It is the federation's **trust-policy surface**, and it
+emits findings as JSONL/SARIF/agent summaries, native Filigree scan-results, and
+Legis governance artifacts.
 
 ## Quick-start
 
@@ -42,8 +44,8 @@ load-bearing.
 - **Wardline → Loomweave** — taint facts enrich the entity graph, keyed on SEI
   ([contracts-index.md §3](../contracts-index.md)).
 - **Wardline → Filigree** — findings become tracked work. **Asterisk A-1
-  (live):** they route through Loomweave's SARIF translator until the native
-  emitter retires the asterisk
+  (live):** the native emitter has shipped; the asterisk remains until the
+  Loomweave-absent Wardline+Filigree path is proven end to end
   ([asterisk-register.md](../asterisk-register.md);
   [contracts-index.md §4](../contracts-index.md)).
 - **Wardline → Legis** — findings are governed by Legis

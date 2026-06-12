@@ -4,16 +4,16 @@ Load-bearing factual claims the hub makes, each with its **authoritative source*
 
 | # | Claim | Authoritative source |
 |---|---|---|
-| C-1 | The federation has 5 realized members: Loomweave, Filigree, Wardline, Legis, Charter | [doctrine.md](../doctrine.md) §1–2; repos at `~/{loomweave,filigree,wardline,legis,charter}` |
+| C-1 | The live core has 4 members: Loomweave, Filigree, Wardline, Legis; Charter has a realized local core/read-only MCP surface but remains a planned Weft integration | [doctrine.md](../doctrine.md) §1–2; repos at `~/{loomweave,filigree,wardline,legis,charter}` |
 | C-2 | Shuttle has no repo and is a roadmap thought-bubble, not a member | absence of `~/shuttle`; John 2026-06-05 |
 | C-3 | Lacuna is the demonstration specimen, not a member | `~/lacuna/README.md` |
 | C-4 | Loomweave is the suite's identity authority; SEI is the binding key; locator is the address | [sei-standard.md](../sei-standard.md); Loomweave ADR-038 |
 | C-5 | SEI standard is **LOCKED (2026-06-05)**; interface frozen, post-lock changes need a versioned revision; member backfills are conformance tasks under the lock | [sei-standard.md](../sei-standard.md) §0.3; [conflict-register.md](../conflict-register.md) §B-2 |
 | C-6 | Entity-association routes are classic `/api/issue/…` + `/api/entity-associations`, not `/api/weft/…` | `~/filigree/src/filigree/dashboard_routes/entities.py`; `~/filigree/docs/federation/contracts.md` |
 | C-7 | Wardline↔Filigree is enrich-only (work-tracking), not load-bearing | `~/wardline/docs/integration/2026-05-29-wardline-weft-integration-brief.md`; `~/wardline/src/wardline/core/filigree_emit.py` |
-| C-8 | Asterisk A-1 (Wardline→Filigree via Loomweave SARIF) is LIVE; A-2 (registry import) RETIRED 2026-06-05 | [asterisk-register.md](../asterisk-register.md); Loomweave ADR-015 Rev 2, ADR-018 Rev 3 |
+| C-8 | Asterisk A-1 is LIVE after Wardline's native Filigree emitter shipped, pending Loomweave-absent end-to-end proof; A-2 (registry import) RETIRED 2026-06-05 | [asterisk-register.md](../asterisk-register.md); `~/wardline/src/wardline/core/filigree_emit.py`; Loomweave ADR-018 Rev 3 |
 | C-9 | The `weft://` URI scheme is formally closed (superseded by SEI) | [sei-standard.md](../sei-standard.md) §0/§9; [uri-scheme.md](../uri-scheme.md) |
 | C-10 | The founding doctrine, glossary, and SEI standard are now authoritative in this hub; repo copies are pointers | this cutover (Part B); [MANIFEST.md](../MANIFEST.md) |
 | C-11 | `wardline-watcher` and the `.old` repos are out of the federation | John 2026-06-05; `~/wardline-watcher/README.md` |
 | C-12 | Charter (requirements) and Shuttle (change execution) are distinct, non-overlapping | Charter ADR-001; [doctrine.md](../doctrine.md) §2 |
-| C-13 | Weft ships as 5 separately-installable products behind one brand; one coordinated 1.0 launch (gated by Wardline + Charter), independent semver after | [SHIPPING.md](../SHIPPING.md) |
+| C-13 | Weft ships as separately-installable products behind one brand; current launch gating is the live core plus the documented dogfood/Rust gates, while Charter is non-gating planned integration | [SHIPPING.md](../SHIPPING.md); [pm/product/current-state.md](../pm/product/current-state.md) |

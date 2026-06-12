@@ -32,7 +32,7 @@ Wardline computes per-entity taint facts and persists them to Loomweave; Loomwea
 
 ## 4. Wardline findings → Filigree (native emitter shipped; A-1 live pending composition test)
 
-Wardline findings reach Filigree's scan-results intake. The legacy path routes through Loomweave's `loomweave sarif import` translator into the classic `POST /api/v1/scan-results` — this is **asterisk [A-1](./asterisk-register.md#a-1--wardline--filigree-findings-are-pipeline-coupled-through-loomweave)**. Wardline's **native Filigree emitter has now shipped** (`~/wardline/src/wardline/core/filigree_emit.py`), posting directly to the federation generation (`POST /api/weft/scan-results`); A-1 stays live until the Loomweave-absent Wardline+Filigree composition is demonstrated end-to-end (see the asterisk for the exact evidence level).
+Wardline findings reach Filigree's scan-results intake. The legacy path routes through Loomweave's `loomweave sarif import` translator into the classic `POST /api/v1/scan-results` — this is **asterisk [A-1](./asterisk-register.md#a-1-wardline-filigree-direct-composition-is-not-yet-proven-loomweave-absent)**. Wardline's **native Filigree emitter has now shipped** (`~/wardline/src/wardline/core/filigree_emit.py`), posting directly to the federation generation (`POST /api/weft/scan-results`); A-1 stays live until the Loomweave-absent Wardline+Filigree composition is demonstrated end-to-end (see the asterisk for the exact evidence level).
 
 The emit **pins the finding's suppression provenance**: a non-active finding carries its state under `metadata.wardline.suppression_state` (exactly one of `baselined` | `waived` | `judged`) plus an optional `metadata.wardline.suppression_reason`; an **active** finding **omits the key entirely** — absent ⇒ active, never the literal `"active"` on this seam. This is precisely what lets Filigree's ingest preserve the suppression signal so `finding_promote` refuses/warns on a baselined finding rather than minting a fresh P1. Pinning it here **closes the Wardline side of the hub follow-up C-10(b)**.
 
@@ -58,7 +58,7 @@ Legis binds governed sign-offs to Filigree issues using the entity-association s
 
 ## 8. Legis ↔ Wardline — findings routing through enforcement
 
-Legis routes Wardline findings (`POST /wardline/scan-results` on Legis) through its 2×2 enforcement cells (chill / coached / structured / protected). **Trust vocabulary passes through verbatim** — "Wardline analyses, Legis governs"; Legis never re-adjudicates trust.
+Legis routes Wardline findings (`POST /wardline/scan-results` on Legis) through its 2×2 enforcement cells (chill / coached / structured / protected). The signed Wardline artifact contract carries a required `findings` key; a present empty list means a clean scan, while an absent/renamed key is malformed and must not silently govern zero findings. Wardline emits the key from `src/wardline/core/legis.py`; Legis validates it in `src/legis/wardline/ingest.py`, with the golden vector at `~/legis/tests/contract/weft/vectors/wardline_scan_artifact.v1.json`. **Trust vocabulary passes through verbatim** — "Wardline analyses, Legis governs"; Legis never re-adjudicates trust.
 
 - **Authoritative:** Legis (`src/legis/service/wardline.py`, `wardline/*`) + `~/loomweave/docs/federation/contracts.md` (§ trust-vocabulary convergence).
 

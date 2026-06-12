@@ -41,8 +41,9 @@ export const CORE_MEMBERS = [
       ['scale target', 'elspeth (~425k LOC)', 'first-customer target'],
     ],
     sources: [
-      ['Product site', `${ORG}/loomweave/tree/main/www`],
       ['README', `${ORG}/loomweave/blob/main/README.md`],
+      ['User docs', `${ORG}/loomweave/tree/main/docs/loomweave/1.0`],
+      ['Architecture decisions', `${ORG}/loomweave/tree/main/docs/loomweave/adr`],
       ['Integration docs', `${ORG}/loomweave/blob/main/docs/federation/contracts.md`],
     ],
   },
@@ -106,8 +107,8 @@ export const CORE_MEMBERS = [
     owns: [
       'the trust lattice — an 8-state taint lattice (not a "tier 1–4" model)',
       '3 canonical decorators: external_boundary, trust_boundary, trusted',
-      '~20 rules — PY-WL-101..120',
-      'the scanner engine and the wardline.yaml manifest',
+      'the PY-WL rule set',
+      'the scanner engine and the weft.toml [wardline] + .weft/wardline/ local surface',
       'the reference corpus used to validate the analyzer',
     ],
     composes: [
@@ -119,7 +120,7 @@ export const CORE_MEMBERS = [
     facts: [
       ['version', 'v1.0.0rc4', 'current release line'],
       ['analyzer', 'semantic-tainting static analyzer', ''],
-      ['output', 'SARIF v2.1.0', ''],
+      ['output', 'JSONL / SARIF / agent-summary / Legis artifact / native Filigree scan-results', ''],
       ['lattice', '8-state taint lattice', 'not tier 1–4'],
       ['rules', '~20 (PY-WL-101..120)', ''],
     ],
@@ -159,7 +160,7 @@ export const CORE_MEMBERS = [
     facts: [
       ['version', 'v1.0.0', 'current release'],
       ['service', 'HTTP + MCP service live', 'git/CI, overrides, signoff, policy, Wardline routing'],
-      ['MCP tools', '~13', 'read-mode'],
+      ['MCP tools', 'read + governed write actions', 'see src/legis/mcp.py'],
     ],
     sources: [
       ['README', `${ORG}/legis/blob/main/README.md`],
@@ -219,10 +220,10 @@ export const PROPOSED_MEMBERS = [
     domain: 'Temporal graph + change impact',
     surface: 'the temporal/change-impact candidate',
     answers: 'what changed over time, and what downstream verification does that imply?',
-    status: 'early design',
+    status: 'design spike · not admitted',
     repo: null,
-    repoLabel: 'no public repo yet',
-    repoNote: '',
+    repoLabel: 'local design repo only',
+    repoNote: 'Local design repo: ~/heddle; no public/admitted product repo yet.',
     authority:
       'a candidate temporal graph for per-entity change history across runs. Loomweave explains the current codebase; Heddle would explain how it changed over time.',
     owns: [
@@ -237,14 +238,14 @@ export const PROPOSED_MEMBERS = [
       'would help Charter and Legis decide what needs re-verification after a change.',
     ],
     pending:
-      'Heddle is an early design for a future Weft extension. The next step is proving whether the temporal graph is useful enough to build.',
+      'Heddle is an early design spike, not a committed member. The next step is proving whether the temporal graph is useful enough to build.',
     facts: [
-      ['status', 'early design', 'validation in progress'],
+      ['status', 'design spike', 'validation in progress'],
       ['tracker', 'weft-e4589e6570', 'design validation'],
-      ['repo', 'none/public TBD', 'no public repo yet'],
+      ['repo', '~/heddle', 'local design repo; no package/CLI/MCP yet'],
     ],
     sources: [
-      ['Local README', null],
+      ['Local design repo', null],
       ['Weft roadmap idea', `${ORG}/weft/blob/main/roadmap-ideas.md`],
       ['Product decision', `${ORG}/weft/blob/main/pm/product/decisions/0013-post-launch-priority-stack-and-discovery-pipeline.md`],
     ],
@@ -281,7 +282,7 @@ export const LACUNA = {
   blurb:
     'A small demo application with seeded issues. Point the Weft tools at it and watch the suite work end to end.',
   detail:
-    'Planted Wardline trust violations (PY-WL-101..104) and Loomweave structural findings (dead code, import cycles), tracked in Filigree. The flaws are intentional and permanent — removing one fails make verify.',
+    'Planted Wardline trust violations (PY-WL-101..126 plus fail-closed parse coverage), Loomweave structural findings, and Legis policy-boundary evidence, tracked through the tour manifest. The flaws are intentional and permanent — removing one fails make verify.',
   authority:
     'the demo app, seeded-issue manifest, tour harness, generated explainers, and combination-matrix coverage for showing the Weft tools together.',
   owns: [

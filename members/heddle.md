@@ -1,8 +1,8 @@
 # Heddle (planned extension)
 
 **Status:** **Early design for a future Weft extension.**
-**Repo:** none yet · **Language:** TBD
-**Current details:** no public repo yet; design validation tracked by `weft-e4589e6570`. For the latest details, use `~/heddle/README.md`, `~/heddle/spike/SPIKE-BRIEF.md`, and the Weft tracker.
+**Repo:** local design repo `~/heddle`; no admitted/public product repo yet · **Language:** TBD
+**Current details:** design spike only; no package, CLI, MCP server, or source implementation yet. Design validation is tracked by `weft-e4589e6570`. For the latest details, use `~/heddle/README.md`, `~/heddle/spike/SPIKE-BRIEF.md`, and the Weft tracker.
 
 ## Proposed authority
 

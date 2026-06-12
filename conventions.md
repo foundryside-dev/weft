@@ -159,32 +159,28 @@ couplings. The hub coordinates; it does not block any member's independent relea
   - **(h) Namespace charset `[A-Za-z0-9_-]+`, matched case-insensitively** — an uppercase-namespaced sibling must register as a boundary.
 
   A single command must restore all blocks; a write must never empty the file.
-- **Reference:** **all four writers now conform** — loomweave (`instructions.rs`,
-  exemplary), filigree, legis, and wardline. The cross-tool investigation (filigree
-  issue `filigree-bcbd4d66fd`) originally found filigree and legis both (i)
-  **truncate-to-EOF** on a missing own end-marker and (ii) **swallow a sandwiched
-  sibling block**, and wardline additionally (iii) wrote **non-atomically** and could
-  **swallow a foreign block** across an unclosed own-open — **all since FIXED and
-  source + test-verified 2026-06-08**: filigree `7998d75` (`release/3.0.0` + installed
-  rc6); legis `a9a358a` (`origin/main` + rc4 + installed rc4); wardline `c58da86` +
-  `779e3c5` (rc4, 22/22 managed-block tests green). **The C-4 conformance leg of the
-  gate (`weft-eb3dee402f`) is now MET** — the contract is normative here and every
-  writer satisfies it; the campaign issue is clear to close on the conformance
-  criterion. The original *full* 0-byte-emptying hypothesis (wardline's non-atomic
-  truncate-then-write on a crash) is now **closed by construction**: all wardline writes
-  go through the atomic temp+`os.replace`, refuse-empty path. **Open forward-port
-  caveat:** filigree's and legis's `main` branches still lag their fix branches — a
-  post-launch trunk-merge must carry these fixes forward. *NB: this scorecard was
-  INVERTED before the 2026-06-08 pass (it certified the fixed members as non-conforming
-  and the defective member as conforming); corrected by source-verification against
-  each member repo.*
+- **Reference:** **loomweave's current `instructions.rs` is the exemplar**, with
+  Filigree, Legis, and Wardline now fixed to the same contract in their local
+  writers. The cross-tool investigation (filigree issue `filigree-bcbd4d66fd`)
+  originally found Filigree and Legis both (i) **truncate-to-EOF** on a missing
+  own end-marker and (ii) **swallow a sandwiched sibling block**; Wardline also
+  (iii) wrote **non-atomically** and could **swallow a foreign block** across an
+  unclosed own-open. The normative rule above records the corrected contract, not
+  a pre-existing property of those implementations: Filigree and Legis moved from
+  violating to fixed, Wardline hardened the crash/truncation path, and Loomweave
+  supplies the line-anchored reference implementation. Source-verified against the
+  fetched member repos on 2026-06-12: Filigree `release/3.0.0` (`3.0.0rc12`),
+  Legis `rc5` / `1.0.0`, Wardline `rc5`, and Loomweave `rc4` / `1.1.0-rc4`.
+  **The C-4 conformance leg of the gate (`weft-eb3dee402f`) is met for those
+  channels.** If a post-launch trunk differs from these branches, the forward-port
+  must carry the same C-4 invariants.
 
 | Member | State | Evidence |
 |---|---|---|
-| filigree | **conforming** (`release/3.0.0` + installed 3.0.0rc6) | (b)/(c)/(d) hold: the rewrite is bounded at the first foreign-namespace fence (`_first_foreign_fence_pos` + `_INSTR_FENCE_RE`), incl. the well-formed replace path (`own_end < foreign` guard) — no truncate-to-EOF across a foreign block; append-on-missing-end preserves the tail. (g) atomic temp+rename with refuse-empty guard; no inject path emits empty content. SessionStart auto-refresh (`hooks.py`) now runs the safe path. Fixed by `7998d75` (filigree-bcbd4d66fd) + `a17fa68`. **Caveat:** `release/3.0.0`-only — `main` still carries the vulnerable inject path (`main:install.py:191,198`); forward-port risk if `main` becomes post-launch trunk. *Prior "pending / fix landing now" cell was STALE — fix had already landed. Source-verified 2026-06-08.* |
-| wardline | **conforming** (rc4 + editable install) — `src/wardline/install/block.py` | (b)–(h) satisfied. Adopts the foreign-fence-bounded algorithm: a generic **case-insensitive** namespaced fence detector (clause (h)), a balance/nesting-aware `_first_real_foreign_block_pos` (`:71`) + `_first_own_open_fence_pos` (`:97`), and three explicit span branches — append-on-missing-end (d) / well-formed-replace + foreign-safe own-dup canonicalisation (e) / bounded recovery (c) — that **never cross a real foreign fence**; own-duplicates-beyond-foreign preserved+surfaced (e); foreign blocks never reordered (f); all writes routed through an atomic mode-preserving `_atomic_write_text` (temp + `os.replace`, refuse-empty guard `:156,172`) (g); plus a convergence guard against unbounded growth. Fixed by `c58da86` + `779e3c5` (the latter closes two adversarial-review findings: a quoted foreign marker in own body forcing spurious recovery → sticky corruption, and a case-sensitive dedup miss). 22/22 managed-block tests green (foreign-sandwich, unclosed-own+foreign, two-call-orphan, uppercase-boundary, atomic-refuse-empty, shielded-dup-converge); suite 2607 green; live-verified on installed rc4. wardline issue `wardline-906d19b29a` closed. **Source + test-verified 2026-06-08** (ran the test file: 22 passed). |
-| loomweave | **conforms (rc3 + installed)** | `crates/loomweave-cli/src/instructions.rs` is exemplary at code tier (namespaced `<!-- loomweave:instructions -->` block with `:v{version}:{hash}` provenance, preserves filigree+wardline, atomic temp-rename, malformed-recovery, both files), wired into `install --instructions` + `doctor`. **Live on `rc3`/`origin/rc3` (commit `0a93731`) and in the installed channel (1.1.0-rc3 — verified 2026-06-08).** The *only* gap is `main`, which lags `rc3` by 45 commits incl. this surface, pending the gated `rc3`→`main` merge (`weft-46f866cb85`, deliberately held below the dogfood-#2 gate). Corrects a prior stale cell that read "branch-only / no surface" — there is no `feat/agent-instructions-injection` branch; that was main/old-rc1 inference, not source-of-truth. |
-| legis | **conforming** (rc4 + `origin/main` + installed 1.0.0rc4) | (b)/(c)/(d)/(g) hold: `inject_instructions` bounds at the first foreign fence (`_first_foreign_fence_pos`) and anchors only its own top-level open fence (`_first_own_open_fence_pos`) — no truncate-to-EOF, no sibling-swallow; append-on-missing-end preserved; `_atomic_write_text` refuses empty writes (`install.py:229-231`). SessionStart + MCP-boot auto-refresh run the safe path. Fixed by `a9a358a` (weft id `legis-068e359d28`); 64/64 install tests green incl. sandwich / bounded-recovery / refuse-empty vectors. *Prior "pending (non-conforming)" cell was STALE. NB: local `main` is 77 commits behind `origin/main` and predates the fix — verify against `origin/main`, not local main. Source-verified 2026-06-08.* |
+| filigree | **conforming (fixed)** (`release/3.0.0`, package `3.0.0rc12`) | `src/filigree/install.py` implements the shared contract: `_INSTR_FENCE_RE` recognises namespaced fences with `[A-Za-z0-9_-]+` and case-insensitive comparison (`:125-146`); `_atomic_write_text` uses temp+`os.replace` and refuses empty/whitespace payloads (`:186-224`); `inject_instructions` bounds replacement at the first foreign fence or EOF, preserves tail bytes, appends when no own marker exists, and surfaces an own duplicate that cannot be canonicalised without crossing a foreign block (`:302-360`). SessionStart freshness runs through the same injector (`hooks.py:216-239`). This is a **fixed** state, not proof the earlier certified cell was ever conforming. |
+| wardline | **conforming (fixed)** (`rc5`) — `src/wardline/install/block.py` | Module-level contract text states the C-4 constraints (`:1-11`). The implementation uses a case-insensitive namespace detector (`:53-60`), `_first_real_foreign_block_pos` and `_first_own_open_fence_pos` to avoid quoted markers and foreign spans (`:71-121`), foreign-safe own-duplicate canonicalisation (`:124-137`), temp+`os.replace` with refuse-empty guard (`:140-175`), append-on-missing-end (`:195-211`), bounded recovery (`:213-235`), and explicit surfacing of duplicates shielded beyond a foreign block (`:237-253`). Prior non-atomic / sibling-swallow behavior is fixed in the current writer. |
+| loomweave | **reference / conforms** (`rc4`, package `1.1.0-rc4`) | `crates/loomweave-cli/src/instructions.rs` is the line-anchored reference: it documents coexistence as the point of the writer (`:11-20`), parses fences by namespace charset `[A-Za-z0-9_-]+` with case-insensitive comparison (`:219-247`), only finds top-level own opens (`:292-316`), bounds malformed recovery at real foreign blocks (`:269-290`), classifies stale duplicate own blocks as a doctor problem (`:86-118`, `:168-199`), and removes only complete own blocks in foreign-free spans (`:334-360`). It is wired into `install --instructions` / `doctor` through `install.rs`. |
+| legis | **conforming (fixed)** (`rc5`, package `1.0.0`) | `src/legis/install.py` mirrors the fixed Filigree contract: `_INSTR_FENCE_RE` recognises namespaced fences with `[A-Za-z0-9_-]+` and case-insensitive comparison (`:41-62`); `_first_own_open_fence_pos` ignores own markers quoted inside foreign blocks (`:65-89`); `_instructions_block_is_current` uses the same foreign-aware bounds (`:222-242`); `_atomic_write_text` refuses empty payloads and uses temp+`os.replace` (`:277-307`); `inject_instructions` creates/updates/appends without crossing a foreign fence and leaves shielded own duplicates for manual resolution (`:310-386`). The `tests/test_install.py` coverage includes sandwich, uppercase sibling, quoted-marker, bounded-recovery idempotency, empty-file create, CRLF, duplicate, and refuse-empty cases. |
 | charter | **exempt** | does not write to shared agent docs. |
 
 ### C-5 — `doctor`/`--fix`/`--repair` applies its auto-fixable subset
@@ -232,7 +228,7 @@ couplings. The hub coordinates; it does not block any member's independent relea
 |---|---|---|
 | loomweave | **reference** | `filigree.rs` `get_json`/`get_json_or_none` return `HttpStatus{status,body}` for non-success; `404→Ok(None)` only; 401/403 preserved, never collapsed to unreachable. |
 | filigree | **conforms** | `registry.py:403-412` `HTTP 401 → cause_kind='auth'` ("check token_env"); other 4xx/5xx → `http_error`; Timeout/Transport → `network`/`unreachable`; `403 BRIEFING_BLOCKED` kept distinct. |
-| wardline | **pending** | a 401 is reported as "could not reach Filigree"; the `filigree_emit` path collapses auth-rejected into unreachable (`filigree_emit.py` docstring drift on `main`). |
+| wardline | **conforms (source)** | `core/filigree_emit.py` now separates auth-rejected (`401`/`403` or token-sent authorization failure) from transport/unreachable errors; the old "could not reach Filigree" collapse is stale. Source-verified 2026-06-12. |
 | legis | **pending** | unverified-distinct; treat as work. |
 | charter | **exempt** | no outbound credentialed call surface yet. |
 
@@ -259,9 +255,11 @@ couplings. The hub coordinates; it does not block any member's independent relea
     under `[<member>]`, owned by that member — each may ship its own now. **The canonical
     store-relocation knob is `[<member>].store_dir`** (legis reference). **Shared /
     cross-member keys** — a sibling's federation endpoint, an `enabled` flag another
-    member reads — are **hub-pinned and PENDING**: they live **once** at a well-known
-    top-level path any member may read (never duplicated into a second section — the §8
-    / glossary managed-clash rule), and **no member bakes them until the layout is pinned.**
+    member reads — are **hub-pinned but partially shipped ahead of the hub**: Loomweave
+    already reads `[filigree].url` as one rung in its Filigree endpoint precedence. The
+    final shared-key layout remains tracked by `weft-a2f4cf95c7`; new members should
+    treat existing shipped keys as compatibility facts, not a blank cheque to invent
+    parallel `[<member>.<sibling>]` layouts.
     A member that **already resolves a sibling endpoint** must **keep sibling resolution
     working this pass** via env/flag/on-disk discovery — but do *not* migrate the endpoint
     into a `[<member>.<sibling>]` weft.toml key. A **persisted operator-declared
@@ -281,8 +279,9 @@ couplings. The hub coordinates; it does not block any member's independent relea
 - **Schema status.** The `.weft/<member>/` layout, the member-private form (incl.
   `store_dir`), and the malformed=absent rule are **pinned now**. The **shared `weft.toml`
   key layout** (section naming for cross-read facts, the sibling-endpoint home,
-  precedence) is **PENDING** — **loomweave drafts the proposal to the hub** (it surfaced
-  the gap); blessed here, not shipped solo.
+  precedence) is **partially shipped but not fully blessed**: Loomweave reads
+  `WEFT_FILIGREE_URL` → `weft.toml [filigree].url` → `.weft/filigree/ephemeral.port`
+  → local config. The hub still owns the general schema decision.
 - **Sequencing.** This is a **fast-follow**, not part of the C-4 gate — store relocation
   ships per member independently; `weft-eb3dee402f` stays scoped to the managed-block
   fix. Clean-break members orphan lacuna's existing `.loomweave/`/`.wardline/` dirs →
@@ -296,11 +295,11 @@ couplings. The hub coordinates; it does not block any member's independent relea
 
 | Member | State | Evidence |
 |---|---|---|
-| legis | **reference (member-private form) — installed rc4** | `src/legis/config.py`: all four stores (check/governance/binding/pull) resolve under `.weft/legis/`; `[legis].store_dir` read **read-only** from `weft.toml`; absent/section-less/malformed → built-in defaults; `ensure_sqlite_parent` mkdirs at open-time; signing keys untouched. Reinstall **cleared the prior split-brain** (the installed build now resolves `.weft/legis/`, code-verified in lacuna 2026-06-07). rc4 **unmerged to main** (main still rc3). Shared-key layout: N/A (pending). |
-| filigree | **✓† (installed rc6, unmerged to main)** | `.filigree/`→`.weft/filigree/` live: `WEFT_DIR_NAME`/`resolve_store_dir` (`core.py`) + one-shot `migrate_store_to_weft` + `[filigree].store_dir` from `weft.toml`. Currently **also** keeps a permanent legacy `.filigree/` read (conf > `.weft/filigree/` > legacy) — the clean-break ruling drops that rung to *one-shot-import-only* (cascade pending). main still 2.2.0. Code-verified live in rc6, 2026-06-07. |
-| loomweave | **✓† (installed rc3, unmerged to main)** | clean-break `.loomweave/`→`.weft/loomweave/` (`loomweave-core::store` — `WEFT_DIR=".weft"`/`MEMBER="loomweave"`, no legacy `.loomweave/` refs in-tree); federation resolver is **`.weft/filigree/`-only — legacy `.filigree/` tolerance already REMOVED** (negative test `legacy_filigree_port_is_not_resolved_after_clean_break`); `[loomweave].store_dir` read-only fail-soft; SEI frozen. main still v1.0.0. **Owns the shared `weft.toml` schema proposal** (`weft-a2f4cf95c7`). Re-verified 2026-06-08 (`store.rs` resolves `.weft/loomweave/`; installed rc3; lacuna's live store is `.weft/loomweave/loomweave.db`). **Deployment remnant:** lacuna still carries a stale orphan `.loomweave/` (pre-relocation, gitignored) beside the live `.weft/loomweave/` — cleanup owned by `weft-3c9bae6a40`. |
-| wardline | **✓† (installed rc4, unmerged to main)** | clean-break `.wardline/`→`.weft/wardline/` (`core/paths.py`, sole writer, never writes `weft.toml`/sibling subtree); sibling-endpoint URL keys + `_is_safe_url`/`trust_config_urls` guards **retired**; `doctor` updated for the `.weft/` layout. main ~32 commits behind. Code-verified live in rc4, 2026-06-07. |
-| charter | **pending (not installed)** | no live store / not installed (v0.1.0); adopts on first store/install. |
+| legis | **reference (member-private form)** | `src/legis/config.py`: stores resolve under `.weft/legis/`; `[legis].store_dir` is read-only from `weft.toml`; absent/section-less/malformed falls back to built-in defaults; signing keys stay outside the shared namespace. |
+| filigree | **conforms** | canonical store is `.weft/filigree` with legacy `.filigree` fallback and explicit migration via init/install; token file auto-mint lives under the resolved store dir. Source-verified 2026-06-12 on `release/3.0.0` / `3.0.0rc12`. |
+| loomweave | **conforms (ahead on shared-key usage)** | canonical store is `.weft/loomweave` with no `.loomweave` fallback; `[loomweave].store_dir` is read-only. Filigree endpoint precedence is `WEFT_FILIGREE_URL` → `[filigree].url` in `weft.toml` → `.weft/filigree/ephemeral.port` → local config, so the shared endpoint key is already shipped but still needs hub blessing as the general pattern. |
+| wardline | **conforms (source)** | clean-break `.weft/wardline/` layout; reads `weft.toml [wardline]` for its own local config, never writes `weft.toml` or sibling subtrees. Source-verified on rc5 branch; package version still reports v1.0.0rc4. |
+| charter | **pending / local core only** | v0.1.0 has a local domain core and read-only MCP surface; no live federation store/adapters yet. |
 
 ### C-10 — Honest federation seams: report scope, provenance, and config-state; no silent success
 
@@ -385,17 +384,17 @@ couplings. The hub coordinates; it does not block any member's independent relea
 | C-1 nested `.gitignore` | … | R | ✓ | ✓ | … |
 | C-2 WAL checkpoint | … | R† | — | … | … |
 | C-3 token via env | ✓ | R | ✓ | ✓ | — |
-| C-4 managed-block contract | … | … | ✓ | … | — |
+| C-4 managed-block contract | ✓ | R | ✓ | ✓ | — |
 | C-5 `doctor` applies fixes | ✓ | R | ✓ | … | … |
 | C-6 MCP envelope | … | … | … | … | R |
-| C-7 401-vs-unreachable | ✓ | R | … | … | — |
+| C-7 401-vs-unreachable | ✓ | R | ✓ | … | — |
 | C-9 `.weft/`+`weft.toml` layout | ✓† | ✓† | ✓† | R | … |
 | C-10 honest federation seams | … | … | … | … | … |
 | C-11 config-write discipline | ✓ | … | R | ✓ | — |
 
-loomweave is the dominant reference member (C-1/C-2†/C-3/C-5/C-7); charter is the
+loomweave is the dominant reference member (C-1/C-2†/C-3/C-4/C-5/C-7); charter is the
 C-6 reference; legis is the C-9 reference (member-private form). No member is reference
-for C-4 (the unowned cross-tool gap), C-9's shared-key layout (hub-pending), or C-10
+for C-9's shared-key layout (partially shipped, hub-pending), or C-10
 (the newly-named honest-seams bar — dogfood-#2's "works but quiet about itself" tier).
 (C-8 — authority-key confinement — is reserved/proposed; see the C-3 carve-out.)
 
@@ -424,8 +423,8 @@ generated artifact drifted). The hub records them; each member owns the fix.
 - **LW-2 (loomweave):** `README.md`/`CHANGELOG` version drift — README says "v1.0.0 current" while the working branch's `Cargo.toml` is `1.1.0-rc2`; CHANGELOG orders `[1.0.0] 2026-06-05` above `[1.3.0]`.
 - **WD-1 (wardline):** `README.md`/`ROADMAP.md` say "four policy rules / 0.3.0 shipped"; code has **20 rules** (`PY-WL-101..120`) at `1.0.0rc1`.
 - **LG-1 (legis):** `README.md:9` says `1.0.0rc1` and "MCP forthcoming"; code is `1.0.0rc4` with the **13-tool MCP shipped**. No `--version` flag exists. `install`/`session-context` are rc4-only (installed rc3 lacks them).
-- **CH-1 (charter):** not installed (no `charter` console script though `README.md:31` lists `charter --version`); README still calls Charter "the fifth **Loom** member" and points at a `Loom` hub (Loom→Weft rename not propagated); a review doc says "139 tests" vs 164 passing on `main`.
-- **FL-1 (filigree):** mixed `loom`/`weft` naming in `dashboard_auth.py` docstrings + a contract fixture marked "DECLARED — implementation lands in Phase C1" for a route that **is** implemented and mounted.
+- **CH-1 (charter):** local `uv` entrypoints exist (`charter`, `charter-mcp`), but no global install was observed; README/ADRs still carry legacy Loom/Clarion naming in places; a review doc says "139 tests" vs 164 passing on `main`.
+- **FL-1 (filigree): VOID for the `loom` fixture claim (resolved 2026-06-12).** Source now uses `/api/weft/*` and `tests/fixtures/contracts/weft/scan-results.json`. Any remaining Filigree naming drift is member-owned docs cleanup, not a hub contract discrepancy.
 
 ## How a convention moves through its lifecycle
 

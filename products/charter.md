@@ -62,7 +62,9 @@ work / finding references when peers are present.
     Charter's **domain core and read-only MCP surface ship**, but its federation
     integrations (the SEI consumer and the `preflight_facts.v1` producer) remain
     planned, so its matrix cells read **planned**. See the
-    [briefing](../members/charter.md) and the repo for current details.
+    [briefing](../members/charter.md) and the repo for current details. Some
+    Charter ADRs still use legacy Clarion/Loom names; the hub uses
+    Weft/Loomweave terminology.
 
 ## Most-used commands & MCP verbs
 

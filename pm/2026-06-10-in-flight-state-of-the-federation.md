@@ -1,5 +1,10 @@
 # In-flight state of the federation — deep dive (2026-06-10)
 
+> **Archived snapshot.** This was a point-in-time ground-truth sweep on
+> 2026-06-10. Several branch/app facts below are now stale after the 2026-06-11
+> doc/app sync and the rc5/rc4 member movement. Use `pm/product/current-state.md`
+> plus live tracker/repo probes for current status; keep this file as evidence.
+
 Ground-truth sweep of git history, branches, worktrees, working trees, and CHANGELOGs
 across all four members + the hub. Captures **what's in flight, where it's at, and the
 parallel lines of effort that are NOT on the weft board.**

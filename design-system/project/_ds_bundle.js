@@ -3744,7 +3744,9 @@ function Hero() {
       marginTop: 24,
       flexWrap: "wrap"
     }
-  }, /*#__PURE__*/React.createElement(Chip, null, "5 realized members"), /*#__PURE__*/React.createElement(Chip, null, "local-first \xB7 no cloud"), /*#__PURE__*/React.createElement(Chip, null, "no runtime \xB7 no broker \xB7 no store"), /*#__PURE__*/React.createElement(Chip, {
+  }, /*#__PURE__*/React.createElement(Chip, null, "4 live core members"), /*#__PURE__*/React.createElement(Chip, {
+    dim: true
+  }, "Charter \u2014 planned integration"), /*#__PURE__*/React.createElement(Chip, null, "local-first \xB7 no cloud"), /*#__PURE__*/React.createElement(Chip, null, "no runtime \xB7 no broker \xB7 no store"), /*#__PURE__*/React.createElement(Chip, {
     dim: true
   }, "Shuttle \u2014 roadmap")), /*#__PURE__*/React.createElement("div", {
     style: {
@@ -3755,13 +3757,13 @@ function Hero() {
       borderTop: "1px solid var(--border-default)"
     }
   }, /*#__PURE__*/React.createElement(Stat, {
-    label: "Realized members",
-    value: 5,
+    label: "Live core members",
+    value: 4,
     tone: "var(--ready)",
     display: true
   }), /*#__PURE__*/React.createElement(Stat, {
-    label: "Pairwise combos",
-    value: 10,
+    label: "Core pairings",
+    value: 6,
     tone: "var(--accent)",
     display: true
   }), /*#__PURE__*/React.createElement(Stat, {

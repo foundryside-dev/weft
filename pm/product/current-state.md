@@ -1,4 +1,4 @@
-# Current State — Weft Federation        Checkpoint: 2026-06-11 (PDR-0014 Rust reversal + G5 closed)
+# Current State — Weft Federation        Checkpoint: 2026-06-12 (docs sync + G1 verified)
 
 > **Workspace path:** `pm/product/` (NOT the `docs/product/` default — `docs/` is
 > gitignored here as the mkdocs build dir). Resume with `/own-product pm/product`.
@@ -25,9 +25,9 @@ Wave-sequenced (`pm/2026-06-10-gold-standard-launch-sequencing.md`), **owner dis
 Metric: dogfood-pass rate + enrich-only / tree-cleanliness guardrails (metrics.md).
 
 ## In flight
-- **Dogfood gate `weft-cd62a4da9b` — 8 open blockers (G5 CLOSED 2026-06-09, fully documented
-  2026-06-11):** G1 `weft-37455bf407` (triage, unassigned — NOT actively worked despite earlier note)
-  · G13 `weft-61d27fb808` · C-4 `weft-eb3dee402f` · oracle umbrella `weft-1e053eac02` · G9
+- **Dogfood gate `weft-cd62a4da9b` — 7 open blockers (G5 CLOSED 2026-06-09, G1 CLOSED
+  2026-06-12):** G13 `weft-61d27fb808` · C-4 `weft-eb3dee402f` · oracle umbrella
+  `weft-1e053eac02` · G9
   `weft-94284025f5` / G11 `weft-c7e3486246` / G15 `weft-045076e30f` / G18 `weft-eef2fa8bbb`.
   Dispatch rule: every contract fix = producer + consumer + golden vector, per seam, never per repo.
 - **Rust gold closeout `weft-7ee9bccbd7`** (P1, blocks cutover `weft-4b2f948f70` — NOT the dogfood
@@ -77,8 +77,13 @@ bar in roadmap.md (dogfood evidence + grep test + enrich-only + doctrine + hook-
 - **PDR-0014 (2026-06-11)**: PDR-0012 reversal trigger fired — frontier sprint (Fable 5 + Opus
   4.8) merged Rust line into release branches; owner ruled gate-on-gold; `weft-7ee9bccbd7` filed
   (P1, blocks cutover `weft-4b2f948f70`). Rust is no longer post-launch.
-- **G1 (`weft-37455bf407`)**: prior brief incorrectly said "being worked" — tracker shows triage,
-  unassigned. Needs --advance claim to start.
+- **G1 (`weft-37455bf407`) CLOSED 2026-06-12**: Wardline/Legis source contains the
+  required `findings` key contract, and the current rc5 tips passed the cross-member
+  vector checks: `uv run pytest tests/contract/weft/test_wardline_scan_artifact_contract.py
+  tests/wardline/test_ingest.py -q` in `~/legis` (41 passed) and
+  `uv run pytest tests/conformance/test_legis_scan_wire_golden.py
+  tests/conformance/test_legis_intake_contract.py
+  tests/conformance/test_legis_artifact_contract_freeze.py -q` in `~/wardline` (25 passed).
 - **Stale claims** (weft-pm): `weft-ab0a6555f5` + `weft-384929d1ad` expired >48h; Heddle spike
   `weft-e4589e6570` expires tonight — release or reclaim.
 - **conventions.md C-11** (config-write discipline) drafted from config-write audit — unstaged.
@@ -93,11 +98,8 @@ bar in roadmap.md (dogfood evidence + grep test + enrich-only + doctrine + hook-
    then track the other 3 collision families (`clarion-8ff7f233fa`, `clarion-fa8bcf8731`,
    `clarion-bdb1eccf48`) to closure. Coordinate with loomweave's live working stream (uncommitted
    qualname.rs/extract.rs edits in flight — do NOT work around it).
-3. **G1 (`weft-37455bf407`) — advance to fixing** — P1 bug, `triage`, unassigned. `work_start
-   --advance` to promote to `confirmed → fixing`. This is the most severe dogfood gate item
-   (silent zero-findings on artifact_status=verified; the full Wardline→Legis defect flow).
-4. **Hand the gate + wave doc to `/axiom-program-management`** — formal dependency model +
-   cutover choreography. Now has TWO gates (dogfood 8 items + Rust gold), both needed.
-5. **Commit conventions.md** (C-11 config-write discipline, unstaged) + uncommitted pm/ files.
-6. **B design-spike brief** — quarantine forensics (clarion-2c959a059e) first.
-7. Launch keeps *build* priority; 2–4 above are coordination/PM work and run in parallel.
+3. **Hand the gate + wave doc to `/axiom-program-management`** — formal dependency model +
+   cutover choreography. Now has TWO gates (dogfood 7 open blockers + Rust gold), both needed.
+4. **Commit conventions.md** (C-11 config-write discipline, unstaged) + uncommitted pm/ files.
+5. **B design-spike brief** — quarantine forensics (clarion-2c959a059e) first.
+6. Launch keeps *build* priority; 2–4 above are coordination/cleanup work and run in parallel.

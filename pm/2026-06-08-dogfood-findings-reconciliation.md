@@ -3,7 +3,7 @@
 _Authored 2026-06-08 (`dogfood-reconciler`). This **builds on**, and does not replace,
 [`2026-06-08-dogfood-findings-gap-analysis.md`](2026-06-08-dogfood-findings-gap-analysis.md)
 (the prior 5-agent code-grounded pass) and the original
-[2026-06-07 dogfood report](../../weft-dogfood-findings-2026-06-07.md)._
+2026-06-07 dogfood report (archival source; not present in the current repo snapshot)._
 
 **Why a second pass.** The member repos moved *after* the gap-analysis doc was written:
 filigree → rc9 (`b6cfc29`), wardline `f22aaa5`, legis `18c3a11`, loomweave `8759d16`/`6057b69`/`1b1c258`.

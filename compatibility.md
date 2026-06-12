@@ -14,7 +14,7 @@ Each live cross-tool binding from [federation-map.md](./federation-map.md), with
 | Loomweave → all | SEI identity resolution | **live** | [sei-standard.md](./sei-standard.md); [conflict-register.md](./conflict-register.md) §B-2 |
 | Wardline ↔ Loomweave | taint-fact store | **live** | [contracts-index.md](./contracts-index.md) §3 |
 | Wardline → Loomweave | qualname reconciliation | **live** | [contracts-index.md](./contracts-index.md) §5 |
-| Wardline → Filigree | findings intake | **live, migration in progress** — routes through Loomweave's SARIF translator until Wardline's native emitter ships | [asterisk-register.md](./asterisk-register.md) |
+| Wardline → Filigree | findings intake | **live, migration in progress** — native emitter shipped; A-1 remains until Loomweave-absent composition is proven end to end | [asterisk-register.md](./asterisk-register.md); [contracts-index.md](./contracts-index.md) §4 |
 | Loomweave ↔ Wardline | vocabulary descriptor | **live** | [asterisk-register.md](./asterisk-register.md) |
 | Legis ↔ Loomweave | SEI governance consumption + git-rename provider seam | **live** | [contracts-index.md](./contracts-index.md) §6 |
 | Legis ↔ Filigree | SEI-keyed sign-off binding | **live** | [contracts-index.md](./contracts-index.md) §7 |
