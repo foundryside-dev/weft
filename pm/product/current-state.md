@@ -1,4 +1,4 @@
-# Current State — Weft Federation        Checkpoint: 2026-06-13 (dogfood-4 wave complete; heddle ruled not-ready; admission quality bar ratified)
+# Current State — Weft Federation        Checkpoint: 2026-06-13 08:13 AEST (PM resume; dogfood measurement ready; test-health scratchpad promoted)
 
 > **Workspace path:** `pm/product/` (NOT the `docs/product/` default — `docs/` is
 > gitignored here as the mkdocs build dir). Resume with `/own-product pm/product`.
@@ -24,6 +24,8 @@ PDR-0018 is *accept via adversarial review + same-day remediation*, never blind,
 **Now:** gold-standard clean-break launch (PDR-0011/0014). Cutover `weft-4b2f948f70` gates:
 - **Dogfood gate** (`weft-cd62a4da9b`): 7 open blockers (unchanged).
 - **Rust gold** (`weft-7ee9bccbd7`, P1, PDR-0014) — untouched for 2 days.
+- **Launch-branch test health:** Wardline red taint tests `weft-2787ded4e1` + Loomweave load-flaky
+  coalescing test `weft-41a1142165` promoted from observations and added under cutover.
 - **Seam restoration epic `weft-384c0a8772`: CLOSED 2026-06-13.** Dogfood-4: **15/17 closed** —
   every A-series and B-series defect fixed, tested, **deployed** (wardline rc5, loomweave 1.1.0-rc5
   BuildID 73a04671, filigree 3.0.0rc12+B9 with daemon bounced, legis rc5). Conventions C-12
@@ -50,20 +52,27 @@ Metric: dogfood pass rate — joins were 1/4 pre-fix; 4/4 expected at re-dogfood
   lesson recorded: dogfood complaints are observations, not specs; invariant collisions escalate to PM.
 - **B9 follow-up parked** (`weft-4a46553503` comment 194): should wardline stamp loomweave entity ids
   into finding metadata at emit time? Would close the qualname gap with zero filigree changes.
-- New observations: loomweave flaky coalescing test `weft-obs-270f2884af`; wardline 7 red taint tests
-  `weft-obs-6a4d71ddcb` (pre-existing, rc5 should not cut over red).
+- Scratchpad cleared 2026-06-13 PM resume: loomweave flaky coalescing test promoted to
+  `weft-41a1142165`; wardline red taint tests promoted to `weft-2787ded4e1`. Both are P2 bugs,
+  launch-gate labelled, and cutover children/dependencies.
 
 ## Open questions / blocked-on-owner
 - **Re-dogfood is ready to run** — fresh session in `~/lacuna`; every defect it re-tests is live in
   the installed builds; daemon healthy (pid 3247762).
 - **Heddle next steps**: does the owner want the four falsifiable steps dispatched (to codex or a hub
   wave), or does heddle pause until after launch?
-- **Wardline rc5 red taint tests** (`weft-obs-6a4d71ddcb`) — triage before cutover.
+- **Launch-branch test-health triage** — Wardline `weft-2787ded4e1` + Loomweave
+  `weft-41a1142165`; both block cutover until fixed or deliberately reclassified.
 - **Stale claim**: `weft-ab0a6555f5` (conventions verification campaign) open/unassigned; Heddle spike
   `weft-e4589e6570` stays open as the go/no-go record. `weft-384929d1ad` closed by codex (verified).
 - Launch cutover owner-reserved (PDR-0011); admission owner-reserved (doctrine §7 + PDR-0016).
 
 ## Last checkpoint did (2026-06-13)
+- PM resume reconciled Filigree against this workspace: live critical path currently starts at
+  G15 `weft-045076e30f` → GS-7 → Dogfood #2 → launch cutover; re-dogfood `weft-a05b53edcd`
+  remains ready/unassigned and is the next north-star measurement.
+- Promoted the two pending observations into durable P2 launch-gate bugs and wired them under
+  cutover: `weft-2787ded4e1`, `weft-41a1142165`. `filigree observation list` is now empty.
 - PDRs 0016–0019 recorded (admission bar; heddle not-ready + endorsement declined; codex-commit
   acceptance posture; redaction-invariant ruling).
 - Dogfood-4 wave closed out: 6 more issues closed (A7, B7, B1, B2, B10, B9) + rec#2/rec#3 + epic;
@@ -73,8 +82,10 @@ Metric: dogfood pass rate — joins were 1/4 pre-fix; 4/4 expected at re-dogfood
 ## Next session, start here
 1. **Re-dogfood `weft-a05b53edcd`** — fresh session in `~/lacuna`, full exercise, write the follow-up
    report; this produces the 4/4-joins north-star measurement.
-2. **Owner's heddle call** (above) — then dispatch or park.
-3. **Rust gold closeout `weft-7ee9bccbd7`** + wardline red-taint triage — the two launch gates not
-   touched this wave.
-4. **C-tail batch `weft-0b27444be7`** + dogfood-gate blockers (7 open) as capacity allows.
-5. Hand gate+wave state to `/axiom-program-management` for cutover choreography.
+2. **G15 / GS-7 critical-path repair `weft-045076e30f`** — not a substitute for re-dogfood, but
+   the first dependency Filigree currently reports on the Dogfood #2 → cutover chain.
+3. **Rust gold closeout `weft-7ee9bccbd7`** + launch-branch test-health bugs
+   `weft-2787ded4e1` / `weft-41a1142165` — cutover gates not touched this wave.
+4. **Owner's heddle call** (above) — then dispatch or park.
+5. **C-tail batch `weft-0b27444be7`** + remaining dogfood-gate blockers as capacity allows.
+6. Hand gate+wave state to `/axiom-program-management` for cutover choreography.
