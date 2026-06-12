@@ -47,6 +47,26 @@ An **unscoped** URL (`/api/weft/scan-results`) is **fail-closed → 400** by des
 daemon refuses to guess the project rather than silently writing to the default one (the old
 cross-project contamination vector).
 
+### One value, every route (the derivation contract)
+
+The scan-results endpoint above is the **single configured Filigree value** a member holds —
+and other code paths in the same process (promote-by-fingerprint, the dossier/ADR-029
+work-join) **derive their routes from it** rather than taking a second URL. The contract,
+decided 2026-06-12 (dogfood-4 A3/A4, `weft-d0df42c739`), is:
+
+- **Canonical configured form:** the project-scoped scan-results endpoint, exactly as above.
+  The emit path POSTs to it **verbatim** — no derivation can misroute the write.
+- **Derivation rule:** consumers normalize the value to the API base by truncating at the
+  `/api` segment and re-appending the project scope: `…/api/p/<project>`. All sibling routes
+  hang off that base (filigree dual-mounts every route under `/api/p/<key>/`).
+- **Dialect tolerance:** derivers must also accept a bare origin, an `/api` base, the classic
+  unscoped endpoint, and the `?project=<key>` query form. A pinned project is **always
+  re-expressed as the path dialect** in derived URLs — filigree honors `?project=` only on
+  weft-scoped paths, so the query form would silently lose the scope on classic routes
+  (entity-associations).
+- Reference implementation: wardline `core/filigree_emit.py::filigree_api_base_url`
+  (single shared parser; `rc5` commit `be430be7`).
+
 ## Registration is mandatory and separate from the URL
 
 Pointing at the right scoped URL is **not sufficient** — the project must also be registered
