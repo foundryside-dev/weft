@@ -1,4 +1,4 @@
-# Metrics — Weft Federation             Last read: 2026-06-12
+# Metrics — Weft Federation             Last read: 2026-06-13
 
 > Targets below are falsifiable-by-shape PLACEHOLDERS (number + date) for the owner
 > to set real values against — most baselines are not yet instrumented. A directional
@@ -7,7 +7,7 @@
 ## North-star
 | Metric | Target (falsifiable) | Current | Read on | Trend |
 |--------|----------------------|---------|---------|-------|
-| **Dogfood pass rate** — % of planted lacuna defects an agent surfaces *and* tracks **using the suite, not grep** ("if the agent prefers grep, the tool failed") | ≥ 90% by 2026-07-31 *(placeholder — owner to set)* | **First structured reading (dogfood-4, 2026-06-12):** "reach-for-it-first" verdicts 3/4 (filigree yes / loomweave graph-tier yes / wardline core yes / legis unreachable); **cross-member joins 1/4 live** (only loomweave→filigree-issues). Post-fix target: 4/4 joins at re-dogfood `weft-a05b53edcd` | 2026-06-12 | first real datum |
+| **Dogfood pass rate** — % of planted lacuna defects an agent surfaces *and* tracks **using the suite, not grep** ("if the agent prefers grep, the tool failed") | ≥ 90% by 2026-07-31 *(placeholder — owner to set)* | **dogfood-4 reading (2026-06-12):** verdicts 3/4, joins 1/4 live. **2026-06-13: every A/B defect fixed AND deployed** (15/17 closed; A6 legis-in-MCP independently confirmed in a fresh session) — 4/4 joins now *expected*; the re-dogfood `weft-a05b53edcd` is the measurement, not the fix. | 2026-06-13 | pre-fix 1/4 → post-fix await re-measure |
 
 ## Input metrics (the levers that move the north-star)
 | Metric | Target | Current | Read on |
@@ -22,4 +22,4 @@
 |--------|-----------------|---------|---------|
 | **Enrich-only invariant** — cross-member hard-blocks (a sibling's absence breaking another's core flow) | ceiling = 0 | 0 known load-bearing blocks (F4 closure-gate watched) | 2026-06-09 |
 | **Tree cleanliness** — members dirtying the working tree at rest (blocks legis signing) | ceiling = 0 | 1 open: loomweave runtime DB under `.weft/` (`weft-d822a7de2d`) | 2026-06-09 |
-| **Finding duplication** — duplicate finding rows from fingerprint drift | ceiling = 0 | breached: WL-1 mints duplicates on unchanged source (`weft-4a9d0f863c`) | 2026-06-09 |
+| **Finding duplication** — duplicate finding rows from fingerprint drift | ceiling = 0 | wardline WL-1 breach (`weft-4a9d0f863c`) still open; **loomweave's instance FIXED 2026-06-13** (B10 `weft-7256739b31`: site-keyed secret-finding identity + incremental sweep, self-heals existing dupes on next analyze) | 2026-06-13 |
