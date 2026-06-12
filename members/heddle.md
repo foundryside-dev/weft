@@ -1,8 +1,8 @@
 # Heddle (planned extension)
 
-**Status:** **Early design for a future Weft extension.**
-**Repo:** local design repo `~/heddle`; no admitted/public product repo yet · **Language:** TBD
-**Current details:** design spike only; no package, CLI, MCP server, or source implementation yet. Design validation is tracked by `weft-e4589e6570`. For the latest details, use `~/heddle/README.md`, `~/heddle/spike/SPIKE-BRIEF.md`, and the Weft tracker.
+**Status:** **Working solo-mode prototype; NOT member-grade (assessed 2026-06-13).**
+**Repo:** local repo `~/heddle` (under active development); no admitted/public product repo yet · **Language:** Python 3.12+, zero runtime deps, v0.1.0
+**Current details:** a package, CLI (`init`/`backfill`/`changed`/`timeline`/`blast-radius`/`reverify`), and stdio MCP server now exist — the prior "design spike only" snapshot is stale and replaced by this one. The 2026-06-13 readiness review (recorded on `weft-e4589e6570`) found the solo temporal store works live, but the flagship blast-radius is not wired end-to-end (no production path captures snapshots or resolves SEIs; `changed` output cannot feed `blast_radius`), the MCP server dies on malformed input, and the store layout diverges from C-9 (XDG path-hash DBs, not `.weft/heddle/`). Against the doctrine §7 admission quality bar (standalone parity + federation enhancement) it currently fails both halves. Go/no-go remains tracked by `weft-e4589e6570`; admission is owner-reserved.
 
 ## Proposed authority
 
