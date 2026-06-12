@@ -371,6 +371,68 @@ couplings. The hub coordinates; it does not block any member's independent relea
 | loomweave | **pending** | `wardline.yaml` orphan genuinely removed (`f9854f0`), **but still writes an orphan `.weft/loomweave/config.json` stub (`install.rs:467`) no crate reads** — clause-(a) regression, same pattern (F2, `weft-da23c1f6bd`). Also the (b) write defect behind F1/G5 (emits wardline's emit URL unscoped). |
 | charter | **exempt** | no generated cross-member config surface. |
 
+### C-12 — One status/freshness oracle per question; every other surface derives or defers by name
+
+- **Rule (NORMATIVE).** For each status *question* a member answers — "is the index
+  fresh?", "is this seam configured?", "what is blocked?" — the member designates
+  **exactly one authoritative verdict surface**. Every other tool/endpoint/hook that
+  mentions the same question either **derives its answer from the authority** (same
+  code path, not a parallel reimplementation) or **defers to it by name** ("see
+  `index_diff_get` for the authoritative verdict"). Two surfaces answering the same
+  question from different code paths is a defect even when they currently agree.
+- **Why.** An agent reasons from whichever surface it happens to call first; two
+  contradictory oracles produce *confidently-wrong* behaviour with no error to catch
+  (dogfood-4 B1: loomweave's `project_status_get` said **stale** while
+  `index_diff_get` said **fresh** at the same instant; B8: wardline's `doctor` said
+  *not configured* while the runtime seam was wired; B3: filigree's `stats_get`
+  and `work_blocked` disagreed on the blocked count). This is the hub's own
+  authority model (weft owns interop, points elsewhere for member facts —
+  doctrine §8) applied **at the tool level**, and the status-surface sibling of
+  C-10 (honest seams): C-10 makes one surface honest, C-12 makes the *set* of
+  surfaces coherent. Named from dogfood-4 recommendation #2 (`weft-76abb3553e`).
+- **Reference:** **none yet** — both motivating instances were violations; the fixes
+  below are single-question repairs, not a member-wide single-oracle architecture.
+
+| Member | State | Evidence |
+|---|---|---|
+| filigree | **conforms ✓† (blocked-count question)** | `db_meta.py get_stats` blocked_count now reuses `get_blocked`'s not-done predicate (same `_category_predicate_sql` path, not a parallel query) — B3 fix `weft-ecc7c34255`, source+installed-verified on `release/3.0.0` 3.0.0rc12 (2026-06-12/13, unmerged to main). Other question-pairs unswept. |
+| wardline | **conforms ✓† (config question)** | `install/doctor.py:175-190` reports the *effective* runtime config with provenance ("from `--{key}-url` launch flag" / "from env" / "not configured"), threaded from the same values the runtime uses — B8 fix `weft-dc7b805dc4`, rc5, source-verified 2026-06-12. Other question-pairs unswept. |
+| loomweave | **pending** | B1 open (`weft-4165f1ed71`): `project_status_get` and `index_diff_get` answer the freshness question from different detectors (mtime-based vs commit/diff-based) and contradict; orientation packs + SessionStart hook echo the wrong one. |
+| legis | **unknown** | `doctor_get` exists alongside gate/check surfaces; single-oracle coherence not yet examined firsthand. |
+| charter | **exempt** | no freshness/staleness surface yet (local core + read-only MCP). |
+
+### C-13 — Fail-degraded, never fail-dead: one hostile file never kills a run
+
+- **Rule (NORMATIVE).** A member tool that walks or parses project source MUST NOT
+  hard-fail the whole run on one hostile input (pathological nesting, huge
+  expression chains, undecodable bytes). Per file: **skip + flag + continue** —
+  the file is skipped, the skip is flagged *in-band* as a named marker the consumer
+  can see (a finding / `parse_status` value such as `too_complex`, never only a log
+  line), and the run completes over the remaining files. The result envelope makes
+  the degraded scope visible (count + which files), per C-10(a). **Adoption
+  includes a hostile-input fixture** (a `nesting_bomb.py`-class corpus file) in the
+  member's own test suite; the cross-member conformance-harness case is owned by
+  GS-7 (`weft-1e053eac02`).
+- **Why.** A dogfood specimen file took down legis's entire `policy-boundary-check`
+  with an uncaught `RecursionError` (dogfood-4 A2) while loomweave's extractor
+  degraded the *same class* of input to a per-file `LMWV-PY-TOO-COMPLEX` finding
+  and kept going. For a deconfliction suite, a tool that dies on file 37 of 400
+  silently un-governs the other 363 — fail-dead converts one hostile file into a
+  whole-run availability loss, which is strictly worse than one honestly-flagged
+  gap. Named from dogfood-4 recommendation #3 (`weft-b181c75e39`).
+- **Reference:** **loomweave** — `plugins/python/src/loomweave_plugin_python/extractor.py`
+  degrades deep nesting / oversized expressions to `too_complex` with in-band
+  markers instead of escaping `RecursionError` (`d5baac5`), with fixture coverage
+  in `plugins/python/tests/test_extractor.py`.
+
+| Member | State | Evidence |
+|---|---|---|
+| loomweave | **reference** | per-file `too_complex` degrade in the python-plugin extractor (`d5baac5`); fixtures in `test_extractor.py`; host accepts `parse_status` rides without changes. |
+| legis | **conforms ✓†** | `policy/boundary_scan.py:58-80` wraps both `ast.parse` and the visitor walk per file; `RecursionError` → `POLICY_BOUNDARY_FILE_TOO_COMPLEX` finding ("file skipped, scan continued") — A2 fix `weft-9784d0e654`, rc5, live-verified against lacuna's `nesting_bomb.py` 2026-06-12; regression fixture (20 000-term BinOp chain) in `tests/policy/test_boundary_scan.py`. |
+| wardline | **unknown** | walks source for taint analysis; behaviour on the hostile corpus untested (dogfood-4 rec #3) and no hostile-input fixture in its suite. Treat as work. |
+| filigree | **exempt** | no in-process source parsing (no `ast` import in `src/filigree/`); scanners delegate to external agent processes whose failures are per-scan, not per-run. |
+| charter | **exempt** | no source-walking surface. |
+
 ---
 
 ## Consolidated matrix
@@ -391,12 +453,15 @@ couplings. The hub coordinates; it does not block any member's independent relea
 | C-9 `.weft/`+`weft.toml` layout | ✓† | ✓† | ✓† | R | … |
 | C-10 honest federation seams | … | … | … | … | … |
 | C-11 config-write discipline | ✓ | … | R | ✓ | — |
+| C-12 one status oracle | ✓† | … | ✓† | ? | — |
+| C-13 fail-degraded on hostile input | — | R | ? | ✓† | — |
 
-loomweave is the dominant reference member (C-1/C-2†/C-3/C-4/C-5/C-7); charter is the
-C-6 reference; legis is the C-9 reference (member-private form). No member is reference
-for C-9's shared-key layout (partially shipped, hub-pending), or C-10
-(the newly-named honest-seams bar — dogfood-#2's "works but quiet about itself" tier).
-(C-8 — authority-key confinement — is reserved/proposed; see the C-3 carve-out.)
+loomweave is the dominant reference member (C-1/C-2†/C-3/C-4/C-5/C-7/C-13); charter is
+the C-6 reference; legis is the C-9 reference (member-private form). No member is
+reference for C-9's shared-key layout (partially shipped, hub-pending), C-10
+(the newly-named honest-seams bar — dogfood-#2's "works but quiet about itself" tier),
+or C-12 (both motivating instances were violations; the ✓† cells are single-question
+repairs). (C-8 — authority-key confinement — is reserved/proposed; see the C-3 carve-out.)
 
 ### Verification calibration (honest confidence)
 
