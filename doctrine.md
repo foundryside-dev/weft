@@ -105,6 +105,25 @@ Before adopting any new product into Weft, it must pass all four:
 
 If the answer to any question is no, the candidate is a feature, a protocol, or an adapter — not a product. It may still belong in Weft's surface area, but not as a named member. Legis and Charter were admitted against this test (each authoritative for one bounded domain — governance and requirements respectively — solo-useful, pairwise-sensible, suite-enriching).
 
+### The quality bar for formal admission (owner ruling, 2026-06-13)
+
+The four structural tests decide whether a candidate is a *product*. Formal
+admission additionally requires both halves of a quality standard:
+
+1. **Standalone parity** — the candidate is *equally good compared to its peers*
+   outside the federation: an agent or operator would reach for it **in preference
+   to, or at least as readily as, any other tool in its category**.
+2. **Federation enhancement** — membership *makes it better*: the federation gives
+   it real capability it would not have standalone (SEI-keyed identity, sibling
+   enrichment, shared deconfliction), so **having the federation installed is
+   itself a reason to pick it** over the standalone peer.
+
+Both must hold, in shipped behaviour, not aspiration. A tool that is best-of-breed
+but gains nothing from siblings is a fine standalone product that doesn't need
+admission; a tool that is only useful *because* of the federation is an adapter
+(test 2 above). Admission remains owner-reserved; this bar is what any go/no-go
+assessment measures against.
+
 ## 8. Naming
 
 Member products are named from weaving mechanics and adjacent registers — Loomweave, Filigree, Wardline, Legis, Charter, Shuttle — as distinct proper names rather than subdivisions. There is no "Weft Guard," "Weft Workflow," or "Weft Execute"; each product earns its own identity. The family name sits above the products without dominating them, and — per §3 and §6 — it does not name any component that gets installed or runs.
