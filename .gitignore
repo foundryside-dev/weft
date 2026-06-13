@@ -36,3 +36,9 @@ CLAUDE.md
 .claude/skills/filigree-workflow/examples/sprint-plan.json
 .claude/skills/filigree-workflow/references/team-coordination.md
 .claude/skills/filigree-workflow/references/workflow-patterns.md
+
+# Legis — local working dir / config (regenerated/local; never commit)
+.weft/legis/
+
+# Filigree issue tracker
+.weft/

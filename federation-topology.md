@@ -105,12 +105,18 @@ deploy (no shared filesystem) requires `WEFT_FEDERATION_TOKEN` set on both ends.
 
 ## Per-member emit-liveness check (run after any cutover/reinstall)
 
+Use the hub-owned preflight so this check is mechanical, not a checklist:
+
+```bash
+python3 scripts/check-federation-emit-liveness.py --live
+```
+
 For each emitting project:
 
 1. Read its `.mcp.json` wardline `--filigree-url`; confirm host:port is `:8749` and the path
    is `/api/p/<project>/weft/scan-results` (scoped).
 2. Confirm `<project>` is in `~/.config/filigree/server.json` under its `.weft/filigree` dir.
-3. Probe: `curl -sS -o /dev/null -w '%{http_code}' <url>` and classify —
+3. Probe with the member's `.weft/filigree/federation_token` and classify —
    `000`=dead port (wrong host), `401`=bad token **or unregistered project**, `400`=unscoped
    fail-closed, `404`=wrong path, `2xx`=reaches the daemon.
 4. End-to-end (the truth test): trigger one wardline scan and confirm the finding row lands in

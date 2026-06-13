@@ -186,7 +186,7 @@ it never re-adjudicates trust ("Wardline analyses, Legis governs").
 | Sign-off request | `POST /signoff/request` | Open a governed sign-off. |
 | Sign-off ↔ issue bind | `POST /signoff/{request_seq}/bind-issue` · `GET /signoff/{request_seq}/binding` | Bind a sign-off to a Filigree issue via the entity-association surface (§2.2). Filigree keeps issue-lifecycle authority. |
 | Sign-off sign | `POST /signoff/{request_seq}/sign` | Record the SEI-keyed attestation. |
-| Findings enforcement intake | `POST /wardline/scan-results` | Route Wardline findings through the 2×2 enforcement cells; requires the signed artifact's `findings` key (present empty list = clean, absent key = malformed); **trust vocabulary passes through verbatim** ([contracts-index.md](./contracts-index.md) §8). |
+| Findings enforcement intake | `POST /wardline/scan-results` | Route Wardline findings through the 2×2 enforcement cells; requires the signed artifact's `findings` key (present empty list = clean, absent key = malformed); unsigned dev artifacts use Wardline-owned top-level `dirty: true` to signal dirty working-tree provenance and Legis maps it to dirty/keyless, CI skip, or explicit dev-mode governance; **trust vocabulary passes through verbatim** ([contracts-index.md](./contracts-index.md) §8). |
 | Governance reads | `GET /governance/identity-gaps` · `GET /governance/lineage-integrity` | Orphan-as-governance-gap; lineage-divergence detection at the boundary. |
 | Git-rename provider | `GET /git/renames?rev_range=…` | Supplies the rename signal Loomweave's matcher consumes through the typed `GitRenameSource` seam ([contracts-index.md](./contracts-index.md) §6). |
 

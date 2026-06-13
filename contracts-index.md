@@ -6,6 +6,15 @@
 
 **Building a whole member, not one binding?** The [Federation SDK](./federation-sdk.md) is the member-builder's companion to this index — same surfaces, organized by the obligations a new tool must meet to drop in.
 
+**Launch freeze set.** The clean-break launch freezes the cross-member contracts
+listed in this index, plus the executable conformance fixtures they point to.
+ADR-049, the Rust qualname dialect shared by Loomweave and Wardline, is
+explicitly **out of that core freeze set**: it versions with the Rust feature
+and both members adopt its corpus together. PDR-0014 makes Rust-gold a cutover
+quality gate, but it does not turn ADR-049 into a frozen core API contract; a
+post-launch ADR-049 amendment is valid only as a versioned Rust-feature change
+with Loomweave and Wardline moving in lockstep.
+
 ---
 
 ## 1. Entity associations — Filigree ↔ Loomweave (Filigree ADR-029)
@@ -36,6 +45,13 @@ Wardline findings reach Filigree's scan-results intake. The legacy path routes t
 
 The emit **pins the finding's suppression provenance**: a non-active finding carries its state under `metadata.wardline.suppression_state` (exactly one of `baselined` | `waived` | `judged`) plus an optional `metadata.wardline.suppression_reason`; an **active** finding **omits the key entirely** — absent ⇒ active, never the literal `"active"` on this seam. This is precisely what lets Filigree's ingest preserve the suppression signal so `finding_promote` refuses/warns on a baselined finding rather than minting a fresh P1. Pinning it here **closes the Wardline side of the hub follow-up C-10(b)**.
 
+Filigree's `finding_list` / files API suppression filter uses Wardline's
+`SuppressionState` vocabulary plus the Filigree-local `all` sentinel. That filter
+grammar is pinned by the Wardline-owned vector
+`~/wardline/tests/conformance/filigree_suppression_filter_contract.json`, vendored
+to Filigree as
+`~/filigree/tests/fixtures/contracts/wardline-suppression-filter-contract.json`.
+
 - **Authoritative:** Loomweave ADR-015 Rev 2; `~/wardline/docs/integration/2026-05-29-wardline-weft-integration-brief.md`; Filigree scan-results intake in `~/filigree/docs/federation/contracts.md`.
 
 ## 5. Qualname normalization — Wardline → Loomweave (Loomweave ADR-018)
@@ -59,6 +75,15 @@ Legis binds governed sign-offs to Filigree issues using the entity-association s
 ## 8. Legis ↔ Wardline — findings routing through enforcement
 
 Legis routes Wardline findings (`POST /wardline/scan-results` on Legis) through its 2×2 enforcement cells (chill / coached / structured / protected). The signed Wardline artifact contract carries a required `findings` key; a present empty list means a clean scan, while an absent/renamed key is malformed and must not silently govern zero findings. Wardline emits the key from `src/wardline/core/legis.py`; Legis validates it in `src/legis/wardline/ingest.py`, with the golden vector at `~/legis/tests/contract/weft/vectors/wardline_scan_artifact.v1.json`. **Trust vocabulary passes through verbatim** — "Wardline analyses, Legis governs"; Legis never re-adjudicates trust.
+
+The unsigned dev-artifact path is also a pinned wire contract: Wardline emits
+top-level `dirty: true` when `scan --format legis --allow-dirty` runs on a dirty
+working tree, and Legis consumes that exact key to distinguish keyless dev
+governance, configured-CI `SKIPPED_DIRTY_TREE`, and explicit dev-mode governance.
+The shared vector is
+`~/legis/tests/contract/weft/vectors/wardline_dirty_scan_artifact.v1.json`
+(vendored in Wardline as `tests/conformance/legis_dirty_scan_wire.golden.json`).
+Wardline owns the emitted key; Legis owns the consumer posture.
 
 - **Authoritative:** Legis (`src/legis/service/wardline.py`, `wardline/*`) + `~/loomweave/docs/federation/contracts.md` (§ trust-vocabulary convergence).
 

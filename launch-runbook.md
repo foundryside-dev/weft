@@ -56,6 +56,70 @@ sibling is installed against a project before filigree provides those, sibling
 resolution breaks mid-cutover. **Therefore: filigree lands first. Never install a
 clean-break sibling build ahead of its slot against a live project.**
 
+## Repo-scoped Codex MCP attachment
+
+When the work is coordinated from `~/weft` but the subject under test is another
+repo such as `~/lacuna`, treat the Codex MCP attachment set as repo-scoped. Changing
+shell cwd or reading a sibling tree does not rebind already-attached `mcp__*` tools.
+Start or fork the Codex session with the **subject repo** as the workspace root when
+the tools need to operate on that subject. If the attached tools report `~/weft`
+while the subject is `~/lacuna`, stop using those attached tools for the subject and
+either relaunch in the subject repo or use direct CLI/direct MCP launches with an
+explicit subject root.
+
+Pre-flight for every subject repo:
+
+```bash
+SUBJECT=/home/john/lacuna
+SUBJECT="$SUBJECT" python - <<'PY'
+import json
+import os
+from pathlib import Path
+
+path = Path(os.environ["SUBJECT"]) / ".mcp.json"
+data = json.loads(path.read_text())
+for entry in data.get("mcpServers", {}).values():
+    headers = entry.get("headers")
+    if isinstance(headers, dict) and "Authorization" in headers:
+        headers["Authorization"] = "<redacted>"
+print(json.dumps(data, indent=2))
+PY
+
+(cd "$SUBJECT" && filigree mcp-status --json)
+legis doctor --root "$SUBJECT" --format json
+wardline doctor --root "$SUBJECT"
+loomweave doctor --path "$SUBJECT" --format json
+```
+
+Attachment must be treated as correct only when each available surface names the
+subject repo, not the coordinating repo:
+
+- **Codex host registration:** `codex mcp list` must include every attached tool
+  namespace the session is expected to expose. A healthy project `.mcp.json` proves
+  the direct launch recipe, but it does not prove the already-running Codex session
+  has attached `mcp__<member>__*` tools. Check `codex mcp get legis` specifically
+  before expecting `mcp__legis__*`; if it reports no server, add the host registration
+  with `codex mcp add legis -- /home/john/.local/bin/legis mcp --agent-id codex`,
+  then start or fork a new Codex session.
+- **Filigree:** `mcp_status_get` / `filigree mcp-status --json` reports
+  `project_root` when present and always reports a `filigree_dir` under
+  `$SUBJECT/.weft/filigree`.
+- **Loomweave:** `project_status_get` reports the repo root / DB path for
+  `$SUBJECT`; without an index, the no-index guidance must name `$SUBJECT`.
+- **Wardline:** the MCP `doctor` tool reports `server.project_root`; direct launch
+  is `wardline mcp --root "$SUBJECT"`.
+- **Legis:** `doctor_get` is rooted at the MCP server launch cwd or
+  `LEGIS_SOURCE_ROOT`; direct launch from the subject is
+  `LEGIS_SOURCE_ROOT="$SUBJECT" legis mcp --agent-id codex`, and CLI verification is
+  `legis doctor --root "$SUBJECT" --format json`.
+
+Do not repair a subject-repo attachment problem by editing global Codex host config
+unless the change is clearly a stale global registration cleanup. The safe control
+plane is the subject repo's `.mcp.json`, the subject-root Codex session, and the
+member doctor/status commands above. Host-level behavior, such as Codex not
+hot-swapping MCP attachments for a different repo mid-session, is outside the member
+repos and should be tracked as a host boundary rather than patched in the suite.
+
 ## Order of operations
 
 **Step 0 — pre-flight (no installs).**
@@ -63,6 +127,12 @@ clean-break sibling build ahead of its slot against a live project.**
   `installed == branch HEAD` for each (it is, as of 2026-06-07).
 - Tag the current installed state per member so any step is revertible
   (re-pin the prior uv directory/tool install).
+- For any dogfood subject repo, run the repo-scoped Codex MCP attachment pre-flight
+  above before trusting attached MCP tools.
+- Run the hub-owned federation emit preflight before any dogfood scan:
+  `python3 scripts/check-federation-emit-liveness.py --live`. This verifies each
+  Python-scanned member's Wardline emit URL, canonical `server.json` registration,
+  token presence, and live `:8749` route acceptance.
 
 **Step 1 — filigree first.** Owner: filigree · tracks `weft-677779a3d0`.
 - Merge `release/3.0.0` → `main`; cut the release; reinstall.
@@ -85,9 +155,9 @@ them one at a time and re-run the dogfood orientation after each.
   - **Emit-URL repoint (separate from the token):** the token fix is necessary but not
     sufficient — the `--filigree-url` in each member's `.mcp.json` must point **path-scoped
     at the `:8749` server-mode daemon** and the project must be **registered** in
-    `server.json`. As of 2026-06-09 filigree+wardline point at local dashboards and legis is
-    unregistered (only lacuna is correct). See [federation-topology.md](./federation-topology.md)
-    for the model + liveness check and [pm/2026-06-09-federation-emit-remediation.md](./pm/2026-06-09-federation-emit-remediation.md)
+    `server.json`. Verify with `python3 scripts/check-federation-emit-liveness.py --live`.
+    See [federation-topology.md](./federation-topology.md) for the model + liveness check
+    and [pm/2026-06-09-federation-emit-remediation.md](./pm/2026-06-09-federation-emit-remediation.md)
     for the concrete repoint/registration diffs.
 - **legis** — merge rc4 → `main`, release, **reinstall (clears the split-brain — the
   version string was ahead of the code).** `weft-9da517a67e`.

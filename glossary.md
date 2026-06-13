@@ -88,6 +88,12 @@ Each row names the pre-rename collision and the post-rename Loomweave field name
 | `requirement` / `obligation` | Charter | Charter's owned domain term for a stated obligation with traceability and verification evidence. Charter-only. |
 | `attestation` / `verdict` / `sign-off` | Legis | Legis governance records (CLEAR / VIOLATION / UNKNOWN, overrides, signoffs), keyed on SEI. Legis-only. |
 
+### Wardline -> Legis governance artifact terms
+
+| Term | Product / authority | Meaning | Source |
+|---|---|---|---|
+| `dirty` | Wardline (emitter) -> Legis (consumer) | Top-level strict boolean on the unsigned Wardline scan artifact. `dirty: true` means the artifact was emitted from a dirty working tree under the dev-only `allow_dirty` posture and is intentionally unsigned; Legis records keyless dev artifacts as `dirty`, returns `SKIPPED_DIRTY_TREE` when a CI artifact key is configured without dev-mode, and governs only under the explicit dev-mode opt-in. | Wardline `src/wardline/core/legis.py::DIRTY_FIELD`; Legis `src/legis/wardline/ingest.py`; shared vector `tests/contract/weft/vectors/wardline_dirty_scan_artifact.v1.json` — `no clash` |
+
 ### Wardline taint-store wire terms (Loomweave ADR-036)
 
 These terms cross the Wardline↔Loomweave wire in the taint-store contract (`/api/wardline/*` routes on Loomweave). All are `no clash`.

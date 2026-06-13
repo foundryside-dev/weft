@@ -19,6 +19,10 @@ can't rot). C anticipates; **B catches mechanically when a peer overrides the ad
 **The pen is at the hub** until each member ships its next major. NEW since: **codex operates as a
 second autonomous stream** (heddle, loomweave c475e90, website drift pass) — hub posture per
 PDR-0018 is *accept via adversarial review + same-day remediation*, never blind, never auto-revert.
+**PDR-0020 adds the launch-control boundary:** until ship, the program office may dispatch and
+accept residual burn-down inside the four admitted subordinate projects — Filigree, Loomweave,
+Wardline, and Legis. Heddle remains outside this launch-control set until a separate owner admission
+decision changes its status.
 
 ## The bet right now
 **Now:** gold-standard clean-break launch (PDR-0011/0014). Cutover `weft-4b2f948f70` gates:
@@ -44,6 +48,14 @@ Metric: dogfood pass rate — joins were 1/4 pre-fix; 4/4 expected at re-dogfood
   `members/heddle.md` corrected (33c1a7b).
 
 ## In flight / recently landed
+- **Residual burn-down accepted (PDR-0020):** post-fix Lacuna re-dogfood closed
+  `weft-a05b53edcd` with all four joins passing. Subagent waves closed Wardline no-emit
+  `weft-b3a1828d6a`, Loomweave doctor/list fidelity `weft-bb156b36e3` / `weft-51a90daa79`,
+  Filigree payload-cap contract `weft-303d5bb7ce`, Wardline advertised-limit consumption
+  `weft-d49cbabb99`, Wardline pollable scan jobs `weft-fb47ab4a92`, and repo-scoped suite MCP
+  attachment `weft-122a50829f`. Parents `weft-590555a273` and `weft-02df60cd79` are closed with
+  verification evidence. The broader C-tail batch `weft-0b27444be7` remains open for its other
+  dogfood papercuts.
 - **PDR-0018**: codex's loomweave c475e90 accepted after 13-agent review (9 majors confirmed, 0
   refuted) + 11-item same-day remediation; **version bumped rc4→rc5** (stale-wheel trap disarmed);
   bootstrap exemption (gate-exempt config tools) accepted-and-documented.
@@ -57,8 +69,8 @@ Metric: dogfood pass rate — joins were 1/4 pre-fix; 4/4 expected at re-dogfood
   launch-gate labelled, and cutover children/dependencies.
 
 ## Open questions / blocked-on-owner
-- **Re-dogfood is ready to run** — fresh session in `~/lacuna`; every defect it re-tests is live in
-  the installed builds; daemon healthy (pid 3247762).
+- **Critical path moved to G14** — G15 `weft-045076e30f` is closed; Filigree now reports
+  `weft-8f1c6c512e` → GS-7 → Dogfood #2 → launch cutover.
 - **Heddle next steps**: does the owner want the four falsifiable steps dispatched (to codex or a hub
   wave), or does heddle pause until after launch?
 - **Launch-branch test-health triage** — Wardline `weft-2787ded4e1` + Loomweave
@@ -68,9 +80,12 @@ Metric: dogfood pass rate — joins were 1/4 pre-fix; 4/4 expected at re-dogfood
 - Launch cutover owner-reserved (PDR-0011); admission owner-reserved (doctrine §7 + PDR-0016).
 
 ## Last checkpoint did (2026-06-13)
-- PM resume reconciled Filigree against this workspace: live critical path currently starts at
-  G15 `weft-045076e30f` → GS-7 → Dogfood #2 → launch cutover; re-dogfood `weft-a05b53edcd`
-  remains ready/unassigned and is the next north-star measurement.
+- PM resume reconciled Filigree against this workspace: post-fix Lacuna re-dogfood
+  `weft-a05b53edcd` closed with all four joins passing; the live critical path now starts at
+  G14 `weft-8f1c6c512e` → GS-7 → Dogfood #2 → launch cutover.
+- Residual burn-down wave accepted: G15 `weft-045076e30f`, payload-cap parent
+  `weft-590555a273`, scanner-job umbrella `weft-02df60cd79`, and repo-scoped attachment
+  `weft-122a50829f` closed after subagent implementation plus coordinator verification.
 - Promoted the two pending observations into durable P2 launch-gate bugs and wired them under
   cutover: `weft-2787ded4e1`, `weft-41a1142165`. `filigree observation list` is now empty.
 - PDRs 0016–0019 recorded (admission bar; heddle not-ready + endorsement declined; codex-commit
@@ -80,12 +95,13 @@ Metric: dogfood pass rate — joins were 1/4 pre-fix; 4/4 expected at re-dogfood
 - All four members redeployed + filigree daemon bounced; north-star + duplication-guardrail readings.
 
 ## Next session, start here
-1. **Re-dogfood `weft-a05b53edcd`** — fresh session in `~/lacuna`, full exercise, write the follow-up
-   report; this produces the 4/4-joins north-star measurement.
-2. **G15 / GS-7 critical-path repair `weft-045076e30f`** — not a substitute for re-dogfood, but
-   the first dependency Filigree currently reports on the Dogfood #2 → cutover chain.
-3. **Rust gold closeout `weft-7ee9bccbd7`** + launch-branch test-health bugs
+1. **G14 / GS-7 critical-path repair `weft-8f1c6c512e`** — the next Dogfood #2 → cutover blocker
+   after G15 closure.
+2. **P1 launch burn-down** — `weft-eb3dee402f` (multi-owner managed-block contract) and
+   `weft-7ee9bccbd7` (Rust gold closeout) are startable P1s.
+3. **Launch-branch test-health bugs**
    `weft-2787ded4e1` / `weft-41a1142165` — cutover gates not touched this wave.
-4. **Owner's heddle call** (above) — then dispatch or park.
+4. **Owner's heddle call** (above) — then dispatch or park; do not include Heddle in launch-control
+   residual burn-down until admission changes.
 5. **C-tail batch `weft-0b27444be7`** + remaining dogfood-gate blockers as capacity allows.
 6. Hand gate+wave state to `/axiom-program-management` for cutover choreography.
