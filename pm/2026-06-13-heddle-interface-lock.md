@@ -53,6 +53,19 @@ pairwise enrichment that requires a sibling adapter that does not yet exist.
    churn-count / timeline keyed by SEI and retains NOTHING.** loomweave never
    stores a heddle fact; it joins at read time and discards. This is the
    load-bearing constraint behind §1.
+6. **PROVEN-NEED GATE (owner 2026-06-13).** The hub supports what a member needs,
+   but the member must PROVE the need — "we'll do it one day" does not earn a
+   frozen seam. A seam enters the frozen set only on demonstrated, present
+   consumption (a golden vector shows it actually used). This drove OD-2 (drop
+   `project_context` — no cross-member need) and OD-3 (charter name-only — a
+   non-member cannot prove a need). Applied to INBOUND sibling-burden reads:
+   loomweave inbound is **PROVEN** (heddle captures real edges through it) and
+   frozen; the filigree / wardline / legis inbound reads are **RESERVED-SHAPE**
+   (named, NON-binding on the sibling) until heddle demonstrates consumption in
+   shipped behaviour. The overnight run is heddle's chance to prove them: a
+   reserved-shape inbound seam freezes as a sibling obligation ONLY when a golden
+   vector shows heddle actually reading it. We do not freeze a sibling obligation
+   for a need heddle has merely claimed.
 
 ### The canonical success envelope (FROZEN)
 
@@ -619,10 +632,10 @@ boundary (`store.py:311`).
 | Success envelope (full shape) | ✅ | `query`/`next_actions`/`enrichment` population beyond thin shell |
 | Error vocab (`heddle.error.v1`, retryability, error_code set) | ✅ | map live `invalid_params` → specific codes |
 | SEI keying (`loomweave:eid:`, opaque, both `locator`+`sei` in every entity) | ✅ | HX1: heddle resolves real SEIs |
-| loomweave inbound reads (`entity_resolve`, `entity_neighborhood_get`) | ✅ (loomweave keeps stable) | — already shipped in loomweave |
-| filigree inbound (`entity_association_list_by_entity` SEI reverse-lookup) | ✅ | heddle wiring; filigree consuming reverify worklists |
-| wardline inbound (finding/risk by SEI) | ✅ shape | wardline scoped-rescan consumer; heddle risk-sort |
-| legis inbound (`git_rename_list` locator-rename feed) | ✅ shape (= `GitRename`) | heddle rename consumption; legis preflight consumer |
+| loomweave inbound reads (`entity_resolve`, `entity_neighborhood_get`) | ✅ FROZEN — PROVEN (heddle captures real edges through it) | — already shipped in loomweave |
+| filigree inbound (`entity_association_list_by_entity` SEI reverse-lookup) | ⏸ RESERVED-SHAPE — proven-need pending | freezes when a golden vector shows heddle reading it; else stays non-binding |
+| wardline inbound (finding/risk by SEI) | ⏸ RESERVED-SHAPE — proven-need pending | freezes when heddle demonstrates risk-sort consumption; else non-binding |
+| legis inbound (`git_rename_list` locator-rename feed) | ⏸ RESERVED-SHAPE — proven-need pending (heddle uses raw git today) | freezes when heddle demonstrates rename-feed consumption; else non-binding |
 | Contract resource URIs (`heddle://contracts/heddle.*.v1`) | ✅ names | resource serving |
 | Consumer implementations in all 4 members | — | **ALL fast-follow** (per weft-54192f9400) |
 
