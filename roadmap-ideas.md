@@ -34,6 +34,8 @@ The one pre-existing idea. Receives an approved scoped change, applies it increm
 
 ### 3. "Warpline" — temporal / change-impact authority  ·  *PM-selected for a go/no-go spike (2026-06-06)*
 
+> **PROMOTED — admitted as 5th member 2026-06-14 (PDR-0022); see [members/warpline.md](./members/warpline.md).**
+
 - **Bounded domain:** per-entity **change history keyed on SEI across runs**, and the
   downstream-propagation query over the structural graph it snapshots. Answers the
   one thing no member can answer today: *"given this diff/PR, which SEIs changed, by

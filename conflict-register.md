@@ -239,6 +239,39 @@ refines the §A-13 token rename.
 
 ---
 
+## 2026-06-14 decisions
+
+### B-8 — Warpline admitted as the 5th member  *(RULED — PDR-0022, 2026-06-14)*
+
+**Conflict.** Warpline (temporal / change-impact authority — "what changed, when, and
+what does this change touch") was carried as a PM-selected go/no-go spike on the
+[roadmap-ideas.md](./roadmap-ideas.md) bench, and PDR-0017 had earlier ruled it
+**not ready** for admission. Its shipped behaviour subsequently met the doctrine §7
+quality bar (standalone parity with peers AND federation-enhanced).
+**Ruling (owner, 2026-06-14, PDR-0022).** Warpline is **admitted as the fifth member**
+of the Weft federation (Loomweave, Filigree, Wardline, Legis, Warpline) — **reversing
+PDR-0017's "not ready" ruling**. Its implementation is an admitted **fast-follow,
+outside the four-member lockstep launch cutover** (Filigree, Loomweave, Wardline,
+Legis). Charter remains a **planned integration**, not a full member; Shuttle stays a
+roadmap thought-bubble (§B-7); Lacuna stays the demo specimen. **Owner:** hub/PM;
+roster canon recorded in [doctrine.md](./doctrine.md).
+
+### A-16 — heddle → warpline federation-wide rename  *(DONE — landed 2026-06-14)*
+
+**Was.** The member shipped under the name **heddle** (repo `~/heddle`,
+`src/heddle/`). A PyPI name collision forced a rename.
+**Ruling (owner, 2026-06-14, PDR-0022).** Renamed **federation-wide to `warpline`** —
+live repo at `~/warpline` (`src/warpline/`), version 1.0.0; the old `~/heddle`
+directory is now a husk. All hub `~/heddle` / `src/heddle/` path tokens are stale and
+point to `~/warpline` / `src/warpline/`. State dir is `.weft/warpline/`; entities keyed
+by `loomweave:eid` SEIs; consumed contract `warpline.reverify_worklist.v1`. **Scope
+guard.** This is a member/brand rename only; the LOCKED `loomweave:eid:` SEI scheme is
+untouched (§B-2), and historical PDR *filenames* (`0016-`, `0017-heddle-`,
+`0021-heddle-`) keep their stable archival IDs. **Owner:** warpline (code/repo) + hub/PM
+(decision + register).
+
+---
+
 ## How to use this register
 
 - Before a point release, walk Class B: every item must be **ruled** (done) or have an **owner actively closing it** (B-2 Filigree backfill, B-3 deferred-with-owner).

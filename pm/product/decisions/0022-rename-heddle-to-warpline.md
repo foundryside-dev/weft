@@ -25,15 +25,20 @@ spec** identically across repos (absolute spec, not deltas):
 
 - **Renamed (case-preserving):** the name (`Heddle`→`Warpline`), package/CLI
   (`heddle`→`warpline`), MCP namespace (`mcp__heddle__`→`mcp__warpline__`),
-  binaries (`heddle-mcp`→`warpline-mcp`), the 10 frozen tool names
+  binaries (`heddle-mcp`→`warpline-mcp`), the 6 frozen tool names
   (`heddle_*`→`warpline_*`), schema ids (`heddle.<contract>.v1`→`warpline.…`),
   skill (`heddle-workflow`→`warpline-workflow`), state-dir refs
   (`.weft/heddle/`→`.weft/warpline/`), install markers, Python classes
   (`Heddle*`→`Warpline*`), and two hub files (`members/heddle.md`→`warpline.md`,
   `pm/2026-06-13-heddle-interface-lock.md`→`…-warpline-…`).
-- **Frozen (NOT renamed):** the on-disk checkout path `/home/john/heddle` /
-  `~/heddle` (the directory was NOT moved — see follow-up); the `loomweave:eid:`
-  SEI scheme (warpline keys entities by loomweave SEIs); git history.
+- **Frozen (NOT renamed):** the `loomweave:eid:` SEI scheme (warpline keys
+  entities by loomweave SEIs); git history.
+- **On-disk checkout path — MOVED (now done):** the live repo is now
+  `/home/john/warpline` (HEAD `08c73f3`); `/home/john/heddle` is a stale husk
+  (no `.git`, just a leftover `.venv`) safe to remove. The directory move that an
+  earlier draft listed as deferred has effectively HAPPENED, so any remaining
+  `~/heddle` / `/home/john/heddle` path token in the docs is stale and was
+  corrected to `~/warpline` / `/home/john/warpline`.
 
 ### Scope executed this session
 - **filigree** (consumer): `warpline_consumer.py`, `warpline_worklist_ingest`
@@ -63,12 +68,14 @@ spec** identically across repos (absolute spec, not deltas):
 
 ## Follow-ups (not done here)
 
-1. **Optional directory move** `/home/john/heddle` → `/home/john/warpline`:
-   deferred — it requires a loomweave re-analyze (absolute paths stored), a
-   reinstall, moving codex's memory dir (`-home-john-heddle`), and coordinating
-   with any live codex session in that checkout. Owner/codex-coordinated, not
-   unilateral. Until then `~/heddle` path tokens are correct and intentionally
-   kept.
+1. **Directory move** `/home/john/heddle` → `/home/john/warpline`: **DONE.** The
+   live repo is now `/home/john/warpline` (HEAD `08c73f3`); `/home/john/heddle`
+   is a stale husk (no `.git`, only a leftover `.venv`) safe to delete. With the
+   move complete, all `~/heddle` / `/home/john/heddle` path tokens in the docs
+   are stale and have been repointed to `~/warpline` / `/home/john/warpline`. Any
+   downstream that still pins the old path (loomweave's stored absolute paths,
+   the reinstall, codex's memory dir `-home-john-heddle`) should be reconciled to
+   the new path.
 2. **filigree consumer A/B correctness fork** (pre-existing, separate ticket):
    the work-client shells to non-existent CLI verbs; golden vectors are
    fixture-only. NOT addressed by the rename — downgrade-to-non-binding vs

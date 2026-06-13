@@ -1,4 +1,4 @@
-# Current State — Weft Federation        Checkpoint: 2026-06-13 08:13 AEST (PM resume; dogfood measurement ready; test-health scratchpad promoted)
+# Current State — Weft Federation        Checkpoint: 2026-06-14 (roster reconciliation — Warpline admitted as 5th member + heddle→warpline rename; PDR-0022; prior: dogfood measurement ready; test-health scratchpad promoted)
 
 > **Workspace path:** `pm/product/` (NOT the `docs/product/` default — `docs/` is
 > gitignored here as the mkdocs build dir). Resume with `/own-product pm/product`.
@@ -20,9 +20,10 @@ can't rot). C anticipates; **B catches mechanically when a peer overrides the ad
 second autonomous stream** (warpline, loomweave c475e90, website drift pass) — hub posture per
 PDR-0018 is *accept via adversarial review + same-day remediation*, never blind, never auto-revert.
 **PDR-0020 adds the launch-control boundary:** until ship, the program office may dispatch and
-accept residual burn-down inside the four admitted subordinate projects — Filigree, Loomweave,
-Wardline, and Legis. Warpline remains outside this launch-control set until a separate owner admission
-decision changes its status.
+accept residual burn-down inside the four admitted subordinate projects under launch control —
+Filigree, Loomweave, Wardline, and Legis. Warpline (admitted as the 5th member 2026-06-14,
+PDR-0022) sits outside this four-member launch cutover: its implementation is an admitted
+fast-follow, not part of the cutover lockstep.
 
 ## The bet right now
 **Now:** gold-standard clean-break launch (PDR-0011/0014). Cutover `weft-4b2f948f70` gates:
@@ -31,21 +32,26 @@ decision changes its status.
 - **Launch-branch test health:** Wardline red taint tests `weft-2787ded4e1` + Loomweave load-flaky
   coalescing test `weft-41a1142165` promoted from observations and added under cutover.
 - **Seam restoration epic `weft-384c0a8772`: CLOSED 2026-06-13.** Dogfood-4: **15/17 closed** —
-  every A-series and B-series defect fixed, tested, **deployed** (wardline rc5, loomweave 1.1.0-rc5
-  BuildID 73a04671, filigree 3.0.0rc12+B9 with daemon bounced, legis rc5). Conventions C-12
+  every A-series and B-series defect fixed, tested, **deployed** (wardline rc4, loomweave 1.1.0-rc5
+  BuildID 73a04671, filigree 3.0.0+B9 with daemon bounced, legis rc5). Conventions C-12
   (one status oracle; loomweave = reference†) and C-13 (fail-degraded; loomweave R, legis+wardline ✓†)
   ratified with full member cells. Remaining: C-tail papercuts `weft-0b27444be7` (P2) + **re-dogfood
   `weft-a05b53edcd` (P1, fully unblocked — it is now the *measurement*, not the fix)**.
 Metric: dogfood pass rate — joins were 1/4 pre-fix; 4/4 expected at re-dogfood (metrics.md 2026-06-13).
 
-## Warpline (candidate stream, codex-driven)
-- **Admission quality bar ratified (owner, PDR-0016, doctrine §7 + 3c1bd28):** standalone parity AND
-  federation enhancement, both in shipped behaviour, conjunctive.
-- **Ruled not-ready (PDR-0017,** evidence on `weft-e4589e6570` comments 192–193): real kernel, but
-  parity/uplift claims are self-graded against a fake loomweave client; server fail-dead on bad
-  rev_range; **pre-admission endorsement of its Interface Endorsement Package DECLINED** (no such
-  mechanism; design input at admission time only). Four falsifiable next steps recorded on the issue.
-  `members/warpline.md` corrected (33c1a7b).
+## Warpline (admitted — 5th federation member)
+- **ADMITTED as the 5th federation member (owner, 2026-06-14, PDR-0016/0022):** met the doctrine §7
+  quality bar — standalone parity AND federation enhancement, both in shipped behaviour, conjunctive
+  (PDR-0016, doctrine §7 + 3c1bd28). This **REVERSES the earlier PDR-0017 "not ready" ruling.**
+  Warpline is the federation's **temporal / change-impact authority** ("what changed, when, and what
+  does this change touch"), alongside Loomweave, Filigree, Wardline, and Legis.
+- **Renamed heddle → warpline (PDR-0022):** the live repo is now `~/warpline`
+  (`/home/john/warpline`, version 1.0.0); the old `~/heddle` path is a husk. State dir is
+  `.weft/warpline/`, keyed by `loomweave:eid` SEIs; it consumes the `warpline.reverify_worklist.v1`
+  contract and exposes six frozen federation tool names.
+- **Implementation is an admitted fast-follow OUTSIDE the four-member launch cutover.** The cutover
+  lockstep stays Filigree, Loomweave, Wardline, Legis; Warpline's impl lands after.
+  `members/warpline.md` carries the member record.
 
 ## In flight / recently landed
 - **Residual burn-down accepted (PDR-0020):** post-fix Lacuna re-dogfood closed
@@ -71,13 +77,15 @@ Metric: dogfood pass rate — joins were 1/4 pre-fix; 4/4 expected at re-dogfood
 ## Open questions / blocked-on-owner
 - **Critical path moved to G14** — G15 `weft-045076e30f` is closed; Filigree now reports
   `weft-8f1c6c512e` → GS-7 → Dogfood #2 → launch cutover.
-- **Warpline next steps**: does the owner want the four falsifiable steps dispatched (to codex or a hub
-  wave), or does warpline pause until after launch?
+- **Warpline next steps**: now admitted (PDR-0022), the open call is sequencing the fast-follow
+  implementation — dispatch (to codex or a hub wave) vs. land after the four-member cutover.
 - **Launch-branch test-health triage** — Wardline `weft-2787ded4e1` + Loomweave
   `weft-41a1142165`; both block cutover until fixed or deliberately reclassified.
-- **Stale claim**: `weft-ab0a6555f5` (conventions verification campaign) open/unassigned; Warpline spike
-  `weft-e4589e6570` stays open as the go/no-go record. `weft-384929d1ad` closed by codex (verified).
-- Launch cutover owner-reserved (PDR-0011); admission owner-reserved (doctrine §7 + PDR-0016).
+- **Stale claim**: `weft-ab0a6555f5` (conventions verification campaign) open/unassigned. The former
+  Warpline go/no-go record `weft-e4589e6570` is now an admission record (PDR-0022, admitted).
+  `weft-384929d1ad` closed by codex (verified).
+- Launch cutover owner-reserved (PDR-0011); admission owner-reserved (doctrine §7 + PDR-0016) —
+  Warpline admission exercised 2026-06-14 (PDR-0022).
 
 ## Last checkpoint did (2026-06-13)
 - PM resume reconciled Filigree against this workspace: post-fix Lacuna re-dogfood
@@ -101,7 +109,7 @@ Metric: dogfood pass rate — joins were 1/4 pre-fix; 4/4 expected at re-dogfood
    `weft-7ee9bccbd7` (Rust gold closeout) are startable P1s.
 3. **Launch-branch test-health bugs**
    `weft-2787ded4e1` / `weft-41a1142165` — cutover gates not touched this wave.
-4. **Owner's warpline call** (above) — then dispatch or park; do not include Warpline in launch-control
-   residual burn-down until admission changes.
+4. **Warpline fast-follow sequencing** (above) — Warpline is admitted (PDR-0022); sequence its
+   implementation fast-follow. It stays outside the four-member launch cutover lockstep.
 5. **C-tail batch `weft-0b27444be7`** + remaining dogfood-gate blockers as capacity allows.
 6. Hand gate+wave state to `/axiom-program-management` for cutover choreography.

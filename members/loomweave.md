@@ -2,7 +2,7 @@
 
 **What it does:** maps code structure and provides stable code identity — entity catalog, code graph, guidance sheets, and **[SEI](../sei-standard.md)**. The federation's **code-structure surface**.
 **Repo:** `~/loomweave` · **Language:** Rust
-**Current details:** v1.1.0-rc4; ~42 consult-mode MCP tools; CLI + MCP (stdio) + loopback HTTP read API. First-customer scale target: elspeth (~425k LOC). For the latest details, use `~/loomweave/Cargo.toml`, `~/loomweave/README.md`, `~/loomweave/docs/loomweave/1.0/`, and `~/loomweave/docs/loomweave/adr/`.
+**Current details:** v1.1.0-rc5; ~42 consult-mode MCP tools; CLI + MCP (stdio) + loopback HTTP read API. First-customer scale target: elspeth (~425k LOC). For the latest details, use `~/loomweave/Cargo.toml`, `~/loomweave/README.md`, `~/loomweave/docs/loomweave/1.0/`, and `~/loomweave/docs/loomweave/adr/`.
 
 ## Responsibilities
 

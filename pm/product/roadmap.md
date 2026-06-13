@@ -22,6 +22,16 @@
   out-of-envelope call** (frontier sprint merged Rust into release branches; owner: gate-on-gold).
   ADR-049 dialect declared out-of-freeze via `weft-dfeb20c4fa`; the out-of-freeze posture STANDS.
   G5 `weft-7436c1959e` **CLOSED** (emit topology applied + verified, commit `0a6dfc1`).
+- **Warpline implementation fast-follow — the active member-side bet.** Warpline is now an
+  **admitted federation member** (5th member, 2026-06-14, PDR-0022, reversing PDR-0017), the
+  suite's **temporal / change-impact authority** ("what changed, when, and what does this change
+  touch") and the read-side complement to mechanism B ("if I touch X, what breaks?" — today
+  answered by grep-plus-hope or human blast-radius review = supervision load). Renamed
+  heddle → warpline; live repo `~/warpline`, six frozen federation tool names, consumes
+  `warpline.reverify_worklist.v1`. Its implementation lands as a **fast-follow OUTSIDE the
+  four-member launch cutover** (cutover lockstep stays Filigree, Loomweave, Wardline, Legis).
+  Intent: sequence the impl fast-follow once launch dispatch settles. · admission record:
+  `weft-e4589e6570`.
 
 ## Next (shaped, decreasing certainty)
 - **Agent continuity & write-safety** — **SIGNED OFF 2026-06-09 (PDR-0008);** shape & sequence
@@ -63,7 +73,7 @@
   product gap in filigree's domain, not a process failure; scope decided at A's scoping). These
   outrank any new tool. · metric: every metrics.md row gets a dated instrumented reading.
 - **Rust analyzer line — NOW GATES THE CUTOVER (PDR-0014, not post-launch)** — frontier sprint
-  merged into release branches (wardline rc5, loomweave rc4); 27 residual SEI collisions across 4
+  merged into release branches (wardline rc4, loomweave rc5); 27 residual SEI collisions across 4
   families block gold (`weft-7ee9bccbd7`, P1, hub). Hub epic `weft-9823a04785`. Done-means: 4
   clarion tickets closed, qualname_check oracle 0 across pinned corpora, gold verdict re-issued,
   ADR-049 amendments in wardline lockstep. Reversal trigger in PDR-0014: if families prove
@@ -80,10 +90,6 @@
   amendment required. **No longer a dependency of the Next bet** (discovery showed the
   continuity/write-safety layer is identity-free); stands on its own merits.
   `pm/2026-06-06-agent-identity-component-plan.md`.
-- **Warpline** — temporal / change-impact authority. **Next discovery slot (PDR-0013 #1):** the
-  go/no-go spike `weft-e4589e6570` runs once launch dispatch settles. Read-side complement to
-  mechanism B ("if I touch X, what breaks?" — today answered by grep-plus-hope or human
-  blast-radius review = supervision load).
 - **Propagation/live-state ledger** — "what is actually built/installed/live where" (PDR-0013 #2,
   spike `weft-61c24f622e`). Three independent source-fixed ≠ live-fixed incidents. Default
   hypothesis: a **legis feature**, not a new member; hook-fed, enrich-only, grep-test gated.

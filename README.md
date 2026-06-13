@@ -16,7 +16,9 @@ This folder (`~/weft`) is the **authoritative source of truth for federation-wid
 | Filigree | `~/filigree` | Python | Work state / issue lifecycle | [members/filigree.md](./members/filigree.md) |
 | Wardline | `~/wardline` | Python | Trust-boundary analysis | [members/wardline.md](./members/wardline.md) |
 | Legis | `~/legis` | Python | Git/CI governance & attestations | [members/legis.md](./members/legis.md) |
-| Charter | `~/charter` | Python | Requirements, traceability, verification | [members/charter.md](./members/charter.md) |
+| Warpline | `~/warpline` | Python | Temporal / change-impact authority | [members/warpline.md](./members/warpline.md) |
+
+**Planned integration:** **Charter** (`~/charter`, Python — requirements, traceability, verification) has a realized local core and a read-only MCP surface, but its federation adapters are still pending, so it is not yet a full member (see [doctrine.md](./doctrine.md) §1 and [members/charter.md](./members/charter.md)).
 
 Not members, but part of the story:
 - **[Shuttle](./members/shuttle.md)** — a roadmap *thought-bubble* for a future change-execution authority. No repo; lowest priority; displaceable by any better idea.

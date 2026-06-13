@@ -55,6 +55,8 @@ on its own cadence and **does not gate 1.0**.
 | **legis** | Python | Git/CI, governance, attestations | 1.0.0rc2 — *1.0 unit* |
 | **charter** | Python | Requirements, traceability, verification evidence | early — **non-gating; joins on own cadence** |
 
+**Current roster of record: see [doctrine.md](./doctrine.md)** (five admitted members incl. Warpline; Charter is a planned integration). This section records the 2026-06-05 go-to-market decision.
+
 **shuttle** = a **speculative roadmap thought-bubble** (transactional scoped change execution) — **no repo, displaceable by any better idea, not a committed member**, and not in scope for 1.0 (per [doctrine.md](./doctrine.md) roster canon; [conflict-register.md](./conflict-register.md) §B-7).
 
 The forward roadmap (charter, then shuttle) extends Weft *up* into requirements

@@ -4,7 +4,7 @@ Load-bearing factual claims the hub makes, each with its **authoritative source*
 
 | # | Claim | Authoritative source |
 |---|---|---|
-| C-1 | The live core has 4 members: Loomweave, Filigree, Wardline, Legis; Charter has a realized local core/read-only MCP surface but remains a planned Weft integration | [doctrine.md](../doctrine.md) §1–2; repos at `~/{loomweave,filigree,wardline,legis,charter}` |
+| C-1 | The launch-cutover **live core** has 4 members: Loomweave, Filigree, Wardline, Legis (this is the four-member lockstep cutover set, not total membership — see C-14); Charter has a realized local core/read-only MCP surface but remains a planned Weft integration | [doctrine.md](../doctrine.md) §1–2; repos at `~/{loomweave,filigree,wardline,legis,charter}` |
 | C-2 | Shuttle has no repo and is a roadmap thought-bubble, not a member | absence of `~/shuttle`; John 2026-06-05 |
 | C-3 | Lacuna is the demonstration specimen, not a member | `~/lacuna/README.md` |
 | C-4 | Loomweave is the suite's identity authority; SEI is the binding key; locator is the address | [sei-standard.md](../sei-standard.md); Loomweave ADR-038 |
@@ -17,3 +17,4 @@ Load-bearing factual claims the hub makes, each with its **authoritative source*
 | C-11 | `wardline-watcher` and the `.old` repos are out of the federation | John 2026-06-05; `~/wardline-watcher/README.md` |
 | C-12 | Charter (requirements) and Shuttle (change execution) are distinct, non-overlapping | Charter ADR-001; [doctrine.md](../doctrine.md) §2 |
 | C-13 | Weft ships as separately-installable products behind one brand; current launch gating is the live core plus the documented dogfood/Rust gates, while Charter is non-gating planned integration | [SHIPPING.md](../SHIPPING.md); [pm/product/current-state.md](../pm/product/current-state.md) |
+| C-14 | Warpline is the admitted 5th member (temporal / change-impact authority); admitted 2026-06-14 against the doctrine §7 quality bar, reversing the earlier PDR-0017 "not ready" ruling. Its implementation is an admitted fast-follow, outside the four-member launch cutover (see C-1) | PDR-0022; [doctrine.md](../doctrine.md) §7; repo at `~/warpline` |

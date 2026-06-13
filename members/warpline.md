@@ -1,35 +1,28 @@
-# Warpline (planned extension)
+# Warpline (member)
 
-**Status:** **Working solo-mode prototype; NOT member-grade (assessed 2026-06-13).**
-**Repo:** local repo `~/heddle` (under active development); no admitted/public product repo yet · **Language:** Python 3.12+, zero runtime deps, v0.1.0
-**Current details:** a package, CLI (`init`/`backfill`/`changed`/`timeline`/`blast-radius`/`reverify`), and stdio MCP server now exist — the prior "design spike only" snapshot is stale and replaced by this one. The 2026-06-13 readiness review (recorded on `weft-e4589e6570`) found the solo temporal store works live, but the flagship blast-radius is not wired end-to-end (no production path captures snapshots or resolves SEIs; `changed` output cannot feed `blast_radius`), the MCP server dies on malformed input, and the store layout diverges from C-9 (XDG path-hash DBs, not `.weft/warpline/`). Against the doctrine §7 admission quality bar (standalone parity + federation enhancement) it currently fails both halves. Go/no-go remains tracked by `weft-e4589e6570`; admission is owner-reserved.
+**Domain authority:** temporal / change-impact — per-entity change history across runs, dated edge snapshots, downstream blast-radius, and the re-verification worklist. "What changed, when, and what does this change touch." The federation's **temporal / change-impact surface**.
+**Repo:** `~/warpline` · **Language:** Python (3.12+)
+**Current details:** *(snapshot — not authoritative; see repo)* v1.0.0; stdio MCP server exposing six frozen federation tools; CLI (`init`/`backfill`/`changed`/`timeline`/`blast-radius`/`reverify`/`capture_snapshot`). For the latest details, use `~/warpline/README.md`, `~/warpline/pyproject.toml`, and `~/warpline/CHANGELOG.md`.
 
-## Proposed authority
+## What it owns (authoritative in Warpline)
 
-Warpline is a candidate **temporal / change-impact surface**. Its claim is the
-one axis no live core tool owns today: per-entity change history across runs,
-keyed on stable code identity, and downstream-affected queries over the code graph.
+Temporal change facts (`change_events`), dated edge snapshots, downstream-affected queries over the code graph, and the re-verification worklist. The frozen tool names and schemas are Warpline's authority — this hub does not restate them. Its six frozen federation tools (`src/warpline/mcp.py`): `warpline_change_list`, `warpline_entity_timeline_get`, `warpline_entity_churn_count_get`, `warpline_impact_radius_get`, `warpline_reverify_worklist_get`, and the only mutating tool `warpline_edge_snapshot_capture`. State lives in `.weft/warpline/`.
 
-The proposed split is simple:
+The authority split is simple:
 
 - **Loomweave owns now** — the current structural graph and stable entity identity.
-- **Warpline would own over time** — what changed, when, by whom, and what downstream entities need re-verification.
+- **Warpline owns over time** — what changed, when, by whom, and what downstream entities need re-verification.
 
-## Federation role
+## Federation role (points to weft for patterns)
 
-- **Consumes SEI, never mints it.** Warpline would store Loomweave SEIs opaque and
-  refuse to become a second identity authority.
-- **Consumes graph facts, never mirrors the current graph.** It may store the
-  temporal facts it owns, but it must not become a stale duplicate of
-  Loomweave's live structural truth.
-- **Feeds re-verification, not enforcement.** Warpline can tell Charter/Legis-style
-  surfaces what changed and what is downstream-affected; it does not decide
-  whether the change is allowed.
+- **Roster:** Warpline is the **5th admitted member** (admitted 2026-06-14, PDR-0022, against the doctrine §7 admission quality bar — reversing the earlier PDR-0017 "not ready" ruling). See [doctrine.md](../doctrine.md), [conflict-register.md](../conflict-register.md).
+- **Consumes SEI, never mints it.** Warpline stores Loomweave **[SEI](../sei-standard.md)** values opaquely (keys entities by `loomweave:eid:` SEIs) and refuses to become a second identity authority.
+- **Consumes graph facts, never mirrors the current graph.** It stores only the temporal facts it owns; it never becomes a stale duplicate of Loomweave's live structural truth.
+- **Feeds re-verification, not enforcement.** Warpline tells Charter/Legis-style surfaces what changed and what is downstream-affected; it never decides whether a change is allowed. Advisory facts never gate ([deconfliction-not-security](../doctrine.md)).
+- **Enrich-only, never load-bearing.** Every Warpline-outbound consumption is an enhancement a member can omit; every Warpline-inbound read degrades to a coherent partial answer.
+- **Integrations:** seam contracts are FROZEN at the clean-break cutover ([pm/2026-06-13-warpline-interface-lock.md](../pm/2026-06-13-warpline-interface-lock.md)) — Loomweave edge/SEI reads (SEAM 1), Filigree work-state read via `entity_association_list_by_entity` (SEAM 2), Wardline risk enrichment (SEAM 3), Legis provenance/rename feed (SEAM 4). The consumed worklist contract is `warpline.reverify_worklist.v1`.
 
-## Current constraints
+## Notes
 
-- Zero changes to Filigree, Wardline, Legis, or Loomweave during design validation.
-- Enrich-only, never load-bearing.
-- Not an aggregator: stores only temporal/change-impact facts it owns.
-- Joining the suite remains an owner decision after validation, not a consequence
-  of this workspace existing.
+- **Launch cutover is four-member lockstep** (Filigree, Loomweave, Wardline, Legis); Warpline's consumer *implementations* are an admitted **fast-follow OUTSIDE the four-member launch cutover**. The seam *contracts* freeze at the cutover; implementations land post-launch without a contract renegotiation.
+- The Filigree consumer (`warpline_worklist_ingest`) shipped in Filigree 3.0.0 (EARNED inbound seam); the Loomweave / Wardline / Legis consumers remain fast-follow. See the interface-lock §6.

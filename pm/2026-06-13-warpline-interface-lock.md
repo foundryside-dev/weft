@@ -6,7 +6,7 @@ warpline overnight punch-list.
 Date: 2026-06-13
 Author: PM (weft hub session)
 Tracker: weft-54192f9400 (warpline seam contracts — design + golden-vector + freeze)
-Warpline HEAD grounded against: `06f2597` in `/home/john/heddle`
+Warpline HEAD grounded against: `06f2597` in `/home/john/warpline`
 
 ---
 
@@ -752,21 +752,21 @@ This is a launch-runbook ordering call, owner-visible.
 
 ## 9. Citations index (load-bearing source)
 
-- warpline outbound surface, live: `/home/john/heddle/src/heddle/mcp.py:46-394`
-- warpline command shapes, live: `/home/john/heddle/src/heddle/commands.py:44-129`
+- warpline outbound surface, live: `/home/john/warpline/src/warpline/mcp.py:46-394`
+- warpline command shapes, live: `/home/john/warpline/src/warpline/commands.py:44-129`
 - warpline store (change_events, edge_snapshots, timeline join):
-  `/home/john/heddle/src/heddle/store.py:21-378`
-- warpline loomweave client + SEI resolve: `/home/john/heddle/src/heddle/loomweave.py:73-176`
-- warpline snapshot capture + truncation guard: `/home/john/heddle/src/heddle/snapshot.py:46-207`
+  `/home/john/warpline/src/warpline/store.py:21-378`
+- warpline loomweave client + SEI resolve: `/home/john/warpline/src/warpline/loomweave.py:73-176`
+- warpline snapshot capture + truncation guard: `/home/john/warpline/src/warpline/snapshot.py:46-207`
 - Interface Endorsement Package (envelope, error vocab, entity_ref, tool
   contracts, pairwise table):
-  `/home/john/heddle/docs/product/federation-value-add-and-mcp-first-audit.md:19-532`
+  `/home/john/warpline/docs/product/federation-value-add-and-mcp-first-audit.md:19-532`
 - warpline contracts (endorsed names, degrade rule):
-  `/home/john/heddle/docs/federation/contracts.md:11-34`
+  `/home/john/warpline/docs/federation/contracts.md:11-34`
 - warpline prose interface contracts (mandatory staleness/completeness, NO_SNAPSHOT):
-  `/home/john/heddle/solution-architecture/11-interface-contracts.md:14-53`
+  `/home/john/warpline/solution-architecture/11-interface-contracts.md:14-53`
 - post-admission consumer tickets (per-member boundary + acceptance):
-  `/home/john/heddle/docs/integration/post-admission-consumer-tickets.md:1-37`
+  `/home/john/warpline/docs/integration/post-admission-consumer-tickets.md:1-37`
 - SEI scheme (FROZEN `loomweave:eid:` prefix, mint, resolve, GitRename seam):
   `/home/john/loomweave/crates/loomweave-storage/src/sei.rs:36-162,402-532`
 - loomweave dead churn/recency surfaces (the NO-DEAD-BY-DESIGN target):

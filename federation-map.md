@@ -2,7 +2,7 @@
 
 **Status:** **Authoritative** as the at-a-glance integration matrix. It names *which pairs compose and which contract carries each pair*, and points to [contracts-index.md](./contracts-index.md) for the contract detail and to the **owning project doc** as the schema authority. It restates no schema.
 
-**Members:** Loomweave, Filigree, Wardline, and Legis are the live core. Charter has a realized local core/read-only MCP surface but remains a planned Weft integration. Warpline is a design spike, Lacuna is the demo specimen, and Shuttle is a roadmap thought-bubble (no repo). See [doctrine.md](./doctrine.md) §1–2 and [members/](./members/).
+**Members:** Loomweave, Filigree, Wardline, and Legis are the live core. Charter has a realized local core/read-only MCP surface but remains a planned Weft integration. Warpline is the admitted 5th member (2026-06-14); its federation adapters are a fast-follow outside the launch cutover. Lacuna is the demo specimen, and Shuttle is a roadmap thought-bubble (no repo). See [doctrine.md](./doctrine.md) §1–2 and [members/](./members/).
 
 **Reading the matrix:** each non-empty cell is a cross-tool binding. Per the federation axiom ([doctrine.md](./doctrine.md) §5) every binding is **enrich-only** — removing one side never breaks the other's core flow. Every binding keys on **[SEI](./sei-standard.md)**.
 

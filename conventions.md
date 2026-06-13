@@ -562,8 +562,8 @@ generated artifact drifted). The hub records them; each member owns the fix.
 
 - **LW-1 (loomweave): VOID (resolved 2026-06-09).** Was: generated `.gitignore` excludes `loomweave.db` against ADR-005's "tracked" mandate. That mandate was deliberately **reversed by C1 (`weft-d822a7de2d`)** — excluding the db keeps the consumer's tree clean so legis can sign. `install.rs:37,44` cites the reversal in-comment; the exclusion is now correct, not drift. No member action.
 - **LW-2 (loomweave):** `README.md`/`CHANGELOG` version drift — README says "v1.0.0 current" while the working branch's `Cargo.toml` is `1.1.0-rc2`; CHANGELOG orders `[1.0.0] 2026-06-05` above `[1.3.0]`.
-- **WD-1 (wardline):** `README.md`/`ROADMAP.md` say "four policy rules / 0.3.0 shipped"; code has **20 rules** (`PY-WL-101..120`) at `1.0.0rc1`.
-- **LG-1 (legis):** `README.md:9` says `1.0.0rc1` and "MCP forthcoming"; code is `1.0.0rc4` with the **13-tool MCP shipped**. No `--version` flag exists. `install`/`session-context` are rc4-only (installed rc3 lacks them).
+- **WD-1 (wardline):** `README.md`/`ROADMAP.md` say "four policy rules / 0.3.0 shipped"; code has **27 rules** (`PY-WL-003` + `PY-WL-101..126`) at `1.0.0rc4`.
+- **LG-1 (legis):** `README.md:9` says `1.0.0rc1` and "MCP forthcoming"; code is `1.0.0rc4` with the **~22-tool MCP shipped**. No `--version` flag exists. `install`/`session-context` are rc4-only (installed rc3 lacks them).
 - **CH-1 (charter):** local `uv` entrypoints exist (`charter`, `charter-mcp`), but no global install was observed; README/ADRs still carry legacy Loom/Clarion naming in places; a review doc says "139 tests" vs 164 passing on `main`.
 - **FL-1 (filigree): VOID for the `loom` fixture claim (resolved 2026-06-12).** Source now uses `/api/weft/*` and `tests/fixtures/contracts/weft/scan-results.json`. Any remaining Filigree naming drift is member-owned docs cleanup, not a hub contract discrepancy.
 
