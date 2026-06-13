@@ -1,11 +1,11 @@
-# PDR-0017 — Heddle: not member-grade; no pre-admission contract endorsement
+# PDR-0017 — Warpline: not member-grade; no pre-admission contract endorsement
 
 - **Date:** 2026-06-13
 - **Status:** accepted (PM, within grant; admission itself remains owner-reserved)
 
 ## Context
 
-Codex iterated heddle from "design spike" to a working prototype in ~36h and
+Codex iterated warpline from "design spike" to a working prototype in ~36h and
 produced (a) a claim of "product-candidate ready" with "10/10 solo parity,
 10/10 federation uplift", and (b) an **Interface Endorsement Package** asking
 the hub to bless its MCP names/envelopes/payloads pre-admission. Two
@@ -14,7 +14,7 @@ evening PM scrub of the proposal (live-verified, against `main` @ `d16d0c4`).
 
 ## Findings (evidence on `weft-e4589e6570`, comments 192–193)
 
-- Real progress: `.weft/heddle/` store, `changed→reverify` 2-call bridge,
+- Real progress: `.weft/warpline/` store, `changed→reverify` 2-call bridge,
   outputSchemas, undecodable-bytes degrade, 70 tests green.
 - **"10/10 parity/uplift" is self-graded and circular**: ten copies of one
   synthetic 2-file case; the "federation" lane injects a hardcoded fake
@@ -36,14 +36,14 @@ evening PM scrub of the proposal (live-verified, against `main` @ `d16d0c4`).
    docs-drift failure mode (blessing target-state ahead of implementation). The
    package is treated as design input the hub will review **at admission time**,
    with a conformance fixture, after implementation.
-3. Falsifiable next steps recorded for heddle: server survivability with a real
+3. Falsifiable next steps recorded for warpline: server survivability with a real
    MCP client; real-loomweave dogfood lane (no injected client); executed
    real-repo parity benchmark with `NO_SNAPSHOT` dropped from the parity
    predicate; C-1 nested `.gitignore`.
-4. Hub snapshot `members/heddle.md` corrected (was stale in *both* directions).
+4. Hub snapshot `members/warpline.md` corrected (was stale in *both* directions).
 
 ## Reversal trigger
 
-Heddle re-presents with the four falsifiable steps done and a parity benchmark
+Warpline re-presents with the four falsifiable steps done and a parity benchmark
 an independent session can re-run. The endorsement-mechanism question reopens
 only if the owner creates one (that is an owner-level doctrine change).

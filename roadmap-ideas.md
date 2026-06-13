@@ -32,7 +32,7 @@ The one pre-existing idea. Receives an approved scoped change, applies it increm
 - **Pairwise stories:** with Loomweave, dependencies become entities with SEI; with Wardline, complements (external-package risk vs in-code taint); with Legis, dependency risk becomes a governed gate; with Charter, a security requirement traces to a dependency finding.
 - **Go/no-go risk:** low–medium. Cleanly bounded and clearly not owned today. Main risk is scope sprawl into general SCA tooling — would need a tight "provenance, not a vuln scanner" charter.
 
-### 3. "Heddle" — temporal / change-impact authority  ·  *PM-selected for a go/no-go spike (2026-06-06)*
+### 3. "Warpline" — temporal / change-impact authority  ·  *PM-selected for a go/no-go spike (2026-06-06)*
 
 - **Bounded domain:** per-entity **change history keyed on SEI across runs**, and the
   downstream-propagation query over the structural graph it snapshots. Answers the

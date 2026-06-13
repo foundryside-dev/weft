@@ -212,8 +212,8 @@ export const PROPOSED_MEMBERS = [
     ],
   },
   {
-    id: 'heddle',
-    name: 'Heddle',
+    id: 'warpline',
+    name: 'Warpline',
     thread: 'var(--thread-shuttle)',
     group: 'planned extension',
     lang: 'TBD',
@@ -225,7 +225,7 @@ export const PROPOSED_MEMBERS = [
     repoLabel: 'local design repo only',
     repoNote: 'Local design repo: ~/heddle; no public/admitted product repo yet.',
     authority:
-      'a candidate temporal graph for per-entity change history across runs. Loomweave explains the current codebase; Heddle would explain how it changed over time.',
+      'a candidate temporal graph for per-entity change history across runs. Loomweave explains the current codebase; Warpline would explain how it changed over time.',
     owns: [
       'per-entity change history across analysis runs',
       'downstream-affected queries over the call graph',
@@ -238,7 +238,7 @@ export const PROPOSED_MEMBERS = [
       'would help Charter and Legis decide what needs re-verification after a change.',
     ],
     pending:
-      'Heddle is an early design spike, not a committed member. The next step is proving whether the temporal graph is useful enough to build.',
+      'Warpline is an early design spike, not a committed member. The next step is proving whether the temporal graph is useful enough to build.',
     facts: [
       ['status', 'design spike', 'validation in progress'],
       ['tracker', 'weft-e4589e6570', 'design validation'],

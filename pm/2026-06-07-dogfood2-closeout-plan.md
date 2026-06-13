@@ -132,7 +132,7 @@ we don't release-then-immediately-repatch.
 - weft-f506e5f845: close once its child papercuts (F3/W3/L1/Le1/C2/C3) are dispatched.
 
 ### WS-6 — Spike (independent, parallelizable)
-- weft-e4589e6570: go/no-go on the temporal / change-impact authority ("Heddle").
+- weft-e4589e6570: go/no-go on the temporal / change-impact authority ("Warpline").
   Legis-adjacent (change-impact is legis's wheelhouse). Decision spike, not blocking.
 
 ---

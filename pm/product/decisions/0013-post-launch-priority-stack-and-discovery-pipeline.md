@@ -1,7 +1,7 @@
 # PDR-0013 — Post-launch priority stack + the new-tool discovery pipeline (agentic-first bar)
 
 Date: 2026-06-10   Status: accepted   Author: claude-pm   Owner sign-off: yes ("yes please go ahead" to the 2026-06-10 resume-brief recommendations)
-Supersedes: — (extends PDR-0003/0004/0008)   Related: weft-e4589e6570 (Heddle spike), weft-61c24f622e (propagation-ledger spike), weft-6636667996 (scoreboard), weft-ff30fd979f (close-the-loop), weft-df29917f29/clarion-2c959a059e (quarantine forensics), pm/2026-06-09-cross-project-ticket-coordination-concept.md
+Supersedes: — (extends PDR-0003/0004/0008)   Related: weft-e4589e6570 (Warpline spike), weft-61c24f622e (propagation-ledger spike), weft-6636667996 (scoreboard), weft-ff30fd979f (close-the-loop), weft-df29917f29/clarion-2c959a059e (quarantine forensics), pm/2026-06-09-cross-project-ticket-coordination-concept.md
 
 ## Context
 Owner asked for the federation evaluation, the post-1.0 priorities, and the new-tool pipeline,
@@ -28,7 +28,7 @@ times in one week; Rust line board-invisible; source-fixed ≠ live-fixed bit fo
    proved real work spans members invisibly. Federated variant only (doctrine §6).
 
 **New-tool discovery pipeline (ranked, spike-then-decide; admission stays owner-reserved §7):**
-1. **Heddle** (`weft-e4589e6570`) — next discovery slot. "If I touch X, what breaks?" is every
+1. **Warpline** (`weft-e4589e6570`) — next discovery slot. "If I touch X, what breaks?" is every
    agent's every-session question, currently answered by grep-plus-hope or human blast-radius
    review (= supervision load, PDR-0004). Read-side complement to B's write guard.
 2. **Propagation/live-state ledger** (`weft-61c24f622e`, NEW) — "what is actually built/installed/
@@ -53,7 +53,7 @@ from watching agents actually use the suite. The stack therefore funds the evide
 the two highest-leverage candidate authorities rather than committing to either.
 
 ## Reversal trigger
-- If the Heddle spike returns no-go AND the propagation spike returns "legis feature," the
+- If the Warpline spike returns no-go AND the propagation spike returns "legis feature," the
   new-member pipeline empties — that is fine; do not manufacture a member to fill it.
 - If post-launch dogfood shows supervision load is NOT dominated by orientation/collision (i.e.
   A/B ship and the operator still can't fire-and-forget), re-open the value model (PDR-0004)

@@ -2,11 +2,11 @@
 
 - **Date:** 2026-06-13
 - **Status:** accepted (owner ruling, verbatim authority)
-- **Driver:** owner, stated to both the hub PM session and the codex/heddle stream
+- **Driver:** owner, stated to both the hub PM session and the codex/warpline stream
 
 ## Context
 
-Heddle reached "working prototype" and began proposing itself as a member
+Warpline reached "working prototype" and began proposing itself as a member
 candidate. Doctrine §7 had four *structural* tests (is it a product?) but no
 *quality* bar — nothing stopped a structurally-valid but mediocre tool from
 arguing for admission.
@@ -23,7 +23,7 @@ Option 2. Recorded in `doctrine.md` §7 "The quality bar for formal admission"
 (commit `3c1bd28`) and persistent memory. Admission itself stays owner-reserved;
 the bar is what any go/no-go assessment measures against.
 
-First application same day: heddle — fails both halves (PDR-0017).
+First application same day: warpline — fails both halves (PDR-0017).
 
 ## Reversal trigger
 

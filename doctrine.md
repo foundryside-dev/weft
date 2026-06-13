@@ -13,7 +13,7 @@ Weft is a suite for enterprise-grade code governance on small teams. Its live co
 
 The metaphor is deliberate: distinct threads stay distinct but gain value by being woven together. Weft is a **family name** and a **composition doctrine** — not a platform, not a shared runtime, not a store, and not a broker. There is nothing called "Weft" to install, deploy, or keep running. What exists are the member products, a set of narrow interop contracts between them, and this hub (`~/weft`) which is documentation only — it holds no runtime, no store, and no code.
 
-> **Roster note.** The 2026-06-05 ruling admitted Legis and Charter into the Weft family and excluded Shuttle as a member. Current launch taxonomy is narrower: four live core tools (Loomweave, Filigree, Wardline, Legis), Charter as a planned integration with local core/read-only MCP shipped, Heddle as a design spike, and Lacuna as the demo specimen. See [conflict-register.md](./conflict-register.md) §B-1 for the original ruling and its evidence.
+> **Roster note.** The 2026-06-05 ruling admitted Legis and Charter into the Weft family and excluded Shuttle as a member. Current launch taxonomy is narrower: four live core tools (Loomweave, Filigree, Wardline, Legis), Charter as a planned integration with local core/read-only MCP shipped, Warpline as a design spike, and Lacuna as the demo specimen. See [conflict-register.md](./conflict-register.md) §B-1 for the original ruling and its evidence.
 
 ## 2. The products and their authoritative domains
 

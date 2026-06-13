@@ -149,7 +149,7 @@ federation `Mark` glyphs, per the design doctrine.
 /members/wardline       │  how each composes, read-more links, and a current
 /members/legis          ┘  details block that points back to the owning repo
 /members/charter        ┐  planned-extension pages; Charter has core + read
-/members/heddle         ┘  MCP shipped, Heddle is early design
+/members/warpline         ┘  MCP shipped, Warpline is early design
 /members/lacuna            demo-app page
 /demos                  see-it-run page; defaults to the Lacuna tour
 /demos/lacuna           ┐  deep-linkable demo selection

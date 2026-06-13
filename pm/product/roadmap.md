@@ -80,7 +80,7 @@
   amendment required. **No longer a dependency of the Next bet** (discovery showed the
   continuity/write-safety layer is identity-free); stands on its own merits.
   `pm/2026-06-06-agent-identity-component-plan.md`.
-- **Heddle** — temporal / change-impact authority. **Next discovery slot (PDR-0013 #1):** the
+- **Warpline** — temporal / change-impact authority. **Next discovery slot (PDR-0013 #1):** the
   go/no-go spike `weft-e4589e6570` runs once launch dispatch settles. Read-side complement to
   mechanism B ("if I touch X, what breaks?" — today answered by grep-plus-hope or human
   blast-radius review = supervision load).

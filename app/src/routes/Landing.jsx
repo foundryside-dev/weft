@@ -53,7 +53,7 @@ function Hero() {
       <p className="t-body" style={{ fontSize: 16, maxWidth: 680, marginTop: 22 }}>
         Weft brings together four live tools for code understanding, work tracking,
         trust-boundary checks, and change governance. Lacuna is the demo app that shows the
-        tools working together. Charter and Heddle are planned extensions for requirements and
+        tools working together. Charter and Warpline are planned extensions for requirements and
         change-impact analysis.
       </p>
       <div

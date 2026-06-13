@@ -14,12 +14,12 @@ Here's what's on the bench, with the odds stated plainly.
 
 ---
 
-## Heddle — the temporal authority *(in active go/no-go spike)*
+## Warpline — the temporal authority *(in active go/no-go spike)*
 
 The loudest unanswered question in the federation: **"Given this change,
 which entities changed, by whom, when — what is downstream-affected, and what
 must be re-verified?"** Loomweave deliberately stores only the point-in-time
-graph; no member owns history. Heddle would: per-entity change history keyed
+graph; no member owns history. Warpline would: per-entity change history keyed
 on durable identity across runs, plus the downstream-propagation query over
 the structural graph.
 
@@ -28,7 +28,7 @@ real answers, Charter learns what to re-verify, Legis learns the scope of a
 gate, Wardline learns what to re-scan. And every sibling keeps its
 point-in-time view, unharmed, in its absence.
 
-The honest risk, in our own words: naively framed, Heddle is a forbidden
+The honest risk, in our own words: naively framed, Warpline is a forbidden
 aggregator — the central thing the doctrine exists to prevent. It joins the
 roster only if the spike proves it can be a bounded *temporal-graph
 authority* that owns the one unowned thing. The spike is running now. It is

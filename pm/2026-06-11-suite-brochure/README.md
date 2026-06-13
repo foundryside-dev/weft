@@ -22,7 +22,7 @@ federation's design philosophy.
 | [Legis](04-legis.md) | Git/CI governance & attestations |
 | [Charter](05-charter.md) | Requirements, traceability & verification |
 | [The Extras](06-extras.md) | The weft hub and Lacuna — not members, part of the story |
-| [The Potentials](07-potentials.md) | Shuttle, Heddle, and the idea bench |
+| [The Potentials](07-potentials.md) | Shuttle, Warpline, and the idea bench |
 
 Authoritative sources: [doctrine.md](../../doctrine.md),
 [members/](../../members/), [roadmap-ideas.md](../../roadmap-ideas.md).

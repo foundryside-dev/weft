@@ -182,7 +182,7 @@ export function MemberPage({ id }) {
                 ) : (
                   <span style={{ color: 'var(--text-primary)' }}>{label}</span>
                 )}
-                {!href && m.id === 'heddle' ? <span style={{ color: 'var(--text-muted)' }}> — early design notes</span> : null}
+                {!href && m.id === 'warpline' ? <span style={{ color: 'var(--text-muted)' }}> — early design notes</span> : null}
               </li>
             ))}
           </ul>

@@ -17,11 +17,11 @@ can't rot). C anticipates; **B catches mechanically when a peer overrides the ad
 
 ## Operating model (PDR-0015, owner ruling 2026-06-12)
 **The pen is at the hub** until each member ships its next major. NEW since: **codex operates as a
-second autonomous stream** (heddle, loomweave c475e90, website drift pass) — hub posture per
+second autonomous stream** (warpline, loomweave c475e90, website drift pass) — hub posture per
 PDR-0018 is *accept via adversarial review + same-day remediation*, never blind, never auto-revert.
 **PDR-0020 adds the launch-control boundary:** until ship, the program office may dispatch and
 accept residual burn-down inside the four admitted subordinate projects — Filigree, Loomweave,
-Wardline, and Legis. Heddle remains outside this launch-control set until a separate owner admission
+Wardline, and Legis. Warpline remains outside this launch-control set until a separate owner admission
 decision changes its status.
 
 ## The bet right now
@@ -38,14 +38,14 @@ decision changes its status.
   `weft-a05b53edcd` (P1, fully unblocked — it is now the *measurement*, not the fix)**.
 Metric: dogfood pass rate — joins were 1/4 pre-fix; 4/4 expected at re-dogfood (metrics.md 2026-06-13).
 
-## Heddle (candidate stream, codex-driven)
+## Warpline (candidate stream, codex-driven)
 - **Admission quality bar ratified (owner, PDR-0016, doctrine §7 + 3c1bd28):** standalone parity AND
   federation enhancement, both in shipped behaviour, conjunctive.
 - **Ruled not-ready (PDR-0017,** evidence on `weft-e4589e6570` comments 192–193): real kernel, but
   parity/uplift claims are self-graded against a fake loomweave client; server fail-dead on bad
   rev_range; **pre-admission endorsement of its Interface Endorsement Package DECLINED** (no such
   mechanism; design input at admission time only). Four falsifiable next steps recorded on the issue.
-  `members/heddle.md` corrected (33c1a7b).
+  `members/warpline.md` corrected (33c1a7b).
 
 ## In flight / recently landed
 - **Residual burn-down accepted (PDR-0020):** post-fix Lacuna re-dogfood closed
@@ -71,11 +71,11 @@ Metric: dogfood pass rate — joins were 1/4 pre-fix; 4/4 expected at re-dogfood
 ## Open questions / blocked-on-owner
 - **Critical path moved to G14** — G15 `weft-045076e30f` is closed; Filigree now reports
   `weft-8f1c6c512e` → GS-7 → Dogfood #2 → launch cutover.
-- **Heddle next steps**: does the owner want the four falsifiable steps dispatched (to codex or a hub
-  wave), or does heddle pause until after launch?
+- **Warpline next steps**: does the owner want the four falsifiable steps dispatched (to codex or a hub
+  wave), or does warpline pause until after launch?
 - **Launch-branch test-health triage** — Wardline `weft-2787ded4e1` + Loomweave
   `weft-41a1142165`; both block cutover until fixed or deliberately reclassified.
-- **Stale claim**: `weft-ab0a6555f5` (conventions verification campaign) open/unassigned; Heddle spike
+- **Stale claim**: `weft-ab0a6555f5` (conventions verification campaign) open/unassigned; Warpline spike
   `weft-e4589e6570` stays open as the go/no-go record. `weft-384929d1ad` closed by codex (verified).
 - Launch cutover owner-reserved (PDR-0011); admission owner-reserved (doctrine §7 + PDR-0016).
 
@@ -88,7 +88,7 @@ Metric: dogfood pass rate — joins were 1/4 pre-fix; 4/4 expected at re-dogfood
   `weft-122a50829f` closed after subagent implementation plus coordinator verification.
 - Promoted the two pending observations into durable P2 launch-gate bugs and wired them under
   cutover: `weft-2787ded4e1`, `weft-41a1142165`. `filigree observation list` is now empty.
-- PDRs 0016–0019 recorded (admission bar; heddle not-ready + endorsement declined; codex-commit
+- PDRs 0016–0019 recorded (admission bar; warpline not-ready + endorsement declined; codex-commit
   acceptance posture; redaction-invariant ruling).
 - Dogfood-4 wave closed out: 6 more issues closed (A7, B7, B1, B2, B10, B9) + rec#2/rec#3 + epic;
   C-12/C-13 cells committed (b0eee6e, d141d41, b60a8f5); doctrine §7 quality bar (3c1bd28).
@@ -101,7 +101,7 @@ Metric: dogfood pass rate — joins were 1/4 pre-fix; 4/4 expected at re-dogfood
    `weft-7ee9bccbd7` (Rust gold closeout) are startable P1s.
 3. **Launch-branch test-health bugs**
    `weft-2787ded4e1` / `weft-41a1142165` — cutover gates not touched this wave.
-4. **Owner's heddle call** (above) — then dispatch or park; do not include Heddle in launch-control
+4. **Owner's warpline call** (above) — then dispatch or park; do not include Warpline in launch-control
    residual burn-down until admission changes.
 5. **C-tail batch `weft-0b27444be7`** + remaining dogfood-gate blockers as capacity allows.
 6. Hand gate+wave state to `/axiom-program-management` for cutover choreography.

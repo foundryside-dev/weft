@@ -39,7 +39,7 @@ preloaded fonts resolve under a normal origin.
   `Marks.jsx` / `Hub.jsx`.
 - **Roster = the brand/doctrine layer:** the current app splits the suite into
   four live core tools (loomweave · filigree · wardline · legis), planned
-  extensions (charter · heddle), **Shuttle** as a future idea, and **Lacuna** as
+  extensions (charter · warpline), **Shuttle** as a future idea, and **Lacuna** as
   the demo app.
 - **`legis` status shown as `1.0.0`** — the current app presents Legis as a live
   core tool at its `1.0.0` release.

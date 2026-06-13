@@ -1,13 +1,13 @@
-# PDR-0021 — Heddle SEAM 4B rename feed: path-vs-locator ownership boundary
+# PDR-0021 — Warpline SEAM 4B rename feed: path-vs-locator ownership boundary
 
 Date: 2026-06-13   Status: accepted   Author: PM (weft hub session)   Owner sign-off: yes (boundary resolution requested by owner)
-Supersedes: n/a   Related: `weft-54192f9400` (heddle seam freeze), `weft-13df44db31` (preflight_impact v1.1.0), interface-lock §4B + §10/A1
+Supersedes: n/a   Related: `weft-54192f9400` (warpline seam freeze), `weft-13df44db31` (preflight_impact v1.1.0), interface-lock §4B + §10/A1
 
 ## Context
 
-The FROZEN heddle interface-lock (`pm/2026-06-13-heddle-interface-lock.md`) §4B
+The FROZEN warpline interface-lock (`pm/2026-06-13-warpline-interface-lock.md`) §4B
 specified that legis's `git_rename_list` feed emits `[{old_locator, new_locator}]`
-(matching loomweave's `GitRename`), so heddle's timelines stay stable across file
+(matching loomweave's `GitRename`), so warpline's timelines stay stable across file
 moves. Planning legis's side of the seam surfaced a contract-vs-reality gap, the
 kind that only appears under adversarial real-sibling integration:
 
@@ -21,8 +21,8 @@ kind that only appears under adversarial real-sibling integration:
 - loomweave's rename sources (`ShellGitRenameSource`, `LegisGitRenameSource`,
   `sei_git.rs:75-294`) produce locator-renames ONLY as an analyze-time input to
   loomweave's own SEI minting; loomweave **emits no rename feed over MCP**.
-- heddle's consumer (`siblings.py:122-162`) is a generic injectable with a raw-git
-  fallback; there is no live heddle→legis wire. Proven-need is unmet.
+- warpline's consumer (`siblings.py:122-162`) is a generic injectable with a raw-git
+  fallback; there is no live warpline→legis wire. Proven-need is unmet.
 
 ## Options considered
 
@@ -31,7 +31,7 @@ kind that only appears under adversarial real-sibling integration:
   code disclaims the capability.
 - **A** — legis emits its native path-renames; the path→locator derivation is owned
   downstream (loomweave). Keeps legis on-charter.
-- **C** — legis is not heddle's rename supplier at all; loomweave (which already
+- **C** — legis is not warpline's rename supplier at all; loomweave (which already
   derives) is the source via a new MCP feed.
 
 Resolved by an expert panel (api-architect → C, product-decision-critic → A) plus a
@@ -48,9 +48,9 @@ derivation — A and C name the two halves of one arrangement.
    proven consumer (loomweave's `LegisGitRenameSource`, analyze-time). The
    interface-lock §4B/GV-LG-2/§6 shapes are corrected from locator to path
    (lock §10/A1).
-3. **The heddle-facing mechanism stays RESERVED and OPEN** until heddle proves
+3. **The warpline-facing mechanism stays RESERVED and OPEN** until warpline proves
    consumption (prove-the-need): **C′** (loomweave grows a new MCP rename feed) vs
-   **A′** (heddle ports loomweave's derivation onto legis's path feed). Build
+   **A′** (warpline ports loomweave's derivation onto legis's path feed). Build
    nothing now.
 4. **The legis→loomweave path-rename seam is proven and freeze-eligible** at the
    clean-break cutover; loomweave to confirm `parse_legis_rename_json` matches
@@ -65,13 +65,13 @@ explicitly disclaims — a member-mission-boundary violation. loomweave already 
 the entity catalogue, the SEI scheme, and the only derivation pipeline; it is the
 single source of truth. Keeping legis as a pure path-supplier preserves its charter
 and the matcher contract (REQ-C-05) identically across consumers. Holding the
-heddle-facing feed reserved honors prove-the-need: heddle uses raw git today, so no
+warpline-facing feed reserved honors prove-the-need: warpline uses raw git today, so no
 sibling obligation freezes on a claimed need.
 
 ## Reversal trigger
 
-Revisit the C′/A′ choice only when heddle proves consumption with a golden vector
-against a real supplier — and prefer C′ if heddle's own derivation measurably
+Revisit the C′/A′ choice only when warpline proves consumption with a golden vector
+against a real supplier — and prefer C′ if warpline's own derivation measurably
 diverges from loomweave's for the same rename (two consumers, two answers → make
 loomweave the single rename source via a new MCP tool). Re-open the derivation-
 ownership call only if legis ever gains on-charter locator derivation, which today's

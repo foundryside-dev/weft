@@ -7,7 +7,7 @@ const routes = [
   '/',
   '/members/loomweave',
   '/members/charter',
-  '/members/heddle',
+  '/members/warpline',
   '/members/lacuna',
   '/demos',
   '/demos/lacuna',

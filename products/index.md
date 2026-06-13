@@ -34,7 +34,7 @@ with siblings. The federation axiom and the composition law are in the
 
 !!! info "Shuttle and Lacuna are not here"
     **Shuttle** is a future idea, not a realized member — there is no product
-    page for it (see [doctrine §2](../doctrine.md)). **Heddle** is in early
+    page for it (see [doctrine §2](../doctrine.md)). **Warpline** is in early
     design, not a product surface yet. **Lacuna** is the demo app the tools are
     pointed at, not a member.
 
