@@ -552,19 +552,30 @@ governance verdict**.
 
 The load-bearing inbound read is the **git-rename feed**, so heddle's `timeline`
 and `changed` stay stable across file moves
-(`federation-value-add-and-mcp-first-audit.md:639-646`). This is the SAME typed
-locator-rename seam loomweave's SEI matcher consumes (`GitRenameSource`,
-`sei.rs:145-162`) — legis is the named future external supplier of that signal.
+(`federation-value-add-and-mcp-first-audit.md:639-646`).
+
+> **AMENDED 2026-06-13** (expert panel + loomweave HX1 source-check — see §10 / PDR-0021).
+> legis emits **path**-renames (`{old_path, new_path}`, legis `surface.py:166`), NOT
+> locator-renames. The path→locator **derivation** (`file_renames_to_locator_renames`,
+> loomweave `sei_git.rs:47-52`) is **loomweave's**, off legis's charter (legis
+> `models.py:35-37` disclaims symbol-level detection). loomweave CONSUMES rename
+> signals at analyze time (`LegisGitRenameSource`, `sei_git.rs:224-294`) and exposes
+> **no** rename feed over MCP. So heddle's locator-rename source is an OPEN fast-follow
+> choice — **C′** (loomweave grows a new MCP rename feed) or **A′** (heddle ports
+> loomweave's derivation onto legis's path feed) — to settle when heddle proves the
+> need. The shapes below are corrected to legis's real (path) output.
 
 | legis read | heddle uses it for | Frozen shape heddle depends on |
 | --- | --- | --- |
-| `git_rename_list` / rename feed | stable timeline across moves | `[{old_locator, new_locator}]` (matches `GitRename`, `sei.rs:146-150`) |
+| `git_rename_list` / rename feed | stable timeline across moves (locator derivation is loomweave's — see amendment) | `[{old_path, new_path}]` (legis's native git shape, `surface.py:166`) |
 | branch/commit/PR/signoff context | governance enrichment on outputs | `{branch, commit, pr, signoff_id, governance_state}` |
 
 **Frozen inbound rules:**
-- heddle consumes rename facts in **locator** terms (the same typed shape
-  `sei.rs:146-150` defines), never "legis's git code." This keeps the matcher
-  contract identical across loomweave and heddle consumers.
+- legis supplies **path**-renames (`{old_path, new_path}`). The path→locator
+  translation the matcher needs is **loomweave's** (`file_renames_to_locator_renames`),
+  never legis's git code — keeping the matcher contract identical across loomweave and
+  heddle consumers, with loomweave the single derivation authority. The proven consumer
+  of legis's path feed today is loomweave (`LegisGitRenameSource`), at analyze time.
 - legis absent → heddle uses raw git history, sets `enrichment.governance:
   unavailable`. No governance verdict is implied
   (`federation-value-add-and-mcp-first-audit.md:508`).
@@ -574,7 +585,7 @@ locator-rename seam loomweave's SEI matcher consumes (`GitRenameSource`,
 | # | Producer | Consumer | Vector |
 | --- | --- | --- | --- |
 | GV-LG-1 | heddle `heddle_impact_radius_get` (`preflight_impact`) | legis preflight context | depth-2 advisory set → legis surfaces it next to identity-gap/lineage with heddle staleness; legis policy decision UNCHANGED by it. |
-| GV-LG-2 | legis `git_rename_list` | heddle timeline | a `{old_locator, new_locator}` rename → `heddle_entity_timeline_get` for the new locator includes pre-rename events; legis absent → raw-git fallback, `enrichment.governance: unavailable`. |
+| GV-LG-2 | legis `git_rename_list` (path) → loomweave-owned derivation | heddle timeline | a `{old_path, new_path}` rename, run through loomweave's path→locator derivation (mechanism C′/A′ TBD — see §4B amendment), yields the new locator's timeline incl. pre-rename events; legis absent → raw-git fallback, `enrichment.governance: unavailable`. |
 | GV-LG-3 | heddle outbound | legis | every heddle response carries `meta.local_only: true`, `peer_side_effects: []` — legis verifies heddle never claims a write/govern side effect. |
 
 ---
@@ -633,11 +644,11 @@ boundary (`store.py:311`).
 | Error vocab (`heddle.error.v1`, retryability, error_code set) | ✅ | map live `invalid_params` → specific codes |
 | SEI keying (`loomweave:eid:`, opaque, both `locator`+`sei` in every entity) | ✅ | HX1: heddle resolves real SEIs |
 | loomweave inbound reads (`entity_resolve`, `entity_neighborhood_get`) | ✅ FROZEN — PROVEN (heddle captures real edges through it) | — already shipped in loomweave |
-| filigree inbound (`entity_association_list_by_entity` SEI reverse-lookup) | ⏸ RESERVED-SHAPE — proven-need pending | freezes when a golden vector shows heddle reading it; else stays non-binding |
+| filigree inbound (`entity_association_list_by_entity` SEI reverse-lookup) | ✅ FROZEN — EARNED (heddle reads it via `entity_association_list_by_entity` + `issue_get`; GV-FI-1/3 pass; byte-for-byte contract test pins the response) | filigree **consumer SHIPPED in 3.0.0**: `heddle_worklist_ingest` files/links worklist items, explicit-action only (weft-74f1e0c331) |
 | wardline inbound (finding/risk by SEI) | ⏸ RESERVED-SHAPE — proven-need pending | freezes when heddle demonstrates risk-sort consumption; else non-binding |
-| legis inbound (`git_rename_list` locator-rename feed) | ⏸ RESERVED-SHAPE — proven-need pending (heddle uses raw git today) | freezes when heddle demonstrates rename-feed consumption; else non-binding |
+| legis inbound (`git_rename_list` **path**-rename feed; locator derivation is loomweave's) | ⏸ RESERVED-SHAPE — proven-need pending (heddle uses raw git today); legis shape is `{old_path, new_path}`, not locator | freezes when heddle proves consumption; heddle-facing locator source is the OPEN **C′/A′** choice (loomweave MCP feed vs heddle ports derivation). See §4B amendment + PDR-0021 |
 | Contract resource URIs (`heddle://contracts/heddle.*.v1`) | ✅ names | resource serving |
-| Consumer implementations in all 4 members | — | **ALL fast-follow** (per weft-54192f9400) |
+| Consumer implementations in all 4 members | — | filigree consumer (`heddle_worklist_ingest`) **PULLED INTO 3.0.0** (heddle ready; owner call 2026-06-13); loomweave/wardline/legis consumers remain fast-follow (per weft-54192f9400) |
 
 ---
 
@@ -762,3 +773,47 @@ This is a launch-runbook ordering call, owner-visible.
   `/home/john/loomweave/crates/loomweave-mcp/src/catalogue/shortcuts.rs:639-729`
 - loomweave entity_diff unavailable (no cross-run history):
   `/home/john/loomweave/crates/loomweave-mcp/src/index_diff.rs:749-752`
+
+---
+
+## 10. AMENDMENTS (post-lock corrections, with provenance)
+
+The freeze stands; these correct factual errors in the locked text without
+renegotiating any frozen seam. Each names its evidence.
+
+### A1 — §4B rename feed: path-vs-locator ownership (2026-06-13)
+
+**Provenance:** expert panel (api-architect + product-decision-critic) +
+loomweave HX1 source-check, all against executable source. Recorded as PDR-0021.
+
+**What the lock got wrong:** §4B / GV-LG-2 / §6 stated legis emits
+`[{old_locator, new_locator}]` (matching loomweave's `GitRename`). legis
+structurally emits **path**-renames only — `RenameEvidence{old_path, new_path,
+old_blob, new_blob}` (legis `surface.py:135-202`) — and its own
+`models.py:35-37` disclaims symbol-level detection. The path→locator derivation
+(`file_renames_to_locator_renames`, loomweave `sei_git.rs:47-52`) lives in
+loomweave-cli, off legis's charter.
+
+**Settled:** legis owns the git **path**-rename interface; **loomweave** owns
+path→locator derivation (single locator authority). "legis grows a deriver"
+(Option B) is dead.
+
+**Corrected facts:** loomweave's rename sources (`ShellGitRenameSource`,
+`LegisGitRenameSource`, `sei_git.rs:75-294`) produce locator-renames ONLY as an
+**analyze-time input to loomweave's own SEI minting**; loomweave **emits no rename
+feed over MCP**. legis's path feed *does* have a proven consumer — loomweave's
+`LegisGitRenameSource`, at analyze time (committed-window, behind a
+legis-reachability gate). That is a legis→loomweave consumer relation, **not** a
+feed heddle can route through.
+
+**Still OPEN (fast-follow, gated on heddle proving the need):** the heddle-facing
+locator-rename source — **C′** (loomweave grows a new MCP rename-feed tool) vs
+**A′** (heddle consumes legis's path feed and ports loomweave's derivation). Build
+nothing until heddle demonstrates consumption (prove-the-need). The legis→loomweave
+**path**-rename seam is itself proven and freeze-eligible at cutover; loomweave to
+confirm `parse_legis_rename_json` matches legis's exact `git_rename_list` output
+shape and guard the silent-under-carry failure (`sei_git.rs:288-294`).
+
+**Reversal trigger:** revisit the C′/A′ choice only if heddle's own derivation
+measurably diverges from loomweave's for the same rename → then C′ (loomweave
+becomes heddle's single rename source via a new MCP tool).
