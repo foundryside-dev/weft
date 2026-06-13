@@ -68,7 +68,7 @@ couplings. The hub coordinates; it does not block any member's independent relea
 - **Reference:** **loomweave** — ADR-005, with `crates/loomweave-cli/src/install.rs`
   `GITIGNORE_CONTENTS` as the source-of-truth template. filigree co-authored the
   suite-wide standard (commit `d4f8921`: "Filigree's *half* of the cross-suite
-  nested-`.gitignore` standard") but its implementation is not yet shipped.
+  nested-`.gitignore` standard") and now ships its matching nested-ignore writer.
 
 | Member | State | Evidence |
 |---|---|---|
@@ -76,7 +76,7 @@ couplings. The hub coordinates; it does not block any member's independent relea
 | filigree | **conforms** | `install.py:409` `FILIGREE_DIR_GITIGNORE` (marker `managed-by: filigree`) ships in the installed build; the whole `.weft/` is root-ignored with the nested ignore as the un-ignore safety net (verified first-principles 2026-06-09). Co-author of the suite-wide standard (`d4f8921`). |
 | wardline | **conforms** | `.gitignore` excludes `findings.jsonl`, `.env`, `.mcp.json`, agent docs; live secret/db/lock leak test passes. *Minor:* section comments, not the full durable-vs-ephemeral header; owns no live DB dot-dir. |
 | legis | **conforms** | ignores its runtime artifacts; no live db/credential stages. (runtime tier) |
-| charter | **pending** | not installed; dot-dir hygiene unverified firsthand. |
+| charter | **exempt** | outside the four-app launch envelope and not installed as a launch-controlled member; if Charter is re-admitted, add a fresh installed-build C-1 row instead of carrying this placeholder. |
 
 ### C-2 — SQLite WAL checkpoint hygiene
 
@@ -88,10 +88,10 @@ couplings. The hub coordinates; it does not block any member's independent relea
 | Member | State | Evidence |
 |---|---|---|
 | loomweave | **reference †** | `writer.rs:394` `checkpoint_truncate` issues `PRAGMA wal_checkpoint(TRUNCATE)` at the run-commit boundary + `db.rs:32` backup verb. **On `rc/1.1.0-rc2` only — released v1.0.0 has no checkpoint**, so the large-WAL hazard still holds on the shipped build. |
-| filigree | **pending** | `core.py:1446` sets `PRAGMA journal_mode=WAL`; zero `wal_checkpoint` calls anywhere; the export verb (`admin.py:757`) is a logical JSONL export, does not checkpoint. |
+| filigree | **conforms** | `checkpoint_wal()` runs `PRAGMA wal_checkpoint(TRUNCATE)` with busy/frame/WAL-byte reporting (`core.py:2394-2435`); CLI `db checkpoint --json` calls it (`cli_commands/admin.py:1038-1060`); MCP `checkpoint_db` exposes the same maintenance verb (`mcp_tools/meta.py:376-384`, `:959-964`). Tests cover idle truncation and busy reporting at core/CLI/MCP layers. Installed check 2026-06-13 after uv-tool reinstall from `/home/john/filigree`: `~/.local/bin/filigree db checkpoint --help` succeeds, and a fresh temp project `filigree init` followed by `filigree db checkpoint --json` returned `status:"checkpointed"` with `wal_size_after:0`. |
 | wardline | **exempt** | no SQLite store (`grep sqlite3 src/` = none); outputs are `findings.jsonl` + YAML. |
-| legis | **pending** | SQLite-backed; no checkpoint verb found. |
-| charter | **pending** | not installed; unverified. |
+| legis | **pending** | SQLite-backed audit store sets `PRAGMA journal_mode=WAL`, `synchronous=FULL`, and `busy_timeout` (`store/audit_store.py:78-83`) but has no checkpoint/snapshot/export checkpoint surface (`rg wal_checkpoint|checkpoint_wal|checkpoint_db` over `src/ tests/` returns none). |
+| charter | **exempt** | outside the four-app launch envelope and no installed launch-controlled SQLite store was admitted for this verification. |
 
 ### C-3 — Tokens via `${ENV}` / `token_env`, never literals
 
@@ -157,6 +157,9 @@ couplings. The hub coordinates; it does not block any member's independent relea
   - **(f) Never reorder or relocate foreign blocks.**
   - **(g) Atomic, refuse-to-empty writes.**
   - **(h) Namespace charset `[A-Za-z0-9_-]+`, matched case-insensitively** — an uppercase-namespaced sibling must register as a boundary.
+  - **(i) Stable writer identity** — each rendered block records the tool/command
+    that last wrote the block, without timestamps or per-run values that would
+    break idempotency.
 
   A single command must restore all blocks; a write must never empty the file.
 - **Reference:** **loomweave's current `instructions.rs` is the exemplar**, with
@@ -194,8 +197,8 @@ couplings. The hub coordinates; it does not block any member's independent relea
 | loomweave | **reference** | runtime: `doctor --fix` applied skill pack + SessionStart hook + `.mcp.json` merge + three-way bindings; re-run reports "All orientation surfaces healthy." |
 | filigree | **conforms** | runtime (rc3): `doctor --fix` applied `hooks.session_context` (auto-fix set = MCP/hooks/ephemeral cleanup). *Note:* `git.ignore` is diagnosed-only. **This reverses the friction-report "no-op" claim** — the no-op was a subset, not the whole `--fix`. |
 | wardline | **conforms** | `doctor` repair path applies its installable surface (runtime). |
-| legis | **pending** | `install`/`session-context` repair subcommands exist only in rc4 source; installed rc3 lacks them. |
-| charter | **pending** | not installed; unverified. |
+| legis | **conforms** | Installed `legis 1.0.0` ships `doctor --fix --format json`; a temporary empty-project run on 2026-06-13 repaired every installable check (`CLAUDE.md`, `AGENTS.md`, both skill packs, SessionStart hook, `.gitignore`, `.mcp.json`, and store dir) and returned `ok: true`, leaving only non-repairable runtime enablement warnings. Source path: `doctor.py:619-648` threads `repair=True` through the safe repair checks; `doctor.py:172-278` shows the instruction/skill/hook/gitignore repair branches. |
+| charter | **exempt** | outside the four-app launch envelope and not installed as a launch-controlled member; C-5 should be re-evaluated if Charter is admitted. |
 
 ### C-6 — One MCP envelope: schema-versioned, side-effect-labelled, honest-empty
 
@@ -229,7 +232,7 @@ couplings. The hub coordinates; it does not block any member's independent relea
 | loomweave | **reference** | `filigree.rs` `get_json`/`get_json_or_none` return `HttpStatus{status,body}` for non-success; `404→Ok(None)` only; 401/403 preserved, never collapsed to unreachable. |
 | filigree | **conforms** | `registry.py:403-412` `HTTP 401 → cause_kind='auth'` ("check token_env"); other 4xx/5xx → `http_error`; Timeout/Transport → `network`/`unreachable`; `403 BRIEFING_BLOCKED` kept distinct. |
 | wardline | **conforms (source)** | `core/filigree_emit.py` now separates auth-rejected (`401`/`403` or token-sent authorization failure) from transport/unreachable errors; the old "could not reach Filigree" collapse is stale. Source-verified 2026-06-12. |
-| legis | **pending** | unverified-distinct; treat as work. |
+| legis | **pending** | Outbound HTTP helpers preserve HTTP status vs transport exceptions (`filigree/client.py:105-110`, `enforcement/llm_client.py:110-117`), but no C-7-specific actionable "401/403 means token/auth, URLError means unreachable" diagnostic surface is verified for agent-facing cross-tool calls yet. |
 | charter | **exempt** | no outbound credentialed call surface yet. |
 
 ### C-9 — Federation config/store layout: `.weft/<member>/` runtime state + operator-owned `weft.toml`
@@ -339,8 +342,8 @@ couplings. The hub coordinates; it does not block any member's independent relea
   installed/generated/managed surface — not operator-authored input), it MUST obey:
   - **(a) No orphan writes.** Write a config only if the writer itself or a **named** consumer
     reads it. A tool never emits a config no one consumes. *(Motivating case: loomweave wrote a
-    `wardline.yaml` no tool read — removed in `f9854f0`, 2026-06-10. NB the audit found loomweave
-    still writes an orphan `config.json` stub — see scorecard.)*
+    `wardline.yaml` no tool read — removed in `f9854f0`, 2026-06-10; the later
+    loomweave `config.json` stub finding is fixed by `weft-da23c1f6bd`.)*
   - **(b) Works out of the box.** A freshly written config is functional **as written** — the
     consuming path works with no manual repair. Generating a config that must be hand-fixed to
     be read is a defect. *(Motivating case: wardline holds the works-on-write bar for the config
@@ -368,7 +371,7 @@ couplings. The hub coordinates; it does not block any member's independent relea
 | wardline | **reference** | clause (b) earned for what it writes; the live G5 misroute is a *loomweave-side* write of wardline's URL, not wardline's own. Audit `weft-b683a56a20`. |
 | filigree | **conforms** | every config writer self-scopes to its own key (`register_project`/server.json). **Gap (F4, folded into G5):** the server-mode store carries no `mode`/`prefix` marker the loomweave scope-probe expects — the "am I server-mode?" contract is unwritten (`weft-7436c1959e`). |
 | legis | **conforms** | config writers self-scoped; reads `weft.toml` read-only. Audit `weft-b683a56a20`. |
-| loomweave | **pending** | `wardline.yaml` orphan genuinely removed (`f9854f0`), **but still writes an orphan `.weft/loomweave/config.json` stub (`install.rs:467`) no crate reads** — clause-(a) regression, same pattern (F2, `weft-da23c1f6bd`). Also the (b) write defect behind F1/G5 (emits wardline's emit URL unscoped). |
+| loomweave | **pending** | Clause (a) is fixed: `install.rs:461-469` no longer writes the dead `.weft/loomweave/config.json` stub, and the install regression asserts it stays absent (`crates/loomweave-cli/tests/install.rs:38-43`). Remaining pending item is clause (b), the write defect behind F1/G5 (emits wardline's emit URL unscoped). |
 | charter | **exempt** | no generated cross-member config surface. |
 
 ### C-12 — One status/freshness oracle per question; every other surface derives or defers by name
@@ -435,6 +438,72 @@ couplings. The hub coordinates; it does not block any member's independent relea
 | filigree | **exempt** | no in-process source parsing (no `ast` import in `src/filigree/`); scanners delegate to external agent processes whose failures are per-scan, not per-run. |
 | charter | **exempt** | no source-walking surface. |
 
+### C-14 — System-command lifecycle: `init` / `install` / `doctor` / `doctor --fix` verb contract
+
+- **Rule.** Every member exposes a common operator/agent lifecycle with fixed verb
+  semantics, so blast radius is legible from the verb alone:
+  - **`init` — one-way changes.** A once-off (first setup) or once-at-upgrade step
+    performing irreversible / non-idempotent work (schema migration, a one-time hook
+    install, a backfill). NOT safe to re-run blindly; gated to setup or an explicit
+    upgrade boundary. **Conditional:** a member ships `init` only if it has one-way
+    work — a member with none needs no `init`.
+  - **`install` — benign, idempotent changes.** Re-runnable and convergent:
+    (re)inject the member's managed instruction block (C-4), (re)install/refresh its
+    skill pack, refresh/register its MCP server in `.mcp.json`, ensure `.gitignore`
+    (C-1/C-9). Safe to run repeatedly; this IS the drift-repair path. Writes only its
+    own consumed config (C-11), never a sibling's block (C-4).
+  - **`doctor` — read-only diagnosis.** Surfaces config errors of any kind (missing
+    or drifted instruction block / skill, unregistered hook, missing gitignore,
+    mislocated store, unparseable config, unreachable sibling). Never mutates.
+  - **`doctor --fix` — automated repair of the reasonable subset (C-5).** Applies
+    every fix that can be reasonably automated; leaves genuinely out-of-band items
+    reported-but-unfixed (runtime enablement, secrets, operator config), naming the
+    manual action rather than silently passing.
+- **Security posture — insecure by design.** These verbs write to the working tree,
+  install git hooks, and register MCP servers, trusting whoever runs them. None
+  authenticates its caller, sandboxes what it writes, or verifies provenance of the
+  content it injects. They are an orientation/convenience surface, **not a security
+  boundary** — consistent with the suite's deconfliction-first, "barely IRAP" posture
+  ([[weft-deconfliction-not-security]]). An operator running `install` / `doctor
+  --fix` is trusted; the commands assume a non-hostile local environment. Anything
+  that would need a real trust boundary (capability confinement) is tracked separately
+  (proposed C-8), not provided here.
+- **Why.** A predictable verb contract lets an agent reason about reversibility
+  without reading each member's CLI: `install` / `doctor` / `doctor --fix` are always
+  safe to re-run; only `init` is one-way. It fences the dangerous operation behind one
+  named verb instead of scattering irreversibility across the surface.
+- **Relation to other cells.** C-14 is the *lifecycle/verb* layer over the *mechanical*
+  cells: C-1 (gitignore), C-4 (managed-block injection `install` performs), C-5 (the
+  `--fix` subset), C-9 (where `init`/`install` may write state), C-11 (config-write
+  discipline). Those say *how* a write is done safely; C-14 says *which verb owns it*.
+- **Reference: legis** — full verb contract code-verified 2026-06-13.
+
+| Member | State | Evidence |
+|---|---|---|
+| legis | **reference** | code-verified 2026-06-13: idempotent `install` (a re-run on an empty project repaired every installable check and returned `ok: true`) + read-only `doctor` + `doctor --fix` (C-5 subset, `doctor.py:619-648`). One-way ops are a separate named migration (`sei-backfill`), not folded into `install` — the init/install split made explicit. No literal `init` (no one-way *setup* step). |
+| loomweave | **conforms** | C-5 reference for `doctor --fix` (applied skill pack + SessionStart hook + `.mcp.json` merge + bindings); ships `init`/`install`. Verb-split not independently re-audited in this cell. |
+| filigree | **conforms** | `install` proven benign+idempotent: injected `filigree:instructions:v3.0.0rc12:65e6fb25` (+ `filigree:last-writer:filigree install`) into a shared multi-owner `CLAUDE.md` without harming siblings; `doctor --fix` per C-5. |
+| wardline | **conforms** | `install` injected `wardline:instructions:v1:bcd19330` via the C-4-conforming writer; `doctor` repair path per C-5. |
+| heddle | **conforms** | hub sign-off 2026-06-13 via an **independent** throwaway-repo run (not the member's own fixtures): `install` injected `heddle:instructions:v0.1.0` into a 3-sibling `CLAUDE.md` with the filigree/loomweave/wardline blocks **byte-intact** through install, re-install (idempotent — 1 fence), and `--fix`; full artifact set landed (skill → `.claude`+`.agents`, SessionStart + post-commit hooks, `.gitignore` `.weft/`, `.mcp.json` stdio, `.weft/heddle/{config.json,INSTALL_VERSION}`); `doctor` → `heddle.doctor.v1`, 10 checks, exit 0 installed / exit 1 + honest `CLAUDE.md missing heddle:instructions block` when broken / `--fix` repairs without touching siblings. Ships `init` (one-way post-commit hook). **Minor (non-blocking):** the marker is version-only (`:v0.1.0`, no content-hash) → drift detection is version-gated, weaker than the legis/filigree `:v{ver}:{hash}` reference; `install` also writes user-global `~/.codex/config.toml` (marker-delimited, idempotent — within C-14's insecure-by-design trust model). |
+| charter | **exempt** | outside the four-app launch envelope. |
+
+### X-1 — Interim agent identity handoff register
+
+**Interim — superseded by A′ (PDR-0005) when the continuity layer ships.** This
+cell records today's handoff rule only; it does not mint a durable run id, add
+member work, or weaken the A′ direction. Until A′ replaces free-text identities with
+a continuity handle, use one stable line-of-effort string for the task (for example,
+the active agent handle) and carry it only through identity surfaces the member
+actually exposes. Do not invent an identity field on a surface that lacks one.
+
+| Member | Current identity surface | Binding time | What crosses the seam now |
+|---|---|---|---|
+| filigree | **Per-call** `--actor` for audit trail plus `--assignee` for work ownership; atomic `start-work`/`start-next-work` binds the claim and transition in one operation. MCP write tools expose the same actor/assignee distinction where applicable. | Each write call. | Reuse the same line-of-effort string for `--actor`; use the same value for `--assignee` when the agent owns the work item. When handing from another tool back to Filigree, preserve that string instead of switching names mid-task. |
+| legis | **Launch-bound** MCP `--agent-id`; MCP tool schemas deliberately do not accept a caller-supplied `agent_id`. HTTP/API write routes may record authenticated token actors or body `agent_id`/`operator_id`, but the agent-facing MCP identity is fixed at server launch. | MCP server launch. | Launch Legis MCP with the same line-of-effort string used as Filigree `--actor`/`--assignee` for the task. Governance records then attribute MCP-originated decisions to that launch-bound id; human/operator sign-offs remain operator identity, not agent carry-over. |
+| wardline | No general caller identity flag on the main CLI/MCP scan surfaces. Wardline has scanner/provenance identity fields for artifacts and SEI/content identity for findings/entities, but not an agent actor identity equivalent to Filigree or Legis MCP. | Not locally bound for normal scans. | Carry the task identity in the surrounding Filigree issue/Legis governance context. Do not stamp a synthetic Wardline actor into findings merely to bridge the gap. |
+| loomweave | No general caller identity flag on `install`, `analyze`, `serve`, or MCP startup. Loomweave is the code/entity identity authority (SEI), not today's agent-actor authority. | Not locally bound for normal analysis/serve. | Carry the task identity in the surrounding Filigree issue/Legis governance context; keep Loomweave identity fields reserved for code entities and SEI lineage. |
+| charter | Exempt in the current matrix: local core/read-only MCP surface, no shipped cross-member write workflow that needs an agent handoff yet. | N/A | If Charter gains a write/governance surface before A′, add it here rather than borrowing another member's identity semantics. |
+
 ---
 
 ## Consolidated matrix
@@ -445,11 +514,11 @@ couplings. The hub coordinates; it does not block any member's independent relea
 
 | Convention | filigree | loomweave | wardline | legis | charter |
 |---|:--:|:--:|:--:|:--:|:--:|
-| C-1 nested `.gitignore` | … | R | ✓ | ✓ | … |
-| C-2 WAL checkpoint | … | R† | — | … | … |
+| C-1 nested `.gitignore` | ✓ | R | ✓ | ✓ | — |
+| C-2 WAL checkpoint | ✓ | R† | — | … | — |
 | C-3 token via env | ✓ | R | ✓ | ✓ | — |
 | C-4 managed-block contract | ✓ | R | ✓ | ✓ | — |
-| C-5 `doctor` applies fixes | ✓ | R | ✓ | … | … |
+| C-5 `doctor` applies fixes | ✓ | R | ✓ | ✓ | — |
 | C-6 MCP envelope | … | … | … | … | R |
 | C-7 401-vs-unreachable | ✓ | R | ✓ | … | — |
 | C-9 `.weft/`+`weft.toml` layout | ✓† | ✓† | ✓† | R | … |
@@ -457,6 +526,8 @@ couplings. The hub coordinates; it does not block any member's independent relea
 | C-11 config-write discipline | ✓ | … | R | ✓ | — |
 | C-12 one status oracle | ✓† | R† | ✓† | ? | — |
 | C-13 fail-degraded on hostile input | — | R | ✓† | ✓† | — |
+| C-14 init/install/doctor verb contract | ✓ | ✓ | ✓ | R | — |
+| X-1 interim agent identity handoff | ✓ | — | — | ✓ | — |
 
 loomweave is the dominant reference member (C-1/C-2†/C-3/C-4/C-5/C-7/C-13); charter is
 the C-6 reference; legis is the C-9 reference (member-private form). No member is
@@ -478,8 +549,11 @@ implementing code is present," not "observed in shipped behaviour" (and `legis`'
 runtime tag is really a file-read — it has no `--version` and was not exercised
 live). The bulk "promote every cell" move was *rejected* in verification for exactly
 this reason; cells were applied individually at their stated tier and are
-re-checkable against the cited `file:line`. Re-running the live tools per member
-(campaign `weft-ab0a6555f5`) upgrades the `code`-tier cells to runtime.
+re-checkable against the cited `file:line`. The 2026-06-13 `weft-ab0a6555f5`
+recheck replaced stale Filigree C-2 evidence with installed uv-tool verification
+after reinstall and upgraded Legis C-5 from stale installed-rc3 `pending` to
+runtime-verified `conforms`; remaining C-1..C-7 pending cells in the four-app
+launch set are intentional backlog states, not unknown/unverified cells.
 
 ## Member-owned findings (surfaced by the ground-truth pass — fixed in each repo, not here)
 
