@@ -1,0 +1,67 @@
+# Build the Weft hub Astro site (site/) and deploy to GitHub Pages.
+#
+# The hub deploys to weft.foundryside.dev (CNAME in site/public/CNAME,
+# copied verbatim into the build output). The site consumes the in-repo
+# @weft/site-kit via a file: dependency, so the whole repo is checked out
+# and `npm install` resolves the kit from packages/site-kit.
+name: Deploy hub site
+
+on:
+  push:
+    branches: [main]
+    # Rebuild when the hub or the kit it depends on changes.
+    paths:
+      - 'site/**'
+      - 'packages/site-kit/**'
+      - '.github/workflows/deploy-site.yml'
+  workflow_dispatch:
+
+# GitHub Pages deploy permissions.
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# One in-flight Pages deploy at a time; don't cancel a running deploy.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: site
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install
+        # file:../packages/site-kit is resolved from the checked-out repo.
+        run: npm install --no-audit --no-fund
+
+      - name: Build
+        # prebuild hook copies @weft/site-kit/assets into public/_site-kit.
+        run: npm run build
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site/dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

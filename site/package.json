@@ -1,0 +1,25 @@
+{
+  "name": "@weft/hub-site",
+  "version": "0.1.0",
+  "private": true,
+  "description": "The Weft federation hub website (weft.foundryside.dev) — orientation-only, built on @weft/site-kit.",
+  "license": "MIT",
+  "author": "John Morrissey",
+  "type": "module",
+  "scripts": {
+    "sync-assets": "node ./scripts/sync-assets.mjs",
+    "predev": "npm run sync-assets",
+    "prebuild": "npm run sync-assets",
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/react": "^4.2.0",
+    "@weft/site-kit": "file:../packages/site-kit",
+    "astro": "^5.5.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  }
+}

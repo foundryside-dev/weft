@@ -1,8 +1,11 @@
-# MkDocs pipeline is archived under archive/ (old web content). Its build-time
-# mirror (docs/) and build output (site/) are generated, never committed —
-# ignored at the repo root (legacy) and under archive/ should it ever be rebuilt.
+# The legacy MkDocs pipeline is archived under archive/ (old web content). Its
+# build-time mirror (docs/) was generated, never committed.
+#
+# NOTE: /site/ is NO LONGER the old MkDocs build output. It is now the Weft hub
+# Astro project (weft.foundryside.dev), whose SOURCE is committed. That project's
+# own build artifacts (site/dist, site/node_modules, site/public/_site-kit) are
+# ignored by site/.gitignore, so we do NOT ignore /site/ at the repo root here.
 /docs/
-/site/
 archive/docs/
 archive/site/
 
