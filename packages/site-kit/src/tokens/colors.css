@@ -1,0 +1,124 @@
+/* ============================================================
+   Weft — Color tokens (LIGHT theme only)
+   "Natural dyes on unbleached cloth": a warm linen/ink neutral
+   spine, with one accent per federation member drawn from the
+   pigments weavers actually used — indigo, madder, weld/brass,
+   woad, walnut, copper.  Honesty is flat and grounded; no SaaS
+   gloss, no purple gradients. There is NO dark theme and no
+   theme toggle — terminal/well surfaces invert locally only.
+   ============================================================ */
+
+:root {
+  /* ---- Neutrals — linen → ink (warm) ---------------------- */
+  --linen-50:  #FBF8F1;  /* lightest paper / inset wells       */
+  --linen-100: #F5F0E5;  /* page background                    */
+  --linen-200: #EBE4D4;  /* raised surface / card on page      */
+  --linen-300: #DDD3BF;  /* hairline thread borders            */
+  --thread-400:#C2B69E;  /* dividers, disabled fills           */
+  --ink-400:   #8C8470;  /* muted / placeholder text           */
+  --ink-500:   #6E6857;  /* secondary text                     */
+  --ink-600:   #585241;  /* strong secondary (chips, labels)   */
+  --ink-700:   #464134;  /* body text                          */
+  --loom-800:  #2C281F;  /* headings                           */
+  --loom-900:  #1E1B15;  /* near-black, warm                   */
+  --loom-950:  #14110C;  /* terminal / inverted surfaces       */
+
+  /* ---- Indigo — Loomweave (identity, the spine, PRIMARY) -- */
+  --indigo-50:  #ECEFF6;
+  --indigo-100: #D3DAEA;
+  --indigo-300: #8C9AC4;
+  --indigo-500: #44588C;
+  --indigo-600: #35487B;  /* brand primary                     */
+  --indigo-700: #283861;
+  --indigo-900: #18223C;
+
+  /* ---- Madder — Wardline (trust boundaries, DANGER) ------- */
+  --madder-50:  #F8ECE7;
+  --madder-100: #F0D6CC;
+  --madder-400: #C6644A;
+  --madder-500: #B14B32;
+  --madder-600: #993C26;
+  --madder-700: #7A2F1E;
+
+  /* ---- Brass / weld — Filigree (work, WARNING) ------------ */
+  --brass-50:  #F7EFD8;
+  --brass-100: #EEDFB4;
+  --brass-400: #C99A2E;
+  --brass-500: #AC8222;
+  --brass-600: #8C681A;
+  --brass-700: #6B4F14;
+
+  /* ---- Woad — Charter (verification, SUCCESS) ------------- */
+  --woad-50:  #E5F0EB;
+  --woad-100: #C6E0D5;
+  --woad-400: #3E8C74;
+  --woad-500: #2E7560;
+  --woad-600: #235E4D;
+  --woad-700: #1A463A;
+
+  /* ---- Walnut — Legis (governance, authority) ------------- */
+  --walnut-400: #9A744E;
+  --walnut-500: #7C5A38;
+  --walnut-600: #5E4429;
+
+  /* ---- Copper — Warpline (temporal / change) -------------- */
+  --copper-400: #C0733F;
+  --copper-500: #A55C2C;
+  --copper-600: #843F1C;
+
+  /* ---- Ash — Lacuna / "absent" / disabled ----------------- */
+  --ash-300: #BDB7AB;
+  --ash-400: #9A9483;
+  --ash-500: #837D6E;
+
+  /* ===========================================================
+     Semantic aliases — what the brand actually references
+     =========================================================== */
+
+  /* surfaces & text */
+  --bg-page:        var(--linen-100);
+  --bg-sunken:      var(--linen-50);
+  --surface-card:   #FFFDF8;
+  --surface-raised: var(--linen-200);
+  --surface-inverse:var(--loom-950);
+
+  --text-strong:    var(--loom-900);
+  --text-heading:   var(--loom-800);
+  --text-body:      var(--ink-700);
+  --text-muted:     var(--ink-500);
+  --text-faint:     var(--ink-400);
+  --text-on-inverse:#E9E3D4;
+  --text-on-accent: #FBF8F1;
+
+  /* lines */
+  --border-hairline: var(--linen-300);
+  --border-strong:   var(--thread-400);
+  --border-focus:    var(--indigo-600);
+
+  /* brand */
+  --brand:          var(--indigo-600);
+  --brand-strong:   var(--indigo-700);
+  --brand-tint:     var(--indigo-50);
+  --link:           var(--indigo-600);
+
+  /* status (mapped to the products' real vocab) */
+  --ok:        var(--woad-600);   /* present · ASSURED · exit 0 · clean   */
+  --ok-tint:   var(--woad-50);
+  --warn:      var(--brass-600);  /* partial · stale · WARN               */
+  --warn-tint: var(--brass-50);
+  --danger:    var(--madder-600); /* BLOCKED · EXTERNAL_RAW · exit 1 · ERR*/
+  --danger-tint:var(--madder-50);
+  --info:      var(--indigo-600); /* engine fact · NONE-severity          */
+  --info-tint: var(--indigo-50);
+  --absent:    var(--ash-500);    /* present-but-no-fact                  */
+  --absent-tint:#EFEBE1;
+
+  /* per-member thread colors (for the federation surfaces) */
+  --member-loomweave: var(--indigo-600);
+  --member-filigree:  var(--brass-500);
+  --member-wardline:  var(--madder-600);
+  --member-legis:     var(--walnut-500);
+  --member-charter:   var(--woad-600);
+  --member-warpline:  var(--copper-500);
+  --member-lacuna:    var(--ash-500);
+}

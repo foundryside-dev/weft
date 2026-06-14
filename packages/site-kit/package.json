@@ -1,0 +1,59 @@
+{
+  "name": "@weft/site-kit",
+  "version": "0.1.0",
+  "description": "Shared Astro + React design kit for every Weft suite website — tokens, signature components, federation data (ROSTER / MATRIX / SEI_SPINE), and layout primitives. Light theme only.",
+  "license": "MIT",
+  "author": "John Morrissey",
+  "type": "module",
+  "sideEffects": [
+    "*.css",
+    "**/*.astro"
+  ],
+  "files": [
+    "src",
+    "assets",
+    "README.md"
+  ],
+  "exports": {
+    ".": {
+      "types": "./src/components/index.d.ts",
+      "default": "./src/components/index.js"
+    },
+    "./components": {
+      "types": "./src/components/index.d.ts",
+      "default": "./src/components/index.js"
+    },
+    "./components/*": "./src/components/*",
+    "./data": {
+      "types": "./src/data/index.d.ts",
+      "default": "./src/data/index.js"
+    },
+    "./data/*": "./src/data/*",
+    "./layouts/*": "./src/layouts/*",
+    "./tokens/styles.css": "./src/tokens/styles.css",
+    "./tokens/*": "./src/tokens/*",
+    "./styles.css": "./src/tokens/styles.css",
+    "./components.css": "./src/components/components.css",
+    "./assets/*": "./assets/*"
+  },
+  "peerDependencies": {
+    "react": ">=18",
+    "react-dom": ">=18"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": false
+    },
+    "react-dom": {
+      "optional": false
+    }
+  },
+  "keywords": [
+    "weft",
+    "foundryside",
+    "design-system",
+    "astro",
+    "react",
+    "site-kit"
+  ]
+}

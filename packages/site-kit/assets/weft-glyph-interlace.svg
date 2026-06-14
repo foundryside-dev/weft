@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none" role="img" aria-label="Weft interlace mark">
+  <g stroke="currentColor" stroke-width="2.4" stroke-linecap="round">
+    
+    <line x1="12" y1="5" x2="12" y2="18"></line>
+    <line x1="12" y1="22" x2="12" y2="27"></line>
+    <line x1="20" y1="5" x2="20" y2="10"></line>
+    <line x1="20" y1="14" x2="20" y2="27"></line>
+    
+    <line x1="5" y1="12" x2="10" y2="12"></line>
+    <line x1="14" y1="12" x2="27" y2="12"></line>
+    <line x1="5" y1="20" x2="18" y2="20"></line>
+    <line x1="22" y1="20" x2="27" y2="20"></line>
+  </g>
+</svg>

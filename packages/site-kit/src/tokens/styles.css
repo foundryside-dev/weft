@@ -1,0 +1,13 @@
+/* ============================================================
+   Weft site-kit — token entry point.
+   Consumers link THIS file (plus components.css if they use the
+   React primitives). Import order matters: fonts → tokens → base.
+   LIGHT theme only — there is no dark theme and no toggle.
+   ============================================================ */
+
+@import url('./fonts.css');
+@import url('./colors.css');
+@import url('./typography.css');
+@import url('./spacing.css');
+@import url('./elevation.css');
+@import url('./base.css');

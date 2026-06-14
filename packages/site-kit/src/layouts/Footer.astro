@@ -1,0 +1,84 @@
+---
+// Weft site-kit — global footer (IA §2.5).
+// A compact roster link row (six MemberMarks as absolute subdomain
+// links + Lacuna + GitHub + Doctrine) above the verbatim federation
+// signature: glyph + "weft · enrich-only, never load-bearing" on the
+// left; "MIT © 2026 John Morrissey · documentation only" on the right.
+//
+// The roster row IS the secondary suite nav; it is generated from the
+// shared ROSTER so cross-subdomain links never drift (IA §2.5, §3.1).
+import { ROSTER, LACUNA } from '../data/roster.js';
+---
+
+<footer class="wk-footer weft-weave">
+  <div class="wk-footer__inner">
+    <nav class="wk-footer__row" aria-label="Federation">
+      {ROSTER.map((m) =>
+        m.status === 'planned' ? (
+          <span class="wk-footer__member" aria-disabled="true" title="planned — no site yet">
+            <span class="wk-member__dot" style={`background:${m.thread}`}></span>{m.name}
+          </span>
+        ) : (
+          <a class="wk-footer__member" href={m.url}>
+            <span class="wk-member__dot" style={`background:${m.thread}`}></span>{m.name}
+          </a>
+        )
+      )}
+      <a class="wk-footer__member" href={LACUNA.url}>
+        <span class="wk-member__dot" style={`background:${LACUNA.thread}`}></span>{LACUNA.name}
+      </a>
+      <span class="wk-footer__sep">·</span>
+      <a class="wk-footer__link" href="https://github.com/foundryside-dev" rel="noopener">GitHub</a>
+      <a class="wk-footer__link" href="https://weft.foundryside.dev/#doctrine">Doctrine</a>
+    </nav>
+
+    <div class="wk-footer__sig">
+      <span class="wk-footer__brand">
+        <img src="/_site-kit/weft-glyph.svg" width="20" height="20" alt="" class="wk-footer__glyph" />
+        weft · enrich-only, never load-bearing
+      </span>
+      <span class="wk-footer__legal">MIT © 2026 John Morrissey · documentation only</span>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .wk-footer {
+    padding: 36px 36px 40px;
+    border-top: 1px solid var(--border-hairline);
+    background: var(--bg-sunken);
+  }
+  .wk-footer__inner { max-width: var(--width-content); margin: 0 auto; }
+  .wk-footer__row {
+    display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+    padding-bottom: 20px; margin-bottom: 20px;
+    border-bottom: 1px dashed var(--border-strong);
+  }
+  .wk-footer__member {
+    display: inline-flex; align-items: center; gap: 7px;
+    font-family: var(--font-mono); font-size: var(--text-xs);
+    color: var(--text-body); text-decoration: none;
+  }
+  a.wk-footer__member:hover { color: var(--indigo-700); text-decoration: none; }
+  .wk-footer__member[aria-disabled='true'] { color: var(--text-faint); cursor: default; }
+  .wk-member__dot {
+    width: 9px; height: 9px; border-radius: 2px; flex: none;
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.08);
+  }
+  .wk-footer__sep { color: var(--text-faint); }
+  .wk-footer__link {
+    font-family: var(--font-mono); font-size: var(--text-xs);
+    color: var(--text-muted); text-decoration: none;
+  }
+  .wk-footer__link:hover { color: var(--text-body); }
+
+  .wk-footer__sig {
+    display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+  }
+  .wk-footer__brand {
+    display: inline-flex; align-items: center; gap: 10px;
+    font: var(--type-mono-sm); color: var(--text-muted);
+  }
+  .wk-footer__glyph { color: var(--indigo-600); }
+  .wk-footer__legal { margin-left: auto; font: var(--type-mono-sm); color: var(--text-faint); }
+</style>

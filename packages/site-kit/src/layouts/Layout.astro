@@ -1,0 +1,78 @@
+---
+// Weft site-kit — base page layout.
+// Links the token layer + component CSS, sets the light-only theme,
+// renders the shared Nav (with optional active member) and Footer,
+// and an optional breadcrumb (`weft → <member>`, IA §2.4).
+//
+// LIGHT THEME ONLY: color-scheme is pinned to light; there is no dark
+// theme and no toggle (the brand is one warm linen light theme).
+//
+// Token + component CSS are imported here so every consuming site links
+// them once. Consumers must also copy packages/site-kit/assets/* to
+// their site's /_site-kit/ (the glyph paths in Nav/Footer resolve there).
+import Nav from './Nav.astro';
+import Footer from './Footer.astro';
+import { getMember } from '../data/roster.js';
+
+import '../tokens/styles.css';
+import '../components/components.css';
+
+export interface Props {
+  /** <title> text. */
+  title: string;
+  /** Meta description. */
+  description?: string;
+  /** Current member key — drives the active nav state + breadcrumb. Omit on the hub. */
+  member?: string;
+  /** Show the `weft → <member>` breadcrumb under the nav (member/showcase sites). */
+  breadcrumb?: boolean;
+  /** This site's own repo URL for the nav GitHub button. */
+  repo?: string;
+}
+
+const { title, description, member, breadcrumb = false, repo } = Astro.props;
+const m = member ? getMember(member) : null;
+const navRepo = repo ?? m?.repo;
+const HUB = 'https://weft.foundryside.dev/';
+---
+
+<!doctype html>
+<html lang="en" style="color-scheme: light;">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    {description && <meta name="description" content={description} />}
+    <meta name="color-scheme" content="light" />
+    <link rel="icon" type="image/svg+xml" href="/_site-kit/weft-glyph.svg" />
+  </head>
+  <body>
+    <Nav active={member} repo={navRepo} />
+
+    {breadcrumb && m && (
+      <nav class="wk-crumb" aria-label="Breadcrumb">
+        <a href={HUB}>weft</a>
+        <span class="wk-crumb__sep" aria-hidden="true">→</span>
+        <span class="wk-crumb__here">{m.name.toLowerCase()}</span>
+      </nav>
+    )}
+
+    <main>
+      <slot />
+    </main>
+
+    <Footer />
+
+    <style>
+      .wk-crumb {
+        max-width: var(--width-content); margin: 0 auto; padding: 12px 36px 0;
+        font: var(--type-mono-sm); color: var(--text-faint);
+        display: flex; align-items: center; gap: 8px;
+      }
+      .wk-crumb a { color: var(--text-muted); text-decoration: none; }
+      .wk-crumb a:hover { color: var(--text-body); }
+      .wk-crumb__sep { color: var(--thread-400); }
+      .wk-crumb__here { color: var(--text-body); }
+    </style>
+  </body>
+</html>
