@@ -4,7 +4,7 @@ body class: thread-filigree
 
 # Filigree — cheat-sheet
 
-> Work state and workflow lifecycle. Sky thread.
+> Work state and workflow lifecycle. Brass thread.
 > Authority: [`~/filigree`](https://github.com/foundryside-dev/filigree) ·
 > briefing: [members/filigree.md](../members/filigree.md)
 

@@ -4,7 +4,7 @@ body class: thread-legis
 
 # Legis — cheat-sheet
 
-> Git/CI governance and attestations. Violet thread.
+> Git/CI governance and attestations. Walnut thread.
 > Authority: [`~/legis`](https://github.com/foundryside-dev/legis) ·
 > briefing: [members/legis.md](../members/legis.md)
 

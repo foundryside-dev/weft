@@ -26,6 +26,7 @@ cheat-sheet and the repo disagree, the repo wins.
 | **Filigree** | work state / issue lifecycle | Python | [filigree →](filigree.md) |
 | **Wardline** | trust-boundary analysis | Python | [wardline →](wardline.md) |
 | **Legis** | git/CI governance & attestations | Python | [legis →](legis.md) |
+| **Warpline** | temporal / change-impact analysis | Python | [warpline →](warpline.md) |
 | **Charter** | requirements, traceability, verification | Python | [charter →](charter.md) *(planned extension; Weft integrations pending)* |
 
 Each member owns one domain, is useful on its own, and adds context when paired
@@ -34,8 +35,8 @@ with siblings. The federation axiom and the composition law are in the
 
 !!! info "Shuttle and Lacuna are not here"
     **Shuttle** is a future idea, not a realized member — there is no product
-    page for it (see [doctrine §2](../doctrine.md)). **Warpline** is an admitted
-    member; its usage cheat-sheet is pending its implementation fast-follow.
+    page for it (see [doctrine §2](../doctrine.md)). **Warpline** is the 5th
+    admitted member; its usage cheat-sheet is [warpline →](warpline.md).
     **Lacuna** is the demo app the tools are
     pointed at, not a member.
 

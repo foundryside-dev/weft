@@ -4,7 +4,7 @@ body class: thread-loomweave
 
 # Loomweave — cheat-sheet
 
-> Code structure **and the suite's identity authority**. Aqua thread.
+> Code structure **and the suite's identity authority**. Indigo thread.
 > Authority: [`~/loomweave`](https://github.com/foundryside-dev/loomweave) ·
 > briefing: [members/loomweave.md](../members/loomweave.md)
 

@@ -4,7 +4,7 @@ body class: thread-wardline
 
 # Wardline — cheat-sheet
 
-> Trust-boundary analysis. Coral thread.
+> Trust-boundary analysis. Madder thread.
 > Authority: [`~/wardline`](https://github.com/foundryside-dev/wardline) ·
 > briefing: [members/wardline.md](../members/wardline.md)
 

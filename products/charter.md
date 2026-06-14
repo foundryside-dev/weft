@@ -4,7 +4,7 @@ body class: thread-charter
 
 # Charter — cheat-sheet
 
-> Requirements, traceability, and verification. Gold thread.
+> Requirements, traceability, and verification. Woad thread.
 > Authority: [`~/charter`](https://github.com/foundryside-dev/charter) ·
 > briefing: [members/charter.md](../members/charter.md)
 
