@@ -177,3 +177,24 @@ shaped sibling on the sense-making plane — same fleet-OS frame, separate bet; 
 concrete first surface is a weft **"strategic view" MCP interface** — the "so what" /
 wisdom query that reads the honest, joined flood and answers "given all this, what
 matters and what do I do." (Owner priority #3.)
+
+**L2 is a PLATFORM, not a fixed product** (owner insight, 2026-06-15). Rather than shipping
+N hard-coded strategic views (we'd guess what agents reach for, and be wrong forever), weft
+ships a handful of **stock macros** + a **macro API/MCP** + a **clearing house** where
+agents compose and register their own *agentic macros* over weft's honest primitives —
+*"they can code their own answers; we provide the place they hang their commands."* The
+Workflow/orchestration pattern (deterministic composition of primitives) is already a
+working prototype; G2's wired microaffordances are the composable primitives. Two invariants
+keep it from becoming a new way to lie:
+- **Honesty propagates through composition** — a macro is only as honest as its weakest
+  sub-call's reason-handling. The clearing house's one hard rule: a macro MUST propagate the
+  `weft-reason` carrier (never swallow a sub-call's `unreachable` into a confident-empty).
+  The honesty invariant, applied to composition.
+- **Hub owns the alphabet, agents write the words** — agents freely COMPOSE blessed
+  primitives/seams into macros (user-space, unlimited); they do NOT mint new cross-member
+  contracts (hub-blessed, per the seam ruling). Composition is free; contract definition is
+  governed.
+Stock macros (hub-authored reference) seed the pattern the way G2 seeds the interface
+standard. **Sibling of the coordination board** — both are fleet clearing houses (one for
+reservations, one for commands). **Falsifier:** the registry only earns its keep if macros
+are REUSED/SHARED; if agents just one-shot queries inline, it's dead weight.
