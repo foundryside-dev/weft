@@ -1,4 +1,4 @@
-# Roadmap — Weft Federation            Updated: 2026-06-11 (PDR-0014 Rust reversal)
+# Roadmap — Weft Federation            Updated: 2026-06-16 (PDR-0025 Warpline temporal-correlation contract sponsored)
 
 > Sequencing, WSJF / cost-of-delay, and dated forecasts are produced by
 > /axiom-program-management. This file records bets as INTENT, not a delivery
@@ -32,6 +32,15 @@
   four-member launch cutover** (cutover lockstep stays Filigree, Loomweave, Wardline, Legis).
   Intent: sequence the impl fast-follow once launch dispatch settles. · admission record:
   `weft-e4589e6570`.
+  - **Temporal-correlation contract — SPONSORED (PDR-0025, owner, 2026-06-16).** Warpline
+    owns the temporal-episode axis (anchor semantics, granularity, reconstruction); members
+    stamp the originating `branch@sha` on emitted events as optional enrich-only metadata,
+    joined read-time. The mechanism behind Warpline Rung 3 (empirical blast radius) and a
+    concrete instance of PDR-0024's sense-making plane. No-broker line owner-confirmed.
+    **Sequenced behind launch + Warpline base impl** (Rung-3, token-tier). Warpline-local
+    capture + reconstruction demo authorized now; the cross-member stamp convention is
+    hub-authored only after the demo proves out **on the squash-merge case** (load-bearing
+    gate — SHA-rewrite ≠ rename; PDR-0021/PDR-0025). No sibling obligation freezes until then.
 
 ## Next (shaped, decreasing certainty)
 - **Agent continuity & write-safety** — **SIGNED OFF 2026-06-09 (PDR-0008);** shape & sequence
