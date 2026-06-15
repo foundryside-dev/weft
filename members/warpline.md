@@ -24,5 +24,5 @@ The authority split is simple:
 
 ## Notes
 
-- **Launch cutover is four-member lockstep** (Filigree, Loomweave, Wardline, Legis); Warpline's consumer *implementations* are an admitted **fast-follow OUTSIDE the four-member launch cutover**. The seam *contracts* freeze at the cutover; implementations land post-launch without a contract renegotiation.
-- The Filigree consumer (`warpline_worklist_ingest`) shipped in Filigree 3.0.0 (EARNED inbound seam); the Loomweave / Wardline / Legis consumers remain fast-follow. See the interface-lock §6.
+- **Launch cutover is five-member lockstep** (Filigree, Loomweave, Wardline, Legis, Warpline) — Warpline pulled into the cutover per [PDR-0026](../pm/product/decisions/0026-warpline-joins-the-launch-cutover-as-fifth-member.md) (2026-06-16), reversing PDR-0022's fast-follow-outside posture. Warpline's build-out matures to launch-grade baseline **in parallel** ahead of a single coordinated lever-pull; the final whole-suite dogfood evaluates whether it needs another day or two. The seam *contracts* freeze at the cutover and are **inviolate** (PDR-0027).
+- The Filigree consumer (`warpline_worklist_ingest`) shipped in Filigree 3.0.0 (EARNED inbound seam); the Loomweave / Wardline / Legis consumers are part of Warpline's parallel build-out maturing toward the cutover (PDR-0026), gated by the final whole-suite dogfood. See the interface-lock §6.

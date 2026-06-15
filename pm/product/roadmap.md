@@ -1,16 +1,20 @@
-# Roadmap — Weft Federation            Updated: 2026-06-16 (PDR-0025 Warpline temporal-correlation contract sponsored)
+# Roadmap — Weft Federation            Updated: 2026-06-16 (PDR-0025 temporal-correlation contract; PDR-0026 Warpline joins the cutover; PDR-0027 decent-L1-on-gold-contracts)
 
 > Sequencing, WSJF / cost-of-delay, and dated forecasts are produced by
 > /axiom-program-management. This file records bets as INTENT, not a delivery
 > schedule. Do not compute WSJF here; hand the committed bet over for sequencing.
 
 ## Now  (committed, in-flight)
-- **Dogfood readiness + the coordinated clean-break launch — gated to GOLD-STANDARD
-  (PDR-0011).** The suite ships once every member passes its lacuna dogfood, `make ci` is
-  green, *and* the federation interface audit's contract-correctness class + executable
-  conformance oracle close — because the clean break (no backcompat) **freezes the
-  cross-member API**, so contract defects must be right *before* launch. Correctness over
-  ship-speed: own-use tooling, no client deadline. · tracker: `weft-cd62a4da9b` · **gated on**
+- **Ship a decent L1 — the coordinated FIVE-member clean-break launch (PDR-0026/0027).**
+  L1 is the foundation, not the finish line: ship it *decent*, not perfect, then take our
+  time on L2 (PDR-0027). **The one gold, inviolate floor is contract correctness.** The
+  suite ships once every member passes its lacuna dogfood, `make ci` is green, *and* the
+  federation interface audit's contract-correctness class + executable conformance oracle
+  close — because the clean break (no backcompat) **freezes the cross-member API** and the
+  dogfooding lesson is that frozen contracts are *absolutely inviolate* (PDR-0011/0027). A
+  shipped-broken contract is a launch-blocker; everything *above* the solid core ships at
+  decent — stop gold-plating. The cutover is **five-member** (Filigree, Loomweave, Wardline,
+  Legis, Warpline — PDR-0026). · tracker: `weft-cd62a4da9b` · **gated on**
   G1 `weft-37455bf407` + G5 `weft-7436c1959e` + G13 `weft-61d27fb808` + the oracle umbrella
   `weft-1e053eac02` + C-4 `weft-eb3dee402f` + the contract cousins **G9 `weft-94284025f5` /
   G11 `weft-c7e3486246` / G15 `weft-045076e30f` / G18 `weft-eef2fa8bbb` (wired 2026-06-10, all
@@ -22,23 +26,24 @@
   out-of-envelope call** (frontier sprint merged Rust into release branches; owner: gate-on-gold).
   ADR-049 dialect declared out-of-freeze via `weft-dfeb20c4fa`; the out-of-freeze posture STANDS.
   G5 `weft-7436c1959e` **CLOSED** (emit topology applied + verified, commit `0a6dfc1`).
-- **Warpline implementation fast-follow — the active member-side bet.** Warpline is now an
+- **Warpline build-out — now IN the five-member cutover (PDR-0026).** Warpline is an
   **admitted federation member** (5th member, 2026-06-14, PDR-0022, reversing PDR-0017), the
   suite's **temporal / change-impact authority** ("what changed, when, and what does this change
   touch") and the read-side complement to mechanism B ("if I touch X, what breaks?" — today
   answered by grep-plus-hope or human blast-radius review = supervision load). Renamed
   heddle → warpline; live repo `~/warpline`, six frozen federation tool names, consumes
-  `warpline.reverify_worklist.v1`. Its implementation lands as a **fast-follow OUTSIDE the
-  four-member launch cutover** (cutover lockstep stays Filigree, Loomweave, Wardline, Legis).
-  Intent: sequence the impl fast-follow once launch dispatch settles. · admission record:
-  `weft-e4589e6570`.
+  `warpline.reverify_worklist.v1`. Per PDR-0026 (2026-06-16) Warpline is **pulled into the
+  five-member cutover** (reversing the fast-follow-outside posture); its build-out matures to
+  launch-grade baseline **now, in parallel** with launch-lock prep — maturation to its proper
+  baseline, NOT feature-creep or deferring the suite — gated by the final whole-suite
+  dogfood. · admission record: `weft-e4589e6570`.
   - **Temporal-correlation contract — SPONSORED (PDR-0025, owner, 2026-06-16).** Warpline
     owns the temporal-episode axis (anchor semantics, granularity, reconstruction); members
     stamp the originating `branch@sha` on emitted events as optional enrich-only metadata,
     joined read-time. The mechanism behind Warpline Rung 3 (empirical blast radius) and a
     concrete instance of PDR-0024's sense-making plane. No-broker line owner-confirmed.
-    **Sequenced behind launch + Warpline base impl** (Rung-3, token-tier). Warpline-local
-    capture + reconstruction demo authorized now; the cross-member stamp convention is
+    Warpline's own side (local capture + reconstruction demo) is part of the **parallel
+    build-out now** (PDR-0026); the cross-member stamp convention stays prove-the-need —
     hub-authored only after the demo proves out **on the squash-merge case** (load-bearing
     gate — SHA-rewrite ≠ rename; PDR-0021/PDR-0025). No sibling obligation freezes until then.
 
