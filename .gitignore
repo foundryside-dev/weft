@@ -46,3 +46,7 @@ CLAUDE.md
 
 # Filigree issue tracker
 .weft/
+
+# Developer config / local tooling — not part of the solution
+.claude/
+.agents/
