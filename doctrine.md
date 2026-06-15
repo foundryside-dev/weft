@@ -5,6 +5,39 @@
 **Status**: **Authoritative.** This is the single source of the Weft federation doctrine. It was promoted here from `~/clarion/docs/suite/weft.md` (2026-06-05); that file is now a pointer to this one. Member products mirror the cross-product field-name rule (§8) citing this doc as the suite-level authority.
 **Companions**: [glossary.md](./glossary.md) (shared vocabulary), [federation-map.md](./federation-map.md) (integration matrix), [README.md](./README.md) (hub entry point)
 
+> **Reframe — PDR-0023 (2026-06-15): the federation is the product; the glue is the value.**
+> Weft was scoped as a *loose wave of products* — five independent instruments that
+> optionally interoperate. Under real agent use (the dogfood + the 2026-06-15 external
+> cold-eval) the value came back unambiguously located in the **glue**: the SEI identity
+> spine, the **seams** (the joins between members), and the cross-cutting quality
+> conventions (provenance-honesty, lead-summary, bounded-by-default, SEI-keying). So the
+> unit of value is now the **federation, not the member**; the members are
+> components/proof-points. **The seams are the crown jewels** — a broken join is the
+> *product* broken, not a peripheral bug. **Provenance-honesty is a protected invariant**
+> (the moat-guard; see the honesty invariant below and
+> [contracts-index.md](./contracts-index.md) § the `weft-reason` contract). This banner
+> *re-weights* the doctrine below; it does not repeal the federation axiom (§3–7) — a seam
+> can be both hub-governed and enrich-only. Full PDR:
+> [pm/product/decisions/0023-federation-is-the-product-glue-is-the-value.md](./pm/product/decisions/0023-federation-is-the-product-glue-is-the-value.md).
+>
+> **The honesty invariant (the protected one).** No result ships without its provenance.
+> Every empty / partial / stale / degraded cross-member result MUST explain
+> **cause + reason_class + fix** (the three-part carrier), drawing `reason_class` from the
+> canonical 11-class `weft-reason` vocabulary — **owner-blessed 2026-06-15, the first
+> hub-blessed federation contract** ([contracts/weft-reason-vocab.json](./contracts/weft-reason-vocab.json),
+> [pm/2026-06-15-weft-reason-contract-G1.md](./pm/2026-06-15-weft-reason-contract-G1.md)).
+> A confident-empty — an `affected:[]` / `findings:0` / `allowed:true` that is
+> byte-indistinguishable from a real true-negative but is actually a join-miss — is the
+> federation's worst failure mode, because the lie becomes the premise of the next
+> decision ([pm/2026-06-15-seam-health-map.md](./pm/2026-06-15-seam-health-map.md)).
+>
+> **Hub blesses every seam (governance posture, owner ruling 2026-06-15).** Members keep
+> autonomy over **their own jobs**, but **every cross-member interaction — every seam — is
+> hub-authored and hub-blessed**, so the joined flood stays coherent. This narrows the
+> older "version-skew handled bilaterally" posture (§6): the *alphabet* (cross-member
+> contracts/seams) is hub-owned; members compose blessed primitives freely but do not mint
+> new cross-member contracts.
+
 ---
 
 ## 1. What Weft is

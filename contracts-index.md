@@ -4,6 +4,8 @@
 
 **Identity is the spine.** Every binding below keys on **[SEI](./sei-standard.md)** (opaque, Loomweave-minted). A binding still keyed on a `locator` is legacy to migrate.
 
+**Two kinds of contract now live here.** §1–10 are **pairwise bindings** (member X composes with member Y). §0 below is the first **federation-wide hub-blessed contract** — a discipline *every* member conforms to, not a join between two of them. PDR-0023 (the seams are the product) makes this class first-class: the cross-cutting conventions are the glue's standards.
+
 **Building a whole member, not one binding?** The [Federation SDK](./federation-sdk.md) is the member-builder's companion to this index — same surfaces, organized by the obligations a new tool must meet to drop in.
 
 **Launch freeze set.** The clean-break launch freezes the cross-member contracts
@@ -16,6 +18,36 @@ post-launch ADR-049 amendment is valid only as a versioned Rust-feature change
 with Loomweave and Wardline moving in lockstep.
 
 ---
+
+## 0. The `weft-reason` honesty contract — hub-blessed, every member conforms (G1)
+
+The **honesty invariant** made machine-readable. Every cross-member result that is
+**not** a clean, complete true-negative carries a three-part carrier
+`{ reason_class, cause, fix }`; a clean result carries `reason_class: "clean"` and omits
+`cause`/`fix`. `reason_class` is drawn from a **canonical set of 11** (`clean`,
+`disabled`, `unresolved_input`, `rejected`, `dead_path`, `unreachable`, `misrouted`,
+`error`, `scheme_mismatch`, `stale`, `partial`). This is the first **hub-blessed
+federation contract** (owner gate, 2026-06-15) and the protected moat-guard of PDR-0023:
+*no result without its provenance.* It exists because the four 2026-06-15 seam-honesty
+strikes each minted a *different* "why empty" dialect — the contract constrains them to
+one vocabulary so a join-miss can never read as a true-negative.
+
+- **No shared runtime dependency.** Members stay independent repos and conform by
+  **convention + a per-member conformance TEST** that asserts their emitted reason surface
+  against the canonical list — preserving the no-shared-dep posture. The shared test vector
+  IS `weft-e295ec3be3` Part 1 (the honesty guardrail's last limb).
+- **Rollout is staged (do not over-claim).** The **value vocabulary** (the 11
+  `reason_class` strings) is standardized **now**, across all members, additive/non-breaking.
+  The **full carrier shape** (`cause + reason_class + fix` triple) is the target, adopted as
+  far as each member can without a re-shock — new surfaces use the full triple from day one;
+  full convergence lands with **G3** (loomweave typed output) and, for filigree, **inside the
+  held `3.0.0`** (additive, never a 3.1.x re-break). As of 2026-06-15 members emit
+  `reason_class` on status/failure/resolution carriers; per-finding triple coverage is still
+  converging.
+- **Authoritative:** [contracts/weft-reason-vocab.json](./contracts/weft-reason-vocab.json)
+  (machine-readable canonical list) + [pm/2026-06-15-weft-reason-contract-G1.md](./pm/2026-06-15-weft-reason-contract-G1.md)
+  (the doctrine + per-class examples). The **G4 scheme-echo handshake** will be the next
+  hub-authored seam contract joining this family.
 
 ## 1. Entity associations — Filigree ↔ Loomweave (Filigree ADR-029)
 

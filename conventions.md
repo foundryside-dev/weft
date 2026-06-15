@@ -504,6 +504,60 @@ actually exposes. Do not invent an identity field on a surface that lacks one.
 | loomweave | No general caller identity flag on `install`, `analyze`, `serve`, or MCP startup. Loomweave is the code/entity identity authority (SEI), not today's agent-actor authority. | Not locally bound for normal analysis/serve. | Carry the task identity in the surrounding Filigree issue/Legis governance context; keep Loomweave identity fields reserved for code entities and SEI lineage. |
 | charter | Exempt in the current matrix: local core/read-only MCP surface, no shipped cross-member write workflow that needs an agent handoff yet. | N/A | If Charter gains a write/governance surface before A′, add it here rather than borrowing another member's identity semantics. |
 
+### C-15 — The honesty invariant: every non-clean result carries `cause + reason_class + fix`
+
+- **Rule (NORMATIVE — the protected invariant, PDR-0023).** Any cross-member result
+  that is **not** a clean, complete true-negative MUST carry a three-part honesty
+  carrier `{ reason_class, cause, fix }`. A clean result carries
+  `reason_class: "clean"` and omits `cause`/`fix`. `reason_class` is drawn from the
+  **canonical 11** (`clean`, `disabled`, `unresolved_input`, `rejected`, `dead_path`,
+  `unreachable`, `misrouted`, `error`, `scheme_mismatch`, `stale`, `partial`).
+  `fix` is mandatory on every non-`clean` result — **recruit, don't just confess**
+  (the lead-summary discipline): name the action that gets the caller what they wanted.
+  An empty/partial/stale result that is byte-indistinguishable from a real
+  true-negative is a **confident-empty** — the federation's worst failure mode, because
+  the lie becomes the premise of the next decision.
+- **Why.** This is the **moat-guard** (PDR-0023 consequence 2; the 2026-06-15 external
+  cold-eval named provenance-honesty "your most underrated asset … the reason I trusted
+  the answers"). It is the **banner that subsumes** the proto-honesty cells: C-6
+  (honest-empty `result_kind`), C-7 (unreachable-vs-auth), C-10 (honest seams: scope /
+  provenance / config-state / no-vacuous-green), and C-12 (one oracle per question) are
+  all facets of "no result without its provenance." C-15 names the invariant they were
+  circling and pins the *vocabulary* they emit it in.
+- **Contract home (no shared runtime dep).** The canonical list is the hub contract
+  [contracts/weft-reason-vocab.json](./contracts/weft-reason-vocab.json) +
+  [pm/2026-06-15-weft-reason-contract-G1.md](./pm/2026-06-15-weft-reason-contract-G1.md);
+  members conform by a **per-member conformance TEST** asserting their reason surface
+  against it (the shared vector IS `weft-e295ec3be3` Part 1). Indexed as a federation
+  contract at [contracts-index.md](./contracts-index.md) §0.
+- **Rollout is staged (cells below grade against the staged target, not a single shock).**
+  The **value vocabulary** (the 11 strings) is standardized now, additive/non-breaking.
+  The **full carrier triple** converges with **G3** (loomweave typed output) and, for
+  filigree, inside the **held `3.0.0`**. Do not re-break shipped work to land it.
+- **Reference: warpline** — its 2026-06-15 "make the quiet segfault loud" strike
+  (`281460e`) downgrades a stale snapshot off completeness, returns a resolved/unresolved
+  miss-set instead of a silent drop, and honors-or-rejects its declared inputs; its G1
+  conformance test (`a2c44e1`) locks the vocabulary. Reference for the *worst→fixed*
+  trajectory the others must reach.
+
+| Member | State | Evidence |
+|---|---|---|
+| warpline | **reference ✓† (vocab)** | `281460e fix(impact): make the quiet segfault loud — staleness, miss-set, dead-input` + `a2c44e1 test(reason): lock weft-reason G1 vocabulary conformance`; emits `reason_class` in `src/warpline/listing.py`; input-affordance honesty enforced by `assert_inputschema_consumed()` (`src/warpline/mcp.py`, the input-affordances-are-promises reference). Unmerged/just-landed. |
+| loomweave | **conforms (vocab, status carrier)** | `analyze.rs` emits `reason_class` (`clean`/`disabled`/`error`/`unreachable`/`partial`) on the run-analysis carrier; honest-empty `result_kind` tri-state (the C-6 facet reference). Per-finding triple not yet universal (staged). |
+| wardline | **conforms (vocab, failure carrier)** | `core/filigree_emit.py` `FailedFinding.to_wire()` emits `reason_class`; honest gate `verdict=NOT_EVALUATED` (C-10/W2). Per-finding triple staged. |
+| legis | **conforms (vocab, status carrier)** | `wardline/ingest.py` maps `artifact_status`/`artifact_status_reason` to canonical `reason_class`. Staged. |
+| filigree | **conforms (vocab, resolution carrier)** | `mcp_tools/issues.py` emits a `weft_reason` carrier with `reason_class` on entity-resolution failure (SEI-on-create path). Full carrier convergence is inside the held `3.0.0` (additive). |
+| charter | **exempt** | no cross-member emit surface yet (local core + read-only MCP). |
+
+> **Pending sibling conventions (roadmap — not yet registered as numbered cells).**
+> The honesty banner has three ergonomics sub-clauses still to land here as full C-entries:
+> **lead-summary** on count-returning tools (`pm/2026-06-15-lead-summary-convention.md`,
+> reference impl loomweave `entity_dead_list`); **bounded-by-default / list-overflow-dump-to-file**
+> (C-12 sibling, `weft-801d21fa4d`); and **input-affordances-are-promises** (reference impl
+> warpline `assert_inputschema_consumed`). And a **speak-SEI-natively-at-entry** convention
+> (data joins the spine as it enters — filigree `issue_create` SEI-on-create + loomweave
+> guidance-append). See [pm/2026-06-15-federation-docs-maturation-plan.md](./pm/2026-06-15-federation-docs-maturation-plan.md) §5 (P1).
+
 ---
 
 ## Consolidated matrix

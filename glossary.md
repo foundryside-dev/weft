@@ -88,6 +88,23 @@ Each row names the pre-rename collision and the post-rename Loomweave field name
 | `requirement` / `obligation` | Charter | Charter's owned domain term for a stated obligation with traceability and verification evidence. Charter-only. |
 | `attestation` / `verdict` / `sign-off` | Legis | Legis governance records (CLEAR / VIOLATION / UNKNOWN, overrides, signoffs), keyed on SEI. Legis-only. |
 
+### Federation-wide honesty terms (the `weft-reason` contract, hub-owned)
+
+These cross **every** member, not a single pair — they are the vocabulary of the
+honesty invariant (PDR-0023's protected invariant). Hub-owned and hub-blessed
+(owner gate 2026-06-15); members conform by a per-member conformance test, no shared
+runtime dependency. Authority: [contracts/weft-reason-vocab.json](./contracts/weft-reason-vocab.json)
++ [pm/2026-06-15-weft-reason-contract-G1.md](./pm/2026-06-15-weft-reason-contract-G1.md);
+indexed at [contracts-index.md](./contracts-index.md) §0; convention [conventions.md](./conventions.md) C-15.
+
+| Term | Owning layer | Meaning for cross-product readers |
+|---|---|---|
+| `reason_class` | hub contract → every member | The class a consumer switches on when a result is not a clean true-negative. **Closed canonical set of 11**: `clean`, `disabled`, `unresolved_input`, `rejected`, `dead_path`, `unreachable`, `misrouted`, `error`, `scheme_mismatch`, `stale`, `partial`. A member's emitted values MUST be a subset of these. Domain-specific terms (e.g. legis `key_absent`) map to a canonical class and keep the domain term in `cause`/`reason_detail`. `no clash` — single meaning suite-wide. |
+| `cause` / `fix` | hub contract → every member | The other two limbs of the honesty carrier. `cause` = what mechanically happened (machine+human readable); `fix` = the recruiting action that gets the caller what they wanted (**mandatory** on every non-`clean` result). A `clean` result omits both. |
+| `weft-reason` (the carrier) | hub contract | The `{ reason_class, cause, fix }` triple itself — the machine-readable honesty carrier every non-clean cross-member result carries. Also written `weft_reason` as an emitted field name in some members (e.g. filigree). |
+| `confident-empty` | doctrine / seam-health | An empty/partial/stale result byte-indistinguishable from a legitimate true-negative (`affected:[]`, `findings:0`, `allowed:true`) but actually a join-miss/staleness/scheme-drift. The failure mode the honesty invariant exists to kill ([seam-health-map](./pm/2026-06-15-seam-health-map.md)). |
+| `seam` / `seam-health` | doctrine / federation-map | A **seam** is a cross-member join (a cell in the [integration matrix](./federation-map.md)); per PDR-0023 the seams are the product's crown jewels. **Seam-health** is the (roadmap) surface that lets an agent ask "is this join carrying value end-to-end, and where is it lying?" — a three-layer probe that round-trips a sentinel rather than trusting a self-reported status field. |
+
 ### Wardline -> Legis governance artifact terms
 
 | Term | Product / authority | Meaning | Source |

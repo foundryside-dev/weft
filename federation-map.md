@@ -6,6 +6,8 @@
 
 **Reading the matrix:** each non-empty cell is a cross-tool binding. Per the federation axiom ([doctrine.md](./doctrine.md) §5) every binding is **enrich-only** — removing one side never breaks the other's core flow. Every binding keys on **[SEI](./sei-standard.md)**.
 
+> **PDR-0023 (2026-06-15): these cells are the crown jewels.** The reframe ("the federation is the product; the glue is the value") locates the product's value in *these seams*, not in any single member. A dead cell is the **product** broken, not a peripheral bug — the day's deepest defect was a dead seam (loomweave→Filigree emit), silently carrying `findings:0` for weeks. Two consequences for this matrix: (1) every seam is now **hub-authored and hub-blessed** (members keep autonomy over their own jobs, not over the joins — [doctrine.md](./doctrine.md) PDR-0023 banner); enrich-only and hub-blessed are not in tension. (2) every cell owes the **honesty invariant** — an empty/partial/stale result across any binding carries `cause + reason_class + fix` ([contracts-index.md](./contracts-index.md) § the `weft-reason` contract) so a join-miss can never read as a true-negative. The seam-health surface that lets an agent ask *"is this join carrying value end-to-end?"* is PDR-0023's central feature ([pm/2026-06-15-seam-health-map.md](./pm/2026-06-15-seam-health-map.md)).
+
 ## Integration matrix
 
 Rows = the producer/initiator; columns = the other side. Numbers in cells reference [contracts-index.md](./contracts-index.md) sections.
