@@ -1,0 +1,45 @@
+# Bot-branch prune before clean-break launch — 2026-06-14
+# Restore any line with: (cd <repo>; git push origin <sha>:refs/heads/<branch>)
+# HELD (not deleted): wardline/bolt-optimize-ast-traversal-16711347956672149242
+
+## filigree
+filigree | edfb01c6a5d095130c72417dd03d4f28111ac9db | bolt-opt-issue-batch-query-14872286172267812472
+filigree | 7c2e4bb9f10059375a360e922200d5121bae780b | bolt/optimize-issue-batch-query-9287087697125375119
+filigree | a594c9007eeb3c410b8bc19d7d1e4d0b31f6f56d | codex/fix-symlink-handling-in-doctor-fix
+filigree | 266e3049dd44f95a58361e1cbeb50f9e3c317673 | codex/fix-unauthenticated-http-mcp-endpoint
+filigree | 965265f8f060e856e3789719f508f111fa3803b1 | codex/fix-vulnerability-in-clarion-batch-response
+filigree | 08ca32e44e0c9909acc2ecdea3825ac71d6370d1 | codex/fix-vulnerability-in-filigree-module-fallback
+filigree | 5c57299a699a7bf33d09e57f052edbc2d0eaa336 | codex/fix-windows-pid-check-vulnerability
+filigree | 3cb15d4f1ee09aa1d37cfa640d0c91623777124d | codex/loom-feedback-tickets
+filigree | 077f9dc0a7bce2cf5b897d085124f5d1b97b4c81 | dependabot/uv/starlette-1.0.1
+filigree | a4eb53409cddf6ee44899c389d302c9792e525e0 | palette-a11y-dashboard-12290299917889712158
+filigree | 32290b71738f3097e9ccadefcbdb8cffef832aa1 | palette-add-aria-labels-7917932403963802340
+filigree | 99075c1dc7abceb38654626f2ecd54c93132d2b1 | palette-aria-labels-10955834315336501743
+## loomweave
+loomweave | 663715f0d2361ea6bc8f907a45ab95bcdd63092c | bolt-optimization-regex-caching-13339495316346839477
+loomweave | a34575192e647e9613a2ed3b42430b555da4a091 | codex/fix-guidance-command-to-prevent-arbitrary-code-execution
+loomweave | c70e557336b8d16d472b9a70e7f2ed0ba90d3586 | codex/fix-release-workflow-governance-vulnerability
+loomweave | da807e0a8bffa3693e3e8222b7a52981fa7c9424 | codex/fix-release-workflow-token-exposure
+loomweave | d7f2ad134929e2603f86a78ba8f3a0804d277376 | codex/fix-release-workflow-token-exposure-bbswoi
+loomweave | db965df8872416fe15795c66b369b0b4883fa002 | codex/fix-source_for_entity-leakage-issue
+loomweave | efd9416877c24aede870cf2bb2e1024af29cfbcf | codex/fix-vulnerability-in-index_diff-tool
+loomweave | 76cb16722d1530824852880d8ba727c495b8b0a6 | codex/propose-fix-for-.mcp.json-command-vulnerability
+loomweave | 231e4d921ee4ad5aec7cf82e76835e999c583413 | codex/propose-fix-for-release-governance-bypass
+## wardline
+wardline | c89b97ed3d70976bc85f79d9c025c86b3b10211b | bolt-optimize-reverse-edge-index-12087558137444038699
+wardline | 5fda6770ed72aba178a88b86519b5cff820faef7 | bolt/fast-ast-iter-2979938200137149764
+wardline | eb3edcab40e47e920cf7aef21f9440f21aba0c71 | bolt/optimize-ast-traversal-13041473073119575086
+wardline | 1e764586772ce76e4c840be587478c37eb47da9f | codex/fix-lambda-sink-taint-analysis-issue
+wardline | 6b67d6f28a5476e54d3f83dcc1c9c1cbabb24fda | codex/fix-local-trust-pack-guard-vulnerability
+wardline | bd64010099bd922f03eda6374eb4ee5f712abc29 | codex/fix-vulnerability-bypassing-scan-fail-on-gate
+wardline | 017f82c7a7f4a8079647f6482d15a00232ff243a | codex/fix-vulnerability-in-default-analyzer
+wardline | 2360267bae296a6c692f20e040b9d47a33905f7d | codex/propose-fix-for-judged.yaml-vulnerability
+## legis
+
+## wardline — CONFIRMED-SORTED human fix branches (pruned 2026-06-14, verified present in rc5)
+wardline | 91c3126eac821d409dc8efddc0288063e19518b4 | fix/ci-green-legis-lint
+wardline | 95d1139bab8c7e2cfb56ec279586d0e60906caba | fix/lambda-body-flow-sensitive-taint
+wardline | e0a58d59da25007b57eae47445df3c90700f7222 | fix/lambda-body-worst-ever-taint
+wardline | d9aea1afde86e48d85442b38cb3dc6de75a37a13 | fix/secure-suppression-gate
+wardline | 792d351c04375b3af219924bda52bbc56c976b24 | fix/spoofed-builtin-decorators
+wardline | d432991aae5f2119204c52eb68403d082f87fbc9 | chore/remove-vestigial-call-site-var-taints

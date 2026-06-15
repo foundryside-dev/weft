@@ -27,6 +27,7 @@ yarn-error.log*
 # Filigree issue tracker
 .filigree/
 .filigree.conf
+.filigree.conf.imported
 .gitignore
 .mcp.json
 AGENTS.md
