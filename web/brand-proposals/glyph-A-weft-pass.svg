@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none" role="img" aria-label="Weft">
+  <!-- DIRECTION A — "the weft pass" (recommended primary)
+       Warp threads (the tools) are the light substrate; the single
+       indigo WEFT thread is the hero, woven over-under-over-under
+       through them. The occlusion IS the brand's honesty mechanic:
+       you can see the join, it is not hidden. -->
+
+  <!-- warps the weft passes IN FRONT of (drawn first, so weft covers them) -->
+  <g stroke="#C2B69E" stroke-width="2" stroke-linecap="round">
+    <line x1="6"  y1="5" x2="6"  y2="27"/>
+    <line x1="20" y1="5" x2="20" y2="27"/>
+  </g>
+
+  <!-- the weft: one binding thread, full indigo, the figure -->
+  <line x1="3.5" y1="16" x2="28.5" y2="16" stroke="#35487B" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- warps the weft passes BEHIND (drawn last, so they cover the weft) -->
+  <g stroke="#C2B69E" stroke-width="2" stroke-linecap="round">
+    <line x1="13" y1="5" x2="13" y2="27"/>
+    <line x1="27" y1="5" x2="27" y2="27"/>
+  </g>
+</svg>

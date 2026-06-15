@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none" role="img" aria-label="Weft">
+  <!-- DIRECTION B — "the selvedge turn"
+       One continuous weft thread bound at both edges (the selvedge is
+       the self-finished edge that proves the cloth won't fray). Reads
+       as "one identity woven through, and the edges hold." More
+       abstract / monogram-like than A. -->
+
+  <!-- warp substrate -->
+  <g stroke="#C2B69E" stroke-width="2" stroke-linecap="round">
+    <line x1="9"  y1="6" x2="9"  y2="26"/>
+    <line x1="16" y1="6" x2="16" y2="26"/>
+    <line x1="23" y1="6" x2="23" y2="26"/>
+  </g>
+
+  <!-- the continuous bound weft (serpentine, turning at each selvedge) -->
+  <path d="M5 9 H27 a3 3 0 0 1 0 6 H5 a3 3 0 0 0 0 6 H27"
+        stroke="#35487B" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
