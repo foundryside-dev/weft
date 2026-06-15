@@ -135,18 +135,39 @@ bet is falsified.
 
 ## Open design forks (decide before/within v1)
 
-- **Hosting: filigree vs protoweft** *(owner raised, 2026-06-15)* — the board can live
-  **inside filigree** (generalize its existing claim/lease/heartbeat/reap engine from
-  *issue* to *path* granularity — minimal new surface, reuses proven machinery) or in a
-  new **protoweft** application (weft-the-app — the same host the L2 strategic-view MCP
-  would live in). Lean filigree for the lease engine if the board stays a primitive; lean
-  protoweft if it's meant to grow into the fleet-OS console. Decide before v1.
+- **Hosting: RESOLVED → filigree for now** *(owner ruling, 2026-06-15)* — host the board
+  **inside filigree** to reuse its proven claim/lease/heartbeat/reap engine (generalized
+  from *issue* to *path* granularity). Accepted cost: the functionality will have to be
+  **extracted into protoweft later** when the fleet-OS console materializes.
+  - **HARD CONSTRAINT — additive-only, no second shock.** Filigree has real-world users
+    and `3.0.0` (schema v26 wire-break) is the "hard shock" they are already braced for.
+    The owner will NOT shock them twice. Therefore the board must be a **purely additive**
+    filigree surface (new tables + new MCP tools + hooks; **zero** change to existing v26
+    contracts). Additive ≠ shock, so an additive board can ship post-3.0.0 with no second
+    break. If — and only if — some part genuinely cannot be additive, it must fold INTO
+    the held 3.0.0 cutover (the single shock), never into a 3.1.x break. This is the one
+    place the relaxed prototype discipline (below) does NOT apply.
 - **Tag granularity / nesting** — exact-path vs prefix-match; I tag `/src`, you want
   `/src/foo`. Standard hierarchical-lock problem; v1 keep simple (prefix-match,
   first-writer-wins, escalate on overlap).
 - **Feed relevance model** — all-tags-terse vs working-set-intersection (requires the
   agent to declare/infer its working set).
 - **Group tags** — one tag covering a workflow's fleet of subagents.
+
+## Discipline posture (owner recalibration, 2026-06-15)
+
+The program's self-image shifted from *"98%-finished suite, polishing the surface"* to a
+**"rapidly-evolving prototype for the L2 layer on a solid core."** This **relaxes
+discipline for the PROTOTYPE layers** (the coordination board, the L2 strategic-view MCP):
+build fast, iterate, don't gold-plate for permanence or treat every new surface as a
+frozen contract.
+
+It does **NOT** relax for the **solid core** — the five members — and **especially not for
+filigree**, which has real-world users and a pending `3.0.0` hard shock (don't shock them
+twice → additive-only; see the hosting constraint above). `3.0.0` **holds until ready**;
+the other four members **ship when they need to**. Core honesty/correctness fixes (the
+five gaps) keep full rigor; **G4 (cascade-close) keeps the highest**. The relaxation is
+*"stop polishing a finished thing"* permission, not *"skip tests on the core."*
 
 ## Status / next
 
