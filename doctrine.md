@@ -47,11 +47,13 @@
 
 ## 1. What Weft is
 
-Weft is a suite for enterprise-grade code governance on small teams. It has **five admitted members** — **Loomweave**, **Filigree**, **Wardline**, **Legis**, and **Warpline** (Warpline admitted 2026-06-14 per PDR-0022, against the §7 quality bar; this reversed the earlier PDR-0017 "not ready" ruling). Membership and the launch cutover are distinct facts: the suite has five members, but the launch is a **four-member lockstep cutover** (Filigree, Loomweave, Wardline, Legis), with Warpline's implementation an admitted fast-follow *outside* that cutover. **Charter** has a realized local core and read-only MCP surface, but remains a planned Weft integration until its adapters ship. Each product is authoritative in its domain and usable on its own. **Shuttle** is a roadmap thought-bubble, not a committed member: it has no repo, and any better idea the suite lands (Charter was started 2026-06-04) takes priority over it and may displace it. When composed, the members enrich one another through narrow, additive protocols — but each remains independently load-bearing for the work it already does.
+Weft is **one product positioned as one seam supported by a suite of products** (owner ruling 2026-06-15, executing PDR-0023 §5). The seam — the **[SEI](./sei-standard.md) identity spine + the honest, hub-blessed joins** between members — is the hero; the members are a **supporting, open-ended suite**, each authoritative in its domain and usable on its own. The roster is a **current-state fact, not the identity**: the suite is *designed to grow* — weft-the-app becomes a full-class member ([PDR-0024](./pm/product/decisions/0024-the-fleet-is-the-customer-two-planes.md)), and daughter members are coming (e.g. the wardline/loomweave custom-checks daughter; "at least two more"). A head-count is never the thesis.
+
+**The suite currently comprises** **Loomweave**, **Filigree**, **Wardline**, **Legis**, and **Warpline** (Warpline admitted 2026-06-14 per PDR-0022, against the §7 quality bar; this reversed the earlier PDR-0017 "not ready" ruling). Membership and the launch cutover are distinct facts: the launch is a **four-member lockstep cutover** (Filigree, Loomweave, Wardline, Legis), with Warpline's implementation an admitted fast-follow *outside* that cutover. **Charter** has a realized local core and read-only MCP surface, but remains a planned Weft integration until its adapters ship. **Shuttle** is a roadmap thought-bubble, not a committed member: it has no repo, and any better idea the suite lands (Charter was started 2026-06-04) takes priority over it and may displace it. When composed, the members enrich one another through narrow, additive protocols — but each remains independently load-bearing for the work it already does, and **every cross-member join is hub-blessed** (the §10/§11 governance posture).
 
 The metaphor is deliberate: distinct threads stay distinct but gain value by being woven together. Weft is a **family name** and a **composition doctrine** — not a platform, not a shared runtime, not a store, and not a broker. There is nothing called "Weft" to install, deploy, or keep running. What exists are the member products, a set of narrow interop contracts between them, and this hub (`~/weft`) which is documentation only — it holds no runtime, no store, and no code.
 
-> **Roster note.** The 2026-06-05 ruling admitted Legis and Charter into the Weft family and excluded Shuttle as a member. Current taxonomy: five admitted members (Loomweave, Filigree, Wardline, Legis, and Warpline — admitted 5th member (2026-06-14, PDR-0022 / §7 quality bar), implementation a fast-follow outside the four-member launch cutover), Charter as a planned integration with local core/read-only MCP shipped, and Lacuna as the demo specimen. See [conflict-register.md](./conflict-register.md) §B-1 for the original ruling and its evidence.
+> **Roster note (a snapshot, not the identity).** The 2026-06-05 ruling admitted Legis and Charter into the Weft family and excluded Shuttle as a member. Current taxonomy as of 2026-06-15: the suite *currently comprises* Loomweave, Filigree, Wardline, Legis, and Warpline (Warpline admitted 2026-06-14, PDR-0022 / §7 quality bar; implementation a fast-follow outside the four-member launch cutover), Charter as a planned integration with local core/read-only MCP shipped, and Lacuna as the demo specimen. **This roster is open-ended** — it will grow (PDR-0024; daughter members) and the count is a current-state fact, never the suite's identity (the seam is). See [conflict-register.md](./conflict-register.md) §B-1 for the original ruling and its evidence.
 
 ## 2. The products and their authoritative domains
 
@@ -162,6 +164,29 @@ but gains nothing from siblings is a fine standalone product that doesn't need
 admission; a tool that is only useful *because* of the federation is an adapter
 (test 2 above). Admission remains owner-reserved; this bar is what any go/no-go
 assessment measures against.
+
+### The admission bar is the seam's growth-guard (owner ruling, 2026-06-15)
+
+Because the positioning is **one seam supported by an open-ended suite** (§1), the
+roster is *meant to grow* — weft-the-app joins as a full-class member
+([PDR-0024](./pm/product/decisions/0024-the-fleet-is-the-customer-two-planes.md)),
+and daughter members are coming (the wardline/loomweave custom-checks daughter; "at
+least two more"). Growth is a feature, not a risk — **as long as it does not dilute
+the seam.** The guard against dilution is this admission bar, now with a third,
+non-negotiable limb:
+
+- **Standalone parity** (above) and **federation enhancement** (above) still both hold;
+  **plus**
+- **Honesty conformance (the §10 invariant) — a hard gate.** A new member MUST conform
+  to the canonical `weft-reason` vocabulary and ship **no confident-empty** surface
+  ([federation-sdk.md](./federation-sdk.md) I-4). A member that returns confident-emptiness
+  is *worse than a weak standalone tool*, because it breaks the glue's promise — the
+  honesty contract that **is** the moat (PDR-0023 consequence 3). Capability cannot buy
+  past it: a best-in-slot tool that lies about its own emptiness does not join.
+
+So the suite scales by *adding honest members whose joins are hub-blessed*, never by
+accreting capable-but-dishonest tools that erode the one thing the federation sells.
+The seam stays the product as the roster grows.
 
 ## 8. Naming
 

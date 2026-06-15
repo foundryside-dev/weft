@@ -1,35 +1,55 @@
 # Weft — Go-to-Market Decision
 
-**Status:** Decided (2026-06-05) · **Owner:** PM · **Audience:** maintainers + the in-flight docs work
+**Status:** Decided (2026-06-05) · **Positioning headline updated 2026-06-15 (owner)** · **Owner:** PM · **Audience:** maintainers + the in-flight docs work
 
-One-page record of *how Weft ships*. Captures four decisions made 2026-06-05.
-Supersedes the membership/packaging assumptions in `README.md` and
-`federation-map.md` (both stale — see "Corrections" below).
+One-page record of *how Weft ships*. Captures four packaging decisions made
+2026-06-05, with the **positioning headline recast 2026-06-15** (owner ruling — "one
+seam supported by a suite of products"; see the headline section below). Supersedes the
+membership/packaging assumptions in `README.md` and `federation-map.md` (both stale —
+see "Corrections" below).
 
 ---
 
-## Decision in one paragraph
+## Positioning headline (UPDATED — owner ruling 2026-06-15)
 
-Weft ships as **five separately-installable products behind one brand and one
-front door** — not a monolith-with-plugins, and not five disconnected projects.
-Each tool stays its own repo + its own package (PyPI / crates.io), installable
-and useful with zero siblings present. They are unified at the *discovery and
-branding* layer (one GitHub org, one hub, one narrative, one compatibility
-matrix), never at the *code* layer. We make a **one-time coordinated Weft 1.0
-launch**, then every tool versions independently from that point on.
+> **The positioning is "one seam supported by a suite of products."** The earlier
+> "five separately-installable products behind one brand" framing is **DEAD** (owner,
+> 2026-06-15). This executes PDR-0023 §5's reserved decision — *the headline is the
+> spine.* The **seam** — the SEI identity spine + the honest, hub-blessed joins — is
+> **the product / the hero**; the members are a **supporting, open-ended suite**.
+> "Five" is a current-roster *snapshot*, never the identity: the suite is designed to
+> grow (weft-the-app becomes a full-class member per [PDR-0024](./pm/product/decisions/0024-the-fleet-is-the-customer-two-planes.md);
+> daughter members are coming — e.g. the wardline/loomweave custom-checks daughter —
+> "at least two more"). The **packaging** decisions below (separate artifacts, one org,
+> independent semver) are unchanged; only the *hero of the pitch* moved from the tools
+> to the seam they share. See [doctrine.md](./doctrine.md) (PDR-0023 banner + §10/§11).
+
+## Decision in one paragraph (packaging — unchanged)
+
+The members ship as **separately-installable products** — not a monolith-with-plugins,
+and not disconnected projects. Each tool stays its own repo + its own package (PyPI /
+crates.io), installable and useful with zero siblings present. They are unified at the
+*discovery and branding* layer (one GitHub org, one hub, one narrative, one
+compatibility matrix) **and at the seam** (the shared SEI spine + the hub-blessed
+joins), never as a shared *code* runtime. We make a **one-time coordinated Weft 1.0
+launch**, then every tool versions independently from that point on. The positioning
+hero is the **seam**; the separately-shippable tools are how that seam is delivered and
+how the suite stays open-ended.
 
 ## Why — two axes, not one
 
 The "single product vs separate products" question is two independent decisions:
 
-- **Axis A — packaging/architecture: SETTLED by the federation axiom.** Weft's
-  differentiator is *solo-useful, enrich-only, never load-bearing*. A
-  monolith-with-plugins would destroy that. Separate artifacts is a constraint,
-  not a choice. **Not relitigated.**
-- **Axis B — distribution/discovery/branding: the real question.** Today's
-  failure mode is *fragmentation* (five repos, two orgs, no front door), not
-  over-coupling. We unify the **front door**, not the code. "Separate packages,
-  single front door" is the steelman of the "single product" instinct.
+- **Axis A — packaging/architecture: SETTLED by the federation axiom.** Each member is
+  *solo-useful, enrich-only, never load-bearing*. A monolith-with-plugins would destroy
+  that. Separate artifacts is a constraint, not a choice. **Not relitigated.** (Note: per
+  PDR-0023, *enrich-only* is a per-seam **property** each binding must satisfy, not the
+  positioning headline — the headline is the seam itself.)
+- **Axis B — distribution/discovery/branding: the real question.** Today's failure mode
+  is *fragmentation* (multiple repos, two orgs, no front door), not over-coupling. We
+  unify the **front door and the seam**, not the code. The hero of that front door is the
+  **one seam**; the supporting suite of separately-installable tools is open-ended and
+  grows over time.
 
 ## The four decisions
 
@@ -55,7 +75,7 @@ on its own cadence and **does not gate 1.0**.
 | **legis** | Python | Git/CI, governance, attestations | 1.0.0rc2 — *1.0 unit* |
 | **charter** | Python | Requirements, traceability, verification evidence | early — **non-gating; joins on own cadence** |
 
-**Current roster of record: see [doctrine.md](./doctrine.md)** (five admitted members incl. Warpline; Charter is a planned integration). This section records the 2026-06-05 go-to-market decision.
+**Current roster of record: see [doctrine.md](./doctrine.md)** (the suite *currently comprises* Loomweave, Filigree, Wardline, Legis, and Warpline; Charter is a planned integration). The roster is **open-ended by design** — a current-state snapshot, not the suite's identity (the seam is the identity). This section records the 2026-06-05 go-to-market decision.
 
 **shuttle** = a **speculative roadmap thought-bubble** (transactional scoped change execution) — **no repo, displaceable by any better idea, not a committed member**, and not in scope for 1.0 (per [doctrine.md](./doctrine.md) roster canon; [conflict-register.md](./conflict-register.md) §B-7).
 
@@ -76,7 +96,9 @@ Follows directly from "separate packages, single front door":
 ## Corrections this doc makes to existing artifacts
 
 - `README.md` / `federation-map.md` say "four products incl. **shuttle**."
-  **Wrong.** Five products incl. **legis + charter**; shuttle is future.
+  **Wrong.** The roster includes **legis + charter** (and, as of 2026-06-14,
+  Warpline); shuttle is future. *(Count is a snapshot — the roster is open-ended;
+  the identity is the seam, not a head-count.)*
 - The three "canonical" docs (hub `README`, `federation-map`,
   `~/clarion/docs/suite/weft.md`) disagree on membership. **This is a
   go-to-market defect**, not a cosmetic one — a suite whose canon can't name its
