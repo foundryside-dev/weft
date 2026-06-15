@@ -530,33 +530,121 @@ actually exposes. Do not invent an identity field on a surface that lacks one.
   members conform by a **per-member conformance TEST** asserting their reason surface
   against it (the shared vector IS `weft-e295ec3be3` Part 1). Indexed as a federation
   contract at [contracts-index.md](./contracts-index.md) §0.
-- **Rollout is staged (cells below grade against the staged target, not a single shock).**
-  The **value vocabulary** (the 11 strings) is standardized now, additive/non-breaking.
-  The **full carrier triple** converges with **G3** (loomweave typed output) and, for
-  filigree, inside the **held `3.0.0`**. Do not re-break shipped work to land it.
+- **Admission gate.** I-4 in the [Federation SDK](./federation-sdk.md): conformance to the
+  canonical vocabulary + no confident-empty is a **hard admission gate** — a member that
+  fails it does not join the federation, however capable standalone (owner ruling
+  2026-06-15, [doctrine.md](./doctrine.md) §10).
+- **Rollout status (G1 value-vocab: LANDED federation-wide; PRIORITY 1 closed).** The
+  **value vocabulary** (the 11 strings) is now conformed across **all five realized
+  members**, each with a **drift-failing conformance test** asserting its emitted reason
+  surface against the canonical
+  [contracts/weft-reason-vocab.json](./contracts/weft-reason-vocab.json) (canonical SoT at
+  weft `fd92604`). Mappings landed **additively** (no wire re-break): existing
+  member-local status strings now also carry a canonical `reason_class`. The **full carrier
+  triple** (`cause + fix` on every surface) is the next horizon — it converges with **G3**
+  (loomweave typed output) and, for filigree, inside the **held `3.0.0`**. Do not re-break
+  shipped work to land it.
 - **Reference: warpline** — its 2026-06-15 "make the quiet segfault loud" strike
   (`281460e`) downgrades a stale snapshot off completeness, returns a resolved/unresolved
   miss-set instead of a silent drop, and honors-or-rejects its declared inputs; its G1
   conformance test (`a2c44e1`) locks the vocabulary. Reference for the *worst→fixed*
-  trajectory the others must reach.
+  trajectory.
 
-| Member | State | Evidence |
+| Member | State | Evidence (G1 value-vocab conformance — landed with a drift-failing test) |
 |---|---|---|
-| warpline | **reference ✓† (vocab)** | `281460e fix(impact): make the quiet segfault loud — staleness, miss-set, dead-input` + `a2c44e1 test(reason): lock weft-reason G1 vocabulary conformance`; emits `reason_class` in `src/warpline/listing.py`; input-affordance honesty enforced by `assert_inputschema_consumed()` (`src/warpline/mcp.py`, the input-affordances-are-promises reference). Unmerged/just-landed. |
-| loomweave | **conforms (vocab, status carrier)** | `analyze.rs` emits `reason_class` (`clean`/`disabled`/`error`/`unreachable`/`partial`) on the run-analysis carrier; honest-empty `result_kind` tri-state (the C-6 facet reference). Per-finding triple not yet universal (staged). |
-| wardline | **conforms (vocab, failure carrier)** | `core/filigree_emit.py` `FailedFinding.to_wire()` emits `reason_class`; honest gate `verdict=NOT_EVALUATED` (C-10/W2). Per-finding triple staged. |
-| legis | **conforms (vocab, status carrier)** | `wardline/ingest.py` maps `artifact_status`/`artifact_status_reason` to canonical `reason_class`. Staged. |
-| filigree | **conforms (vocab, resolution carrier)** | `mcp_tools/issues.py` emits a `weft_reason` carrier with `reason_class` on entity-resolution failure (SEI-on-create path). Full carrier convergence is inside the held `3.0.0` (additive). |
+| warpline | **reference ✓† (vocab)** | `warpline@a2c44e1` — already canonical, conformance test added; `281460e fix(impact): make the quiet segfault loud — staleness, miss-set, dead-input`; emits `reason_class` (`src/warpline/listing.py`); input-affordance honesty enforced by `assert_inputschema_consumed()` (`src/warpline/mcp.py`). Just-landed/unmerged. |
+| loomweave | **conforms ✓† (vocab)** | `loomweave@bac777c` — already canonical, conformance test added; emits `reason_class` (`clean`/`disabled`/`error`/`unreachable`/`partial`) on the run carrier (`analyze.rs`); honest-empty `result_kind` tri-state (the C-6 facet reference). Full triple staged (G3). |
+| filigree | **conforms ✓† (vocab)** | `filigree@3f3c3d0` (`release/3.0.0`) — already canonical, conformance test added; `weft_reason` carrier with `reason_class` on entity-resolution failure (`mcp_tools/issues.py`, SEI-on-create path). Full carrier convergence is inside the held `3.0.0` (additive). |
+| wardline | **conforms ✓† (vocab)** | `wardline@282efd41` — `validation_error → rejected` mapped **additively**, with `reason_class`/`cause`/`fix` on the wire; `FailedFinding.to_wire()` (`core/filigree_emit.py`); honest gate `verdict=NOT_EVALUATED` (C-10/W2). |
+| legis | **conforms ✓† (vocab)** | `legis@11b7dbdb` — `key_absent → disabled`, `dirty_dev_artifact → stale`, `signature_verified → clean` mapped **additively** alongside `artifact_status_reason` (`wardline/ingest.py`). |
 | charter | **exempt** | no cross-member emit surface yet (local core + read-only MCP). |
 
-> **Pending sibling conventions (roadmap — not yet registered as numbered cells).**
-> The honesty banner has three ergonomics sub-clauses still to land here as full C-entries:
-> **lead-summary** on count-returning tools (`pm/2026-06-15-lead-summary-convention.md`,
-> reference impl loomweave `entity_dead_list`); **bounded-by-default / list-overflow-dump-to-file**
-> (C-12 sibling, `weft-801d21fa4d`); and **input-affordances-are-promises** (reference impl
-> warpline `assert_inputschema_consumed`). And a **speak-SEI-natively-at-entry** convention
-> (data joins the spine as it enters — filigree `issue_create` SEI-on-create + loomweave
-> guidance-append). See [pm/2026-06-15-federation-docs-maturation-plan.md](./pm/2026-06-15-federation-docs-maturation-plan.md) §5 (P1).
+> All five `✓†` cells are conformed in branch/unmerged builds (the suite-wide unmerged-to-main
+> fact the propagation P1s track). The **value-vocabulary** limb of the honesty invariant —
+> PRIORITY 1, the five gaps — is **fully closed**; the full-carrier-triple limb is the staged
+> remainder (G3 / 3.0.0).
+
+The honesty banner's **ergonomics sub-clauses** are registered as their own cells below:
+lead-summary (C-16), bounded-by-default / list-overflow-dump-to-file (C-17),
+input-affordances-are-promises (C-18), and speak-SEI-natively-at-entry (C-19).
+
+### C-16 — Lead summary on count-returning tools (self-qualifying headline)
+
+- **Rule (NORMATIVE).** Any tool that returns **a number of things in various kinds** MUST
+  state the breakdown **up front**, in a top-level `summary` block, so an agent reads the
+  *shape* of the result without counting rows or hunting for a footnote. The block carries
+  **(1) counts by kind** (the total decomposed into its meaningful categories — active vs
+  baselined, reachable vs unreachable vs not-analysed, by severity/status, withheld/excluded —
+  never just `total`); **(2) a confidence/completeness verdict** (`complete`/`partial` or
+  `moderate`/`low`); and **(3) a recruiting advisory** *when a threshold is crossed* (too many
+  unknowns, too-high a withheld/unreachable share, a stale/rootless index) — and the advisory
+  must **recruit, not just confess** (name the operator action: "configure entry-point roots",
+  "re-capture the snapshot").
+- **Why.** A raw count is a trap: `141 dead`, `156 findings`, `203 hotspots` all read as
+  authoritative before the agent learns how many are baselined/withheld/not-analysed. The
+  2026-06-15 external cold-eval docked *trust* because `entity_dead_list`'s "141 candidates"
+  misled until the caveat was found. This is the **sub-clause of C-15** ("recruit, don't just
+  confess") on the *count* surface, and the L2/L3 reach-for levers made concrete: the answer is
+  one read away, and it declares its own limits.
+- **Reference: loomweave `entity_dead_list`** (`1.1.0-rc10`) — leads with candidates / reachable
+  / not-analysed + a confidence verdict + a low-confidence recruiting advisory.
+  Source-of-record: [pm/2026-06-15-lead-summary-convention.md](./pm/2026-06-15-lead-summary-convention.md)
+  (the rollout campaign: wardline `scan`, loomweave coupling/circular/finding lists, filigree
+  `finding_list`/`issue_list`).
+- **Acceptance.** A `summary` leads with counts by kind; carries a confidence/completeness
+  verdict; and any partial/low-confidence result emits a *recruiting* advisory naming the
+  operator action. New count-returning tools ship with it from day one (tool-authoring checklist).
+
+### C-17 — Bounded-by-default + list-overflow dumps to file (never flood the context)
+
+- **Rule (NORMATIVE).** Every list/enumeration surface is **bounded by default** — it returns a
+  sensible capped page, never the unbounded set, and the cap is visible (a `partial`
+  `reason_class` per C-15 + a `summary` per C-16 naming the total and how to page/raise the cap).
+  When a result would **overflow** a reasonable context budget, the tool **dumps the full set to a
+  file and returns the path + the lead summary**, rather than inlining a wall of rows. An agent
+  must never be forced to choose between a truncated-and-silent answer and a context-blowing one.
+- **Why.** Unbounded list tools are the reborn 72k-char overflow wart (the cold-eval's named UX
+  defect on the crown-jewel tool) and a defection trigger — an agent that gets flooded routes
+  around the tool. Bounded-by-default + dump-to-file keeps the surface *reachable*. This is C-12's
+  sibling on the *volume* axis (one oracle, bounded output) and a sub-clause of the agent-first
+  ergonomics banner. Tracked as `weft-801d21fa4d`.
+- **Reference: pending.** loomweave/wardline lead-summary work (C-16) is the nearest landed
+  facet; the explicit dump-to-file-on-overflow contract is not yet a single member reference.
+  Until one lands this is the *target*, registered so new surfaces ship bounded.
+
+### C-18 — Input affordances are promises (advertise only what you consume + honor)
+
+- **Rule (NORMATIVE).** A tool MUST NOT advertise an `inputSchema` field it does not actually
+  **consume and honor**. Every declared input is a *promise*: a caller that passes
+  `max_entities` / `if_stale_after` / `changed_refs` is entitled to have it change the result.
+  An advertised-but-ignored field is a **dead input** — a silent lie at the interface, the
+  caller-facing twin of the confident-empty (C-15): the agent shapes its request around an
+  affordance that does nothing, and cannot tell. Enforcement is a **startup assertion** that
+  every schema-advertised field is in the handler's consumed set (or a named, loudly-rejected
+  fast-follow), so the promise cannot silently rot.
+- **Why.** PDR-0023's honesty invariant applies at the *input* boundary too: "if we cannot
+  understand what they wanted, that is a tell on our side." The seam-health map's warpline P0 was
+  exactly this — `capture` advertised three fields it consumed none of (now fixed). A dead input
+  trains the agent to distrust the whole surface.
+- **Reference: warpline `assert_inputschema_consumed()`** (`src/warpline/mcp.py`) — declares a
+  `_HANDLER_CONSUMES` set per tool and asserts at import that every advertised field is consumed
+  or a named fast-follow; the `281460e` strike wired the three previously-dead `capture` inputs.
+
+### C-19 — Speak SEI natively at every data-entry point (join the spine as data enters)
+
+- **Rule.** Data should join the SEI identity spine **as it enters**, not in a later
+  reconciliation pass. Every data-entry surface that records something *about a code entity*
+  SHOULD accept an SEI (or a Loomweave-resolvable reference) **at creation/append time** and bind
+  it then — so the record is spine-keyed from birth, drift-detectable immediately, and never
+  orphaned by a refactor before a backfill catches it. Stored opaque, per SDK I-1/I-3.
+- **Why.** SEI is the connective tissue (I-1); a record that enters spine-blind and is keyed
+  later spends its early life as a fragile file/symbol ref — exactly the orphan-risk window SEI
+  exists to close. Speaking SEI at entry collapses that window to zero and makes the spine the
+  *default substrate* (the reach-for thesis, federation-level).
+- **Reference: loomweave guidance-append** (the reference for SEI-at-entry) +
+  **filigree `issue_create`** — which now accepts an `entity_id` / `entity_symbol` / `content_hash`
+  bind at creation (the "SEAM SEI-on-create, ADR-029" path), so an issue joins the spine the moment
+  it is filed rather than via a later `entity_association_add`.
 
 ---
 
@@ -581,14 +669,24 @@ actually exposes. Do not invent an identity field on a surface that lacks one.
 | C-12 one status oracle | ✓† | R† | ✓† | ? | — |
 | C-13 fail-degraded on hostile input | — | R | ✓† | ✓† | — |
 | C-14 init/install/doctor verb contract | ✓ | ✓ | ✓ | R | — |
+| C-15 honesty invariant (`weft-reason` vocab) | ✓† | ✓† | ✓† | ✓† | — |
+| C-16 lead summary on counts | … | R | … | … | — |
+| C-17 bounded-by-default + dump-to-file | … | … | … | … | — |
+| C-18 input affordances are promises | … | … | … | … | — |
+| C-19 speak SEI at data entry | ✓† | R | — | — | — |
 | X-1 interim agent identity handoff | ✓ | — | — | ✓ | — |
 
-loomweave is the dominant reference member (C-1/C-2†/C-3/C-4/C-5/C-7/C-13); charter is
-the C-6 reference; legis is the C-9 reference (member-private form). No member is
-reference for C-9's shared-key layout (partially shipped, hub-pending), C-10
-(the newly-named honest-seams bar — dogfood-#2's "works but quiet about itself" tier),
-or C-12 (both motivating instances were violations; the ✓† cells are single-question
-repairs). (C-8 — authority-key confinement — is reserved/proposed; see the C-3 carve-out.)
+loomweave is the dominant reference member (C-1/C-2†/C-3/C-4/C-5/C-7/C-13/C-16/C-19);
+charter is the C-6 reference; legis is the C-9 reference (member-private form); warpline
+is the C-15 reference (honesty invariant, worst→fixed trajectory) and the C-18 reference
+(`assert_inputschema_consumed`). **C-15's value-vocabulary limb is conformed federation-wide
+(all five `✓†`, drift-failing tests; PRIORITY 1 closed)** — the full-carrier-triple limb is
+the staged remainder (G3 / filigree 3.0.0). No member is yet reference for C-9's shared-key
+layout (partially shipped, hub-pending), C-10 (the honest-seams bar — dogfood-#2's "works but
+quiet about itself" tier), C-12 (both motivating instances were violations; the ✓† cells are
+single-question repairs), or **C-17** (bounded-by-default + dump-to-file — registered as the
+target; the lead-summary work is the nearest landed facet). (C-8 — authority-key confinement —
+is reserved/proposed; see the C-3 carve-out.)
 
 ### Verification calibration (honest confidence)
 

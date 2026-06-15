@@ -31,12 +31,17 @@
 > federation's worst failure mode, because the lie becomes the premise of the next
 > decision ([pm/2026-06-15-seam-health-map.md](./pm/2026-06-15-seam-health-map.md)).
 >
-> **Hub blesses every seam (governance posture, owner ruling 2026-06-15).** Members keep
-> autonomy over **their own jobs**, but **every cross-member interaction — every seam — is
-> hub-authored and hub-blessed**, so the joined flood stays coherent. This narrows the
-> older "version-skew handled bilaterally" posture (§6): the *alphabet* (cross-member
-> contracts/seams) is hub-owned; members compose blessed primitives freely but do not mint
-> new cross-member contracts.
+> **Hub blesses every seam (the federation framing, owner ruling 2026-06-15).** This is the
+> headline governance posture: **members keep autonomy over their own jobs, but every
+> cross-member interaction — every seam — is hub-authored and hub-blessed**, so the joined
+> flood stays coherent enough to synthesise over. The *alphabet* (cross-member contracts /
+> seams) is hub-owned; members compose blessed primitives freely but do not mint new
+> cross-member contracts. **"Enrich-only" is now a per-seam *property*, not the federation
+> headline** — a real and required property of each binding (removing one side never breaks
+> the other's core flow, §5), but it is *what a blessed seam must satisfy*, not the
+> organizing principle of the suite. The organizing principle is the spine + the
+> hub-blessed seams. This narrows the older "version-skew handled bilaterally" posture (§6):
+> bilateral evolution of a cross-member contract is no longer a member's to decide.
 
 ---
 
@@ -177,3 +182,89 @@ Per-member version and status are **snapshots, not authoritative here** — each
 The keystone interop primitive, **Stable Entity Identity** ([sei-standard.md](./sei-standard.md)), is the suite's single identity track and is **LOCKED as of 2026-06-05** — the interface is frozen and post-lock changes require a versioned revision. Conformance stays oracle-gated; any member's locator→SEI backfill is a migration task under the locked standard, not a reopening of it. See the SEI standard and [conflict-register.md](./conflict-register.md) §B-2.
 
 This charter is expected to outlive any single release and shape all subsequent product gates. Its load-bearing sentence is in §5: **enrichment, not load-bearing**. If that principle is ever compromised, the rest collapses.
+
+## 10. The honesty invariant (the protected one)
+
+Under PDR-0023 the federation is the product and the seams are its crown jewels; the
+property that makes those seams *trustworthy* — and therefore reachable — is
+**provenance-honesty**. The 2026-06-15 external cold-eval named it the suite's most
+underrated asset ("the reason I trusted the answers … worth more than any one
+analyzer"). The owner promoted it from a nice property to a **protected invariant — the
+moat-guard.** It is non-negotiable, and it is now a hard admission gate
+([federation-sdk.md](./federation-sdk.md) I-4).
+
+**The rule.** *No result ships without its provenance.* Every cross-member result that is
+**not** a clean, complete true-negative MUST carry a three-part honesty carrier:
+
+- **`reason_class`** — the class a consumer switches on, drawn from a **closed canonical
+  set of 11**: `clean`, `disabled`, `unresolved_input`, `rejected`, `dead_path`,
+  `unreachable`, `misrouted`, `error`, `scheme_mismatch`, `stale`, `partial`.
+- **`cause`** — what mechanically happened (machine + human readable).
+- **`fix`** — the recruiting action that gets the caller what they wanted. **Mandatory on
+  every non-`clean` result** — recruit, don't just confess.
+
+A **`clean`** result carries `reason_class: "clean"` and omits `cause`/`fix` — the empty is
+*earned and complete*. Explicit `clean` beats "no carrier," so a present-but-clean result is
+never ambiguous with a forgotten one.
+
+**The failure mode it kills: the confident-empty.** An `affected:[]` / `findings:0` /
+`allowed:true` that is byte-indistinguishable from a legitimate true-negative but is actually
+a join-miss, a stale snapshot, or a scheme drift. In a federation, a syscall that returns a
+plausible wrong answer instead of `-ENOENT` is *worse than one that crashes* — every
+downstream decision commits the corruption as fact and the lie becomes the premise of the
+next decision (the dead loomweave→Filigree emit seam, silent for weeks, was this caught
+once: [pm/2026-06-15-seam-health-map.md](./pm/2026-06-15-seam-health-map.md)). A member that
+returns confident-emptiness is **worse than a weak standalone tool**, because it breaks the
+glue's promise — the honesty contract that is the moat (PDR-0023 consequence 3).
+
+**The contract (hub-blessed, no shared runtime dependency).** The canonical vocabulary is
+the **first hub-blessed federation contract** — owner gate 2026-06-15
+([contracts/weft-reason-vocab.json](./contracts/weft-reason-vocab.json) machine-readable +
+[pm/2026-06-15-weft-reason-contract-G1.md](./pm/2026-06-15-weft-reason-contract-G1.md) the
+doctrine; indexed at [contracts-index.md](./contracts-index.md) §0; convention
+[conventions.md](./conventions.md) C-15). Members stay independent repos and conform by a
+**per-member conformance test** asserting their reason surface against the canonical list —
+no shared library, preserving the §6 no-shared-infrastructure posture. As of 2026-06-15 the
+value vocabulary is conformed federation-wide across all five members (drift-failing tests
+landed); the full carrier triple converges as members iterate (loomweave typed output / G3,
+and for filigree inside the held `3.0.0`, additively).
+
+**Honesty propagates through composition.** A macro or check built over the federation's
+primitives is only as honest as its weakest sub-call: it MUST propagate the `weft-reason`
+carrier and never swallow a sub-call's `unreachable` into a confident empty. This is the
+honesty invariant applied one layer up — the precondition for the §11 sense-making plane.
+
+## 11. The fleet-OS frame *(PDR-0024 — CANDIDATE, not yet authoritative canon)*
+
+> **Status gate.** PDR-0024 is at **CANDIDATE** — referenceable but **not yet authoritative
+> canon**, promotable to Adopted only on a first falsifier-test / dogfood proof. This section
+> records the candidate direction so the rest of the canon can point at it; it does **not**
+> bind any member, and nothing here is a frozen contract.
+> ([pm/product/decisions/0024-the-fleet-is-the-customer-two-planes.md](./pm/product/decisions/0024-the-fleet-is-the-customer-two-planes.md).)
+
+PDR-0023's "the federation is the product" raises a next question — *who is the glue for?* The
+candidate answer (PDR-0024): **the federation's customer is a fleet of agents working the same
+repos concurrently, not a single agent with a toolbox.** A fleet needs two planes, both resting
+on the §10 honesty invariant (a coordination board whose stale tag reads as live, or a synthesis
+engine fed a lying flood, fails the same confident-wrong way, at higher leverage):
+
+- **Coordination plane** — agents don't silently collide: presence, advisory path reservation,
+  escalation. The lockout-tagout (LOTO) **tag-out board**, hosted *additively* in filigree for
+  now (reusing its claim/lease/heartbeat/reap engine; **additive-only — filigree's `3.0.0` users
+  are not shocked twice**). Shaping:
+  [pm/2026-06-15-fleet-coordination-tagout-shaping.md](./pm/2026-06-15-fleet-coordination-tagout-shaping.md).
+- **Sense-making plane** — agents get wisdom from the honest, joined flood: the L2 **"strategic
+  view" MCP** (the "so what" query) + an **agentic-macro clearing house** where agents compose
+  and register their own synthesis macros and analysis checks over the blessed primitives.
+
+Two invariants govern the platform if it is adopted: **honesty propagates through composition**
+(§10) and **hub owns the alphabet, agents write the words** — agents freely compose blessed
+primitives/seams (user-space, unlimited); they do **not** mint new cross-member contracts (those
+stay hub-blessed, per the §1 seam-governance ruling). Composition is free; contract definition is
+governed.
+
+**Falsifiers (any kills or reshapes the bet):** agents *defect* from advisory tags under task
+pressure; contention is too low for the board to matter; the synthesis is *greppable-away* (a
+competent agent derives it from the honest tool outputs itself); or the macro/check registry is
+never reused/shared (dead weight). Until a falsifier-test clears these, treat the fleet-OS frame
+as a candidate direction, not doctrine.

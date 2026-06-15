@@ -182,52 +182,77 @@ warpline strikes. All factual claims were verified against member source first.
 
 ## 5. Prioritized roadmap for the remaining work
 
-**P0 — wire the honesty invariant into the federation law.**
-- Add `doctrine.md §10 — The honesty invariant` (full section, not just the
-  banner this pass added): the three-part cause/reason_class/fix rule, the 11
-  classes by reference, "no confident-empty," and that it is the moat-guard
-  (PDR-0023 consequence 2). Point at `contracts/weft-reason-vocab.json` as the
-  machine-readable source of truth.
-- Decide (owner) whether honesty becomes a hard **federation-SDK I-4 admission
-  gate** alongside SEI/enrich-only/opaque-drift. If yes, add I-4 + an oracle
-  conformance line to `federation-sdk.md` §1 and §3.
+> **Second-pass update (2026-06-15, owner ruled the four surfaced decisions).** The
+> four rulings closed the P0 + both P1 items below. Status recorded inline; the
+> remaining open items follow.
 
-**P1 — the ergonomics conventions as first-class C-entries.**
-- `conventions.md`: add lead-summary (cite `pm/2026-06-15-lead-summary-convention.md`,
-  reference impl loomweave `entity_dead_list`), bounded-by-default (C-12 sibling /
-  `weft-801d21fa4d`), and input-affordances-are-promises (reference impl warpline
-  `assert_inputschema_consumed`). Each with a per-member conformance cell.
-- Add "speak SEI natively at entry" as a convention or fold into the SDK I-1
-  surface (filigree `issue_create` SEI-on-create + loomweave guidance-append are
-  the references).
+**P0 — wire the honesty invariant into the federation law. — DONE (owner ruling 1).**
+- `doctrine.md §10 — The honesty invariant` written (three-part cause/reason_class/fix
+  rule, the 11 classes, no-confident-empty, the moat-guard framing, honesty propagates
+  through composition). ✅
+- Honesty IS a hard admission gate (owner: YES): **federation-sdk.md I-4** added
+  alongside I-1/I-2/I-3, with the §3 conformance gate and the §4 drop-in path updated;
+  spine header now "four invariants." ✅
 
-**P1 — refresh the conformance matrix against today's strikes.**
-- The C-6/C-10/C-12 per-member cells are dated 2026-06-09/12. Re-verify against
-  current member source (esp. warpline post-strike, filigree 3.0.0) and re-date.
-  Several "pending" cells may now be "conforms."
+**P1 — ergonomics conventions as first-class C-entries. — DONE (owner ruling).**
+- `conventions.md` now carries **C-16 lead-summary** (ref loomweave `entity_dead_list`),
+  **C-17 bounded-by-default + list-overflow-dump-to-file** (`weft-801d21fa4d`, target /
+  no member ref yet), **C-18 input-affordances-are-promises** (ref warpline
+  `assert_inputschema_consumed`), and **C-19 speak-SEI-natively-at-entry** (refs loomweave
+  guidance-append + filigree `issue_create` SEI-on-create). Consolidated matrix + reference
+  paragraph updated. ✅
 
-**P2 — the "federation is the product" overview decision (owner steer).**
-- Resolve the README-vs-doctrine "what is weft" canon question (§2.4). Either a
-  tightened doctrine §1 or a short `federation-overview.md`. Do NOT ship two
-  competing canons.
+**P1 — refresh the C-15 conformance matrix. — DONE (owner inputs).**
+- G1 value-vocab conformance LANDED federation-wide, all five members verified real with
+  drift-failing tests: warpline@a2c44e1, loomweave@bac777c, filigree@3f3c3d0
+  (release/3.0.0), wardline@282efd41 (validation_error→rejected, additive +
+  reason_class/cause/fix on wire), legis@11b7dbdb (key_absent→disabled,
+  dirty_dev_artifact→stale, signature_verified→clean, additive). Canonical SoT
+  weft@fd92604. **PRIORITY 1 (the five gaps) is fully closed.** The C-15 table and the
+  rollout bullet now record this; the full-carrier-triple limb stays the staged remainder
+  (G3 / filigree 3.0.0). ✅ *(Note: the C-6/C-10/C-12 cells remain at their 2026-06-09/12
+  dates — re-verifying those non-honesty cells against current member source is a
+  still-open lower-priority sweep, below.)*
 
-**P2 — seam-health doc home + the hub-blessed-seam governance note.**
-- When the seam-health probe is built, give it an authoritative doc (successor to
-  the topology doc's manual liveness check). Add a short note to `federation-map.md`
-  / `doctrine.md` formalizing "every cross-member seam is hub-authored and
-  hub-blessed" as the governance posture (resolving conflict §4.1's phrasing).
+**P2 — README-vs-doctrine canon. — DONE (owner ruling 3).**
+- README re-cast as the orientation / "what do you need to know" standard that explicitly
+  points to doctrine.md as authoritative ("when they differ, doctrine.md wins") and stops
+  claiming to be the source of truth. ✅
 
-**P3 — fleet-coordination + L2 (shaping, not yet adopted).**
-- The tag-out board (`pm/2026-06-15-fleet-coordination-tagout-shaping.md`) and the
-  L2 strategic-view MCP are SHAPING bets, owner-not-ruled. Docs should NOT yet
-  treat them as adopted. When/if PDR-0024 lands, add a fleet-OS framing section to
-  doctrine and a roadmap entry. Until then they live only in PM artifacts.
+**P2 — the hub-blessed-seam governance phrasing. — DONE (owner ruling 2).**
+- "Hub blesses every seam" is now the federation *headline framing*; "enrich-only" is
+  reframed as a per-seam *property*, in the doctrine §1 banner, federation-map note, and
+  README. ✅ *(Open: the seam-health probe itself is still unbuilt — when it ships it needs
+  an authoritative doc home, successor to the topology doc's manual liveness check.)*
 
-**P3 — member-briefing freshness sweep.**
-- Lowest priority (snapshots-that-point). Refresh `members/warpline.md` first
-  (most stale post-strike), then the others if a release moves them.
+**P2/CANDIDATE — PDR-0024 fleet-OS frame folded in FLAGGED AS CANDIDATE (owner ruling 4).**
+- `doctrine.md §11` records the two-planes fleet-OS frame gated explicitly to CANDIDATE
+  status (referenceable, NOT authoritative, promotable on a falsifier-test); README carries
+  a one-line candidate pointer. ✅ Do not present as adopted until a falsifier-test clears
+  the per-plane falsifiers (coordination defection / low contention; sense-making
+  greppable-away / registry-unused).
+
+### Still open (next steward)
+
+- **Full-carrier-triple convergence** — the `cause + fix` limb on every surface (not just
+  the value vocab) lands with G3 (loomweave typed output) and inside filigree 3.0.0. Track
+  the C-15 table from "vocab ✓†" to "full triple" as those ship.
+- **C-17 reference** — no member yet earns bounded-by-default + dump-to-file; it is the
+  target. Assign a reference when one lands.
+- **Re-verify the non-honesty conformance cells** (C-6/C-10/C-12) against current member
+  source — they predate today's strikes and several "pending" cells may now be "conforms"
+  (esp. warpline post-strike, filigree 3.0.0). Lower priority than the honesty work, now done.
+- **SHIPPING.md positioning** — owner-reserved; "five products behind one brand" vs
+  "SEI-as-headline" (PDR-0023 consequence 5) still needs an owner reconciliation pass. Not
+  touched.
+- **Seam-health doc home** — when the probe is built.
+- **Member-briefing freshness sweep** — lowest priority (snapshots-that-point); refresh
+  `members/warpline.md` first (most stale post-strike).
+- **PDR-0024 promotion** — when a falsifier-test/dogfood clears the planes, promote §11 from
+  CANDIDATE to adopted canon and fold in the fleet-OS conventions (tag-out board contract,
+  macro-clearing-house honesty-propagation rule).
 
 **Ongoing — the audit invariant.**
-- README's standing rule still holds: "weft contains no restated project-internal
-  fact without a pointer." Every reconciliation must keep pointing at owning
-  source, not re-restate it (that is how the hub drifted before).
+- README's standing rule still holds: "weft contains no restated project-internal fact
+  without a pointer." Every reconciliation keeps pointing at owning source, not re-restating
+  it (that is how the hub drifted before).

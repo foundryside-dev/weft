@@ -28,11 +28,14 @@ not register with a broker and there is no `weft://` URI scheme — joining is
 
 ---
 
-## 1. The conformance spine — three invariants
+## 1. The conformance spine — four invariants
 
-Every member satisfies these three, regardless of which peers it touches. They
-fall straight out of the doctrine and the locked identity standard; the rest of
-the SDK is opt-in on top of them.
+Every member satisfies these four, regardless of which peers it touches. They
+fall straight out of the doctrine, the locked identity standard, and the honesty
+invariant; the rest of the SDK is opt-in on top of them. **I-1 through I-4 are
+hard admission gates** — a member that fails any one of them does not join the
+federation, *however capable it is standalone* ([doctrine.md](./doctrine.md) §10;
+PDR-0023, the moat).
 
 ### I-1 — Key every cross-tool binding on SEI
 
@@ -78,6 +81,38 @@ path** by snapshotting the peer's content hash at attach time (Filigree's
 `content_hash_at_attach`) and comparing on read. The identity axis (alive /
 orphaned) and the content axis (fresh / stale) are **separate signals — neither
 is inferred from the other** ([sei-standard.md](./sei-standard.md) §2.1).
+
+### I-4 — Be honest about every non-clean result (the moat-guard)
+
+Provenance-honesty is the suite's protected invariant and a **hard admission
+gate** — owner ruling 2026-06-15. A member that is best-in-slot standalone but
+ships a confident-empty does **not** join the federation, because it breaks the
+glue's promise — the honesty contract that is the moat ([doctrine.md](./doctrine.md) §10;
+PDR-0023 consequence 3). Two obligations, both oracle-checked (§3):
+
+- **Conform to the canonical `weft-reason` vocabulary.** Every cross-member result
+  that is not a clean, complete true-negative carries a three-part carrier
+  `{ reason_class, cause, fix }`; a clean result carries `reason_class: "clean"`
+  and omits `cause`/`fix`. `reason_class` MUST be a subset of the **closed
+  canonical 11** (`clean`, `disabled`, `unresolved_input`, `rejected`, `dead_path`,
+  `unreachable`, `misrouted`, `error`, `scheme_mismatch`, `stale`, `partial`).
+  `fix` is **mandatory** on every non-`clean` result — recruit the caller, don't
+  just confess. Domain-specific terms (e.g. a key-absent posture) map to a
+  canonical class and keep the domain term in `cause`/`reason_detail`. Source of
+  truth: [contracts/weft-reason-vocab.json](./contracts/weft-reason-vocab.json)
+  ([contracts-index.md](./contracts-index.md) §0).
+- **Ship NO confident-empty surfaces.** No empty / partial / stale / degraded
+  result may be byte-indistinguishable from a legitimate true-negative. A
+  self-reported status field is not enough — it is exactly the thing that lies; an
+  empty must carry its `reason_class`, and a stale-but-full result must downgrade
+  completeness rather than answer confidently.
+
+No shared runtime dependency: conformance is **a per-member test** asserting your
+emitted reason surface against the canonical list (the shared vector is
+`weft-e295ec3be3` Part 1), mirroring the no-shared-infrastructure posture
+([doctrine.md](./doctrine.md) §6). **Honesty propagates through composition** — a
+macro/check you build over peer primitives is only as honest as its weakest
+sub-call; never swallow a sub-call's `unreachable` into a confident empty.
 
 ---
 
@@ -237,12 +272,18 @@ Run your member against a reference Loomweave through these oracle fixtures
 - [ ] **capability-absent** — Loomweave without the `sei` capability → you
       **degrade honestly** rather than guess.
 
-And the three spine invariants (§1), restated as gates:
+And the four spine invariants (§1), restated as gates — **all four are hard
+admission gates; failing any one blocks admission however capable standalone**:
 
 - [ ] Every cross-tool binding keys on **SEI**, never a bare locator (I-1).
 - [ ] Every surface you expose is **functional with every peer absent** (I-2).
 - [ ] You store peer identifiers/blobs **opaque** and own your **content-hash
       drift check** (I-3).
+- [ ] Every non-clean result carries the canonical `{reason_class, cause, fix}`
+      carrier (`reason_class` ∈ the closed 11), and you ship **no
+      confident-empty** surface (I-4). Proven by your per-member `weft-reason`
+      conformance test against
+      [contracts/weft-reason-vocab.json](./contracts/weft-reason-vocab.json).
 
 ---
 
@@ -259,10 +300,14 @@ No code ships here; this is the order of operations.
    (Filigree), emit findings (Wardline/Filigree), persist taint (Loomweave),
    request sign-offs (Legis), contribute preflight facts (Charter). Implement
    only what your composition needs; each binding is independent and enrich-only.
-4. **Expose your own enrich-only surface** (optional). If peers should read
+4. **Be honest about every non-clean result (I-4).** Emit the canonical
+   `{reason_class, cause, fix}` carrier on every empty/partial/stale/degraded
+   surface; ship no confident-empty. Add the per-member `weft-reason` conformance
+   test. This is a **hard admission gate**, not a polish step ([doctrine.md](./doctrine.md) §10).
+5. **Expose your own enrich-only surface** (optional). If peers should read
    *your* domain facts, publish them additively — off-by-default writes, a
    capability probe, a closed error enum, pinnable shape — mirroring §2.
-5. **Pass the oracle** (§3). Conformance is demonstrated, not asserted.
+6. **Pass the oracle** (§3). Conformance is demonstrated, not asserted.
 
 ---
 
