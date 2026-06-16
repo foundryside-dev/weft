@@ -1,4 +1,4 @@
-# Roadmap — Weft Federation            Updated: 2026-06-16 (PDR-0025 temporal-correlation contract; PDR-0026 Warpline joins the cutover; PDR-0027 decent-L1-on-gold-contracts)
+# Roadmap — Weft Federation            Updated: 2026-06-16 (PDR-0025 temporal-correlation contract; PDR-0026 Warpline joins the cutover; PDR-0027 decent-L1-on-gold-contracts; PDR-0028 Tabard *who*-coordinate — gap-named, home provisional)
 
 > Sequencing, WSJF / cost-of-delay, and dated forecasts are produced by
 > /axiom-program-management. This file records bets as INTENT, not a delivery
@@ -100,9 +100,17 @@
   · metric: counterpart filing becomes mechanical (0 manual sweeps).
 
 ## Later (directional bets, no order, no dates)
-- **Crypto agent-identity authority** ("Tabard/Seal") — spike-then-decide; doctrine §2/§6
-  amendment required. **No longer a dependency of the Next bet** (discovery showed the
-  continuity/write-safety layer is identity-free); stands on its own merits.
+- **Tabard — the actor-identity authority (the *who* coordinate)** — *advanced 2026-06-16;
+  still Later/provisional.* Project stood up at `~/tabard`; owner ruled it the sixth member
+  **by gap-naming** (the *who* coordinate is named; the implementation is a Phase-0 spike, not
+  built — hub **PDR-0028, proposed**). Identity model designed but **CAPTURED, not decided**
+  (sober read pending — `pm/2026-06-16-background-ticket-change-debt-IDEA.md`): body/tabard/seal,
+  assignment-as-principal, and the hierarchical **session-prefix identifier**
+  (`model+body+time`±ticket) that made attribution always-available and **retired the fragile
+  auto-bake/daemon machinery**. **HOME is OPEN/provisional** — separate member vs fold the Seal
+  into Loomweave/Legis vs mostly-a-convention+small-Seal; the spike + key-custody review decide.
+  Readiness panel (6 members): `pm/2026-06-16-identity-north-star-readiness.md`. Gates the
+  doctrine §2/§6 filing (owner-gated, uncommitted). Origin:
   `pm/2026-06-06-agent-identity-component-plan.md`.
 - **Propagation/live-state ledger** — "what is actually built/installed/live where" (PDR-0013 #2,
   spike `weft-61c24f622e`). Three independent source-fixed ≠ live-fixed incidents. Default
