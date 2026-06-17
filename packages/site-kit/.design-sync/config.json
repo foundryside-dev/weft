@@ -1,0 +1,35 @@
+{
+  "pkg": "@weft/site-kit",
+  "globalName": "WeftSiteKit",
+  "projectId": "088570be-586f-45a8-941a-66378a75a393",
+  "shape": "package",
+  "readmeHeader": ".design-sync/conventions.md",
+  "cssEntry": "src/components/components.css",
+  "tokensGlob": [
+    "src/tokens/colors.css",
+    "src/tokens/typography.css",
+    "src/tokens/spacing.css",
+    "src/tokens/elevation.css",
+    "src/tokens/base.css",
+    "src/tokens/fonts.css"
+  ],
+  "dtsPropsFor": {
+    "Tabs": "/** Tab definitions, in order. */ items: { id: string; label: React.ReactNode; icon?: React.ReactNode; count?: number | null }[]; /** Currently-selected tab id. */ value: string; /** Called with the new id on selection. */ onChange?: (id: string) => void; className?: string;",
+    "StateBadge": "/** A Filigree workflow state (task / feature / bug machines). Tone is derived automatically; any string is accepted. */ state?: 'open' | 'in_progress' | 'closed' | 'proposed' | 'approved' | 'building' | 'reviewing' | 'done' | 'triage' | 'confirmed' | 'fixing' | 'verifying' | 'wont_fix' | 'not_a_bug' | (string & {}); className?: string; id?: string; style?: React.CSSProperties; children?: React.ReactNode;"
+  },
+  "componentSrcMap": {
+    "Button": "src/components/core/Button.jsx",
+    "Badge": "src/components/core/Badge.jsx",
+    "Tag": "src/components/core/Tag.jsx",
+    "Input": "src/components/forms/Input.jsx",
+    "Switch": "src/components/forms/Switch.jsx",
+    "Banner": "src/components/feedback/Banner.jsx",
+    "Tabs": "src/components/feedback/Tabs.jsx",
+    "SeiTag": "src/components/data/SeiTag.jsx",
+    "EnrichmentChip": "src/components/data/EnrichmentChip.jsx",
+    "FreshnessMeter": "src/components/data/FreshnessMeter.jsx",
+    "ExitCode": "src/components/data/ExitCode.jsx",
+    "StateBadge": "src/components/data/StateBadge.jsx",
+    "MemberMark": "src/components/data/MemberMark.jsx"
+  }
+}
