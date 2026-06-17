@@ -38,7 +38,7 @@ const statusTone = (s) => (s === 'live' ? 'ok' : s === 'partial' ? 'warn' : 'neu
 ---
 
 <Layout
-  title="Weft — small, sharp tools, woven on one identity"
+  title="Weft — the tools are the threads, the weave is the product"
   description="The Weft federation documentation hub: a roster of sibling developer tools, each authoritative for one domain, each useful standalone, each composable pairwise — and enrich-only, never load-bearing."
 >
   {/* ---------------------------------------------------------------- */}
@@ -46,12 +46,14 @@ const statusTone = (s) => (s === 'live' ? 'ok' : s === 'partial' ? 'warn' : 'neu
   {/* ---------------------------------------------------------------- */}
   <section class="hero weft-weave">
     <div class="wrap">
-      <p class="eyebrow">The Weft federation · documentation hub</p>
-      <h1 class="hero__title">Small, sharp tools — woven on one identity.</h1>
+      <p class="weft-eyebrow">The Weft federation · documentation hub</p>
+      <h1 class="hero__title">The tools are the threads. The weave is the product.</h1>
+      <p class="hero__tagline">One identity, woven through every tool.</p>
       <p class="hero__sub">
-        A federation of sibling developer tools, each authoritative for one
-        domain, each useful standalone, each composable pairwise — and
+        Small, sharp developer tools, each authoritative for one domain and
+        useful standalone, each composable pairwise — and
         <strong>enrich-only, never load-bearing</strong> when composed.
+        No all-green dashboards; the seams are inspectable.
       </p>
       <div class="hero__cta">
         <Button client:idle as="a" href="#doctrine">Read the doctrine →</Button>
@@ -82,7 +84,7 @@ const statusTone = (s) => (s === 'live' ? 'ok' : s === 'partial' ? 'warn' : 'neu
   {/* ---------------------------------------------------------------- */}
   <section id="doctrine" class="band">
     <div class="wrap">
-      <p class="eyebrow">Doctrine · the federation axiom</p>
+      <p class="weft-eyebrow">Doctrine · the federation axiom</p>
       <h2 class="h2">Enrich-only, never load-bearing.</h2>
       <p class="lede">{FEDERATION_AXIOM}</p>
       <Banner client:visible tone="info" title="Documentation only — there is nothing called “weft” to install.">
@@ -100,7 +102,7 @@ const statusTone = (s) => (s === 'live' ? 'ok' : s === 'partial' ? 'warn' : 'neu
   {/* ---------------------------------------------------------------- */}
   <section id="roster" class="section">
     <div class="wrap">
-      <p class="eyebrow">The roster · six threads</p>
+      <p class="weft-eyebrow">The roster · six threads</p>
       <h2 class="h2">Each member owns one domain, and one thread color.</h2>
       <div class="grid grid--3">
         {ROSTER.map((m) => {
@@ -140,7 +142,7 @@ const statusTone = (s) => (s === 'live' ? 'ok' : s === 'partial' ? 'warn' : 'neu
   {/* ---------------------------------------------------------------- */}
   <section id="spine" class="band">
     <div class="wrap">
-      <p class="eyebrow">{SEI_SPINE.eyebrow}</p>
+      <p class="weft-eyebrow">{SEI_SPINE.eyebrow}</p>
       <h2 class="h2">{SEI_SPINE.heading}</h2>
       <p class="lede">{SEI_SPINE.body}</p>
 
@@ -184,7 +186,7 @@ const statusTone = (s) => (s === 'live' ? 'ok' : s === 'partial' ? 'warn' : 'neu
   {/* ---------------------------------------------------------------- */}
   <section id="matrix" class="section">
     <div class="wrap">
-      <p class="eyebrow">The combination matrix · value is the weave</p>
+      <p class="weft-eyebrow">The combination matrix · value is the weave</p>
       <h2 class="h2">Each pair lights up a capability neither tool has alone.</h2>
       <p class="lede">
         One non-conformant binding orphans every combination it participates in —
@@ -253,31 +255,31 @@ const statusTone = (s) => (s === 'live' ? 'ok' : s === 'partial' ? 'warn' : 'neu
   /* Page-local layout. Brand atoms (colors, type, motifs) come ONLY from the
      site-kit token layer — no new colors, no dark mode (light theme only). */
   .wrap { max-width: var(--width-content); margin: 0 auto; padding: 0 36px; }
-  .eyebrow {
-    font: var(--type-mono-sm); text-transform: uppercase;
-    letter-spacing: var(--tracking-caps); color: var(--text-muted);
-    font-size: var(--text-xs); margin: 0 0 14px;
-  }
+  .weft-eyebrow { margin: 0 0 14px; }
   .h2 { font: var(--type-h1); color: var(--text-strong); margin: 0 0 16px; max-width: 24ch; }
   .lede { font: var(--type-body); color: var(--text-body); max-width: 64ch; margin: 0 0 26px; }
   .lede code, .pair__cap code { font-family: var(--font-mono); font-size: 0.92em; color: var(--text-strong); }
 
-  .section { padding: 64px 0; }
+  .section { padding: var(--space-10) 0; }
   .band {
-    padding: 64px 0; background: var(--bg-sunken);
+    padding: var(--space-10) 0; background: var(--bg-sunken);
     border-top: 1px solid var(--border-hairline);
     border-bottom: 1px solid var(--border-hairline);
   }
 
   /* hero */
   .hero {
-    padding: 78px 0 64px;
+    padding: 78px 0 var(--space-10);
     border-bottom: 1px solid var(--border-hairline);
   }
   .hero__title {
     font: var(--type-display); color: var(--loom-900);
     letter-spacing: -0.025em; line-height: 1.05;
-    max-width: 16ch; margin: 0 0 22px;
+    max-width: 18ch; margin: 0 0 14px;
+  }
+  .hero__tagline {
+    font: var(--type-body); font-size: var(--text-xl); font-weight: var(--fw-medium);
+    color: var(--text-strong); max-width: 40ch; margin: 0 0 22px;
   }
   .hero__sub { font: var(--type-body); font-size: var(--text-lg); color: var(--text-body); max-width: 58ch; margin: 0 0 28px; }
   .hero__sub strong { color: var(--text-strong); }
@@ -353,7 +355,7 @@ const statusTone = (s) => (s === 'live' ? 'ok' : s === 'partial' ? 'warn' : 'neu
   /* lacuna strip */
   .lacuna { padding: 40px 0; background: var(--bg-sunken); border-top: 1px solid var(--border-hairline); }
   .lacuna__inner { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
-  .lacuna__dot { width: 12px; height: 12px; border-radius: 3px; flex: none; box-shadow: inset 0 0 0 1px rgba(0,0,0,.08); }
+  .lacuna__dot { width: 12px; height: 12px; border-radius: var(--radius-sm); flex: none; box-shadow: inset 0 0 0 1px var(--border-hairline); }
   .lacuna__copy { flex: 1 1 360px; }
   .lacuna__lead { font: var(--type-body); font-weight: var(--fw-semibold); color: var(--text-strong); margin: 0 0 2px; }
   .lacuna__sub { font: var(--type-body-sm); color: var(--text-muted); margin: 0; }

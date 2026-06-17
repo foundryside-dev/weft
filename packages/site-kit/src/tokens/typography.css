@@ -1,13 +1,16 @@
 /* ============================================================
    Weft — Typography tokens
-   Space Grotesk (display) · IBM Plex Sans (text) · IBM Plex Mono
+   IBM Plex Sans (display + text) · IBM Plex Mono (data/CLI/SEI)
    Modular scale ~1.2 (minor third). Mono is first-class: it
    carries CLI output, JSON envelopes, SEI tokens, tool names.
+   D4 (2026-06-15): Space Grotesk retired; display is Plex Sans at
+   display weights. Distinctiveness rides on color + the weave-mark
+   + the honesty-state UI, not a display face.
    ============================================================ */
 
 :root {
-  /* families */
-  --font-display: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  /* families — display & text are the same superfamily (D4) */
+  --font-display: 'IBM Plex Sans', system-ui, -apple-system, sans-serif;
   --font-sans:    'IBM Plex Sans', system-ui, -apple-system, sans-serif;
   --font-mono:    'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;
 

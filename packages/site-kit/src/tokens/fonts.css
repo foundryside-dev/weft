@@ -3,9 +3,9 @@
    Substitutes via Google Fonts CDN (see the design system's
    readme.md → CAVEATS). If the owner supplies real faces,
    self-host them as @font-face and drop this @import.
-   Display:   Space Grotesk — technical, drafted, loom-precise
-   Text/UI:   IBM Plex Sans  — honest, humanist engineering
-   Mono/Data: IBM Plex Mono  — CLI, JSON envelopes, SEI tokens
+   Display + Text/UI: IBM Plex Sans — honest, humanist engineering
+                      (D4: Space Grotesk retired; one superfamily)
+   Mono/Data:         IBM Plex Mono — CLI, JSON envelopes, SEI tokens
    ============================================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&display=swap');
