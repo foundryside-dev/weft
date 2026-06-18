@@ -35,9 +35,13 @@ been cleared — see escalations).
 Several members shipped post-launch **patch/minor** releases (mostly bug fixes) — additive/patch,
 ship solo per the post-launch change discipline (no lockstep):
 - **filigree 3.0.0 → 3.0.1** (doctor route-resolution fix, PR #66, on `main`).
-- **loomweave → 1.1.0**; `feat/loomweave-dogfood-fixes` (+11) — an **internal dogfooding sprint
-  on its own internal tools, NOTHING touching an interface** (owner, 06-18). No cross-member
-  contract change → ships solo, **no federation blast-radius owed.**
+- **loomweave → 1.1.0**; `feat/loomweave-dogfood-fixes` (+11) — mostly an **internal dogfooding
+  sprint on its own internal tools (no interface touched)** (owner, 06-18) → that part ships solo,
+  no blast radius. **BUT it also surfaced TWO federation-touching changes, which are correctly
+  PARKED IN TICKETS pending analysis** (discipline honored — *tracked* punting, not invisible
+  "figure out later"). **TODO: confirm the two ticket IDs (likely loomweave's own member tracker,
+  not hub — not found in hub search 06-18) + that each carries a dated analysis plan and a
+  blast-radius map before any contract moves** (federation change discipline).
 - **wardline 1.0.1 → prepping 1.0.3** on `feat/warpline-delta-scan` — **currently implementing a
   gap in the LEGIS seam:** `weft-af0787892c` *"legis: no per-SEI governance read transport —
   blocks include_federation's legis half + the seam-health probe legis layer"* (P2, open). This
@@ -66,6 +70,15 @@ anything now that the cutover has shipped.
    now unblocked.
 5. **Warpline "earns its place"** — cold-eval flagged it confident-empty on a stale snapshot;
    owes a fail-loud/recapture fix + a temporal-blast-radius value proof.
+
+**Exploration (pre-shaping, owner-reported 2026-06-18):**
+- **Interface-define-and-assure (wardline + legis)** — a proposed capability: **declare/"fix" an
+  interface contract in JSON and have wardline + legis assure conformance.** For **internal use
+  first** (dogfood the federation's own seams). Strategically apt — it mechanizes the
+  "frozen contracts are inviolate" doctrine (PDR-0011/0027) with the suite's own tools, and is the
+  natural home for the seam-assurance the cutover did by hand. **If it becomes a cross-member
+  contract it is hub-blessed seam territory** (PDR: hub blesses every seam) — internal-first is the
+  right prove-the-need posture. Watch as it shapes up; candidate to fold into seam-health (#1).
 
 ## Open questions / escalations (owner-reserved)
 - **🚩 Public launch announcement** — the cutover SHIPPED + is on PyPI, but the announcement was
