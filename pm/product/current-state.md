@@ -1,67 +1,93 @@
-# Current State — Weft Federation        Checkpoint: 2026-06-16 (PDR-0028 — Tabard *who*-coordinate gap-named, home PROVISIONAL; identity-model design CAPTURED, not decided)
+# Current State — Weft Federation        Checkpoint: 2026-06-18 (cutover SHIPPED; PDR-0029 continuity-discipline fix)
 
 > **Workspace path:** `pm/product/` (NOT `docs/product/` — `docs/` is the gitignored mkdocs
 > build dir). Resume with `/own-product pm/product`.
 
-## The bet right now (UNCHANGED — build priority)
-**Ship a decent L1 — the FIVE-member clean-break cutover `weft-4b2f948f70`** (Filigree,
-Loomweave, Wardline, Legis, Warpline). Framed by PDR-0023 (get the seams right) + PDR-0027
-(decent L1; gold, **inviolate** contracts). Critical path: G14 `weft-8f1c6c512e` → GS-7 →
-Dogfood #2 → cutover; Rust gold `weft-7ee9bccbd7`; test-health `weft-2787ded4e1` /
-`weft-41a1142165`. Metric: dogfood pass rate → seam-health surface `weft-b6effe30f9`.
-**This session did NOT touch the cutover — it was an identity-design detour (below); the
-cutover keeps build priority.**
+> **🔁 Reconciled against (RESUME must re-check these; if any moved, this brief is STALE —
+> reconcile loudly, do NOT load as gospel — PDR-0029):**
+> - tracker: cutover epic `weft-4b2f948f70` = **closed**; identity epic/thread = owner-gated (below)
+> - git (member `main` HEADs at parity): filigree · wardline · legis · warpline all on `main`,
+>   ahead-of-origin/main = 0. loomweave on `feat/loomweave-dogfood-fixes` (+11, post-launch work).
+>   hub HEAD `4c4ee60`.
+> - installed: **filigree 3.0.1 · wardline 1.0.1 (repo prepping 1.0.3) · legis 1.0.0 ·
+>   loomweave 1.1.0 · warpline 1.0.0**
 
-## This session — the identity thread (Tabard + the *who* coordinate)
-- **Stood up the Tabard project** at `~/tabard` (own repo + product workspace; a *separate*
-  PM session owns it; uncommitted in that repo).
-- **Owner ruled Tabard the sixth member by GAP-NAMING** — the *who* coordinate (actor-identity
-  authority) is named/seated; the **implementation does not exist** (Phase-0 spike, NOT in the
-  cutover). Recorded as **hub PDR-0028 (proposed)** + a new doctrine §7 two-stage admission rule.
-- **Identity model designed but CAPTURED, NOT DECIDED** (owner explicit: sober read pending —
-  `pm/2026-06-16-background-ticket-change-debt-IDEA.md`): body/tabard/seal; assignment-as-
-  principal; the hierarchical **session-prefix identifier** (`model+body+time`±ticket) that makes
-  attribution always-available, bundling a free prefix-query, and **retired the fragile
-  auto-bake/daemon machinery**. Design lesson: a structural convention beat a system.
-- **6-member readiness panel** (workflow): `pm/2026-06-16-identity-north-star-readiness.md`.
-  Verdict: spine more real than assumed; **rework, not rejection**; 3 corrections (never-reject
-  already false 3×; missing honesty axis; auto-bake backwards — last one resolved by the
-  session-prefix reframe).
+## The bet right now — the launch bet is DELIVERED; the next Now needs a DECIDE
+**Ship a decent L1 — the FIVE-member clean-break cutover `weft-4b2f948f70` — SHIPPED 2026-06-17**
+(epic closed 06-17 01:24Z). All five members (Filigree, Loomweave, Wardline, Legis, Warpline)
+merged to `main` and published to PyPI; legis 1.0.0 was the final holdout (red mypy gate, fixed).
+Framed by PDR-0023/0026/0027. **The launch bet is accepted/done — it is no longer the Now bet.**
 
-## Open questions / blocked-on-owner (ESCALATIONS)
-- **🚩 Hub constitution edited but UNCOMMITTED — awaiting owner filing.** `doctrine.md`
-  (§2/§6 re-scope: Loomweave = identity for code/entities, Tabard = peer actor-identity,
-  Warpline = temporal-correlation; §7 two-stage "gap-naming" admission; §9 roster 6-vs-5),
-  `registries/{claims,terminology}.md`, `members/tabard.md` — all carry provisional callouts.
-  This is the "owner-filed / hub-blessed" federation lock-in. **NOT committed; do not enact as
-  canon until owner confirms (sober) + the home decision lands.**
-- **🚩 The HOME of the *who* coordinate is PROVISIONAL** — separate sixth member vs fold the
-  Seal into Loomweave/Legis vs mostly-a-convention+small-Seal (owner reopened it:
-  "doesn't have to be its own component"). The Phase-0 spike + key-custody review decide.
-  PDR-0028 is `proposed` accordingly.
-- **Identity model is CAPTURED, not decided** — needs the owner's sober read to confirm:
-  (a) "available, not persistent"; (b) auto-bake demoted to optional; (c) the session-prefix id.
-- **Readiness #1 — a hub "never-reject scope" ruling:** scope it to the identity-capture path
-  only, or it regresses 3 shipped hard-stops (Loomweave identity fail-close, Legis graded 2×2,
-  Wardline trust gate). Hub/owner ruling needed.
-- **Stale codex claims (unchanged from session start):** cutover epic `weft-4b2f948f70` + C-9
-  `weft-a2f4cf95c7` past lease — reclaim/release before cutover choreography.
-- Launch cutover scope/timing + member admission/authority grants remain owner-reserved.
+**The next Now bet is NOT yet chosen (a DECIDE act, not for this checkpoint to crown).** The
+contenders, all shaped, are below under "Proposed next bets." The one outward-facing tail is the
+**public announcement, which remains owner-reserved** (the ship happened; the announcement has not
+been cleared — see escalations).
 
-## What this checkpoint did
-- Recorded **PDR-0028 (proposed)** — ratify the *who* coordinate by gap-naming; who/what/when
-  triad; §2/§6 re-scope; **home provisional**.
-- Committed the two captured PM notes (identity readiness report + the change-debt/identifier
-  IDEA) and refreshed `roadmap.md` (Tabard Later entry advanced) + this brief.
-- **Did NOT commit** the `doctrine.md` / registries / `members/tabard.md` canon edits — flagged
-  as the owner-gated federation lock-in (provisional). Metrics unchanged (no readings this session).
+## North-star — correctness essentially MAXED; thesis is shifting (metrics.md updated 06-18)
+- **Dogfood pass rate (06-15): 16/17 MCP green · 4/4 federation joins green · 8/8 lacunae
+  reachable.** "Does it work" is closed. Only residual: narrow Fix-B bug `lacuna-522ab56124`.
+- **Thesis shift (candidate, PDR-0024 + 06-15 assessments):** with correctness maxed, the next
+  frontier is **reach-for / beating the agent's own grep reflex** — proposed new north-star
+  **first-reach share** (per-model, longitudinal) + defection-return rate. Re-aiming the dormant
+  scoreboard `weft-6636667996` is the enabling work. *Decision pending (DECIDE).*
+
+## Post-launch member work IN FLIGHT (informational — owner-reported 2026-06-18)
+Several members shipped post-launch **patch/minor** releases (mostly bug fixes) — additive/patch,
+ship solo per the post-launch change discipline (no lockstep):
+- **filigree 3.0.0 → 3.0.1** (doctor route-resolution fix, PR #66, on `main`).
+- **loomweave → 1.1.0**; `feat/loomweave-dogfood-fixes` (+11) — an **internal dogfooding sprint
+  on its own internal tools, NOTHING touching an interface** (owner, 06-18). No cross-member
+  contract change → ships solo, **no federation blast-radius owed.**
+- **wardline 1.0.1 → prepping 1.0.3** on `feat/warpline-delta-scan` — **currently implementing a
+  gap in the LEGIS seam:** `weft-af0787892c` *"legis: no per-SEI governance read transport —
+  blocks include_federation's legis half + the seam-health probe legis layer"* (P2, open). This
+  is a **cross-member contract change** → owes a federation blast-radius map + dated counterpart
+  ticket(s) before its session ends (federation change discipline). **TODO next session: confirm
+  the wardline side is tracked + counterparted, and classify the legis transport as additive
+  (new read endpoint = ships solo) vs breaking.**
+
+## Parallel thread — identity / Tabard (OWNER-GATED, uncommitted — unchanged)
+PDR-0028 (proposed): the *who* coordinate gap-named; HOME provisional (member vs fold vs
+convention+Seal). Identity model CAPTURED-not-decided (`pm/2026-06-16-background-ticket-change-debt-IDEA.md`).
+**Doctrine §2/§6 + `registries/claims.md` + `registries/terminology.md` + `members/tabard.md`
+edits remain UNCOMMITTED / owner-gated** (still in the working tree — this checkpoint did NOT
+commit them). Readiness panel: `pm/2026-06-16-identity-north-star-readiness.md`. Does NOT gate
+anything now that the cutover has shipped.
+
+## Proposed next bets (contenders for the new Now — for DECIDE, not committed)
+1. **Seam-health surface** `weft-b6effe30f9` (epic, P1) — interrogable federation joins; PDR-0023
+   central feature, independently graded P0 by the cold-eval senior user (its *absence* is the
+   credibility gap). Strong candidate for the new Now.
+2. **L2 / fleet-OS coordination plane** — PDR-0024 (candidate) two-mode surface (bulletin +
+   chat), built behind the cutover; gated to a dogfood/falsifier proof before Adopted.
+3. **Make the loop honest — scoreboard + close-the-loop** `weft-6636667996` / `weft-ff30fd979f`
+   (PDR-0013) — also the enabler for the first-reach-share north-star re-aim.
+4. **Agent continuity & write-safety** (A/A′/B/C, PDR-0008) — signed off; build follows launch,
+   now unblocked.
+5. **Warpline "earns its place"** — cold-eval flagged it confident-empty on a stale snapshot;
+   owes a fail-loud/recapture fix + a temporal-blast-radius value proof.
+
+## Open questions / escalations (owner-reserved)
+- **🚩 Public launch announcement** — the cutover SHIPPED + is on PyPI, but the announcement was
+  owner-reserved and is NOT recorded as made. Has it gone out / should it? (outward-facing gate.)
+- **🚩 Identity thread** — sober-read of the identity model; the *who*-HOME decision; then
+  commit-or-revise the doctrine/registries/tabard canon (still uncommitted, owner-gated).
+- **wardline→legis seam** `weft-af0787892c` — confirm tracked + counterparted per federation
+  change discipline; classify additive vs breaking (see in-flight section).
+- C-9 `weft-a2f4cf95c7` stale codex claim (release/reclaim).
+
+## This checkpoint did (2026-06-18)
+- **Reconciled the brief to reality** after `/own-product` loaded a stale picture: the 06-17
+  cutover ship was in the tracker + auto-memory but never in this file (and the 06-16 reconcile +
+  PDR-0024 Amendment 1 were written-but-never-committed). Recorded **PDR-0029** (checkpoint-on-ship
+  + commit-the-checkpoint + resume-reconciles-against-tracker/git, with this brief's new
+  machine-checkable `Reconciled against:` stamp).
+- Updated metrics.md (06-15 north-star reading: 4/4 joins). Recorded post-launch member releases +
+  the wardline→legis seam item.
 
 ## Next session, start here
-1. **Owner sober-read** of the identity model (`…background-ticket-change-debt-IDEA.md`) →
-   confirm/adjust (available-not-persistent; auto-bake optional; session-prefix id).
-2. **Decide the *who*-coordinate HOME** (member vs fold vs convention+Seal) — gates the doctrine
-   §2/§6 filing.
-3. **Hub "never-reject scope" ruling** (readiness panel #1).
-4. Then **commit-or-revise** the doctrine/registries/members canon edits.
-5. Back to the **decent-L1 cutover** build priority (G14 → GS-7 → Dogfood #2; Rust gold;
-   test-health gates) — it kept priority throughout; the identity thread is design, not cutover.
+1. **Pick the new Now bet** (DECIDE) from the contenders above — seam-health `weft-b6effe30f9` is
+   the front-runner (owner-validated P0). Then `/write-prd` + route to `/axiom-program-management`.
+2. **Confirm the wardline→legis seam** `weft-af0787892c` is counterparted + classified.
+3. **Surface the announcement question** to the owner (escalation #1).
+4. Identity gates (owner sober-read → home → commit-or-revise canon).

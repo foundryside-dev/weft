@@ -1,4 +1,4 @@
-# Metrics — Weft Federation             Last read: 2026-06-13
+# Metrics — Weft Federation             Last read: 2026-06-18
 
 > Targets below are falsifiable-by-shape PLACEHOLDERS (number + date) for the owner
 > to set real values against — most baselines are not yet instrumented. A directional
@@ -7,7 +7,7 @@
 ## North-star
 | Metric | Target (falsifiable) | Current | Read on | Trend |
 |--------|----------------------|---------|---------|-------|
-| **Dogfood pass rate** — % of planted lacuna defects an agent surfaces *and* tracks **using the suite, not grep** ("if the agent prefers grep, the tool failed") | ≥ 90% by 2026-07-31 *(placeholder — owner to set)* | **dogfood-4 reading (2026-06-12):** verdicts 3/4, joins 1/4 live. **2026-06-13: every A/B defect fixed AND deployed** (15/17 closed; A6 legis-in-MCP independently confirmed in a fresh session) — 4/4 joins now *expected*; the re-dogfood `weft-a05b53edcd` is the measurement, not the fix. | 2026-06-13 | pre-fix 1/4 → post-fix await re-measure |
+| **Dogfood pass rate** — % of planted lacuna defects an agent surfaces *and* tracks **using the suite, not grep** ("if the agent prefers grep, the tool failed") | ≥ 90% by 2026-07-31 *(placeholder — owner to set)* | **post-fix validation (2026-06-15): 16/17 MCP-surface green · 4/4 federation joins green · 8/8 structural lacunae reachable** (`~/lacuna/docs/dogfood/2026-06-15-postfix-validation-report.md`). Only residual: narrow Fix-B package-name-recursion bug `lacuna-522ab56124` (blocks no join). Correctness north-star is **essentially maxed.** | 2026-06-15 | 1/4 → **4/4 joins** (pre-fix → post-fix) |
 
 ## Input metrics (the levers that move the north-star)
 | Metric | Target | Current | Read on |
