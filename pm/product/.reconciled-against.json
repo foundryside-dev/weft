@@ -1,0 +1,17 @@
+{
+  "member_main_heads": {
+    "filigree": "194c559",
+    "loomweave": "e30318a",
+    "wardline": "4a24a032",
+    "legis": "0e28a83",
+    "warpline": "6bbe29e"
+  },
+  "installed_versions": {
+    "filigree": "3.0.1",
+    "loomweave": "1.1.0",
+    "wardline": "1.0.1",
+    "legis": "1.0.0",
+    "warpline": "1.0.0"
+  },
+  "reconciled_at": "2026-06-18"
+}

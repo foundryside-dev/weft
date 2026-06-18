@@ -56,6 +56,20 @@ The stamp converts a *silent* stale-resume into a *loud, mechanical* one: the ne
 the stamp against reality and self-corrects. Auto-memory and the tracker already held the truth;
 the gap was that the workspace's own source-of-truth file disagreed and nothing flagged it.
 
+## Implementation (built 2026-06-18 — enforcement, not just discipline)
+
+Option 3 (the hook backstop) was **built**, not deferred:
+- **Stamp:** `pm/product/.reconciled-against.json` — member `main` HEAD shas + installed tool
+  versions at last reconcile. Committed (versioned baseline).
+- **Tripwire:** `.claude/hooks/pm-brief-staleness.py`, wired into **SessionStart** (settings.json).
+  Bare = check: diffs the stamp vs live git/versions and prints a LOUD warning if any moved; quiet
+  when fresh; never blocks a session (any error → exit 0).
+- **Refresh:** the same script with `--write` rewrites the stamp. **Run it as the final step of
+  every `/product-checkpoint`** so the baseline always reflects the just-committed reconcile.
+
+So a skipped/forgotten checkpoint after a member ships now surfaces as an unmissable SessionStart
+warning instead of a silent stale-resume.
+
 ## Reversal trigger
 
 If a future resume still loads a stale picture *despite* the stamp (the brief's anchors matched
