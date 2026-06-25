@@ -1,10 +1,19 @@
-# Roadmap — Weft Federation            Updated: 2026-06-16 (PDR-0025 temporal-correlation contract; PDR-0026 Warpline joins the cutover; PDR-0027 decent-L1-on-gold-contracts; PDR-0028 Tabard *who*-coordinate — gap-named, home provisional)
+# Roadmap — Weft Federation            Updated: 2026-06-26 (PDR-0032 Tenter (renamed Shuttle) lined up as the next federation bid; prior: PDR-0025 temporal-correlation contract; PDR-0026 Warpline joins the cutover; PDR-0027 decent-L1-on-gold-contracts; PDR-0028 Tabard *who*-coordinate — gap-named, home provisional)
 
 > Sequencing, WSJF / cost-of-delay, and dated forecasts are produced by
 > /axiom-program-management. This file records bets as INTENT, not a delivery
 > schedule. Do not compute WSJF here; hand the committed bet over for sequencing.
+>
+> **Two bid tracks:** this hub roadmap records *federation bids* (roster / seam-level, owner-gated at
+> doctrine §7). Each member product runs its **own** bids in its own product workspace; those are not
+> duplicated here.
 
 ## Now  (committed, in-flight)
+> **STATUS 2026-06-26:** the launch Now bet **SHIPPED 2026-06-17** (cutover epic `weft-4b2f948f70` closed;
+> all five on `main` + PyPI). The active Now is being re-chosen — front-runner **seam-health**
+> `weft-b6effe30f9`, already under bottom-up construction member-side (filigree/wardline/legis/warpline
+> conformance branches). See `current-state.md`. The launch entry below is retained as shipped-intent context.
+
 - **Ship a decent L1 — the coordinated FIVE-member clean-break launch (PDR-0026/0027).**
   L1 is the foundation, not the finish line: ship it *decent*, not perfect, then take our
   time on L2 (PDR-0027). **The one gold, inviolate floor is contract correctness.** The
@@ -48,6 +57,16 @@
     gate — SHA-rewrite ≠ rename; PDR-0021/PDR-0025). No sibling obligation freezes until then.
 
 ## Next (shaped, decreasing certainty)
+- **Tenter (renamed Shuttle) — the next *federation bid* (PDR-0032, promoted from Later 2026-06-26).**
+  The change as a first-class, rendered, **spine-bound, drift-checked plan object** (the *HOW*), composing
+  with Filigree (*WHAT* — work + commit-anchor) + Plainweave (*WHY* — requirement) into an **advisory
+  operating picture of a change** — explicitly NOT a workflow/approval/execution engine (that trips the §6
+  central-orchestrator anti-goal; teeth, if ever wanted, are Legis's). Read-only, pure dependency-sink,
+  enrich-only. Plan-steps **reference / propose** Plainweave requirements, never mint them. **Gated on
+  prove-the-need** (point a read-only staging surface at one real change — the elspeth 2,800-line plan
+  baseline — and confirm the workflow *prefers* a distinct plan object over a Filigree view + Plainweave
+  bindings) **and §7 admission (owner-reserved).** No `~/tenter` repo until admitted. · metric: supervision
+  load (a change becomes legible without reconstruction).
 - **Agent continuity & write-safety** — **SIGNED OFF 2026-06-09 (PDR-0008);** shape & sequence
   committed, build follows launch. Consolidated proposal:
   `pm/2026-06-09-agent-continuity-write-safety-PROPOSAL.md` (+ annex). Reshaped by agent
@@ -115,10 +134,10 @@
 - **Propagation/live-state ledger** — "what is actually built/installed/live where" (PDR-0013 #2,
   spike `weft-61c24f622e`). Three independent source-fixed ≠ live-fixed incidents. Default
   hypothesis: a **legis feature**, not a new member; hook-fed, enrich-only, grep-test gated.
-- **Shuttle** — change-execution (must follow attribution; you cannot safely execute
-  a change without first attributing who authorized it). **Standing doctrine flag (PDR-0013):**
-  closest of all candidates to the central-orchestrator anti-goal — when shaped, the burden of
-  proof is on showing it is deconfliction substrate, not a controlling runtime.
+- **Shuttle → renamed Tenter and promoted to *Next* (PDR-0032, 2026-06-26).** The change-execution idea was
+  reframed read-only (plan-staging, no code-writer) and lined up as the next federation bid — see *Next*.
+  The standing doctrine flag (PDR-0013) is preserved: it sat closest to the central-orchestrator anti-goal,
+  which is exactly why the triad ruling pins it to an *advisory operating picture*, never a controlling runtime.
 - **Cross-host federation** — the HTTP/cross-host half of verified-actor + emit.
 
 > **Admission bar for any new tool/member (PDR-0013, standing):** dogfood-pain evidence; the grep

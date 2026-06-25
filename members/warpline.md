@@ -2,7 +2,7 @@
 
 **Domain authority:** temporal / change-impact — per-entity change history across runs, dated edge snapshots, downstream blast-radius, and the re-verification worklist. "What changed, when, and what does this change touch." The federation's **temporal / change-impact surface**.
 **Repo:** `~/warpline` · **Language:** Python (3.12+)
-**Current details:** *(snapshot — not authoritative; see repo)* v1.0.0; stdio MCP server exposing six frozen federation tools; CLI (`init`/`backfill`/`changed`/`timeline`/`blast-radius`/`reverify`/`capture_snapshot`). For the latest details, use `~/warpline/README.md`, `~/warpline/pyproject.toml`, and `~/warpline/CHANGELOG.md`.
+**Current details:** *(snapshot — not authoritative; see repo)* v1.2.0 (spine-hardening shipped; per-request deadline, verification-freshness Rung 2 design); stdio MCP server exposing six frozen federation tools; CLI (`init`/`backfill`/`changed`/`timeline`/`blast-radius`/`reverify`/`capture_snapshot`). **v1 contract surface FROZEN** (owner attestation 2026-06-24, PDR-0031): 6 MCP names+shims, 11 error codes, 6-key enrichment vocab + 11 reason classes, schema URIs — inviolate (change = vN+1). The top-level `enrichment_reasons` honesty triple (v1.2.0) is a blessed v1-compatible additive. For the latest details, use `~/warpline/README.md`, `~/warpline/pyproject.toml`, and `~/warpline/CHANGELOG.md`.
 
 ## What it owns (authoritative in Warpline)
 

@@ -1,17 +1,37 @@
 {
   "member_main_heads": {
-    "filigree": "194c559",
-    "loomweave": "e30318a",
-    "wardline": "4a24a032",
-    "legis": "0e28a83",
-    "warpline": "6bbe29e"
+    "loomweave": "2a0bb91",
+    "filigree": "f59e423",
+    "wardline": "fcbd1ee9",
+    "legis": "15624c6",
+    "warpline": "02aa7f0",
+    "plainweave": "d0a7700",
+    "tabard": "2108cf1"
+  },
+  "in_flight_branches": {
+    "loomweave": "main (ADR-054 Rust plugin; FFI entry-point fixes)",
+    "filigree": "feat/weft-suppression-conformance",
+    "wardline": "feat/weft-seam-conformance (seam registry + fail-closed gate)",
+    "warpline": "plan/verification-freshness (Rung 2)",
+    "legis": "main (1.2.0 prepared; CI release-test fixes)"
+  },
+  "main_versions": {
+    "loomweave": "1.3.1 + unreleased Rust-plugin work",
+    "filigree": "3.1.0",
+    "wardline": "1.0.7",
+    "legis": "1.2.0 (prepared on main)",
+    "warpline": "1.2.0",
+    "plainweave": "1.0.0 (commit d0a7700 says released to PyPI — ESCALATED, publish was owner-gated)",
+    "tabard": "0.0.1a0"
   },
   "installed_versions": {
-    "filigree": "3.0.1",
-    "loomweave": "1.1.0",
-    "wardline": "1.0.1",
-    "legis": "1.0.0",
-    "warpline": "1.0.0"
+    "loomweave": "1.3.1",
+    "filigree": "3.1.0",
+    "wardline": "1.0.7",
+    "legis": "1.1.1",
+    "warpline": "1.2.0",
+    "plainweave": "0.0.1"
   },
-  "reconciled_at": "2026-06-18"
+  "hub_head": "8fcc812 (this product checkpoint)",
+  "reconciled_at": "2026-06-26"
 }

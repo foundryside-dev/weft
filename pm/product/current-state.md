@@ -1,106 +1,193 @@
-# Current State — Weft Federation        Checkpoint: 2026-06-18 (cutover SHIPPED; PDR-0029 continuity-discipline fix)
+# Current State — Weft Federation        Checkpoint: 2026-06-26 (Tenter (renamed Shuttle) → next federation bid PDR-0032; product workspace + Plainweave member-docs COMMITTED; built on the 06-25 federation sweep)
 
 > **Workspace path:** `pm/product/` (NOT `docs/product/` — `docs/` is the gitignored mkdocs
 > build dir). Resume with `/own-product pm/product`.
 
 > **🔁 Reconciled against (RESUME must re-check these; if any moved, this brief is STALE —
 > reconcile loudly, do NOT load as gospel — PDR-0029):**
-> - tracker: cutover epic `weft-4b2f948f70` = **closed**; identity epic/thread = owner-gated (below)
-> - git (member `main` HEADs at parity): filigree · wardline · legis · warpline all on `main`,
->   ahead-of-origin/main = 0. loomweave on `feat/loomweave-dogfood-fixes` (+11, post-launch work).
->   hub HEAD `4c4ee60`.
-> - installed: **filigree 3.0.1 · wardline 1.0.1 (repo prepping 1.0.3) · legis 1.0.0 ·
->   loomweave 1.1.0 · warpline 1.0.0**
+> - tracker: cutover epic `weft-4b2f948f70` = **closed** (06-17); seam-health epic
+>   `weft-b6effe30f9` = **open/P1** (front-runner Now bet); Plainweave §7 = **ADMITTED 06-24
+>   (PDR-0030)**; Tabard §7 = owner-gated/held (below).
+> - git member `main` HEADs (06-26): loomweave `2a0bb91` (Rust-plugin FFI fixes since the sweep) ·
+>   filigree `f59e423` (**3.1.0**) · wardline `fcbd1ee9` · legis `15624c6` (**1.2.0**; CI release-test fixes) ·
+>   warpline `02aa7f0` · plainweave `d0a7700` (**1.0.0 — commit now says "released to PyPI", see escalation 🚩**) ·
+>   tabard `2108cf1` (static). Active feature branches: wardline `feat/weft-seam-conformance`, warpline
+>   `plan/verification-freshness`, filigree `feat/weft-suppression-conformance`. *(loomweave/legis/plainweave
+>   advanced AGAIN mid-checkpoint — federation ships ~daily; trailing commits read additive/fix/docs.)*
+> - installed: **filigree 3.1.0 · loomweave 1.3.1 · wardline 1.0.7 · legis 1.1.1 (main is 1.2.0 — local
+>   stale) · warpline 1.2.0 · plainweave 0.0.1 (CLI shim stale; repo/PyPI 1.0.0) · tabard (not installed)**
+> - ⚠️ **CONCURRENCY:** a parallel session wrote the 06-25 sweep (this file + the stamp) without committing;
+>   this checkpoint FOLDED its Tenter decision in rather than clobbering. Multiple live `claude` sessions touch
+>   this workspace — consolidate if unintended.
 
-## The bet right now — the launch bet is DELIVERED; the next Now needs a DECIDE
-**Ship a decent L1 — the FIVE-member clean-break cutover `weft-4b2f948f70` — SHIPPED 2026-06-17**
-(epic closed 06-17 01:24Z). All five members (Filigree, Loomweave, Wardline, Legis, Warpline)
-merged to `main` and published to PyPI; legis 1.0.0 was the final holdout (red mypy gate, fixed).
-Framed by PDR-0023/0026/0027. **The launch bet is accepted/done — it is no longer the Now bet.**
+## The bet right now — launch DELIVERED; the new Now still needs a DECIDE
+**The FIVE-member clean-break cutover `weft-4b2f948f70` SHIPPED 2026-06-17** (epic closed
+01:24Z); all five members on `main` + PyPI. Accepted/done — **no longer the Now bet.** The one
+outward-facing tail, the **public announcement, remains owner-reserved** (not recorded as made —
+escalation #1).
 
-**The next Now bet is NOT yet chosen (a DECIDE act, not for this checkpoint to crown).** The
-contenders, all shaped, are below under "Proposed next bets." The one outward-facing tail is the
-**public announcement, which remains owner-reserved** (the ship happened; the announcement has not
-been cleared — see escalations).
+**The next Now bet is NOT yet chosen (a DECIDE act).** Front-runner: **seam-health surface**
+`weft-b6effe30f9` (P1 epic, owner-validated as the credibility gap). Contenders below.
 
-## North-star — correctness essentially MAXED; thesis is shifting (metrics.md updated 06-18)
-- **Dogfood pass rate (06-15): 16/17 MCP green · 4/4 federation joins green · 8/8 lacunae
-  reachable.** "Does it work" is closed. Only residual: narrow Fix-B bug `lacuna-522ab56124`.
-- **Thesis shift (candidate, PDR-0024 + 06-15 assessments):** with correctness maxed, the next
-  frontier is **reach-for / beating the agent's own grep reflex** — proposed new north-star
-  **first-reach share** (per-model, longitudinal) + defection-return rate. Re-aiming the dormant
-  scoreboard `weft-6636667996` is the enabling work. *Decision pending (DECIDE).*
+## Federation sweep 2026-06-25 — three live storylines (members moving fast; pace ~a release/day)
+All movement is additive/patch-shaped (contracts-inviolate guardrail intact), but the cross-member
+contract changes that SHIPPED need a hub blast-radius reconcile (flagged below).
 
-## Post-launch member work IN FLIGHT (informational — owner-reported 2026-06-18)
-Several members shipped post-launch **patch/minor** releases (mostly bug fixes) — additive/patch,
-ship solo per the post-launch change discipline (no lockstep):
-- **filigree 3.0.0 → 3.0.1** (doctor route-resolution fix, PR #66, on `main`).
-- **loomweave → 1.1.0**; `feat/loomweave-dogfood-fixes` (+11) — mostly an **internal dogfooding
-  sprint on its own internal tools (no interface touched)** (owner, 06-18) → that part ships solo,
-  no blast radius. **BUT it also surfaced TWO federation-touching changes, which are correctly
-  PARKED IN TICKETS pending analysis** (discipline honored — *tracked* punting, not invisible
-  "figure out later"). **TODO: confirm the two ticket IDs (likely loomweave's own member tracker,
-  not hub — not found in hub search 06-18) + that each carries a dated analysis plan and a
-  blast-radius map before any contract moves** (federation change discipline).
-- **wardline 1.0.1 → prepping 1.0.3** on `feat/warpline-delta-scan` — **currently implementing a
-  gap in the LEGIS seam:** `weft-af0787892c` *"legis: no per-SEI governance read transport —
-  blocks include_federation's legis half + the seam-health probe legis layer"* (P2, open). This
-  is a **cross-member contract change** → owes a federation blast-radius map + dated counterpart
-  ticket(s) before its session ends (federation change discipline). **TODO next session: confirm
-  the wardline side is tracked + counterparted, and classify the legis transport as additive
-  (new read endpoint = ships solo) vs breaking.**
+**① Verification-freshness (Warpline "Rung 2") — the dominant cross-member thread.**
+- **Warpline** `plan/verification-freshness` (~18 commits, in-flight): `v4 verification_events` table,
+  `compose_verification_freshness`, new **`verify-record` verb (2nd mutating tool)**, advisory per-item
+  verify + stale-first sort, GV-VF-1 vector. Plan-reviewed v1→v3 approved; not merged.
+- **Filigree → SHIPPED 3.1.0**: per-issue **commit anchor** at claim/close (warpline seam, **schema v29**),
+  **issue-lifecycle facts on the reverse-lookup** ("warpline b-ii"), atomic reverify ingest.
+- **Legis → SHIPPED 1.2.0**: forge-proof per-SEI **`attestation_get`** (Task 8 ratified), advisory-boundary spine.
+- **✓ Reconciled 2026-06-25:** `weft-7673e1fa79` retitled to the one remaining piece (**Wardline** resolved-
+  finding read) + bumped P2, with Filigree/Legis halves recorded shipped. Legis advisory-preflight consumer
+  `weft-13df44db31` **CLOSED** (shipped Legis 1.2.0, PDR-0002/0003).
 
-## Parallel thread — identity / Tabard (OWNER-GATED, uncommitted — unchanged)
-PDR-0028 (proposed): the *who* coordinate gap-named; HOME provisional (member vs fold vs
-convention+Seal). Identity model CAPTURED-not-decided (`pm/2026-06-16-background-ticket-change-debt-IDEA.md`).
-**Doctrine §2/§6 + `registries/claims.md` + `registries/terminology.md` + `members/tabard.md`
-edits remain UNCOMMITTED / owner-gated** (still in the working tree — this checkpoint did NOT
-commit them). Readiness panel: `pm/2026-06-16-identity-north-star-readiness.md`. Does NOT gate
-anything now that the cutover has shipped.
+**② Federation seam-conformance push (bottom-up from the members) — seam-health territory.**
+- **Wardline** `feat/weft-seam-conformance` (~12 commits): **P0 enforceable weft seam registry + fail-closed
+  gate**, multiple seams "reaching at_bar" (qualname parity, SEI loomweave→wardline, 3 consumer seams, MCP
+  B1/B2, suppression-filter), single-sourced federation-status envelope + shared `WeftHttp` transport.
+- **Filigree** `feat/weft-suppression-conformance`: consumer-side conformance oracle for the suppression seam.
+- **✓ Tracked 2026-06-25:** new hub anchor `weft-b5dde278b9` (under the seam-health epic `weft-b6effe30f9`)
+  captures the wardline + filigree seam-conformance program — it was untracked in the hub (0 search hits).
+
+**③ Loomweave Rust plugin (ADR-054) — unblocks Plainweave.**
+- Reachability-root tags, framework handlers, pub-method rooting, real-corpus dogfood (on `main`, **+6 unpushed**).
+  **This is the upstream fix for Plainweave's north-star Rust-tagging blocker** — partly resolves that DECIDE.
+
+**Quiet:** **tabard** static since 06-16 (gap-named, held). **plainweave** 1.0.0 local/no-remote (push gate, below).
+
+## Tenter (renamed Shuttle) — lined up as the next federation bid (PDR-0032, 2026-06-26)
+**Decision this session.** Shuttle (parked 06-25 as a shelf-life feature) is **renamed Tenter** ("Shuttle" is
+taken) and **revived as a distinct member candidate**, lined up as the **next federation bid** (roadmap *Next*;
+federation/roster track — members run their own bids). It owns one artifact: the change as a **rendered,
+spine-bound, drift-checked plan object** (the *HOW*), composing with Filigree (*WHAT*) + Plainweave (*WHY*) into an
+**advisory operating picture of a change** — explicitly NOT a workflow/approval/execution engine (that trips the §6
+central-orchestrator anti-goal; teeth, if ever, are Legis's). Read-only, pure dependency-sink, enrich-only.
+Plan-steps **reference/propose** Plainweave requirements, never mint them (durable Plainweave slice = prospective
+intent-coverage). **Gated on prove-the-need** (one real change — elspeth 2,800-line plan baseline) **+ §7 admission
+(owner-reserved)**; no `~/tenter` repo until admitted. Doctrine §2/§8 Shuttle→Tenter rewrite is propagation-tail,
+gated on admission. See **PDR-0032**.
+
+## Plainweave fold-in — ADMITTED this session (reframed/renamed Charter)
+**Plainweave = the code-grounded-intent / requirements member, reframed code-up ("permission for code to
+exist") and renamed from Charter.** Reframe+rename owner-approved 06-18 (hub `16d81a0`); **§7 admission +
+the canon rename RATIFIED 2026-06-24 (owner AskUserQuestion "Ratify Plainweave only" → [PDR-0030]
+(decisions/0030-ratify-plainweave-code-grounded-intent.md)).** **Still owner-gated:** public remote /
+PyPI publish + final name.
+- Stood up at `~/plainweave` (`2bb8644`, main); pre-alpha; **not** in the cutover; **non-gating**.
+- **Cross-member seam validated on LIVE peers (Lacuna, Loomweave)** — Plainweave PDR-008 — the
+  intent graph (`SEI → requirement → goal`, orphan/trace/corpus) reproduces on real peer catalogs,
+  not stubs. Read primitives shipped: `entity-intent-context` (goal_trail) + honest `intent-coverage`.
+  This earned-in-shipped-behaviour seam is why admission rests on more than a reserved coordinate (vs Tabard).
+- Plainweave-side active bet: scope the public-surface denominator + surface `coverage.complete` so the
+  north-star is honestly computable (catalog public-surface tagging is per-repo).
+- **Canon applied this session:** `members/plainweave.md` (supersedes charter.md → redirect stub),
+  doctrine §1/§2/§5/§6/§7/§8/§9 Charter→Plainweave (admitted), `registries/claims.md` (C-1/C-12/C-13 + new
+  C-16), `registries/terminology.md`. **Commit-mechanics caveat:** those canon files also carry the still-
+  held Tabard edits and co-edit the member-count lines — a clean *Plainweave-only* commit needs a selective
+  commit / HEAD-based worktree at checkpoint (git-stash is blocked here). Do not commit Tabard as a side effect.
+
+## Parallel thread — identity / Tabard (OWNER-GATED, canon edits still UNCOMMITTED)
+Tabard (the *who* coordinate) progressed from idea to **scaffolded pre-alpha 0.0.1a0** (`2108cf1`, main):
+federation spec drafted for hub review, name-reservation scaffold, CI/release workflow, and an intake
+round (warpline is bidirectional — *gives* the `when` axis, *consumes* actor-resolution; PDR-0002/0003 in
+Tabard's own tracker). **Hub canon edits remain UNCOMMITTED / owner-gated:** doctrine §2/§6/§7/§9 +
+`registries/claims.md` (C-1, C-4, +C-15) + `registries/terminology.md` + untracked `members/tabard.md`
+are all in the working tree, never committed. PDR-0028 (proposed). Does NOT gate anything now.
 
 ## Proposed next bets (contenders for the new Now — for DECIDE, not committed)
 1. **Seam-health surface** `weft-b6effe30f9` (epic, P1) — interrogable federation joins; PDR-0023
-   central feature, independently graded P0 by the cold-eval senior user (its *absence* is the
-   credibility gap). Strong candidate for the new Now.
-2. **L2 / fleet-OS coordination plane** — PDR-0024 (candidate) two-mode surface (bulletin +
-   chat), built behind the cutover; gated to a dogfood/falsifier proof before Adopted.
-3. **Make the loop honest — scoreboard + close-the-loop** `weft-6636667996` / `weft-ff30fd979f`
-   (PDR-0013) — also the enabler for the first-reach-share north-star re-aim.
-4. **Agent continuity & write-safety** (A/A′/B/C, PDR-0008) — signed off; build follows launch,
-   now unblocked.
-5. **Warpline "earns its place"** — cold-eval flagged it confident-empty on a stale snapshot;
-   owes a fail-loud/recapture fix + a temporal-blast-radius value proof.
+   central feature; owner-validated as the credibility gap (its *absence* is the gap). **Front-runner.**
+   Now has 11 children, incl. the wardline→legis seam item.
+2. **L2 / fleet-OS coordination plane** — PDR-0024 two-mode surface (bulletin + chat), gated to a
+   dogfood/falsifier proof before Adopted.
+3. **Make the loop honest — scoreboard + close-the-loop** `weft-6636667996` / `weft-ff30fd979f` —
+   re-triaged 06-21: re-aim the scoreboard from correctness/dogfood-pass-rate to **first-reach share +
+   defection-return** (behavioural adoption, per-model/longitudinal). The north-star re-aim enabler.
+4. **FD-1: Warpline observed/dynamic call edges → Loomweave upstream-caller fold-in** `weft-5a484165bd`
+   (feature, P1, ACCEPTED 06-17) — a third enrich-only SEI-keyed fold (mirrors taint/issue folds);
+   serves the beat-grep north-star AND operationalizes Warpline "earns its place." Cross-member.
+5. **Agent continuity & write-safety** (A/A′/B/C, PDR-0008) — signed off; build follows launch, unblocked.
 
-**Exploration (pre-shaping, owner-reported 2026-06-18):**
-- **Interface-define-and-assure (wardline + legis)** — a proposed capability: **declare/"fix" an
-  interface contract in JSON and have wardline + legis assure conformance.** For **internal use
-  first** (dogfood the federation's own seams). Strategically apt — it mechanizes the
-  "frozen contracts are inviolate" doctrine (PDR-0011/0027) with the suite's own tools, and is the
-  natural home for the seam-assurance the cutover did by hand. **If it becomes a cross-member
-  contract it is hub-blessed seam territory** (PDR: hub blesses every seam) — internal-first is the
-  right prove-the-need posture. Watch as it shapes up; candidate to fold into seam-health (#1).
+**Exploration (pre-shaping):** interface-define-and-assure (wardline + legis) — declare an interface
+contract in JSON, have wardline + legis assure conformance; internal-first. Candidate to fold into
+seam-health (#1).
+
+## Warpline 5th-producer handover (2026-06-22) — triaged this session
+Warpline delivered a handover (`~/warpline/docs/integration/2026-06-22-warpline-5th-producer-handover.md`):
+wire it in as the **5th producer of the GS-7 conformance oracle** + a **glossary-freeze**, plus reciprocal
+cross-member integration asks. OD-5 (fold into GS-7) is already resolved-direction (owner nod 06-13). All
+triaged into the tracker (label `warpline-handover`); nothing punted invisibly:
+- **`weft-13f84c77c5`** (P1) — GS-7 5th-producer wiring (mount 18 golden vectors + run executable, register
+  producer `warpline`/`warpline.golden_vectors.v1`, gate on exit). **Gate-activation = owner runbook act**,
+  sequenced behind the freeze ruling.
+- **`weft-12410be4e2`** (P1, owner-gate) — the glossary-freeze ruling (escalation #2, below).
+- **`weft-670ec2fe90`** Loomweave-temporal **bumped P3→P1** (beat-grep north-star); Wardline `weft-843fb82b57`
+  + Legis `weft-13df44db31` → P2; Plainweave (ex-Charter) `weft-20b486b4e8` retitled, stays P3/future.
+- **`weft-b7c23bfcae`** (P2, NEW) — Filigree consumes reverify worklists (the one untracked a-part).
+- **`weft-7673e1fa79`** (P3, future-contingent) — the reciprocal Rung-2 "proven-good" enablers (Filigree
+  `closed_at`, Wardline resolved-finding timestamp, Legis per-SEI attestation read); gated on Warpline
+  actually building Rung 2 (prove-the-need).
 
 ## Open questions / escalations (owner-reserved)
-- **🚩 Public launch announcement** — the cutover SHIPPED + is on PyPI, but the announcement was
-  owner-reserved and is NOT recorded as made. Has it gone out / should it? (outward-facing gate.)
-- **🚩 Identity thread** — sober-read of the identity model; the *who*-HOME decision; then
-  commit-or-revise the doctrine/registries/tabard canon (still uncommitted, owner-gated).
-- **wardline→legis seam** `weft-af0787892c` — confirm tracked + counterparted per federation
-  change discipline; classify additive vs breaking (see in-flight section).
+- **🚩 Public launch announcement** — cutover SHIPPED + on PyPI, but the announcement is owner-reserved
+  and NOT recorded as made. Has it gone out / should it? (outward-facing gate.)
+- **✅ Warpline glossary-freeze ruling (escalation #2) — RESOLVED** `weft-12410be4e2` (closed; **PDR-0031**).
+  Owner SIGNED the freeze attestation of the existing closed surface AND BLESSED `enrichment_reasons` as a
+  v1-compatible additive top-level key (verified shipped in v1.2.0 under the v1 URIs); strict line reaffirmed
+  (closed-vocab/error-code/reason-class changes still need v2). Residual: Warpline's 1.2.1 fixture patch
+  (warpline-fc09bdeddd) must land before the GS-7 gate flips; gate-activation `weft-13f84c77c5` stays the
+  owner's runbook act.
+- **✅ Plainweave §7 admission — RESOLVED.** Owner ratified ("Ratify Plainweave only", PDR-0030); canon rename
+  applied (member docs committed this checkpoint; doctrine/registries still held — see below). Residual owner
+  gates: **publish / public remote / final name** (held).
+- **🚩 Plainweave PyPI publish — POSSIBLE GATE BREACH (new 06-26).** plainweave `d0a7700` records **"Plainweave
+  1.0.0 released to PyPI (accepted as-shipped); PDR-012"**, but the hub gate marks Plainweave
+  **publish / public-remote owner-reserved** (vision grant + `members/plainweave.md`). Did you authorize the
+  publish, or did the member loop cross the gate? Outward-facing + already-done → **owner reconcile** (not
+  actioned from checkpoint). Verify on PyPI; if unauthorized, decide yank vs ratify-after-the-fact.
+- **🚩 Tabard canon still owner-gated** — the uncommitted doctrine §2/§6/§7/§9 + registries (C-1/C-4/C-15) +
+  `members/tabard.md` edits remain held (PDR-0028 proposed). The owner chose Plainweave-only, so Tabard
+  waits. NB: doctrine + registries now carry BOTH the (ratified) Plainweave edits and the (held) Tabard
+  edits, co-editing the member-count lines — checkpoint must commit Plainweave WITHOUT committing Tabard.
+- **wardline→legis seam** `weft-af0787892c` — **partially resolved:** now parented under seam-health
+  `weft-b6effe30f9`, re-triaged 06-21. The "legis has no per-SEI read transport" premise is **stale**
+  (legis 1.1.1 ships `override_list(entity=SEI)`); remaining gap = **Warpline wiring** (still passes
+  `legis_client=None`). Additive (new read path) — ships solo. *No longer an open classify question.*
+- **loomweave's two federation-touching changes** (parked in tickets, owner-reported 06-18) — still
+  **TODO: confirm the two ticket IDs** (likely loomweave's own member tracker) carry a dated analysis
+  plan + blast-radius map before any contract moves (federation change discipline).
 - C-9 `weft-a2f4cf95c7` stale codex claim (release/reclaim).
 
-## This checkpoint did (2026-06-18)
-- **Reconciled the brief to reality** after `/own-product` loaded a stale picture: the 06-17
-  cutover ship was in the tracker + auto-memory but never in this file (and the 06-16 reconcile +
-  PDR-0024 Amendment 1 were written-but-never-committed). Recorded **PDR-0029** (checkpoint-on-ship
-  + commit-the-checkpoint + resume-reconciles-against-tracker/git, with this brief's new
-  machine-checkable `Reconciled against:` stamp).
-- Updated metrics.md (06-15 north-star reading: 4/4 joins). Recorded post-launch member releases +
-  the wardline→legis seam item.
+## This checkpoint did (2026-06-26)
+- **DECIDED + recorded the Tenter (renamed Shuttle) ruling — PDR-0032:** distinct member candidate; the
+  Filigree+Plainweave+Tenter **advisory operating picture of a change** (NOT an orchestrator); plan→Plainweave
+  links are references/proposals, never mints; dependency-sink + enrich-only carried. **Lined up as the next
+  federation bid** (roadmap *Next*), gated on prove-the-need + §7 admission.
+- **COMMITTED** the long-stranded product workspace (two sessions' worth) + the Plainweave **member docs**
+  (`members/plainweave.md`, `charter.md` stub, `warpline.md` snapshot) + PDR-0030/0031/0032 + the 06-25
+  realization doc. First commit of this state — HEAD was stuck at `7503a44` across the 06-24 and 06-25 sessions.
+- **FOLDED into** the parallel 06-25 federation-sweep brief (did not clobber it); refreshed the stamp to 06-26
+  HEADs (loomweave/legis/plainweave moved again mid-checkpoint).
+- **DEFERRED the fused canon** (`doctrine.md`, `registries/*`): the Plainweave rename is line-fused with the
+  owner-gated Tabard edits on the member-count lines — de-fusing safely (no `git add -p`, no stash here) is a
+  deliberate act, not a checkpoint side-effect. Held as the top follow-up.
+- **Surfaced escalations:** the Plainweave-PyPI possible gate-breach (new) + the standing announcement / Tabard /
+  publish gates.
 
 ## Next session, start here
-1. **Pick the new Now bet** (DECIDE) from the contenders above — seam-health `weft-b6effe30f9` is
-   the front-runner (owner-validated P0). Then `/write-prd` + route to `/axiom-program-management`.
-2. **Confirm the wardline→legis seam** `weft-af0787892c` is counterparted + classified.
-3. **Surface the announcement question** to the owner (escalation #1).
-4. Identity gates (owner sober-read → home → commit-or-revise canon).
+1. **De-fuse + commit the Plainweave doctrine/registries rename** WITHOUT the held Tabard edits — the member-count
+   lines in `doctrine.md` §1, `registries/claims.md` C-1, `registries/terminology.md` name BOTH Plainweave
+   (admitted) and Tabard (held) in one sentence, so a clean commit needs those ~3 lines rewritten to the
+   Plainweave-only state via `git apply --cached` (working tree keeps the held Tabard delta). Verify
+   `git diff --cached -- doctrine.md registries members/tabard.md | grep -i tabard` is empty before committing.
+2. **Owner escalations (below):** Plainweave-PyPI publish (verify + authorize/yank); the public announcement;
+   Tabard §7 admission (PDR-0028, held); Plainweave residual gates (remote / name).
+3. **Pick the active Now bet** (DECIDE) — seam-health `weft-b6effe30f9` (front-runner; already under bottom-up
+   construction `weft-b5dde278b9`). Then `/write-prd` + `/axiom-program-management`.
+4. **Schedule Tenter prove-the-need** — point a read-only staging surface at one real change (elspeth plan
+   baseline) before any §7 admission.
+5. **Confirm loomweave's two parked federation tickets** carry dated blast-radius maps; propagation tail of
+   PDR-0030 (federation-map.md, SHIPPING.md, web/ IA, conflict-register).

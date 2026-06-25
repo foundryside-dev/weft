@@ -1,4 +1,4 @@
-# Metrics — Weft Federation             Last read: 2026-06-18
+# Metrics — Weft Federation             Last read: 2026-06-26
 
 > Targets below are falsifiable-by-shape PLACEHOLDERS (number + date) for the owner
 > to set real values against — most baselines are not yet instrumented. A directional
@@ -20,6 +20,6 @@
 ## Guardrails (must NOT degrade)
 | Metric | Floor / ceiling | Current | Read on |
 |--------|-----------------|---------|---------|
-| **Enrich-only invariant** — cross-member hard-blocks (a sibling's absence breaking another's core flow) | ceiling = 0 | 0 known load-bearing blocks (F4 closure-gate watched) | 2026-06-09 |
+| **Enrich-only invariant** — cross-member hard-blocks (a sibling's absence breaking another's core flow) | ceiling = 0 | 0 known load-bearing blocks (F4 closure-gate watched). **06-24:** post-launch ships (loomweave 1.3.1, wardline 1.0.6, legis 1.1.1, warpline 1.2.0) all **additive/patch** — no breaking cross-member contract; wardline now **fail-soft on Loomweave emit errors** (strengthens enrich-only). No reversal trigger fired. **06-26:** members continue shipping additive/patch (filigree 3.1.0 — warpline reverse-lookup + per-issue commit-anchor, schema v29; legis 1.2.0-prep — per-SEI attestation classifier; plainweave 1.0.0; loomweave Rust-plugin fixes; wardline 1.0.7). No breaking cross-member contract; guardrail still 0 (filigree v29 + commit-anchor flagged for a blast-radius confirmation pass). | 2026-06-26 |
 | **Tree cleanliness** — members dirtying the working tree at rest (blocks legis signing) | ceiling = 0 | 1 open: loomweave runtime DB under `.weft/` (`weft-d822a7de2d`) | 2026-06-09 |
 | **Finding duplication** — duplicate finding rows from fingerprint drift | ceiling = 0 | wardline WL-1 breach (`weft-4a9d0f863c`) still open; **loomweave's instance FIXED 2026-06-13** (B10 `weft-7256739b31`: site-keyed secret-finding identity + incremental sweep, self-heals existing dupes on next analyze) | 2026-06-13 |
