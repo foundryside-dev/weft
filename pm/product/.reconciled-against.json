@@ -21,7 +21,7 @@
     "wardline": "1.0.7",
     "legis": "1.2.0 (prepared on main)",
     "warpline": "1.2.0",
-    "plainweave": "1.0.0 (commit d0a7700 says released to PyPI — ESCALATED, publish was owner-gated)",
+    "plainweave": "1.0.0 (CONFIRMED live on public PyPI — ESCALATED, publish was owner-gated)",
     "tabard": "0.0.1a0"
   },
   "installed_versions": {
@@ -32,6 +32,6 @@
     "warpline": "1.2.0",
     "plainweave": "0.0.1"
   },
-  "hub_head": "8fcc812 (this product checkpoint)",
+  "hub_head": "4c938b1 (this product checkpoint)",
   "reconciled_at": "2026-06-26"
 }

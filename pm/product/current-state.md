@@ -83,11 +83,12 @@ PyPI publish + final name.
   This earned-in-shipped-behaviour seam is why admission rests on more than a reserved coordinate (vs Tabard).
 - Plainweave-side active bet: scope the public-surface denominator + surface `coverage.complete` so the
   north-star is honestly computable (catalog public-surface tagging is per-repo).
-- **Canon applied this session:** `members/plainweave.md` (supersedes charter.md → redirect stub),
-  doctrine §1/§2/§5/§6/§7/§8/§9 Charter→Plainweave (admitted), `registries/claims.md` (C-1/C-12/C-13 + new
-  C-16), `registries/terminology.md`. **Commit-mechanics caveat:** those canon files also carry the still-
-  held Tabard edits and co-edit the member-count lines — a clean *Plainweave-only* commit needs a selective
-  commit / HEAD-based worktree at checkpoint (git-stash is blocked here). Do not commit Tabard as a side effect.
+- **Canon — member docs COMMITTED (`4c938b1`), doctrine/registries DEFERRED:** `members/plainweave.md`
+  (supersedes charter.md → redirect stub) + the `members/warpline.md` snapshot are committed. The
+  doctrine §1/§2/§5/§6/§7/§8/§9 + `registries/claims.md` (C-1/C-12/C-13 + new C-16) + `registries/terminology.md`
+  Charter→Plainweave rename is **applied in the working tree but NOT yet committed** — those files co-carry the
+  still-held Tabard edits and co-edit the member-count lines, so a clean *Plainweave-only* commit needs the ~3
+  fused lines de-fused via `git apply --cached` (git-stash + `add -p` unavailable here). Do not commit Tabard as a side effect.
 
 ## Parallel thread — identity / Tabard (OWNER-GATED, canon edits still UNCOMMITTED)
 Tabard (the *who* coordinate) progressed from idea to **scaffolded pre-alpha 0.0.1a0** (`2108cf1`, main):
@@ -143,11 +144,13 @@ triaged into the tracker (label `warpline-handover`); nothing punted invisibly:
 - **✅ Plainweave §7 admission — RESOLVED.** Owner ratified ("Ratify Plainweave only", PDR-0030); canon rename
   applied (member docs committed this checkpoint; doctrine/registries still held — see below). Residual owner
   gates: **publish / public remote / final name** (held).
-- **🚩 Plainweave PyPI publish — POSSIBLE GATE BREACH (new 06-26).** plainweave `d0a7700` records **"Plainweave
-  1.0.0 released to PyPI (accepted as-shipped); PDR-012"**, but the hub gate marks Plainweave
-  **publish / public-remote owner-reserved** (vision grant + `members/plainweave.md`). Did you authorize the
-  publish, or did the member loop cross the gate? Outward-facing + already-done → **owner reconcile** (not
-  actioned from checkpoint). Verify on PyPI; if unauthorized, decide yank vs ratify-after-the-fact.
+- **🚩 Plainweave PyPI publish — CONFIRMED GATE EVENT (verified on PyPI 06-26).** **`plainweave` 1.0.0 IS LIVE
+  on public PyPI** (`pypi.org/project/plainweave`, releases `['1.0.0']`) — verified, not just the `d0a7700`
+  commit prose (plainweave PDR-012). The hub gate marks Plainweave **publish / public-remote owner-reserved**
+  (vision grant + `members/plainweave.md`, which still reads "not published"). A member loop (or out-of-band
+  action) crossed the owner gate. Outward-facing + already-done → **owner reconcile, NOT actioned from
+  checkpoint:** ratify-after-the-fact (+ correct the canon) or yank. NB the public name "plainweave" now
+  partly settles the held *final-name* gate by fait accompli.
 - **🚩 Tabard canon still owner-gated** — the uncommitted doctrine §2/§6/§7/§9 + registries (C-1/C-4/C-15) +
   `members/tabard.md` edits remain held (PDR-0028 proposed). The owner chose Plainweave-only, so Tabard
   waits. NB: doctrine + registries now carry BOTH the (ratified) Plainweave edits and the (held) Tabard
