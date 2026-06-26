@@ -47,7 +47,7 @@ export const SEI_SPINE = {
     { peer: 'filigree', fact: '2 open issues', state: 'present' },
     { peer: 'legis', fact: 'no attestation yet', state: 'absent' },
     { peer: 'warpline', fact: 'last change · 9d ago', state: 'stale' },
-    { peer: 'charter', fact: 'peer unreachable', state: 'unavailable' },
+    { peer: 'plainweave', fact: 'peer unreachable', state: 'unavailable' },
   ],
 
   /**

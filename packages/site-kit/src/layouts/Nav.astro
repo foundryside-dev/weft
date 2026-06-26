@@ -20,8 +20,10 @@ export interface Props {
 const { active, repo = 'https://github.com/foundryside-dev' } = Astro.props;
 const HUB = 'https://weft.foundryside.dev/';
 
-// Tools menu: the six roster members + Lacuna. Charter (planned) has
-// no site — render it disabled (no href), per IA §2.3.
+// Tools menu: the six roster members + Lacuna. No member is currently
+// 'planned' (Plainweave is admitted and renders as a normal Tools link);
+// the planned → disabled (no href) branch below is retained as defensive
+// for any future planned member, per IA §2.3.
 const toolItems = [...ROSTER, LACUNA];
 ---
 

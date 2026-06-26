@@ -40,7 +40,7 @@ fonts — read a token. The families you will reach for most:
   `--loom-800…950` (headings / inverted). **Primary:** `--indigo-50…700`.
 - **Status:** `--ok` / `--warn` / `--danger` / `--info` and their `*-tint`
   backgrounds. **Members:** `--member-loomweave`, `--member-filigree`,
-  `--member-wardline`, `--member-legis`, `--member-charter`, `--member-warpline`,
+  `--member-wardline`, `--member-legis`, `--member-plainweave`, `--member-warpline`,
   `--member-lacuna` (each a thread color).
 - **Spacing / shape / motion:** `--space-1…`, `--radius-sm/md/pill`,
   `--shadow-sm…`, `--dur-fast/mid/slow`, `--ease-out`.

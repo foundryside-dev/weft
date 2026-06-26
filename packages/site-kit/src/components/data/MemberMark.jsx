@@ -5,7 +5,7 @@ export const WEFT_MEMBERS = {
   filigree:  { name: 'Filigree',  color: 'var(--member-filigree)',  domain: 'work state' },
   wardline:  { name: 'Wardline',  color: 'var(--member-wardline)',  domain: 'trust boundaries' },
   legis:     { name: 'Legis',     color: 'var(--member-legis)',     domain: 'governance' },
-  charter:   { name: 'Charter',   color: 'var(--member-charter)',   domain: 'requirements' },
+  plainweave: { name: 'Plainweave', color: 'var(--member-plainweave)', domain: 'code-grounded intent' },
   warpline:    { name: 'Warpline',    color: 'var(--member-warpline)',    domain: 'change-impact' },
   lacuna:    { name: 'Lacuna',    color: 'var(--member-lacuna)',    domain: 'specimen' },
 };

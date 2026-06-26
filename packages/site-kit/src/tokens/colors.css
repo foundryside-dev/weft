@@ -48,7 +48,7 @@
   --brass-600: #8C681A;
   --brass-700: #6B4F14;
 
-  /* ---- Woad — Charter (verification, SUCCESS) ------------- */
+  /* ---- Woad — Plainweave (code-grounded intent) ---------- */
   --woad-50:  #E5F0EB;
   --woad-100: #C6E0D5;
   --woad-400: #3E8C74;
@@ -118,7 +118,7 @@
   --member-filigree:  var(--brass-500);
   --member-wardline:  var(--madder-600);
   --member-legis:     var(--walnut-500);
-  --member-charter:   var(--woad-600);
+  --member-plainweave: var(--woad-600);
   --member-warpline:  var(--copper-500);
   --member-lacuna:    var(--ash-500);
 }

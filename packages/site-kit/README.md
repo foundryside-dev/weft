@@ -138,9 +138,9 @@ where the component has behaviour (`SeiTag copyable`, `Switch`, `Tabs`).
 
 ```js
 import {
-  ROSTER,        // the 6 members (Charter `planned`), roster order
+  ROSTER,        // the 6 members, roster order
   LACUNA,        // the showcase specimen — NOT in ROSTER
-  ADMITTED,      // the 5 live-core members + Warpline
+  ADMITTED,      // the 6 admitted members (the cutover five + Plainweave)
   MATRIX,        // the combination matrix (honest live/partial/planned)
   SEI_SPINE,     // the SEI-spine explainer content
   FEDERATION_AXIOM,

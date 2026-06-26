@@ -74,7 +74,7 @@ const statusTone = (s) => (s === 'live' ? 'ok' : s === 'partial' ? 'warn' : 'neu
           <EnrichmentChip client:visible state="present" peer="wardline" />
           <EnrichmentChip client:visible state="present" peer="warpline" />
           <EnrichmentChip client:visible state="absent" peer="legis" />
-          <EnrichmentChip client:visible state="unavailable" peer="charter" />
+          <EnrichmentChip client:visible state="unavailable" peer="plainweave" />
         </div>
       </div>
     </div>
@@ -95,6 +95,22 @@ const statusTone = (s) => (s === 'live' ? 'ok' : s === 'partial' ? 'warn' : 'neu
         Each member is its own tool, installed and used on its own; “weft” is the
         agreement that lets them compose.
       </Banner>
+      {/* Suite-wide posture disclaimer — the deconfliction-not-security/compliance
+          invariant, stated once at the hub for the whole federation. Never rounded
+          up; the misuse this refuses is treating the suite as a gate. */}
+      <div class="doctrine__more">
+        <Banner client:visible tone="danger" title="Not a security or compliance product.">
+          The whole Weft suite is <strong>deconfliction-first, not a security or
+          compliance product</strong>. Most members are read-only, advisory, and
+          enrich-only — they surface facts; they do not block, certify, or authorize.
+          Legis, the governance thread, is the one that <em>can</em> gate, but only on
+          the graded policy you configure, and even it is <strong>low-security by
+          design</strong> — an attributable, tamper-evident record, never a security
+          boundary and never a compliance verdict. Do not treat any seam here as access
+          control, and do not use these tools for secure, regulated, confidential, or
+          business-sensitive data.
+        </Banner>
+      </div>
     </div>
   </section>
 
@@ -261,6 +277,7 @@ const statusTone = (s) => (s === 'live' ? 'ok' : s === 'partial' ? 'warn' : 'neu
   .h2 { font: var(--type-h1); color: var(--text-strong); margin: 0 0 16px; max-width: 24ch; }
   .lede { font: var(--type-body); color: var(--text-body); max-width: 64ch; margin: 0 0 26px; }
   .lede code, .pair__cap code { font-family: var(--font-mono); font-size: 0.92em; color: var(--text-strong); }
+  .doctrine__more { margin-top: 12px; }
 
   .section { padding: var(--space-10) 0; }
   .band {

@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-export type WeftMember = 'loomweave' | 'filigree' | 'wardline' | 'legis' | 'charter' | 'warpline' | 'lacuna';
+export type WeftMember = 'loomweave' | 'filigree' | 'wardline' | 'legis' | 'plainweave' | 'warpline' | 'lacuna';
 
 export const WEFT_MEMBERS: Record<WeftMember, { name: string; color: string; domain: string }>;
 

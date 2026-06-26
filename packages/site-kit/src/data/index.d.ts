@@ -4,7 +4,7 @@ export type MemberKey =
   | 'wardline'
   | 'legis'
   | 'warpline'
-  | 'charter'
+  | 'plainweave'
   | 'lacuna';
 
 export type MemberStatus = 'admitted' | 'planned' | 'showcase';
@@ -34,11 +34,11 @@ export const GITHUB_ORG: string;
 export function memberUrl(key: MemberKey): string;
 export function repoUrl(key: MemberKey): string;
 
-/** The six federation members, in roster order (Charter is `planned`). */
+/** The six federation members, in roster order. */
 export const ROSTER: RosterMember[];
 /** The demonstration specimen — NOT a roster member (`showcase`). */
 export const LACUNA: RosterMember;
-/** The five live-core members + Warpline (everything `status === 'admitted'`). */
+/** The admitted members (everything `status === 'admitted'`) — six: the five cutover members + Plainweave. */
 export const ADMITTED: RosterMember[];
 export function getMember(key: MemberKey): RosterMember | null;
 

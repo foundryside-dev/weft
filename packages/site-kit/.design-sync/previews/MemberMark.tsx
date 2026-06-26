@@ -11,7 +11,7 @@ export const Roster = () => (
     <MemberMark member="filigree" />
     <MemberMark member="wardline" />
     <MemberMark member="legis" />
-    <MemberMark member="charter" />
+    <MemberMark member="plainweave" />
     <MemberMark member="warpline" />
     <MemberMark member="lacuna" />
   </div>

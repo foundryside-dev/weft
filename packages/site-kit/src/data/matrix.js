@@ -90,6 +90,27 @@ export const MATRIX = [
     status: 'planned',
     note: 'Seam frozen; implementation fast-follow.',
   },
+  {
+    a: 'plainweave',
+    b: 'loomweave',
+    capability: 'Intent bound to stable code identity — every requirement keys on the SEI.',
+    status: 'partial',
+    note: 'Consumes Loomweave SEI via a catalog adapter; the intent graph reproduced on two LIVE peer catalogs (Lacuna, Loomweave), not stubs (Plainweave PDR-008). Still maturing — not yet a shipped seam: catalog public-surface tagging is degraded off Loomweave, and it falls back to file/symbol refs when Loomweave is absent.',
+  },
+  {
+    a: 'plainweave',
+    b: 'legis',
+    capability: 'Intent-coverage available to governance — Legis owns the teeth and the audit.',
+    status: 'planned',
+    note: 'Authority split designed (Plainweave attributes intent; Legis governs + audits); seam not yet shipped.',
+  },
+  {
+    a: 'plainweave',
+    b: 'filigree',
+    capability: 'Closed work checked against intent — a closed issue is not a satisfied requirement.',
+    status: 'planned',
+    note: 'Designed distinction; Plainweave does not treat work-closure as requirement-satisfaction. Seam not yet shipped.',
+  },
 ];
 
 /** All pairings that include `key`, for a member site's "How it composes" slice (IA §2.2). */

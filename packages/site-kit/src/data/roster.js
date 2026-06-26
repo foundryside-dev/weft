@@ -12,7 +12,7 @@
 // are the pointers to those authorities.
 // ============================================================
 
-/** @typedef {'loomweave'|'filigree'|'wardline'|'legis'|'warpline'|'charter'|'lacuna'} MemberKey */
+/** @typedef {'loomweave'|'filigree'|'wardline'|'legis'|'warpline'|'plainweave'|'lacuna'} MemberKey */
 
 /** Subdomain base for every member site (IA §1.2, §2.2). */
 export const SUBDOMAIN_BASE = 'foundryside.dev';
@@ -37,8 +37,8 @@ export function repoUrl(key) {
  * `thread` is the CSS custom property (kept identical to
  * tokens/colors.css --member-*); `threadHex` is the resolved value
  * for contexts that can't read a custom property.
- * `status`: 'admitted' (live core / 5th member) | 'planned' (Charter) |
- *           'showcase' (Lacuna).
+ * `status`: 'admitted' (live core + Warpline + Plainweave) |
+ *           'planned' (none currently) | 'showcase' (Lacuna).
  */
 export const ROSTER = [
   {
@@ -117,19 +117,19 @@ export const ROSTER = [
     cheatsheet: 'products/warpline.md',
   },
   {
-    key: 'charter',
-    name: 'Charter',
+    key: 'plainweave',
+    name: 'Plainweave',
     lang: 'Python',
-    thread: 'var(--member-charter)',
-    threadHex: '#235E4D', // woad-600
+    thread: 'var(--member-plainweave)',
+    threadHex: '#235E4D', // woad-600 (inherited)
     threadName: 'woad',
-    url: 'https://charter.foundryside.dev', // reserved; no site this pass
-    domain: 'requirements, traceability, verification',
-    tagline: 'The federation’s obligations system-of-record: what must be true, kept separate from proposed / inferred / stale guesses.',
-    status: 'planned', // roster thread only; federation adapters pending (IA §6)
-    repo: 'https://github.com/foundryside-dev/charter',
-    briefing: 'members/charter.md',
-    cheatsheet: 'products/charter.md',
+    url: 'https://plainweave.foundryside.dev',
+    domain: 'code-grounded intent / requirements',
+    tagline: 'Gives code its reason to exist — binds every entity up through a requirement to a goal, so a node with no upward edge is a reviewable question. Advisory; it renders no verdict.',
+    status: 'admitted', // PDR-0030, 2026-06-24; reframed+renamed successor to Charter; not in cutover, non-gating
+    repo: 'https://github.com/foundryside-dev/plainweave',
+    briefing: 'members/plainweave.md',
+    cheatsheet: 'products/plainweave.md',
   },
 ];
 
@@ -153,7 +153,7 @@ export const LACUNA = {
   briefing: 'members/lacuna.md',
 };
 
-/** The five admitted members + Warpline (5th) — everything except Charter (planned) and Lacuna. */
+/** The admitted members — everything except Lacuna (showcase). Now six: the five cutover members + Plainweave (admitted PDR-0030). */
 export const ADMITTED = ROSTER.filter((m) => m.status === 'admitted');
 
 /** Lookup a roster member (or Lacuna) by key. */
