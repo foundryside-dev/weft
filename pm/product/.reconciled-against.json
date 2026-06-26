@@ -1,25 +1,26 @@
 {
   "member_main_heads": {
-    "loomweave": "2a0bb91",
+    "loomweave": "edf8f65",
     "filigree": "f59e423",
     "wardline": "fcbd1ee9",
-    "legis": "15624c6",
+    "legis": "79b4008",
     "warpline": "02aa7f0",
-    "plainweave": "d0a7700",
+    "plainweave": "92ec70a",
     "tabard": "2108cf1"
   },
   "in_flight_branches": {
-    "loomweave": "main (ADR-054 Rust plugin; FFI entry-point fixes)",
+    "loomweave": "main",
     "filigree": "feat/weft-suppression-conformance",
-    "wardline": "feat/weft-seam-conformance (seam registry + fail-closed gate)",
+    "wardline": "release/consolidation-2026-06-26",
     "warpline": "plan/verification-freshness (Rung 2)",
-    "legis": "main (1.2.0 prepared; CI release-test fixes)"
+    "legis": "main",
+    "plainweave": "spike/tenter-plan-check (Tenter drift-check addon spike; main advanced to 92ec70a)"
   },
   "main_versions": {
-    "loomweave": "1.3.1 + unreleased Rust-plugin work",
+    "loomweave": "1.3.1 + Rust-plugin work",
     "filigree": "3.1.0",
     "wardline": "1.0.7",
-    "legis": "1.2.0 (prepared on main)",
+    "legis": "1.2.0",
     "warpline": "1.2.0",
     "plainweave": "1.0.0 (CONFIRMED live on public PyPI — ESCALATED, publish was owner-gated)",
     "tabard": "0.0.1a0"
@@ -32,6 +33,10 @@
     "warpline": "1.2.0",
     "plainweave": "0.0.1"
   },
-  "hub_head": "4c938b1 (this product checkpoint)",
-  "reconciled_at": "2026-06-26"
+  "version_notes": {
+    "site_commits": "loomweave/legis mains advanced partly from this session's website-disclaimer site commits (they were on main); filigree/wardline/warpline/lacuna site commits landed on non-main branches; plainweave site on release/1.1.0.",
+    "trailing": "members continue shipping ~daily; mains moved again at checkpoint — RESUME may deep-diff loomweave edf8f65 / legis 79b4008 / plainweave 92ec70a."
+  },
+  "hub_head": "8564fdc (pre-checkpoint HEAD; this product: commit lands on top)",
+  "reconciled_at": "2026-06-26 (eve)"
 }

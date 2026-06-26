@@ -1,4 +1,4 @@
-# Roadmap — Weft Federation            Updated: 2026-06-26 (PDR-0032 Tenter (renamed Shuttle) lined up as the next federation bid; prior: PDR-0025 temporal-correlation contract; PDR-0026 Warpline joins the cutover; PDR-0027 decent-L1-on-gold-contracts; PDR-0028 Tabard *who*-coordinate — gap-named, home provisional)
+# Roadmap — Weft Federation            Updated: 2026-06-26 (PDR-0034 Tenter prove-the-need: full-capability member-shaped, go/no-go deferred on fabric stability; PDR-0033 website program; PDR-0032 Tenter lined up as the next federation bid; prior: PDR-0025 temporal-correlation contract; PDR-0026 Warpline joins the cutover; PDR-0027 decent-L1-on-gold-contracts; PDR-0028 Tabard *who*-coordinate — gap-named, home provisional)
 
 > Sequencing, WSJF / cost-of-delay, and dated forecasts are produced by
 > /axiom-program-management. This file records bets as INTENT, not a delivery
@@ -62,11 +62,13 @@
   with Filigree (*WHAT* — work + commit-anchor) + Plainweave (*WHY* — requirement) into an **advisory
   operating picture of a change** — explicitly NOT a workflow/approval/execution engine (that trips the §6
   central-orchestrator anti-goal; teeth, if ever wanted, are Legis's). Read-only, pure dependency-sink,
-  enrich-only. Plan-steps **reference / propose** Plainweave requirements, never mint them. **Gated on
-  prove-the-need** (point a read-only staging surface at one real change — the elspeth 2,800-line plan
-  baseline — and confirm the workflow *prefers* a distinct plan object over a Filigree view + Plainweave
-  bindings) **and §7 admission (owner-reserved).** No `~/tenter` repo until admitted. · metric: supervision
-  load (a change becomes legible without reconstruction).
+  enrich-only. Plan-steps **reference / propose** Plainweave requirements, never mint them. **Prove-the-need RAN
+  2026-06-26 (PDR-0034):** the drift-check slice = a Plainweave addon; the **full quad operating picture =
+  standalone member-shaped** (a read-only cross-member sink surfacing STALE-DONE / ORPHAN / UNTRACKED /
+  DANGLING-REQ, demonstrated LIVE across two repos). `~/tenter` scaffolded (+ spike branches). **Full-capability
+  go/no-go DEFERRED (owner)** — leaning yes, but gated on federation-fabric stability (Plainweave still
+  maturing; pieces land in different peers, making the fabric wobbly). §7 admission owner-reserved. · metric:
+  supervision load (a change becomes legible without reconstruction).
 - **Agent continuity & write-safety** — **SIGNED OFF 2026-06-09 (PDR-0008);** shape & sequence
   committed, build follows launch. Consolidated proposal:
   `pm/2026-06-09-agent-continuity-write-safety-PROPOSAL.md` (+ annex). Reshaped by agent

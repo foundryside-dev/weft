@@ -1,4 +1,4 @@
-# Current State — Weft Federation        Checkpoint: 2026-06-26 (Tenter (renamed Shuttle) → next federation bid PDR-0032; product workspace + Plainweave member-docs COMMITTED; built on the 06-25 federation sweep)
+# Current State — Weft Federation        Checkpoint: 2026-06-26 eve (Website program SHIPPED-not-deployed PDR-0033; Tenter prove-the-need: full capability = member-shaped, GO/NO-GO DEFERRED on fabric stability — PDR-0034)
 
 > **Workspace path:** `pm/product/` (NOT `docs/product/` — `docs/` is the gitignored mkdocs
 > build dir). Resume with `/own-product pm/product`.
@@ -58,17 +58,28 @@ contract changes that SHIPPED need a hub blast-radius reconcile (flagged below).
 
 **Quiet:** **tabard** static since 06-16 (gap-named, held). **plainweave** 1.0.0 local/no-remote (push gate, below).
 
-## Tenter (renamed Shuttle) — lined up as the next federation bid (PDR-0032, 2026-06-26)
-**Decision this session.** Shuttle (parked 06-25 as a shelf-life feature) is **renamed Tenter** ("Shuttle" is
-taken) and **revived as a distinct member candidate**, lined up as the **next federation bid** (roadmap *Next*;
-federation/roster track — members run their own bids). It owns one artifact: the change as a **rendered,
-spine-bound, drift-checked plan object** (the *HOW*), composing with Filigree (*WHAT*) + Plainweave (*WHY*) into an
-**advisory operating picture of a change** — explicitly NOT a workflow/approval/execution engine (that trips the §6
-central-orchestrator anti-goal; teeth, if ever, are Legis's). Read-only, pure dependency-sink, enrich-only.
-Plan-steps **reference/propose** Plainweave requirements, never mint them (durable Plainweave slice = prospective
-intent-coverage). **Gated on prove-the-need** (one real change — elspeth 2,800-line plan baseline) **+ §7 admission
-(owner-reserved)**; no `~/tenter` repo until admitted. Doctrine §2/§8 Shuttle→Tenter rewrite is propagation-tail,
-gated on admission. See **PDR-0032**.
+## Tenter — prove-the-need RAN; full capability member-shaped; GO/NO-GO DEFERRED (PDR-0032 → PDR-0034)
+**Renamed from Shuttle** (taken): the change as a rendered, spine-bound, **drift-checked plan object** (the *HOW*),
+composing with Filigree (*WHAT*) + Plainweave (*WHY*) — Loomweave underneath — into an **advisory operating picture
+of a change** (read-only, dependency-sink, NOT an orchestrator; teeth → Legis). Shaping/invariants: PDR-0032.
+- **Scaffold stood up at `~/tenter`** (owner-directed "initiate tenter"; pre-alpha 0.0.1a0, mirrors the tabard
+  gap-named pattern). Supersedes PDR-0032's "no `~/tenter` repo until admitted" line.
+- **Two prove-the-need spikes (PDR-0034):** drift-check slice = a **Plainweave addon** (`plainweave plan-check`,
+  reuses the adapter + ADR-029 drift; `~/plainweave` branch `spike/tenter-plan-check`). The **full quad operating
+  picture = standalone member-shaped** — a read-only cross-member sink surfacing STALE-DONE / ORPHAN / UNTRACKED /
+  DANGLING-REQ, demonstrated **live across two repos** (`~/tenter` branch `spike/operating-picture`).
+- **🚩 GO/NO-GO DEFERRED (owner).** Owner leans toward the full capability but is reflecting: the **federation
+  fabric is volatile** (Plainweave still maturing; "pieces land in different peers at different times"), so a
+  four-member sink now risks more wobble. **PM owes the answer next session** (the headline item below).
+- Grep-test refinement (owner): the "agents prefer it unprompted" bar is for instinctive substrate; a skill-gated
+  manual tool (a planning aid) is judged "valuable when invoked," carried by a planning skill.
+
+## Website — Plainweave site + Charter→Plainweave + suite-wide disclaimer SHIPPED (committed, NOT deployed) — PDR-0033
+Built `~/plainweave/site` (Astro, green); swapped **Charter→Plainweave** in the shared `@weft/site-kit` registry
+(PDR-0030 web tail); added a member-specific **deconfliction-not-security disclaimer to all 7 sites** (incl. hub).
+Lacuna's stale Charter identity fixed; Tabard de-named from the Plainweave page (owner naming call). Committed across
+8 repos, **none deployed**. 🚩 Deploy gated: publish Plainweave first; the new gated `plainweave.foundryside.dev`
+links would ship broken; push weft first; **5 of 8 site commits are on non-`main` branches** (must reach main first).
 
 ## Plainweave fold-in — ADMITTED this session (reframed/renamed Charter)
 **Plainweave = the code-grounded-intent / requirements member, reframed code-up ("permission for code to
@@ -164,33 +175,29 @@ triaged into the tracker (label `warpline-handover`); nothing punted invisibly:
   plan + blast-radius map before any contract moves (federation change discipline).
 - C-9 `weft-a2f4cf95c7` stale codex claim (release/reclaim).
 
-## This checkpoint did (2026-06-26)
-- **DECIDED + recorded the Tenter (renamed Shuttle) ruling — PDR-0032:** distinct member candidate; the
-  Filigree+Plainweave+Tenter **advisory operating picture of a change** (NOT an orchestrator); plan→Plainweave
-  links are references/proposals, never mints; dependency-sink + enrich-only carried. **Lined up as the next
-  federation bid** (roadmap *Next*), gated on prove-the-need + §7 admission.
-- **COMMITTED** the long-stranded product workspace (two sessions' worth) + the Plainweave **member docs**
-  (`members/plainweave.md`, `charter.md` stub, `warpline.md` snapshot) + PDR-0030/0031/0032 + the 06-25
-  realization doc. First commit of this state — HEAD was stuck at `7503a44` across the 06-24 and 06-25 sessions.
-- **FOLDED into** the parallel 06-25 federation-sweep brief (did not clobber it); refreshed the stamp to 06-26
-  HEADs (loomweave/legis/plainweave moved again mid-checkpoint).
-- **DEFERRED the fused canon** (`doctrine.md`, `registries/*`): the Plainweave rename is line-fused with the
-  owner-gated Tabard edits on the member-count lines — de-fusing safely (no `git add -p`, no stash here) is a
-  deliberate act, not a checkpoint side-effect. Held as the top follow-up.
-- **Surfaced escalations:** the Plainweave-PyPI possible gate-breach (new) + the standing announcement / Tabard /
-  publish gates.
+## This checkpoint did (2026-06-26 eve)
+- **Shipped the website program (PDR-0033):** built Plainweave's site, Charter→Plainweave across the shared
+  site-kit, and the deconfliction-not-security disclaimer on all 7 sites + hub. Committed across 8 repos; **not
+  deployed** (owner-gated). Caught + fixed a hub-disclaimer overclaim (claimed Legis "only records" — it can gate).
+- **Initiated Tenter (`~/tenter` scaffold) + ran prove-the-need (PDR-0034):** drift-check = a Plainweave addon;
+  the **full quad operating picture = standalone member-shaped** (live cross-repo demo, surfacing the change-gaps).
+  Recorded the grep-test refinement (substrate→prefer-unprompted vs. skill-gated→valuable-when-invoked).
+- **Recorded the owner's DEFERRAL** of the full-Tenter go/no-go — federation-fabric volatility is the gating
+  concern — and teed the analysis up as next session's headline.
+- The Plainweave doctrine/registries de-fusion + the held Tabard canon **remain held** (untouched this session).
 
 ## Next session, start here
-1. **De-fuse + commit the Plainweave doctrine/registries rename** WITHOUT the held Tabard edits — the member-count
-   lines in `doctrine.md` §1, `registries/claims.md` C-1, `registries/terminology.md` name BOTH Plainweave
-   (admitted) and Tabard (held) in one sentence, so a clean commit needs those ~3 lines rewritten to the
-   Plainweave-only state via `git apply --cached` (working tree keeps the held Tabard delta). Verify
-   `git diff --cached -- doctrine.md registries members/tabard.md | grep -i tabard` is empty before committing.
-2. **Owner escalations (below):** Plainweave-PyPI publish (verify + authorize/yank); the public announcement;
-   Tabard §7 admission (PDR-0028, held); Plainweave residual gates (remote / name).
-3. **Pick the active Now bet** (DECIDE) — seam-health `weft-b6effe30f9` (front-runner; already under bottom-up
-   construction `weft-b5dde278b9`). Then `/write-prd` + `/axiom-program-management`.
-4. **Schedule Tenter prove-the-need** — point a read-only staging surface at one real change (elspeth plan
-   baseline) before any §7 admission.
-5. **Confirm loomweave's two parked federation tickets** carry dated blast-radius maps; propagation tail of
-   PDR-0030 (federation-map.md, SHIPPING.md, web/ IA, conflict-register).
+1. **🚩 COME BACK TO THE OWNER on the headline question (PDR-0034):** *go for the full Tenter now, or stabilize the
+   fabric (esp. Plainweave) first?* Owner leans yes on the full capability but flagged the fabric is wobbly —
+   "pieces land in different peers at different times." **Bring an analysis + a concrete stability proxy** (e.g.
+   "Plainweave's cross-member seams stop moving / its adapters reach shipped-not-folding-in") as the start-gate.
+   This is the one the owner explicitly asked PM to answer.
+2. **De-fuse + commit the Plainweave doctrine/registries rename** WITHOUT the held Tabard edits — member-count
+   lines fuse both; rewrite the ~3 lines Plainweave-only via `git apply --cached`; verify
+   `git diff --cached -- doctrine.md registries members/tabard.md | grep -i tabard` is empty.
+3. **Owner escalations:** website **deploy** (publish Plainweave + get the 5 non-main site commits to main);
+   Plainweave-PyPI (ratify/yank); public announcement; Tabard §7 admission (PDR-0028) + public naming.
+4. **Pick the active Now bet** (DECIDE) — seam-health `weft-b6effe30f9` (front-runner; bottom-up build
+   `weft-b5dde278b9`). Then `/write-prd` + `/axiom-program-management`.
+5. **Confirm loomweave's two parked federation tickets** carry dated blast-radius maps; PDR-0030 propagation tail
+   (federation-map.md, SHIPPING.md, conflict-register).
