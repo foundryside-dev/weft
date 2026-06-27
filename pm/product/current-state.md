@@ -54,8 +54,13 @@ guardrail stays 0 + the FILL-NOW queue draws down (metrics.md).
 - **🚩 Merge gate on the two first-fills** — both implemented + contract-tested + gate-green, but **live
   cross-member validation is pending and can't be done from the hub** (MCP misroutes). Needs a loomweave-rooted
   + a legis-rooted session (`weft-6fc4a166dc`, `weft-a0d04046f5`). Merge now + live-validate fast-follow, or hold?
-- **🚩 Website deploy** — committed not deployed; **now unblocked** by the publish ratification (publish-Plainweave-first
-  precondition met). 5 of 8 site commits still on non-`main` branches.
+- **✅ Website deploy — DONE / verified LIVE 2026-06-28.** The "SHIPPED-not-deployed" framing (PDR-0033) was
+  STALE: all 8 repos are PUBLIC, Pages = GitHub Actions, DNS CNAMEs set, last deploy workflow green on `main`
+  (06-17→06-26), and **all 8 subdomains serve HTTP 200** (`weft/loomweave/filigree/wardline/legis/warpline/
+  plainweave/lacuna.foundryside.dev`) with the deconfliction-not-security disclaimer. Only **optional cosmetic
+  polish** remains: 5 single-file `index.astro` lifts (sharper disclaimer wording + `--member-charter`→`-plainweave`
+  token) sit on feature branches — **cherry-pick the site-only commit, NEVER merge the parent branch** (legis's lift
+  is buried under a 28-commit 1.3.0 release; wardline's under the ~100-commit seam-conformance program). Not blocking.
 - **🚩 Canon de-fuse + `members/plainweave.md` "not published" correction** — now AUTHORIZED (PDR-0036) but
   **held** with the Tabard canon (doctrine/registries fuse both; de-fuse the ~3 member-count lines Plainweave-only
   via `git apply --cached`; verify `git diff --cached -- doctrine.md registries members/tabard.md | grep -i tabard` empty).
@@ -70,4 +75,4 @@ guardrail stays 0 + the FILL-NOW queue draws down (metrics.md).
 3. **Bid 2:** define the Wardline `scan_manifest` contract `weft-9a35aa00e7` (hub-bless before build) → peer-facts.
 4. **Close the seam-conformance reconciliation:** re-home the seam-index + dissolve the wardline self-steward role
    `weft-dbaada5883`.
-5. **Owner escalations** (above): announcement; website deploy; canon de-fuse; GS-7 flip; Tabard §7.
+5. **Owner escalations** (above): canon de-fuse; GS-7 flip; Tabard §7. (announcement = DONE 06-28; website deploy = LIVE 06-28 — both closed.) Optional: the 5 cosmetic site `index.astro` lifts (cherry-pick-only).
