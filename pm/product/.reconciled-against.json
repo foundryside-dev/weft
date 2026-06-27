@@ -3,40 +3,34 @@
     "loomweave": "edf8f65",
     "filigree": "f59e423",
     "wardline": "fcbd1ee9",
-    "legis": "79b4008",
+    "legis": "395d7fc",
     "warpline": "02aa7f0",
-    "plainweave": "92ec70a",
+    "plainweave": "de13416",
     "tabard": "2108cf1"
   },
   "in_flight_branches": {
-    "loomweave": "main",
-    "filigree": "feat/weft-suppression-conformance",
-    "wardline": "release/consolidation-2026-06-26",
-    "warpline": "plan/verification-freshness (Rung 2)",
-    "legis": "main",
-    "plainweave": "spike/tenter-plan-check (Tenter drift-check addon spike; main advanced to 92ec70a)"
+    "loomweave": "feat/warpline-churn-consumer (6a4f567 — Bid-1 first fill, NOT merged, NOT pushed)",
+    "filigree": "feat/weft-suppression-conformance (4db2dbc — consumer conformance oracles)",
+    "wardline": "release/consolidation-2026-06-26 (c661286f — merged feat/weft-seam-conformance)",
+    "legis": "feat/plainweave-preflight-consumer (ee043c9 — Bid-2 first fill, NOT merged, NOT pushed)",
+    "warpline": "plan/verification-freshness (7fbefb4 — Rung 2)",
+    "plainweave": "main (de13416)",
+    "tabard": "main (2108cf1, static)"
   },
   "main_versions": {
     "loomweave": "1.3.1 + Rust-plugin work",
     "filigree": "3.1.0",
     "wardline": "1.0.7",
-    "legis": "1.2.0",
+    "legis": "1.3.0 (moved 79b4008->6d6fa3c->395d7fc this session; warpline-preflight MCP rewire)",
     "warpline": "1.2.0",
-    "plainweave": "1.0.0 (CONFIRMED live on public PyPI — ESCALATED, publish was owner-gated)",
+    "plainweave": "1.0.0 (RATIFIED on public PyPI — PDR-0036; main moved 92ec70a->de13416)",
     "tabard": "0.0.1a0"
   },
-  "installed_versions": {
-    "loomweave": "1.3.1",
-    "filigree": "3.1.0",
-    "wardline": "1.0.7",
-    "legis": "1.1.1",
-    "warpline": "1.2.0",
-    "plainweave": "0.0.1"
-  },
   "version_notes": {
-    "site_commits": "loomweave/legis mains advanced partly from this session's website-disclaimer site commits (they were on main); filigree/wardline/warpline/lacuna site commits landed on non-main branches; plainweave site on release/1.1.0.",
-    "trailing": "members continue shipping ~daily; mains moved again at checkpoint — RESUME may deep-diff loomweave edf8f65 / legis 79b4008 / plainweave 92ec70a."
+    "session_moves": "legis main moved TWICE and plainweave main ONCE during the 06-27/28 session — the daily-ship fabric wobble PDR-0035 is stabilizing. RESUME may deep-diff legis 395d7fc / plainweave de13416.",
+    "unmerged_fills": "two Bid first-fills sit on member branches awaiting live cross-member validation (loomweave-rooted / legis-rooted) before merge — weft-6fc4a166dc, weft-a0d04046f5.",
+    "installed": "member installs NOT re-checked this session; trust main_versions over a stale local shim."
   },
-  "hub_head": "8564fdc (pre-checkpoint HEAD; this product: commit lands on top)",
-  "reconciled_at": "2026-06-26 (eve)"
+  "hub_head": "9bb81b8 (pre-checkpoint HEAD; this checkpoint commit lands on top)",
+  "reconciled_at": "2026-06-28"
 }

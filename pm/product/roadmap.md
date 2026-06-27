@@ -1,4 +1,4 @@
-# Roadmap — Weft Federation            Updated: 2026-06-26 (PDR-0034 Tenter prove-the-need: full-capability member-shaped, go/no-go deferred on fabric stability; PDR-0033 website program; PDR-0032 Tenter lined up as the next federation bid; prior: PDR-0025 temporal-correlation contract; PDR-0026 Warpline joins the cutover; PDR-0027 decent-L1-on-gold-contracts; PDR-0028 Tabard *who*-coordinate — gap-named, home provisional)
+# Roadmap — Weft Federation            Updated: 2026-06-28 (PDR-0035 fabric-first Now = fill missed stitches + stabilize Plainweave landing, resolves PDR-0034 toward stabilize-first; PDR-0036 ratify Plainweave PyPI publish + name; PDR-0037 legis drops unsanctioned warpline reverify; PDR-0038 bless seam-conformance program + hub reclaims stewardship; prior: PDR-0034 Tenter prove-the-need deferred; PDR-0033 website; PDR-0032 Tenter bid; PDR-0027 decent-L1-on-gold-contracts)
 
 > Sequencing, WSJF / cost-of-delay, and dated forecasts are produced by
 > /axiom-program-management. This file records bets as INTENT, not a delivery
@@ -9,10 +9,14 @@
 > duplicated here.
 
 ## Now  (committed, in-flight)
-> **STATUS 2026-06-26:** the launch Now bet **SHIPPED 2026-06-17** (cutover epic `weft-4b2f948f70` closed;
-> all five on `main` + PyPI). The active Now is being re-chosen — front-runner **seam-health**
-> `weft-b6effe30f9`, already under bottom-up construction member-side (filigree/wardline/legis/warpline
-> conformance branches). See `current-state.md`. The launch entry below is retained as shipped-intent context.
+> **STATUS 2026-06-28:** the launch Now bet **SHIPPED 2026-06-17** (cutover epic `weft-4b2f948f70` closed;
+> all five on `main` + PyPI). The active Now is now **CHOSEN — fabric-first (PDR-0035):** *(1) fill the
+> missed stitches* (deferred-for-launch functionality) *+ (2) stabilize Plainweave's landing in sibling APIs*
+> (build real landings). Realized through the **seam-health epic** `weft-b6effe30f9` + the FILL-NOW queue
+> (Loomweave churn `weft-670ec2fe90`, Legis←Plainweave `weft-46b2f002fa`, Warpline→Legis governance
+> `weft-af0787892c`, Wardline affected-scan tail `weft-843fb82b57`, the seam-conformance bless
+> `weft-b5dde278b9`). This is the stabilize-the-fabric-first branch of PDR-0034 — **full-Tenter stays
+> deferred.** See `current-state.md`. The launch entry below is retained as shipped-intent context.
 
 - **Ship a decent L1 — the coordinated FIVE-member clean-break launch (PDR-0026/0027).**
   L1 is the foundation, not the finish line: ship it *decent*, not perfect, then take our
