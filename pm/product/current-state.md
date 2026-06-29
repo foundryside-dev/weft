@@ -81,6 +81,7 @@ load-bearing deps across all 7 members**) + the FILL-NOW queue draws down.
 > mine to land: legis #21 (release/1.3.0) + #22 (policy-boundary fix); plainweave #4 (release/1.2.0);
 > warpline #2 (verification-freshness) + #3 (release/1.2.0); wardline has a flood of automated
 > Sentinel/Bolt bot PRs (#39–#77) — triage-or-ignore, not hub work.
+
 1. **Bless `scan_manifest`** `weft-9a35aa00e7` using the audit's resolution path (lift wardline
    `scan_scope` from the signed legis artifact into a standalone manifest + alias field names) →
    unblocks plainweave peer-facts.
