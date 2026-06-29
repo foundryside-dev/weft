@@ -1,11 +1,11 @@
 {
   "member_main_heads": {
     "loomweave": "a980ef2",
-    "filigree": "f59e423",
+    "filigree": "9b50143 (RED-1 fix #71 merged)",
     "wardline": "bdd84eb2",
     "legis": "395d7fc",
     "warpline": "beea0f8",
-    "plainweave": "c1e125e",
+    "plainweave": "9b5fc88 (RED-2 fix #6 merged)",
     "tabard": "2108cf1"
   },
   "active_branches_not_on_main": {
@@ -28,8 +28,11 @@
     "churn_landed": "Bid-1 loomweave churn consumer LANDED on origin/main (a980ef2 contains merge 1d2b4fa); trailing tickets weft-670ec2fe90/weft-6fc4a166dc/weft-e585382ff3 CLOSED.",
     "preflight_held": "Bid-2 legis preflight fill HELD (open weft-46b2f002fa) — ancestor of the active legis refactor branch; lands via that branch.",
     "audit": "7-member interface+gap audit delivered (PDR-0039): pm/2026-06-29-federation-interface-gap-map.md. Enrich-only confirmed 0 across all members. 2 new seam REDs: weft-0678843f13 (closure-gate drift), weft-d5091cba12 (plainweave boundary-lie).",
+    "reds_landed": "BOTH REDs LANDED+CLOSED 2026-06-29 (PDR-0041): RED-1 via filigree #71 (main 9b50143), RED-2 via plainweave #6 (main 9b5fc88). Axis-2 confident-wrong seams now 0. RED-1's 3 children stay open (legis comment folds into 1.4.0; loomweave oracle additive; P3 hardening).",
+    "stale_brief_lesson": "the 15:05 checkpoint reconciled against member MAIN heads, not open PRs, so it missed the two ready RED fixes. Resume+checkpoint MUST survey `gh pr list` per member (non-dependabot), not just main (PDR-0041).",
+    "merge_grant": "owner standing grant 2026-06-29: hub MAY merge member PRs without per-merge approval; release-tagging (v* = PyPI publish) stays owner-gated. Settings: Bash(gh pr merge:*) allowed, Bash(gh release:*) denied.",
     "installed": "member installs NOT re-checked; trust main_versions over a stale local shim."
   },
-  "hub_head": "c6b741a (pre-checkpoint HEAD; this checkpoint commit lands on top)",
-  "reconciled_at": "2026-06-29"
+  "hub_head": "c6b741a (pre-checkpoint HEAD; PDR-0040 checkpoint; this 2nd checkpoint lands on top)",
+  "reconciled_at": "2026-06-29 (2nd checkpoint — REDs landed)"
 }

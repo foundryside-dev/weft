@@ -1,4 +1,4 @@
-# Current State — Weft Federation        Checkpoint: 2026-06-29 (Federation interface+gap audit DELIVERED — PDR-0039 two-axis verdict + 2 new seam REDs filed; Bid-1 churn LANDED, Bid-2 legis preflight HELD on concurrent-refactor ownership — PDR-0040)
+# Current State — Weft Federation        Checkpoint: 2026-06-29 (2nd) — BOTH seam REDs LANDED+CLOSED (PDR-0041): RED-1 filigree #71→main 9b50143, RED-2 plainweave #6→main 9b5fc88; axis-2 confident-wrong seams → 0. + owner merge-grant recorded (merge yes / release-tag no) + stale-brief lesson (checkpoints must survey open PRs, not just main). Prior checkpoint: audit PDR-0039 + bid-disposition PDR-0040.
 
 > **Workspace path:** `pm/product/` (NOT `docs/product/` — `docs/` is the gitignored mkdocs
 > build dir). Resume with `/own-product pm/product`.
@@ -8,9 +8,12 @@
 > branches — `main` lags in-flight reshaping:**
 > - tracker: seam-health epic `weft-b6effe30f9` = open/P1 (active-Now umbrella); 2 new RED bugs
 >   filed under it (`weft-0678843f13`, `weft-d5091cba12`); churn fill + 2 trailing tickets CLOSED.
-> - member `main` HEADs (06-29): loomweave `a980ef2` (**churn consumer LANDED — `1d2b4fa` is its
->   ancestor**) · filigree `f59e423` · wardline `bdd84eb2` · legis `395d7fc` · warpline `beea0f8` ·
->   plainweave `c1e125e` · tabard `2108cf1`.
+> - member `main` HEADs (06-29, 2nd): loomweave `a980ef2` (**churn consumer LANDED — `1d2b4fa` is
+>   its ancestor**) · filigree **`9b50143`** (RED-1 #71 merged) · wardline `bdd84eb2` · legis
+>   `395d7fc` · warpline `beea0f8` · plainweave **`9b5fc88`** (RED-2 #6 merged) · tabard `2108cf1`.
+> - **⚠ Reconcile lesson (PDR-0041): survey OPEN PRs per member (`gh pr list`, non-dependabot), not
+>   just `main`.** The prior 15:05 checkpoint missed the two ready RED fixes because they sat in open
+>   PRs while it reconciled against main HEADs only.
 > - **Active branches not on main (concurrent sessions):** filigree `feat/weft-suppression-conformance`;
 >   **wardline `release/consolidation-2026-06-26` (carries the federation-wide `seam_registry.json` +
 >   fail-closed seam-conformance gate — NOT on main)**; legis `refactor/decouple-layering-inversions`
@@ -29,10 +32,13 @@ load-bearing deps across all 7 members**) + the FILL-NOW queue draws down.
 - **Bid-2 legis preflight → HELD (open `weft-46b2f002fa`).** NOT independently merged — it's the
   ancestor of the active `refactor/decouple-layering-inversions` branch; lands via that branch
   (whoever lands it bumps version 1.3.0→1.3.1 + closes). Rationale on the ticket.
-- **2 new seam REDs (from the audit, under seam-health epic):** `weft-0678843f13` closure-gate drift
-  (ownerless — legis+filigree neither compares current-code-vs-attach); `weft-d5091cba12` plainweave
-  authority_boundary lie (advertises local_only, makes live loomweave HTTP call when endpoint set).
-  Both P1, small fixes, functional/honesty (not security).
+- **2 seam REDs → both LANDED+CLOSED (PDR-0041).** `weft-0678843f13` closure-gate drift fixed via
+  filigree #71 → main `9b50143` (filigree owns current-code-vs-attach drift per hub ruling;
+  discriminated-UNKNOWN degrade verified in-code). `weft-d5091cba12` plainweave boundary-lie fixed
+  via plainweave #6 → main `9b5fc88` (read-enrich now resolve_identity_local; non-vacuity verified).
+  **Axis-2 confident-wrong seams now 0.** RED-1 children stay OPEN: `weft-537cd52792` legis comment
+  (FOLD into 1.4.0, not standalone), `weft-dbd0584a4d` loomweave oracle additive, `weft-aee5769607`
+  P3 hardening (loomweave_known_down cascade bound + live e2e seam test).
 - **Bid-2 next:** `scan_manifest` contract `weft-9a35aa00e7` — audit found the RESOLUTION PATH: lift
   wardline's existing `scan_scope` (in the signed legis artifact) into a standalone manifest + alias
   the field names (covered_paths/ruleset_id). Hub-bless before plainweave builds the adapter.
@@ -43,16 +49,20 @@ load-bearing deps across all 7 members**) + the FILL-NOW queue draws down.
   `weft-dbaada5883` — still PRE-MERGE (wardline program on `release/consolidation`, `seam_registry.json`
   NOT on main) → the "on merge, reconcile" trigger has NOT fired; reconciliation still preventable.
 
-## This checkpoint did (2026-06-29)
-- **Ran the 7-member federation interface+gap audit** (PDR-0039; `pm/2026-06-29-federation-interface-gap-map.md`
-  + raw maps in scratchpad) — source-grounded, no-MCP, 2-at-a-time. Verdict: fabric structurally
-  sound + **mostly-honest-now** (06-15 "can't say I don't know" epidemic mostly cured); **two seams
-  still lie** (RED-1/RED-2, filed). Enrich-only confirmed 0.
-- **Disposed both Bid fills** (PDR-0040): churn ACCEPTED+landed (+ 3 tickets closed); legis preflight
-  HELD with rationale (concurrent-refactor ownership — established the principle: hub merges check for
-  concurrent member ownership before landing).
-- Filed RED-1 `weft-0678843f13` + RED-2 `weft-d5091cba12`; refreshed metrics (enrich-only 06-29) +
-  roadmap (Now status).
+## This checkpoint did (2026-06-29, 2nd)
+- **Landed + closed both seam REDs** (PDR-0041). Reconciliation found both already fixed on green,
+  isolated, conflict-free PRs (filigree #71, plainweave #6) opened that morning by a concurrent
+  session. Verified the checks CI can't self-certify (RED-1 discriminated-UNKNOWN degrade path; RED-2
+  non-vacuous local resolution), confirmed release workflows are tag-gated (merge publishes nothing),
+  merged both with owner approval, walked the bugs through their real lifecycle to `closed` with
+  commit anchors. **Axis-2 honesty: 2 confident-wrong seams → 0.**
+- **Recorded the owner merge-grant** (PDR-0041 / auto-memory): hub may merge member PRs without
+  per-merge approval; release-tagging stays owner-gated. Encoded in `.claude/settings.local.json`
+  (`Bash(gh pr merge:*)` allow, `Bash(gh release:*)` deny).
+- **Surfaced the stale-brief root cause** (PDR-0041): the prior checkpoint reconciled against main
+  HEADs, not open PRs → missed the two ready fixes. New rule: resume+checkpoint survey open PRs per
+  member. Refreshed metrics (enrich-only RED row → fixed).
+- (Prior, same day) Ran the 7-member audit (PDR-0039); disposed both Bid fills (PDR-0040).
 
 ## Open questions / escalations (owner-reserved — carried forward, none NEW this session)
 - **🚩 Canon de-fuse + `members/plainweave.md` "not published" correction** — AUTHORIZED (PDR-0036)
@@ -66,14 +76,21 @@ load-bearing deps across all 7 members**) + the FILL-NOW queue draws down.
   index.astro lifts remain, cherry-pick-only).
 
 ## Next session, start here
-1. **Drive down the two seam REDs** (`weft-0678843f13` closure-gate drift, `weft-d5091cba12`
-   plainweave boundary) — small, within-grant member fixes; dispatch to legis/filigree + plainweave.
-2. **Bless `scan_manifest`** `weft-9a35aa00e7` using the audit's resolution path (lift wardline
-   `scan_scope`) → unblocks plainweave peer-facts.
-3. **FILL-NOW remainder:** close `weft-af0787892c` (premise dissolved); `weft-843fb82b57`; execute
-   legis-reverify DROP `weft-5cbe6bc11b`. Promote the latent `filigree.rs` framing bug (loomweave
-   30549a3 follow-up) to a dated ticket.
+> **FIRST: `gh pr list` per member (non-dependabot) — do NOT reconcile against main HEADs alone
+> (PDR-0041 stale-brief lesson).** At 06-29 the other open PRs were concurrent-session work, NOT
+> mine to land: legis #21 (release/1.3.0) + #22 (policy-boundary fix); plainweave #4 (release/1.2.0);
+> warpline #2 (verification-freshness) + #3 (release/1.2.0); wardline has a flood of automated
+> Sentinel/Bolt bot PRs (#39–#77) — triage-or-ignore, not hub work.
+1. **Bless `scan_manifest`** `weft-9a35aa00e7` using the audit's resolution path (lift wardline
+   `scan_scope` from the signed legis artifact into a standalone manifest + alias field names) →
+   unblocks plainweave peer-facts.
+2. **FILL-NOW remainder:** close `weft-af0787892c` (premise dissolved); `weft-843fb82b57`; execute
+   legis-reverify DROP `weft-5cbe6bc11b` (PDR-0037). Promote the latent `filigree.rs` framing bug
+   (loomweave 30549a3 follow-up) to a dated ticket.
+3. **RED-1 children** (now the live seam-health follow-ups): `weft-dbd0584a4d` loomweave oracle
+   additive (ships solo); `weft-aee5769607` P3 hardening; `weft-537cd52792` legis comment — confirm
+   it FOLDS into legis 1.4.0, don't land standalone.
 4. **Confirm Bid-2 preflight landed** on legis main via the refactor branch; if not by next checkpoint,
    escalate (PDR-0040 reversal trigger).
 5. **Re-run/refresh the audit** once wardline seam-conformance + the legis refactor land on main
-   (snapshot was mid-flight). Owner escalations above (canon de-fuse; GS-7; Tabard §7).
+   (snapshot was mid-flight). Owner escalations below (canon de-fuse; GS-7; Tabard §7).
