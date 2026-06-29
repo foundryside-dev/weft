@@ -63,10 +63,11 @@ load-bearing deps across all 7 members**) + the FILL-NOW queue draws down.
   HEADs, not open PRs → missed the two ready fixes. New rule: resume+checkpoint survey open PRs per
   member. Refreshed metrics (enrich-only RED row → fixed).
 - **Commissioned the half-seam build-out** (PDR-0042) on owner directive — umbrella `weft-06ab23e656`
-  + 4 prove-need exploration spikes for the producer-with-no-consumer seams (audit §3).
+  with 4 prove-need exploration spikes for the producer-with-no-consumer seams (audit §3).
 - (Prior, same day) Ran the 7-member audit (PDR-0039); disposed both Bid fills (PDR-0040).
 
 ## Open questions / escalations (owner-reserved — carried forward, none NEW this session)
+
 - **🚩 Canon de-fuse + `members/plainweave.md` "not published" correction** — AUTHORIZED (PDR-0036)
   but HELD with the Tabard canon (doctrine/registries fuse both; de-fuse the ~3 member-count lines
   Plainweave-only via `git apply --cached`; verify `git diff --cached -- doctrine.md registries
@@ -78,6 +79,7 @@ load-bearing deps across all 7 members**) + the FILL-NOW queue draws down.
   index.astro lifts remain, cherry-pick-only).
 
 ## Next session, start here
+
 > **FIRST: `gh pr list` per member (non-dependabot) — do NOT reconcile against main HEADs alone
 > (PDR-0041 stale-brief lesson).** At 06-29 the other open PRs were concurrent-session work, NOT
 > mine to land: legis #21 (release/1.3.0) + #22 (policy-boundary fix); plainweave #4 (release/1.2.0);
