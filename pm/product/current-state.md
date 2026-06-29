@@ -62,6 +62,8 @@ load-bearing deps across all 7 members**) + the FILL-NOW queue draws down.
 - **Surfaced the stale-brief root cause** (PDR-0041): the prior checkpoint reconciled against main
   HEADs, not open PRs → missed the two ready fixes. New rule: resume+checkpoint survey open PRs per
   member. Refreshed metrics (enrich-only RED row → fixed).
+- **Commissioned the half-seam build-out** (PDR-0042) on owner directive — umbrella `weft-06ab23e656`
+  + 4 prove-need exploration spikes for the producer-with-no-consumer seams (audit §3).
 - (Prior, same day) Ran the 7-member audit (PDR-0039); disposed both Bid fills (PDR-0040).
 
 ## Open questions / escalations (owner-reserved — carried forward, none NEW this session)
@@ -93,5 +95,12 @@ load-bearing deps across all 7 members**) + the FILL-NOW queue draws down.
    it FOLDS into legis 1.4.0, don't land standalone.
 4. **Confirm Bid-2 preflight landed** on legis main via the refactor branch; if not by next checkpoint,
    escalate (PDR-0040 reversal trigger).
-5. **Re-run/refresh the audit** once wardline seam-conformance + the legis refactor land on main
+5. **Build-out exploration: the 4 half-seams** (umbrella `weft-06ab23e656`, PDR-0042) — producer-with-
+   no-consumer spikes: `weft-88a9559a0f` loomweave lineage, `weft-fa5b23e8c9` callers/callees (→FD-1),
+   `weft-61c55deab9` plainweave wardline_peer_facts, `weft-0718035e5e` requirements_enrichment→warpline.
+   Each: prove-need → build / terminal-by-design / park. P2 (do NOT displace the P1 fabric-first path).
+6. **Re-run/refresh the audit** once wardline seam-conformance + the legis refactor land on main
    (snapshot was mid-flight). Owner escalations below (canon de-fuse; GS-7; Tabard §7).
+   - **⚠ Doc-only gaps (offered-to-file, not yet ticketed — don't invisibly punt, PDR-0042):**
+     AMBER-3 (wardline file-artifact bare fingerprint → plainweave silent join-miss) + AMBER-8
+     (filigree hard-blocks on loomweave registry for scan-ingest — the enrich-only guardrail's watch).
