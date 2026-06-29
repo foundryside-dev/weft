@@ -1,4 +1,4 @@
-# Roadmap — Weft Federation            Updated: 2026-06-28 (PDR-0035 fabric-first Now = fill missed stitches + stabilize Plainweave landing, resolves PDR-0034 toward stabilize-first; PDR-0036 ratify Plainweave PyPI publish + name; PDR-0037 legis drops unsanctioned warpline reverify; PDR-0038 bless seam-conformance program + hub reclaims stewardship; prior: PDR-0034 Tenter prove-the-need deferred; PDR-0033 website; PDR-0032 Tenter bid; PDR-0027 decent-L1-on-gold-contracts)
+# Roadmap — Weft Federation            Updated: 2026-06-29 (PDR-0039 federation interface+gap audit — two-axis verdict, enrich-only confirmed 0 across 7 members, 2 new seam REDs filed; PDR-0040 bid-fill disposition — churn LANDED, legis preflight HELD on concurrent-refactor ownership; prior: PDR-0035 fabric-first Now; PDR-0036 ratify Plainweave PyPI; PDR-0037 legis drops warpline reverify; PDR-0038 bless seam-conformance + hub reclaims stewardship; PDR-0034 Tenter deferred; PDR-0033 website; PDR-0032 Tenter bid; PDR-0027 decent-L1-on-gold-contracts)
 
 > Sequencing, WSJF / cost-of-delay, and dated forecasts are produced by
 > /axiom-program-management. This file records bets as INTENT, not a delivery
@@ -17,6 +17,16 @@
 > `weft-af0787892c`, Wardline affected-scan tail `weft-843fb82b57`, the seam-conformance bless
 > `weft-b5dde278b9`). This is the stabilize-the-fabric-first branch of PDR-0034 — **full-Tenter stays
 > deferred.** See `current-state.md`. The launch entry below is retained as shipped-intent context.
+>
+> **UPDATE 2026-06-29 (PDR-0039/0040):** Bid-1 Loomweave churn fill **LANDED** on origin/main
+> (`weft-670ec2fe90` + 2 trailing tickets closed). Bid-2 Legis preflight fill **HELD** un-merged —
+> it's the ancestor of an active concurrent legis refactor branch; lands via that branch
+> (`weft-46b2f002fa` open w/ rationale). Ran the **7-member interface+gap audit**
+> (`pm/2026-06-29-federation-interface-gap-map.md`): verdict = fabric structurally sound +
+> mostly-honest-now, **two seams still lie** → filed RED-1 `weft-0678843f13` (closure-gate drift)
+> + RED-2 `weft-d5091cba12` (plainweave boundary-lie) under the seam-health epic. `scan_manifest`
+> (`weft-9a35aa00e7`) now has a resolution path (lift wardline `scan_scope`). FILL-NOW remainder
+> (`weft-af0787892c`, `weft-843fb82b57`, legis-reverify DROP) still teed-up, un-started.
 
 - **Ship a decent L1 — the coordinated FIVE-member clean-break launch (PDR-0026/0027).**
   L1 is the foundation, not the finish line: ship it *decent*, not perfect, then take our

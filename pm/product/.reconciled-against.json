@@ -1,36 +1,35 @@
 {
   "member_main_heads": {
-    "loomweave": "edf8f65",
+    "loomweave": "a980ef2",
     "filigree": "f59e423",
-    "wardline": "fcbd1ee9",
+    "wardline": "bdd84eb2",
     "legis": "395d7fc",
-    "warpline": "02aa7f0",
-    "plainweave": "de13416",
+    "warpline": "beea0f8",
+    "plainweave": "c1e125e",
     "tabard": "2108cf1"
   },
-  "in_flight_branches": {
-    "loomweave": "feat/warpline-churn-consumer (6a4f567 — Bid-1 first fill, NOT merged, NOT pushed)",
-    "filigree": "feat/weft-suppression-conformance (4db2dbc — consumer conformance oracles)",
-    "wardline": "release/consolidation-2026-06-26 (c661286f — merged feat/weft-seam-conformance)",
-    "legis": "feat/plainweave-preflight-consumer (ee043c9 — Bid-2 first fill, NOT merged, NOT pushed)",
-    "warpline": "plan/verification-freshness (7fbefb4 — Rung 2)",
-    "plainweave": "main (de13416)",
-    "tabard": "main (2108cf1, static)"
+  "active_branches_not_on_main": {
+    "filigree": "feat/weft-suppression-conformance (consumer suppression-conformance oracle)",
+    "wardline": "release/consolidation-2026-06-26 (federation-wide seam_registry.json + fail-closed seam-conformance gate — NOT on main)",
+    "legis": "refactor/decouple-layering-inversions (mid-refactor; CARRIES the Bid-2 plainweave-preflight fill as its ancestor — feat/plainweave-preflight-consumer)",
+    "warpline": "release/1.2.0"
   },
   "main_versions": {
-    "loomweave": "1.3.1 + Rust-plugin work",
-    "filigree": "3.1.0",
+    "loomweave": "1.3.1 (churn consumer landed via a980ef2)",
+    "filigree": "3.1.0 (schema v29)",
     "wardline": "1.0.7",
-    "legis": "1.3.0 (moved 79b4008->6d6fa3c->395d7fc this session; warpline-preflight MCP rewire)",
+    "legis": "1.3.0 (preflight consumer NOT yet on main — on the refactor branch)",
     "warpline": "1.2.0",
-    "plainweave": "1.0.0 (RATIFIED on public PyPI — PDR-0036; main moved 92ec70a->de13416)",
-    "tabard": "0.0.1a0"
+    "plainweave": "1.1.0 (src _version.py; commit/PDR call it the '1.2 line' — version-truth gotcha)",
+    "tabard": "0.0.1a0 (name-reservation pre-alpha — nothing wired)"
   },
   "version_notes": {
-    "session_moves": "legis main moved TWICE and plainweave main ONCE during the 06-27/28 session — the daily-ship fabric wobble PDR-0035 is stabilizing. RESUME may deep-diff legis 395d7fc / plainweave de13416.",
-    "unmerged_fills": "two Bid first-fills sit on member branches awaiting live cross-member validation (loomweave-rooted / legis-rooted) before merge — weft-6fc4a166dc, weft-a0d04046f5.",
-    "installed": "member installs NOT re-checked this session; trust main_versions over a stale local shim."
+    "concurrency": "4 of 7 members on active feature/release branches as of 06-29; loomweave took PR #79 concurrently DURING the audit. I am not the only actor in these repos — hub merges must check for concurrent member ownership before landing (PDR-0040).",
+    "churn_landed": "Bid-1 loomweave churn consumer LANDED on origin/main (a980ef2 contains merge 1d2b4fa); trailing tickets weft-670ec2fe90/weft-6fc4a166dc/weft-e585382ff3 CLOSED.",
+    "preflight_held": "Bid-2 legis preflight fill HELD (open weft-46b2f002fa) — ancestor of the active legis refactor branch; lands via that branch.",
+    "audit": "7-member interface+gap audit delivered (PDR-0039): pm/2026-06-29-federation-interface-gap-map.md. Enrich-only confirmed 0 across all members. 2 new seam REDs: weft-0678843f13 (closure-gate drift), weft-d5091cba12 (plainweave boundary-lie).",
+    "installed": "member installs NOT re-checked; trust main_versions over a stale local shim."
   },
-  "hub_head": "9bb81b8 (pre-checkpoint HEAD; this checkpoint commit lands on top)",
-  "reconciled_at": "2026-06-28"
+  "hub_head": "c6b741a (pre-checkpoint HEAD; this checkpoint commit lands on top)",
+  "reconciled_at": "2026-06-29"
 }
