@@ -59,7 +59,7 @@
       "blessing": ["PDR-0037 (reverify_worklist consumption ruled OUT — legis relies on impact_radius alone)", "PDR-0045 (legis conforms DOWN to warpline's frozen MCP envelope — consume data.affected, verify meta.local_only per GV-LG-3)"],
       "status": "gap-tracked",
       "authoritative": "pm/2026-06-13-warpline-interface-lock.md §4A/GV-LG-3 + legis src/legis/warpline_preflight/client.py",
-      "note": "The two cross-sibling RULINGS here (reverify-out, conforms-down) are HUB calls (PDR-0037/0045), no longer wardline steward decisions. The former 'false freeze' VERDICT is RESOLVED (verified 2026-07-01): legis 1.4.0 ships WarplineMcpClient, HttpWarplineClient gone from src. Residual legis consumer-oracle re-freeze is a distributed legis-CI task (weft-a1b tracked); reverify code-drop is weft-5cbe6bc11b."
+      "note": "The two cross-sibling RULINGS here (reverify-out, conforms-down) are HUB calls (PDR-0037/0045), no longer wardline steward decisions. The former 'false freeze' VERDICT is RESOLVED (verified 2026-07-01): legis 1.4.0 ships WarplineMcpClient, HttpWarplineClient gone from src. Residual legis consumer-oracle re-freeze is a distributed legis-CI task (weft-51699a641c); reverify code-drop is weft-5cbe6bc11b."
     },
     {
       "id": "warpline-reverify-worklist",

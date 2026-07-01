@@ -4,7 +4,7 @@
 - **Status:** **accepted** (PM hub-governance, within grant — closes conditions PDR-0038 named; zero owner-reserved acts)
 - **Class:** governance reconciliation (seam stewardship re-home)
 - **Bet/Now:** fabric-first (PDR-0035) — the seams are the product (PDR-0023)
-- **Tracking:** `weft-dbaada5883` (reclaim; conditions 1–2), `weft-b5dde278b9` (the blessed program). Closes PDR-0038 reconciliation conditions **1, 2, and 3**.
+- **Tracking:** `weft-dbaada5883` (reclaim; conditions 1–2), `weft-b5dde278b9` (the blessed program). Closes PDR-0038 condition **3** outright; conditions **1–2** are done **hub-half** (canon + role dissolution recorded here) with the **wardline-half tracked** (`weft-83c25d96e3`) — `weft-dbaada5883` stays in_progress until it lands.
 
 ## Context
 
@@ -112,7 +112,7 @@ distributed pattern), never a hub-side lint.
   pointer; corrected the stale `current-state.md` "pre-merge / trigger not fired" lines.
 
 **Member-repo, under the merge grant — dated ticket, ready to execute (NOT yet done):**
-- **Wardline PR** (`weft-<filed>`): reword the three steward-role sites in
+- **Wardline PR** (`weft-83c25d96e3`): reword the three steward-role sites in
   `seam_registry.json` (rows ~509/512/528) from *"per steward decision 2026-06-26 (weft
   seam steward = wardline)"* → *"per hub ruling PDR-0037 / PDR-0045"*; add a
   mirror-provenance note (`tests/conformance/README.md` or the gate module docstring:
@@ -121,7 +121,7 @@ distributed pattern), never a hub-side lint.
   P0-W2/P8-W2 sync-lint direction in the program plan. Additive/docs-only → ships solo,
   gate-neutral, **no `v*` tag** (the gate is test-only, not in the wheel). Hub reviews +
   merges under the grant.
-- **legis consumer-oracle re-freeze** (`weft-<filed>`): re-freeze legis's warpline
+- **legis consumer-oracle re-freeze** (`weft-51699a641c`): re-freeze legis's warpline
   preflight consumer oracle against warpline's *real* `warpline_impact_radius_get`
   envelope over a shared vendored golden (distributed legis-CI task; the code is already
   resolved, so this is hardening, not a fix).
