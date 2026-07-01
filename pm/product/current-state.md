@@ -1,4 +1,4 @@
-# Current State — Weft Federation        Checkpoint: 2026-06-29 (2nd) — BOTH seam REDs LANDED+CLOSED (PDR-0041): RED-1 filigree #71→main 9b50143, RED-2 plainweave #6→main 9b5fc88; axis-2 confident-wrong seams → 0. + owner merge-grant recorded (merge yes / release-tag no) + stale-brief lesson (checkpoints must survey open PRs, not just main). Prior checkpoint: audit PDR-0039 + bid-disposition PDR-0040.
+# Current State — Weft Federation        Checkpoint: 2026-07-01 — Warpline 5th-producer handover EXECUTED (PDR-0043): glossary-freeze ATTESTED v1; "GS-7 gate" reframed to the DISTRIBUTED reality (warpline self-gates = parity DONE; consumer rechecks legis✅/wardline✅; filigree+loomweave oracle gaps filed weft-87443311a0/weft-7931a32599; NO central flip). Plainweave 1.2.1 shipped the fable-dogfood error-legibility fixes; requirements_enrichment→warpline half-seam BUILT+LIVE (closed). Prior (06-29): both seam REDs landed (PDR-0041); half-seam build-out (PDR-0042); merge-grant.
 
 > **Workspace path:** `pm/product/` (NOT `docs/product/` — `docs/` is the gitignored mkdocs
 > build dir). Resume with `/own-product pm/product`.
@@ -8,9 +8,10 @@
 > branches — `main` lags in-flight reshaping:**
 > - tracker: seam-health epic `weft-b6effe30f9` = open/P1 (active-Now umbrella); 2 new RED bugs
 >   filed under it (`weft-0678843f13`, `weft-d5091cba12`); churn fill + 2 trailing tickets CLOSED.
-> - member `main` HEADs (06-29, 2nd): loomweave `a980ef2` (**churn consumer LANDED — `1d2b4fa` is
->   its ancestor**) · filigree **`9b50143`** (RED-1 #71 merged) · wardline `bdd84eb2` · legis
->   `395d7fc` · warpline `beea0f8` · plainweave **`9b5fc88`** (RED-2 #6 merged) · tabard `2108cf1`.
+> - member `main` HEADs (07-01): loomweave `a980ef2` (churn consumer landed) · filigree `9b50143`
+>   (RED-1) · wardline **`e541ff09`** (release/consolidation merged? — verify seam_registry now on
+>   main) · legis `395d7fc` · warpline **`3768794` = v1.3.0 tag** (5th-producer package + freeze) ·
+>   plainweave **`de70e42` = 1.2.1** (error-legibility say-what-you-know fixes shipped) · tabard `2108cf1`.
 > - **⚠ Reconcile lesson (PDR-0041): survey OPEN PRs per member (`gh pr list`, non-dependabot), not
 >   just `main`.** The prior 15:05 checkpoint missed the two ready RED fixes because they sat in open
 >   PRs while it reconciled against main HEADs only.
@@ -72,7 +73,10 @@ load-bearing deps across all 7 members**) + the FILL-NOW queue draws down.
   but HELD with the Tabard canon (doctrine/registries fuse both; de-fuse the ~3 member-count lines
   Plainweave-only via `git apply --cached`; verify `git diff --cached -- doctrine.md registries
   members/tabard.md | grep -i tabard` empty).
-- **🚩 GS-7 gate flip** `weft-13f84c77c5` — owner runbook act; needs warpline's 1.2.1 fixture patch.
+- **✅ GS-7 / warpline 5th-producer** `weft-13f84c77c5` — EXECUTED 2026-07-01 (PDR-0043): freeze
+  attested v1; warpline self-gates (parity); NO central flip (GS-7 is distributed per-consumer CI).
+  Residual = 2 consumer-oracle gaps (`weft-87443311a0` filigree, `weft-7931a32599` loomweave); ticket
+  stays open until both land. Follow-up: tick warpline's §4 freeze checkboxes.
 - **🚩 Tabard §7 admission** (PDR-0028 proposed) + public naming — held. (Audit: tabard is honest
   name-reservation pre-alpha, nothing wired, nothing depends on it.)
 - **✅ announcement = DONE 06-28; website deploy = LIVE 06-28** (both closed; optional cosmetic

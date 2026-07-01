@@ -2,10 +2,10 @@
   "member_main_heads": {
     "loomweave": "a980ef2",
     "filigree": "9b50143 (RED-1 fix #71 merged)",
-    "wardline": "bdd84eb2",
+    "wardline": "e541ff09 (PR #83 release/consolidation merged — verify seam_registry now on main)",
     "legis": "395d7fc",
-    "warpline": "beea0f8",
-    "plainweave": "9b5fc88 (RED-2 fix #6 merged)",
+    "warpline": "3768794 (v1.3.0 tag — 5th-producer package + glossary-freeze v1)",
+    "plainweave": "de70e42 (1.2.1 — error-legibility say-what-you-know fixes)",
     "tabard": "2108cf1"
   },
   "active_branches_not_on_main": {
