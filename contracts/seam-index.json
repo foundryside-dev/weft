@@ -1,0 +1,175 @@
+{
+  "$comment": "CANONICAL weft seam-index — hub-owned catalog + blessing registry for every cross-member seam in the federation. Source-of-truth doc: contracts-index.md (human twin) + pm/product/decisions/0045-hub-reclaims-seam-index-canon.md (declares this canon). CONTRACT: (1) The hub (~/weft) AUTHORS this file; it is federation canon. (2) wardline's tests/conformance/seam_registry.json is a producer-contributed CONFORMANCE MIRROR, NOT federation canon (PDR-0045). (3) This is a CATALOG + BLESSING registry, NOT a live verdict store: it records which seams EXIST, their contract URI, producer/consumer, and hub BLESSING provenance — it does NOT record per-run conformance VERDICTS (at_bar/gap/peer_conformant). Verdicts stay DISTRIBUTED in each member's own CI (the hub cannot mechanically verify a legis<->loomweave seam it is not party to; PDR-0043 GS-7 is distributed). (4) Like weft-reason-vocab.json: members stay independent repos (no shared runtime dep) and conform by a per-member conformance TEST; a hub bless lives here, never in a member's self-appointed steward decision. (5) NO SCHEMA RESTATEMENT — each row POINTS to the owning member's authoritative doc (that is how the old hub drifted). Adding/blessing a seam is a hub act under 'hub blesses every seam — no bilateral negotiation' (doctrine).",
+  "version": 1,
+  "authority": "weft-hub",
+  "declared_canon_by": "PDR-0045",
+  "conformance_mirror": {
+    "repo": "wardline",
+    "path": "tests/conformance/seam_registry.json",
+    "role": "producer-contributed conformance mirror (runs the CI conformance gate + surfaces findings); NOT federation canon; carries per-seam verdicts + evidence which stay wardline-side. It CITES this index as canon (pull-down direction); the hub never reads the mirror to stay in sync. Any drift-check is a wardline-side source-drift job (the PDR-0043/0044 distributed pattern), never a hub-side lint against the mirror's export.",
+    "status_note": "As of 2026-07-01 the mirror is on wardline main and still carries residual self-appointed 'weft seam steward' prose at seam_registry.json rows ~509/512/528; the wardline PR that rewords it to cite this index + PDR-0045 is tracked (dated, under the merge grant) and is the remaining limb of weft-dbaada5883 condition 2."
+  },
+  "status_values": {
+    "blessed": "hub-blessed cross-member contract (owner gate or PM hub-governance PDR)",
+    "blessed-distributed": "hub-blessed; conformance is verified per-consumer in each member's CI (no central gate)",
+    "launch-frozen": "part of the clean-break launch freeze set (contracts-index.md); frozen at v1, versioned changes only",
+    "gap-tracked": "seam exists / is named but not yet two-sided or a residual is tracked; verdict lives in the parties' CI",
+    "proposed": "catalog placeholder pending a hub bless or the full mirror-reconciliation snapshot"
+  },
+  "seeding_note": "Seeded 2026-07-01 from the hub-blessed contract set (contracts-index.md §0-§10) + the two blesses that were previously homeless in PDR prose (scan_manifest / PDR-0044, warpline glossary-freeze / PDR-0043) + the legis<->warpline preflight ruling row. The FULL reconciliation of the ~33-row wardline mirror into catalog rows is a tracked follow-on — deliberately NOT bulk-imported, to avoid laundering possibly-stale wardline verdicts as fresh hub canon (only CATALOG facts + hub blessings enter here; verdicts never do).",
+  "seams": [
+    {
+      "id": "weft-reason-honesty",
+      "contract_uri": "weft-reason-vocab.v1",
+      "kind": "federation-wide",
+      "producer": "weft-hub",
+      "consumers": ["filigree", "legis", "wardline", "loomweave", "warpline", "plainweave"],
+      "blessing": ["owner-gate 2026-06-15"],
+      "status": "blessed",
+      "authoritative": "contracts/weft-reason-vocab.json + pm/2026-06-15-weft-reason-contract-G1.md"
+    },
+    {
+      "id": "scan-manifest",
+      "contract_uri": "weft.wardline.scan_manifest.v1",
+      "kind": "pairwise",
+      "producer": "wardline",
+      "consumers": ["plainweave (echo-only, advisory)"],
+      "blessing": ["PDR-0044"],
+      "status": "blessed",
+      "authoritative": "pm/product/decisions/0044-bless-wardline-scan-manifest-contract-close-amber2.md (contract spec) + wardline src/wardline/cli/scan.py",
+      "note": "First native row of this index — one of the two blesses that had no hub home before PDR-0045 (the payoff)."
+    },
+    {
+      "id": "warpline-glossary-freeze",
+      "contract_uri": "warpline glossary-freeze v1 (warpline.error.v1, warpline.golden_vectors.v1, warpline.mcp_tool_inventory.v1, the 6 warpline.<contract>.v1 + enrichment reason vocab)",
+      "kind": "federation-wide (5th GS-7 producer)",
+      "producer": "warpline",
+      "consumers": ["legis", "wardline", "filigree", "loomweave (per-consumer CI recheck)"],
+      "blessing": ["PDR-0043"],
+      "status": "blessed-distributed",
+      "authoritative": "pm/product/decisions/0043-warpline-glossary-freeze-attested-and-gs7-is-distributed.md + warpline v1.3.0",
+      "note": "Second native row — the other previously-homeless bless. GS-7 conformance is distributed per-consumer CI; residual oracle gaps tracked (weft-87443311a0 filigree, weft-7931a32599 loomweave)."
+    },
+    {
+      "id": "legis-warpline-preflight",
+      "contract_uri": "warpline.preflight_impact.v1 (advisory; surfaced via warpline_impact_radius_get MCP envelope: data.affected[], data.completeness, data.staleness, meta.local_only)",
+      "kind": "pairwise",
+      "producer": "warpline",
+      "consumers": ["legis (advisory preflight context; NEVER gates governance — interface-lock §4A / GV-LG-1)"],
+      "blessing": ["PDR-0037 (reverify_worklist consumption ruled OUT — legis relies on impact_radius alone)", "PDR-0045 (legis conforms DOWN to warpline's frozen MCP envelope — consume data.affected, verify meta.local_only per GV-LG-3)"],
+      "status": "gap-tracked",
+      "authoritative": "pm/2026-06-13-warpline-interface-lock.md §4A/GV-LG-3 + legis src/legis/warpline_preflight/client.py",
+      "note": "The two cross-sibling RULINGS here (reverify-out, conforms-down) are HUB calls (PDR-0037/0045), no longer wardline steward decisions. The former 'false freeze' VERDICT is RESOLVED (verified 2026-07-01): legis 1.4.0 ships WarplineMcpClient, HttpWarplineClient gone from src. Residual legis consumer-oracle re-freeze is a distributed legis-CI task (weft-a1b tracked); reverify code-drop is weft-5cbe6bc11b."
+    },
+    {
+      "id": "warpline-reverify-worklist",
+      "contract_uri": "warpline.reverify_worklist.v1",
+      "kind": "pairwise (one producer, two consumers)",
+      "producer": "warpline",
+      "consumers": ["filigree (warpline_worklist_ingest)", "wardline (scan --affected delta scope)"],
+      "blessing": ["interface-lock §2A/§3", "PDR-0037 (legis explicitly excluded as a consumer)"],
+      "status": "blessed",
+      "authoritative": "pm/2026-06-13-warpline-interface-lock.md §2A/§3"
+    },
+    {
+      "id": "entity-associations",
+      "contract_uri": "Filigree ADR-029 (GET|POST /api/issue/{id}/entity-associations; GET /api/entity-associations reverse-lookup)",
+      "kind": "pairwise",
+      "producer": "filigree",
+      "consumers": ["loomweave (drift via content_hash_at_attach)"],
+      "blessing": ["launch-freeze"],
+      "status": "launch-frozen",
+      "authoritative": "contracts-index.md §1 + Filigree ADR-029 + Loomweave ADR-029"
+    },
+    {
+      "id": "sei-identity-resolution",
+      "contract_uri": "sei-standard (loomweave:eid: opaque; resolve/resolve_sei/lineage/_capabilities)",
+      "kind": "federation-wide (authority -> all consumers)",
+      "producer": "loomweave",
+      "consumers": ["wardline", "legis", "filigree", "charter"],
+      "blessing": ["launch-freeze"],
+      "status": "launch-frozen",
+      "authoritative": "sei-standard.md + Loomweave ADR-038; fixtures loomweave docs/federation/fixtures/sei-conformance-oracle.json"
+    },
+    {
+      "id": "wardline-taint-fact-store",
+      "contract_uri": "Loomweave ADR-036 (POST /api/wardline/taint-facts; wardline_json blob stored opaque)",
+      "kind": "pairwise",
+      "producer": "wardline",
+      "consumers": ["loomweave"],
+      "blessing": ["launch-freeze", "PDR-0038 (wardline self-authored producer freeze)"],
+      "status": "launch-frozen",
+      "authoritative": "contracts-index.md §3 + Loomweave ADR-036"
+    },
+    {
+      "id": "wardline-findings-to-filigree",
+      "contract_uri": "POST /api/weft/scan-results (native emitter) + suppression_state provenance vocab",
+      "kind": "pairwise",
+      "producer": "wardline",
+      "consumers": ["filigree"],
+      "blessing": ["launch-freeze", "PDR-0038 (suppression-vocab + finding-identity self-authored freezes)"],
+      "status": "launch-frozen",
+      "authoritative": "contracts-index.md §4 + wardline src/wardline/core/filigree_emit.py; suppression-filter vector wardline tests/conformance/filigree_suppression_filter_contract.json"
+    },
+    {
+      "id": "qualname-normalization",
+      "contract_uri": "Loomweave ADR-018 (metadata.wardline.qualname dotted form)",
+      "kind": "pairwise",
+      "producer": "wardline",
+      "consumers": ["loomweave"],
+      "blessing": ["launch-freeze"],
+      "status": "launch-frozen",
+      "authoritative": "contracts-index.md §5 + Loomweave ADR-018 (ADR-049 Rust dialect versions out-of-band, lockstep)"
+    },
+    {
+      "id": "legis-loomweave-governance-and-rename",
+      "contract_uri": "loomweave SEI surface (pull-only) + GET /git/renames provider",
+      "kind": "pairwise (bidirectional roles)",
+      "producer": "loomweave (SEI) / legis (git-rename)",
+      "consumers": ["legis (SEI) / loomweave (git-rename via LegisGitRenameSource)"],
+      "blessing": ["launch-freeze"],
+      "status": "launch-frozen",
+      "authoritative": "contracts-index.md §6 + legis docs/federation/sei-conformance.md"
+    },
+    {
+      "id": "legis-filigree-signoff",
+      "contract_uri": "SEI-keyed sign-off binding (POST /signoff/request, .../bind-issue, .../sign on the entity-association surface)",
+      "kind": "pairwise",
+      "producer": "legis",
+      "consumers": ["filigree (retains issue-lifecycle authority)"],
+      "blessing": ["launch-freeze"],
+      "status": "launch-frozen",
+      "authoritative": "contracts-index.md §7 + legis src/legis/filigree/client.py"
+    },
+    {
+      "id": "legis-wardline-findings-enforcement",
+      "contract_uri": "wardline_scan_artifact.v1 signed artifact (required findings key) + dirty-tree dev-artifact contract",
+      "kind": "pairwise",
+      "producer": "wardline",
+      "consumers": ["legis (2x2 enforcement cells; never re-adjudicates trust)"],
+      "blessing": ["launch-freeze"],
+      "status": "launch-frozen",
+      "authoritative": "contracts-index.md §8 + legis tests/contract/weft/vectors/wardline_scan_artifact.v1.json"
+    },
+    {
+      "id": "charter-preflight-facts",
+      "contract_uri": "weft.charter.preflight_facts.v1 (facts only; legis alone enforces)",
+      "kind": "pairwise",
+      "producer": "charter",
+      "consumers": ["legis (no ingest path shipped)"],
+      "blessing": [],
+      "status": "gap-tracked",
+      "authoritative": "contracts-index.md §9 + Charter ADR-006 (designed, adapter pending — no emitter shipped)"
+    },
+    {
+      "id": "charter-sei-consumer",
+      "contract_uri": "opaque SEI on trace links (charter never mints/parses)",
+      "kind": "pairwise",
+      "producer": "loomweave",
+      "consumers": ["charter"],
+      "blessing": [],
+      "status": "gap-tracked",
+      "authoritative": "contracts-index.md §10 + Charter ADR-005 (designed, adapter pending)"
+    }
+  ]
+}

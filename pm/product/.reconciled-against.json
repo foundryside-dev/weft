@@ -1,38 +1,33 @@
 {
   "member_main_heads": {
-    "loomweave": "a980ef2",
-    "filigree": "9b50143 (RED-1 fix #71 merged)",
-    "wardline": "e541ff09 (PR #83 release/consolidation merged — verify seam_registry now on main)",
-    "legis": "395d7fc",
-    "warpline": "3768794 (v1.3.0 tag — 5th-producer package + glossary-freeze v1)",
-    "plainweave": "de70e42 (1.2.1 — error-legibility say-what-you-know fixes)",
+    "loomweave": "1823911",
+    "filigree": "f59e423",
+    "wardline": "bdd84eb2 (release/consolidation MERGED — seam_registry.json + gate ON main; now a producer-contributed MIRROR per PDR-0045)",
+    "legis": "3055d2c (1.4.0, PR #24 — WarplineMcpClient wired, HttpWarplineClient gone from src; false-freeze RESOLVED)",
+    "warpline": "bed94b4",
+    "plainweave": "de70e42 (1.2.1)",
     "tabard": "2108cf1"
   },
   "active_branches_not_on_main": {
-    "filigree": "feat/weft-suppression-conformance (consumer suppression-conformance oracle)",
-    "wardline": "release/consolidation-2026-06-26 (federation-wide seam_registry.json + fail-closed seam-conformance gate — NOT on main)",
-    "legis": "refactor/decouple-layering-inversions (mid-refactor; CARRIES the Bid-2 plainweave-preflight fill as its ancestor — feat/plainweave-preflight-consumer)",
-    "warpline": "release/1.2.0"
+    "filigree": "feat/weft-suppression-conformance (consumer suppression-conformance oracles)",
+    "note": "wardline release/consolidation-2026-06-26 MERGED (was NOT on main at last checkpoint — now is). legis release/1.4.0 MERGED (3055d2c). Confirm the Bid-2 legis preflight fill rode 1.4.0 to main (was ancestor of refactor/decouple-layering-inversions)."
   },
   "main_versions": {
-    "loomweave": "1.3.1 (churn consumer landed via a980ef2)",
+    "loomweave": "1.3.1",
     "filigree": "3.1.0 (schema v29)",
-    "wardline": "1.0.7",
-    "legis": "1.3.0 (preflight consumer NOT yet on main — on the refactor branch)",
-    "warpline": "1.2.0",
-    "plainweave": "1.1.0 (src _version.py; commit/PDR call it the '1.2 line' — version-truth gotcha)",
-    "tabard": "0.0.1a0 (name-reservation pre-alpha — nothing wired)"
+    "wardline": "1.2.0+ (seam-conformance registry + CI gate now on main)",
+    "legis": "1.4.0 (WarplineMcpClient; warpline-preflight false-freeze resolved)",
+    "warpline": "1.3.0 (v1.3.0 tag — 5th-producer package + glossary-freeze v1)",
+    "plainweave": "1.2.1 (error-legibility fixes)",
+    "tabard": "0.0.1a0 (name-reservation pre-alpha)"
   },
   "version_notes": {
-    "concurrency": "4 of 7 members on active feature/release branches as of 06-29; loomweave took PR #79 concurrently DURING the audit. I am not the only actor in these repos — hub merges must check for concurrent member ownership before landing (PDR-0040).",
-    "churn_landed": "Bid-1 loomweave churn consumer LANDED on origin/main (a980ef2 contains merge 1d2b4fa); trailing tickets weft-670ec2fe90/weft-6fc4a166dc/weft-e585382ff3 CLOSED.",
-    "preflight_held": "Bid-2 legis preflight fill HELD (open weft-46b2f002fa) — ancestor of the active legis refactor branch; lands via that branch.",
-    "audit": "7-member interface+gap audit delivered (PDR-0039): pm/2026-06-29-federation-interface-gap-map.md. Enrich-only confirmed 0 across all members. 2 new seam REDs: weft-0678843f13 (closure-gate drift), weft-d5091cba12 (plainweave boundary-lie).",
-    "reds_landed": "BOTH REDs LANDED+CLOSED 2026-06-29 (PDR-0041): RED-1 via filigree #71 (main 9b50143), RED-2 via plainweave #6 (main 9b5fc88). Axis-2 confident-wrong seams now 0. RED-1's 3 children stay open (legis comment folds into 1.4.0; loomweave oracle additive; P3 hardening).",
-    "stale_brief_lesson": "the 15:05 checkpoint reconciled against member MAIN heads, not open PRs, so it missed the two ready RED fixes. Resume+checkpoint MUST survey `gh pr list` per member (non-dependabot), not just main (PDR-0041).",
-    "merge_grant": "owner standing grant 2026-06-29: hub MAY merge member PRs without per-merge approval; release-tagging (v* = PyPI publish) stays owner-gated. Settings: Bash(gh pr merge:*) allowed, Bash(gh release:*) denied.",
+    "seam_reclaim": "2026-07-01 PDR-0045: hub reclaims the seam-index CANON (contracts/seam-index.json — catalog+blessing, NOT a verdict store; registered in contracts-index.md) + dissolves the wardline self-appointed steward role; 3 cross-sibling rulings re-homed reconciled. weft-dbaada5883 in_progress. Remaining: wardline prose PR weft-83c25d96e3 (dated 07-08, merge-grant, gate-neutral) + legis oracle re-freeze weft-51699a641c (07-15). The ticket's stated 'sync UP + P0-W2/P8-W2 sync-lint' mechanism was CUT — backwards (leaves wardline the author) and never built.",
+    "false_freeze_resolved": "legis 1.4.0 (3055d2c): WarplineMcpClient wired, HttpWarplineClient gone from src — the seam_registry line-528 'false freeze' verdict on legis preflight is RESOLVED (verified 2026-07-01). Closes PDR-0038 condition 3.",
+    "seam_conformance_reconciled": "PDR-0038's 3 reconciliation conditions all addressed by PDR-0045. The blessed conformance MACHINERY is untouched; only the canon HOME + the steward ROLE were corrected. The PDR-0038 reversal trigger did NOT fire because closing the re-home is what keeps the bless intact.",
+    "prior": "07-01 (1st): warpline 5th-producer handover (PDR-0043); scan_manifest BLESSED+CLOSED (PDR-0044). 06-29: both seam REDs landed (PDR-0041); half-seam build-out (PDR-0042); owner merge-grant.",
     "installed": "member installs NOT re-checked; trust main_versions over a stale local shim."
   },
-  "hub_head": "c6b741a (pre-checkpoint HEAD; PDR-0040 checkpoint; this 2nd checkpoint lands on top)",
-  "reconciled_at": "2026-06-29 (2nd checkpoint — REDs landed)"
+  "hub_head": "c4b28d5 (pre-reclaim HEAD; PDR-0044 scan_manifest checkpoint; this reclaim checkpoint lands on top)",
+  "reconciled_at": "2026-07-01 (3rd checkpoint — seam stewardship reclaimed hub-side, PDR-0045)"
 }

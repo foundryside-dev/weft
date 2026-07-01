@@ -8,6 +8,8 @@
 
 **Building a whole member, not one binding?** The [Federation SDK](./federation-sdk.md) is the member-builder's companion to this index — same surfaces, organized by the obligations a new tool must meet to drop in.
 
+**Machine-readable canonical twin.** This markdown is the human index; [contracts/seam-index.json](./contracts/seam-index.json) is its **hub-owned machine-readable catalog + blessing registry** — every cross-member seam, its contract URI, producer/consumer, and hub blessing PDR. It is a **catalog + blessing** registry, **not** a live verdict store: conformance verdicts stay distributed in each member's own CI (PDR-0043). Wardline's `tests/conformance/seam_registry.json` is a producer-contributed **conformance mirror** of it, not federation canon. Declared canon by **PDR-0045** (hub reclaims the seam-index + dissolves the wardline steward role — closing PDR-0038 conditions 1–3).
+
 **Launch freeze set.** The clean-break launch freezes the cross-member contracts
 listed in this index, plus the executable conformance fixtures they point to.
 ADR-049, the Rust qualname dialect shared by Loomweave and Wardline, is
