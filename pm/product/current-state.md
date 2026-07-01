@@ -1,4 +1,4 @@
-# Current State — Weft Federation        Checkpoint: 2026-07-01 — Warpline 5th-producer handover EXECUTED (PDR-0043): glossary-freeze ATTESTED v1; "GS-7 gate" reframed to the DISTRIBUTED reality (warpline self-gates = parity DONE; consumer rechecks legis✅/wardline✅; filigree+loomweave oracle gaps filed weft-87443311a0/weft-7931a32599; NO central flip). Plainweave 1.2.1 shipped the fable-dogfood error-legibility fixes; requirements_enrichment→warpline half-seam BUILT+LIVE (closed). Prior (06-29): both seam REDs landed (PDR-0041); half-seam build-out (PDR-0042); merge-grant.
+# Current State — Weft Federation        Checkpoint: 2026-07-01 — Warpline 5th-producer handover EXECUTED (PDR-0043): glossary-freeze ATTESTED v1; "GS-7 gate" reframed to the DISTRIBUTED reality (warpline self-gates = parity DONE; consumer rechecks legis✅/wardline✅; filigree+loomweave oracle gaps filed weft-87443311a0/weft-7931a32599; NO central flip). Plainweave 1.2.1 shipped the fable-dogfood error-legibility fixes; requirements_enrichment→warpline half-seam BUILT+LIVE (closed). + **scan_manifest seam (AMBER-2) BUILT+RELEASED+BLESSED+CLOSED (PDR-0044)** — the audit's clearest half-seam, done (wardline v1.2.0 ↔ plainweave, live-e2e confirmed). Prior (06-29): both seam REDs landed (PDR-0041); half-seam build-out (PDR-0042); merge-grant.
 
 > **Workspace path:** `pm/product/` (NOT `docs/product/` — `docs/` is the gitignored mkdocs
 > build dir). Resume with `/own-product pm/product`.
@@ -90,9 +90,10 @@ load-bearing deps across all 7 members**) + the FILL-NOW queue draws down.
 > warpline #2 (verification-freshness) + #3 (release/1.2.0); wardline has a flood of automated
 > Sentinel/Bolt bot PRs (#39–#77) — triage-or-ignore, not hub work.
 
-1. **Bless `scan_manifest`** `weft-9a35aa00e7` using the audit's resolution path (lift wardline
-   `scan_scope` from the signed legis artifact into a standalone manifest + alias field names) →
-   unblocks plainweave peer-facts.
+1. ~~**Bless `scan_manifest`** `weft-9a35aa00e7`~~ **DONE 2026-07-01 (PDR-0044).** Built+released
+   both sides (wardline v1.2.0 emits `weft.wardline.scan_manifest.v1` header line; plainweave adapter
+   consumes it), live-e2e confirmed, hub-blessed, ticket CLOSED. Unblocks plainweave wardline-peer-facts
+   (half-seam #3). NB the bless lives in PDR-0044 (no hub seam-index yet — pending `weft-dbaada5883`).
 2. **FILL-NOW remainder:** close `weft-af0787892c` (premise dissolved); `weft-843fb82b57`; execute
    legis-reverify DROP `weft-5cbe6bc11b` (PDR-0037). Promote the latent `filigree.rs` framing bug
    (loomweave 30549a3 follow-up) to a dated ticket.
