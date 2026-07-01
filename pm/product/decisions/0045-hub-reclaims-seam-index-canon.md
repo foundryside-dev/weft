@@ -4,7 +4,7 @@
 - **Status:** **accepted** (PM hub-governance, within grant — closes conditions PDR-0038 named; zero owner-reserved acts)
 - **Class:** governance reconciliation (seam stewardship re-home)
 - **Bet/Now:** fabric-first (PDR-0035) — the seams are the product (PDR-0023)
-- **Tracking:** `weft-dbaada5883` (reclaim; conditions 1–2), `weft-b5dde278b9` (the blessed program). Closes PDR-0038 condition **3** outright; conditions **1–2** are done **hub-half** (canon + role dissolution recorded here) with the **wardline-half tracked** (`weft-83c25d96e3`) — `weft-dbaada5883` stays in_progress until it lands.
+- **Tracking:** `weft-dbaada5883` (reclaim; conditions 1–2), `weft-b5dde278b9` (the blessed program). Closes PDR-0038 condition **3** outright; conditions **1–2** are done **hub-half** (canon + role dissolution recorded here) with the **wardline-half tracked** (`weft-83c25d96e3`). **[LANDED 2026-07-01 — PR #86 merged (`f7fb89e6`); `weft-dbaada5883` CLOSED; see the Update section at the end.]**
 
 ## Context
 
@@ -157,3 +157,14 @@ governance-move-not-machinery shape and caught ruling #2's missing PDR). The des
 agent stalled mid-run; the convergent triple-refutation plus **direct source
 verification** (this session, above) substituted for it. Extends "hub blesses every
 seam" (PDR-0015 pen-moves-to-hub) and PDR-0038.
+
+## Update (2026-07-01 — LANDED, reclaim complete)
+
+Both conditions now fully met. wardline **PR #86 merged** to `origin/main` (`f7fb89e6`)
+under the merge grant — `git grep -i steward` == 0 on wardline main; the three rulings
+cite PDR-0037 / PDR-0045; CI green (lint / tests 3.12+3.13 / mypy / dogfood);
+independently adversarially verified before merge. **`weft-dbaada5883` is CLOSED.** The
+tracking line's "stays in_progress until it lands" and the accept-criteria parentheticals
+("wardline half in the PR" / "pending the wardline PR") are superseded by this update.
+Residual: legis oracle re-freeze `weft-51699a641c` (07-15) re-parented to the seam-health
+epic (distributed hardening; legis 1.4.0 already shipped the code fix).

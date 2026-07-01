@@ -7,7 +7,7 @@
     "repo": "wardline",
     "path": "tests/conformance/seam_registry.json",
     "role": "producer-contributed conformance mirror (runs the CI conformance gate + surfaces findings); NOT federation canon; carries per-seam verdicts + evidence which stay wardline-side. It CITES this index as canon (pull-down direction); the hub never reads the mirror to stay in sync. Any drift-check is a wardline-side source-drift job (the PDR-0043/0044 distributed pattern), never a hub-side lint against the mirror's export.",
-    "status_note": "As of 2026-07-01 the mirror is on wardline main and still carries residual self-appointed 'weft seam steward' prose at seam_registry.json rows ~509/512/528; the wardline PR that rewords it to cite this index + PDR-0045 is tracked (dated, under the merge grant) and is the remaining limb of weft-dbaada5883 condition 2."
+    "status_note": "As of 2026-07-01 the mirror is on wardline main (f7fb89e6, PR #86 merged) and CITES this index + the hub PDRs; the self-appointed 'weft seam steward' prose was removed (git grep -i steward == 0 on wardline main), and the 3 cross-sibling rulings now cite PDR-0037/PDR-0045. weft-dbaada5883 condition 2 is CLOSED; the whole reclaim is complete."
   },
   "status_values": {
     "blessed": "hub-blessed cross-member contract (owner gate or PM hub-governance PDR)",
