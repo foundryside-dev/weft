@@ -5,6 +5,12 @@
 # Astro project (weft.foundryside.dev), whose SOURCE is committed. That project's
 # own build artifacts (site/dist, site/node_modules, site/public/_site-kit) are
 # ignored by site/.gitignore, so we do NOT ignore /site/ at the repo root here.
+#
+# EXCEPT site/vendor/ — a local vendored DUPLICATE of the tracked packages/site-kit
+# (byte-identical src/assets) plus DesignSync working caches (.ds-sync ~85MB). The
+# site build consumes packages/site-kit (its file: dep), never this copy, so it is
+# never committed.
+site/vendor/
 /docs/
 archive/docs/
 archive/site/
