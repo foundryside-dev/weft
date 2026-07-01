@@ -2,7 +2,7 @@
   "member_main_heads": {
     "loomweave": "1823911",
     "filigree": "f59e423",
-    "wardline": "bdd84eb2 (release/consolidation MERGED — seam_registry.json + gate ON main; now a producer-contributed MIRROR per PDR-0045)",
+    "wardline": "f7fb89e6 (PR #86 merged — steward role dissolved; seam_registry.json now CITES hub PDRs + declares itself a mirror; git grep -i steward == 0 on main)",
     "legis": "3055d2c (1.4.0, PR #24 — WarplineMcpClient wired, HttpWarplineClient gone from src; false-freeze RESOLVED)",
     "warpline": "bed94b4",
     "plainweave": "de70e42 (1.2.1)",
@@ -10,24 +10,24 @@
   },
   "active_branches_not_on_main": {
     "filigree": "feat/weft-suppression-conformance (consumer suppression-conformance oracles)",
-    "note": "wardline release/consolidation-2026-06-26 MERGED (was NOT on main at last checkpoint — now is). legis release/1.4.0 MERGED (3055d2c). Confirm the Bid-2 legis preflight fill rode 1.4.0 to main (was ancestor of refactor/decouple-layering-inversions)."
+    "note": "wardline release/consolidation-2026-06-26 MERGED (e541ff09), then PR #86 (f7fb89e6). legis release/1.4.0 MERGED (3055d2c). Confirm the Bid-2 legis preflight fill rode 1.4.0 to main (was ancestor of refactor/decouple-layering-inversions). wardline has a standing flood of automated Bolt/Sentinel/dependabot bot PRs — triage-or-ignore, not hub work."
   },
   "main_versions": {
     "loomweave": "1.3.1",
     "filigree": "3.1.0 (schema v29)",
-    "wardline": "1.2.0+ (seam-conformance registry + CI gate now on main)",
+    "wardline": "1.2.0+ (seam-conformance registry + CI gate on main; now a producer-contributed mirror of the hub seam-index per PDR-0045)",
     "legis": "1.4.0 (WarplineMcpClient; warpline-preflight false-freeze resolved)",
     "warpline": "1.3.0 (v1.3.0 tag — 5th-producer package + glossary-freeze v1)",
     "plainweave": "1.2.1 (error-legibility fixes)",
     "tabard": "0.0.1a0 (name-reservation pre-alpha)"
   },
   "version_notes": {
-    "seam_reclaim": "2026-07-01 PDR-0045: hub reclaims the seam-index CANON (contracts/seam-index.json — catalog+blessing, NOT a verdict store; registered in contracts-index.md) + dissolves the wardline self-appointed steward role; 3 cross-sibling rulings re-homed reconciled. weft-dbaada5883 in_progress. Remaining: wardline prose PR weft-83c25d96e3 (dated 07-08, merge-grant, gate-neutral) + legis oracle re-freeze weft-51699a641c (07-15). The ticket's stated 'sync UP + P0-W2/P8-W2 sync-lint' mechanism was CUT — backwards (leaves wardline the author) and never built.",
-    "false_freeze_resolved": "legis 1.4.0 (3055d2c): WarplineMcpClient wired, HttpWarplineClient gone from src — the seam_registry line-528 'false freeze' verdict on legis preflight is RESOLVED (verified 2026-07-01). Closes PDR-0038 condition 3.",
-    "seam_conformance_reconciled": "PDR-0038's 3 reconciliation conditions all addressed by PDR-0045. The blessed conformance MACHINERY is untouched; only the canon HOME + the steward ROLE were corrected. The PDR-0038 reversal trigger did NOT fire because closing the re-home is what keeps the bless intact.",
+    "seam_reclaim": "2026-07-01 COMPLETE (PDR-0045; weft-dbaada5883 CLOSED). Hub owns the canonical seam-index at contracts/seam-index.json (catalog+blessing, NOT a verdict store; registered in contracts-index.md). Steward role dissolved: wardline PR #86 merged to main (f7fb89e6) — git grep -i steward == 0 on wardline main; the 3 cross-sibling rulings now cite hub PDRs (reverify→PDR-0037, conforms-down→newly-ratified PDR-0045). The ticket's 'sync UP + P0-W2/P8-W2 sync-lint' mechanism was CUT (backwards + never built); the mirror CITES the hub index (pull-down). Residual: legis oracle re-freeze weft-51699a641c (07-15) re-parented to the seam-health epic (distributed hardening; legis 1.4.0 already shipped the code fix).",
+    "false_freeze_resolved": "legis 1.4.0 (3055d2c): WarplineMcpClient wired, HttpWarplineClient gone from src — the seam_registry 'false freeze' verdict on legis preflight is RESOLVED (verified 2026-07-01). Closed PDR-0038 condition 3.",
+    "seam_conformance_reconciled": "PDR-0038's 3 reconciliation conditions all MET by PDR-0045 + wardline PR #86. The blessed conformance MACHINERY is untouched; only the canon HOME + the steward ROLE were corrected. The gate stays CI-only (re-confirmed 0 src refs), so enrich-only holds and the PDR-0038 reversal trigger did not fire.",
     "prior": "07-01 (1st): warpline 5th-producer handover (PDR-0043); scan_manifest BLESSED+CLOSED (PDR-0044). 06-29: both seam REDs landed (PDR-0041); half-seam build-out (PDR-0042); owner merge-grant.",
     "installed": "member installs NOT re-checked; trust main_versions over a stale local shim."
   },
-  "hub_head": "c4b28d5 (pre-reclaim HEAD; PDR-0044 scan_manifest checkpoint; this reclaim checkpoint lands on top)",
-  "reconciled_at": "2026-07-01 (3rd checkpoint — seam stewardship reclaimed hub-side, PDR-0045)"
+  "hub_head": "7978582 (pre-checkpoint HEAD; PDR-0045 index + backfill; this seam-reclaim-COMPLETE checkpoint lands on top)",
+  "reconciled_at": "2026-07-01 (4th checkpoint — seam stewardship reclaim COMPLETE, PDR-0045; wardline PR #86 merged)"
 }

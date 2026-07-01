@@ -1,4 +1,4 @@
-# Current State — Weft Federation        Checkpoint: 2026-07-01 (2nd) — **SEAM STEWARDSHIP RECLAIMED hub-side** (PDR-0045; `weft-dbaada5883` in_progress): canonical seam-index authored at `contracts/seam-index.json` (catalog+blessing, NOT a verdict store), registered in contracts-index.md; wardline's `seam_registry.json` declared a producer-contributed MIRROR; steward role dissolved + 3 cross-sibling rulings re-homed (reverify→PDR-0037; conforms-down→NEWLY ratified PDR-0045; false-freeze→verified RESOLVED, closes PDR-0038 cond 3). Ticket's sync-lint mechanism CUT (backwards + never built). REMAINING: wardline prose PR `weft-83c25d96e3` (dated 07-08, merge-grant, gate-neutral) + legis oracle re-freeze `weft-51699a641c` (07-15). — Prior 07-01: Warpline 5th-producer handover EXECUTED (PDR-0043): glossary-freeze ATTESTED v1; "GS-7 gate" reframed to the DISTRIBUTED reality (warpline self-gates = parity DONE; consumer rechecks legis✅/wardline✅; filigree+loomweave oracle gaps filed weft-87443311a0/weft-7931a32599; NO central flip). Plainweave 1.2.1 shipped the fable-dogfood error-legibility fixes; requirements_enrichment→warpline half-seam BUILT+LIVE (closed). + **scan_manifest seam (AMBER-2) BUILT+RELEASED+BLESSED+CLOSED (PDR-0044)** — the audit's clearest half-seam, done (wardline v1.2.0 ↔ plainweave, live-e2e confirmed). Prior (06-29): both seam REDs landed (PDR-0041); half-seam build-out (PDR-0042); merge-grant.
+# Current State — Weft Federation        Checkpoint: 2026-07-01 (2nd) — **SEAM STEWARDSHIP RECLAIMED — COMPLETE** (PDR-0045; `weft-dbaada5883` CLOSED): canonical seam-index authored at `contracts/seam-index.json` (catalog+blessing, NOT a verdict store), registered in contracts-index.md; wardline's `seam_registry.json` declared a producer-contributed MIRROR; steward role dissolved + 3 cross-sibling rulings re-homed (reverify→PDR-0037; conforms-down→NEWLY ratified PDR-0045; false-freeze→verified RESOLVED, closes PDR-0038 cond 3). Ticket's sync-lint mechanism CUT (backwards + never built). wardline prose PR **#86 MERGED** to main (`f7fb89e6`; `git grep -i steward`==0 on main; CI green; adversarially verified before merge) → all 3 PDR-0038 conditions met, `weft-dbaada5883` CLOSED. Residual: legis oracle re-freeze `weft-51699a641c` (07-15, distributed hardening, re-parented to the seam-health epic). — Prior 07-01: Warpline 5th-producer handover EXECUTED (PDR-0043): glossary-freeze ATTESTED v1; "GS-7 gate" reframed to the DISTRIBUTED reality (warpline self-gates = parity DONE; consumer rechecks legis✅/wardline✅; filigree+loomweave oracle gaps filed weft-87443311a0/weft-7931a32599; NO central flip). Plainweave 1.2.1 shipped the fable-dogfood error-legibility fixes; requirements_enrichment→warpline half-seam BUILT+LIVE (closed). + **scan_manifest seam (AMBER-2) BUILT+RELEASED+BLESSED+CLOSED (PDR-0044)** — the audit's clearest half-seam, done (wardline v1.2.0 ↔ plainweave, live-e2e confirmed). Prior (06-29): both seam REDs landed (PDR-0041); half-seam build-out (PDR-0042); merge-grant.
 
 > **Workspace path:** `pm/product/` (NOT `docs/product/` — `docs/` is the gitignored mkdocs
 > build dir). Resume with `/own-product pm/product`.
@@ -48,11 +48,28 @@ load-bearing deps across all 7 members**) + the FILL-NOW queue draws down.
   `weft-843fb82b57`; legis-reverify DROP `weft-5cbe6bc11b` (PDR-0037, execute).
 - **Seam-conformance (PDR-0038):** program `weft-b5dde278b9` — **RECONCILED**. wardline's `seam_registry.json`
   + gate ARE on main (the "on merge, reconcile" trigger fired). The reclaim `weft-dbaada5883` closed it hub-side
-  (**PDR-0045**, in_progress): hub-owned canon `contracts/seam-index.json`, wardline demoted to producer-mirror,
-  steward role dissolved, 3 rulings re-homed. Remaining = wardline prose PR `weft-83c25d96e3` → `git grep -i
-  steward` == 0 on wardline main closes cond 2. + legis oracle re-freeze `weft-51699a641c`.
+  (**PDR-0045**, CLOSED): hub-owned canon `contracts/seam-index.json`, wardline demoted to producer-mirror,
+  steward role dissolved, 3 rulings re-homed. wardline PR **#86 MERGED** (`f7fb89e6`; `git grep -i steward`==0 on
+  main) → all 3 conditions met. Residual: legis oracle re-freeze `weft-51699a641c` (07-15, seam-health epic).
+
+## This checkpoint did (2026-07-01, seam reclaim COMPLETE)
+
+- **Reclaimed seam stewardship end-to-end — all 3 PDR-0038 conditions met (PDR-0045; `weft-dbaada5883` CLOSED).**
+  Hub-side: authored `contracts/seam-index.json` (canonical catalog+blessing registry, NOT a verdict store) +
+  registered in `contracts-index.md` + PDR-0045 (canon declaration, steward-role dissolution, 3 cross-sibling
+  rulings re-homed reconciled). Member-side: wardline PR #86 **merged to main** (`f7fb89e6`) under the merge grant
+  — `git grep -i steward`==0 on merged main; gate-neutral (CI green: lint / tests 3.12+3.13 / mypy / dogfood);
+  independently adversarially verified before merge.
+- **Developed via** constrained-design→adversarial-refutation workflow + advisor + direct source verification. The
+  design agent stalled mid-run; convergent triple-refutation + my own source-checks substituted (caught the missing
+  "legis conforms down" hub PDR; confirmed gate-neutrality + the `contracts/` home + the false-freeze resolution).
+- **Cut the ticket's own mechanism** (the P0-W2/P8-W2 sync-lint) — backwards (leaves wardline the author) + never
+  built; the mirror now CITES the hub index (pull-down), drift-check is a wardline-side source-drift job.
+- Residual: legis oracle re-freeze `weft-51699a641c` (07-15) re-parented to the seam-health epic (distributed
+  hardening; the code fix already shipped in legis 1.4.0 — this is oracle-freshening, not a fix).
 
 ## This checkpoint did (2026-06-29, 2nd)
+
 - **Landed + closed both seam REDs** (PDR-0041). Reconciliation found both already fixed on green,
   isolated, conflict-free PRs (filigree #71, plainweave #6) opened that morning by a concurrent
   session. Verified the checks CI can't self-certify (RED-1 discriminated-UNKNOWN degrade path; RED-2
@@ -92,9 +109,9 @@ load-bearing deps across all 7 members**) + the FILL-NOW queue draws down.
 > warpline #2 (verification-freshness) + #3 (release/1.2.0); wardline has a flood of automated
 > Sentinel/Bolt bot PRs (#39–#77) — triage-or-ignore, not hub work.
 
-1. **Seam reclaim (`weft-dbaada5883`, in_progress):** land the wardline prose PR `weft-83c25d96e3` (reword
-   steward→PDR-0037/0045, add mirror note, drop sync-lint direction; merge-grant, gate-neutral) → then `git grep
-   -i steward` == 0 on wardline main closes cond 2 → close `weft-dbaada5883`. Also `weft-51699a641c` (legis oracle).
+1. ~~**Seam reclaim** `weft-dbaada5883`~~ **DONE 2026-07-01 (PDR-0045):** hub canon at `contracts/seam-index.json`
+   and the steward role dissolved; wardline PR #86 merged (`f7fb89e6`, `git grep -i steward`==0 on main); ticket CLOSED.
+   NEXT here: `weft-51699a641c` (legis oracle re-freeze, 07-15) — the last distributed limb of this seam.
    ~~**Bless `scan_manifest`** `weft-9a35aa00e7`~~ **DONE 2026-07-01 (PDR-0044).** Built+released
    both sides (wardline v1.2.0 emits `weft.wardline.scan_manifest.v1` header line; plainweave adapter
    consumes it), live-e2e confirmed, hub-blessed, ticket CLOSED. Unblocks plainweave wardline-peer-facts
